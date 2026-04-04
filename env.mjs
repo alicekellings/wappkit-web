@@ -1,0 +1,34 @@
+import { createEnv } from "@t3-oss/env-nextjs";
+import { z } from "zod";
+
+const optionalString = z.preprocess(
+  (value) => (value === "" ? undefined : value),
+  z.string().min(1).optional(),
+);
+
+const appUrl = z.preprocess(
+  (value) =>
+    typeof value === "string" && value.trim().length > 0
+      ? value
+      : "http://localhost:3000",
+  z.string().url(),
+);
+
+export const env = createEnv({
+  server: {
+    CREEM_API_KEY: optionalString,
+    CREEM_WEBHOOK_SECRET: optionalString,
+    RESEND_API_KEY: optionalString,
+    EMAIL_FROM: optionalString,
+  },
+  client: {
+    NEXT_PUBLIC_APP_URL: appUrl,
+  },
+  runtimeEnv: {
+    CREEM_API_KEY: process.env.CREEM_API_KEY,
+    CREEM_WEBHOOK_SECRET: process.env.CREEM_WEBHOOK_SECRET,
+    RESEND_API_KEY: process.env.RESEND_API_KEY,
+    EMAIL_FROM: process.env.EMAIL_FROM,
+    NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
+  },
+});
