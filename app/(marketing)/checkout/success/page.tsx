@@ -1,6 +1,8 @@
 import Link from "next/link";
 
 import { constructMetadata } from "@/lib/utils";
+import { retrieveCreemCheckout } from "@/lib/creem";
+import { createLicenseRecordFromCreemCheckout, getLicenseStore } from "@/lib/licenses";
 import { Button } from "@/components/ui/button";
 
 export const metadata = constructMetadata({
@@ -10,7 +12,7 @@ export const metadata = constructMetadata({
   noIndex: true,
 });
 
-export default function CheckoutSuccessPage({
+export default async function CheckoutSuccessPage({
   searchParams,
 }: {
   searchParams: Record<string, string | string[] | undefined>;
@@ -23,6 +25,22 @@ export default function CheckoutSuccessPage({
     typeof searchParams.checkout_id === "string"
       ? searchParams.checkout_id
       : undefined;
+  let syncedOrderId = orderId;
+  let syncReady = false;
+
+  if (checkoutId) {
+    try {
+      const checkout = await retrieveCreemCheckout(checkoutId);
+      const record = createLicenseRecordFromCreemCheckout(checkout);
+
+      await getLicenseStore().save(record);
+
+      syncedOrderId = record.orderId;
+      syncReady = true;
+    } catch {
+      syncReady = false;
+    }
+  }
 
   return (
     <div className="container max-w-4xl py-16 md:py-20">
@@ -34,10 +52,9 @@ export default function CheckoutSuccessPage({
           Your payment has been completed.
         </h1>
         <p className="mt-4 max-w-2xl text-muted-foreground">
-          Creem is processing the order and issuing the license. The key is
-          typically available from the purchase receipt and can also be
-          retrieved from Wappkit using the original purchase email and order
-          details.
+          {syncReady
+            ? "Your order has been synced with Wappkit. You can retrieve the license using the original purchase email and the order ID shown below."
+            : "Creem is processing the order and issuing the license. The key is typically available from the purchase receipt and can also be retrieved from Wappkit using the original purchase email and order details."}
         </p>
 
         <div className="mt-8 grid gap-4 md:grid-cols-2">
@@ -46,7 +63,7 @@ export default function CheckoutSuccessPage({
               Order ID
             </p>
             <p className="mt-2 break-all text-sm text-foreground">
-              {orderId ?? "Available after webhook sync"}
+              {syncedOrderId ?? "Available after sync"}
             </p>
           </div>
           <div className="rounded-2xl border bg-muted/20 p-4">

@@ -27,21 +27,30 @@ export type CreemCheckoutPayload = {
   request_id?: string | null;
   order?: {
     id?: string | null;
-    customer?: {
-      id?: string | null;
-      email?: string | null;
-      name?: string | null;
-    } | null;
+    customer?:
+      | string
+      | {
+          id?: string | null;
+          email?: string | null;
+          name?: string | null;
+        }
+      | null;
   } | null;
-  customer?: {
-    id?: string | null;
-    email?: string | null;
-    name?: string | null;
-  } | null;
-  product?: {
-    id?: string | null;
-    name?: string | null;
-  } | null;
+  customer?:
+    | string
+    | {
+        id?: string | null;
+        email?: string | null;
+        name?: string | null;
+      }
+    | null;
+  product?:
+    | string
+    | {
+        id?: string | null;
+        name?: string | null;
+      }
+    | null;
   metadata?: Record<string, string | number | boolean | null | undefined> | null;
   license_keys?:
     | Array<{
@@ -103,7 +112,8 @@ export function buildLicenseLookupKey(orderId: string, email: string) {
 export function createLicenseRecordFromCreemCheckout(
   payload: CreemCheckoutPayload,
 ): LicenseRecord {
-  const customer = payload.order?.customer ?? payload.customer;
+  const customer = getCheckoutCustomer(payload);
+  const product = getCheckoutProduct(payload);
   const metadataEntries = Object.entries(payload.metadata ?? {}).filter(
     (entry): entry is [string, string | number | boolean] => entry[1] != null,
   );
@@ -111,7 +121,7 @@ export function createLicenseRecordFromCreemCheckout(
   const now = new Date().toISOString();
   const orderId = payload.order?.id ?? payload.id;
   const customerEmail = customer?.email;
-  const productId = payload.product?.id;
+  const productId = product?.id;
 
   if (!orderId) {
     throw new Error("Creem payload is missing an order id.");
@@ -133,7 +143,7 @@ export function createLicenseRecordFromCreemCheckout(
     customerEmail: normalizeLicenseEmail(customerEmail),
     customerName: customer?.name ?? null,
     productId,
-    productName: payload.product?.name ?? "Untitled Product",
+    productName: product?.name ?? "Untitled Product",
     toolSlug,
     metadata: Object.fromEntries(
       metadataEntries.map(([key, value]) => [key, String(value)]),
@@ -148,6 +158,28 @@ export function createLicenseRecordFromCreemCheckout(
     createdAt: now,
     updatedAt: now,
   };
+}
+
+function getCheckoutCustomer(payload: CreemCheckoutPayload) {
+  const orderCustomer = payload.order?.customer;
+
+  if (orderCustomer && typeof orderCustomer === "object") {
+    return orderCustomer;
+  }
+
+  if (payload.customer && typeof payload.customer === "object") {
+    return payload.customer;
+  }
+
+  return null;
+}
+
+function getCheckoutProduct(payload: CreemCheckoutPayload) {
+  if (payload.product && typeof payload.product === "object") {
+    return payload.product;
+  }
+
+  return null;
 }
 
 function normalizeLicenseStatus(value: string | null | undefined): LicenseStatus {
