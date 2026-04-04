@@ -19,6 +19,12 @@ type LicenseLookupResult = {
   emailDeliveryAvailable: boolean;
 };
 
+type LicenseStatusMeta = {
+  label: string;
+  description: string;
+  tone: string;
+};
+
 function maskEmail(email: string) {
   const [name, domain] = email.split("@");
   if (!name || !domain) {
@@ -29,6 +35,43 @@ function maskEmail(email: string) {
     name.length <= 2 ? `${name[0] ?? ""}*` : `${name[0]}${"*".repeat(name.length - 2)}${name[name.length - 1]}`;
 
   return `${safeName}@${domain}`;
+}
+
+function getLicenseStatusMeta(status: string): LicenseStatusMeta {
+  switch (status) {
+    case "inactive":
+      return {
+        label: "Ready to activate",
+        description:
+          "This key has been issued and has not been activated yet.",
+        tone:
+          "border-emerald-500/20 bg-emerald-500/10 text-emerald-700 dark:text-emerald-300",
+      };
+    case "active":
+      return {
+        label: "Activated",
+        description:
+          "This key has already been activated at least once.",
+        tone:
+          "border-sky-500/20 bg-sky-500/10 text-sky-700 dark:text-sky-300",
+      };
+    case "disabled":
+      return {
+        label: "Disabled",
+        description:
+          "This key is no longer usable. Contact support if you did not expect this.",
+        tone:
+          "border-amber-500/20 bg-amber-500/10 text-amber-700 dark:text-amber-300",
+      };
+    default:
+      return {
+        label: "Status unavailable",
+        description:
+          "The key was found, but its activation state is not available yet.",
+        tone:
+          "border-muted bg-muted/40 text-muted-foreground",
+      };
+  }
 }
 
 export function LicenseRetrievalForm() {
@@ -135,7 +178,7 @@ export function LicenseRetrievalForm() {
           <Input
             value={orderId}
             onChange={(event) => setOrderId(event.target.value)}
-            placeholder="Enter your checkout or order ID"
+            placeholder="Enter the order ID from your receipt or success page"
             required
           />
         </div>
@@ -180,23 +223,32 @@ export function LicenseRetrievalForm() {
           <div className="space-y-3">
             {result.licenseKeys.length > 0 ? (
               result.licenseKeys.map((license) => (
-                <div
-                  key={license.id}
-                  className="rounded-2xl border bg-background p-4"
-                >
-                  <div className="flex items-start justify-between gap-4">
-                    <div>
+                <div key={license.id} className="rounded-2xl border bg-background p-4">
+                  <div className="flex flex-wrap items-start justify-between gap-4">
+                    <div className="min-w-0 flex-1">
                       <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
                         License key
                       </p>
                       <code className="mt-2 block break-all text-sm text-foreground">
                         {license.key}
                       </code>
-                      <p className="mt-2 text-xs text-muted-foreground">
-                        Status: {license.status}
-                      </p>
+                      <div className="mt-3 flex flex-wrap items-center gap-2">
+                        <span
+                          className={`inline-flex items-center rounded-full border px-2.5 py-1 text-xs font-medium ${getLicenseStatusMeta(license.status).tone}`}
+                        >
+                          {getLicenseStatusMeta(license.status).label}
+                        </span>
+                        <p className="text-xs text-muted-foreground">
+                          {getLicenseStatusMeta(license.status).description}
+                        </p>
+                      </div>
                     </div>
-                    <CopyButton value={license.key} />
+                    <CopyButton
+                      value={license.key}
+                      showText
+                      idleLabel="Copy key"
+                      copiedLabel="Copied"
+                    />
                   </div>
                 </div>
               ))
@@ -208,6 +260,21 @@ export function LicenseRetrievalForm() {
             )}
           </div>
 
+          <div className="rounded-2xl border bg-background p-4">
+            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+              Activation steps
+            </p>
+            <ol className="mt-3 space-y-2 text-sm text-muted-foreground">
+              <li>1. Copy the license key shown above.</li>
+              <li>2. Open your Wappkit app and find the activation screen.</li>
+              <li>3. Paste the key and confirm to unlock the paid version.</li>
+            </ol>
+            <p className="mt-3 text-xs text-muted-foreground">
+              If the status says <span className="font-medium text-foreground">Ready to activate</span>,
+              the key is valid and simply has not been used yet.
+            </p>
+          </div>
+
           <div className="flex flex-wrap gap-3">
             <Button
               type="button"
@@ -216,7 +283,11 @@ export function LicenseRetrievalForm() {
               onClick={handleSendEmail}
               disabled={!result.emailDeliveryAvailable || isEmailSending}
             >
-              {isEmailSending ? "Sending..." : "Email a Copy"}
+              {isEmailSending
+                ? "Sending..."
+                : result.emailDeliveryAvailable
+                  ? "Email a Copy"
+                  : "Email Delivery Coming Soon"}
             </Button>
             <Button
               type="button"
@@ -233,7 +304,7 @@ export function LicenseRetrievalForm() {
           <p className="text-sm text-muted-foreground">
             {result.emailDeliveryAvailable
               ? "Email delivery is available and always sends to the original purchase email."
-              : "Email delivery is not configured yet. The direct on-page license display is the active retrieval path for now."}
+              : "The key shown on this page is the current retrieval path. Email re-send can be enabled later without changing the license flow."}
           </p>
 
           {emailStatus ? (
