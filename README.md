@@ -80,3 +80,10 @@ EMAIL_FROM=
 - use the public webhook endpoint:
   `https://wappkit.com/api/webhook/creem`
 - test payments in Creem test mode before switching the production domain
+
+## Production Launch Checklist
+
+- rotate `CREEM_API_KEY`, `CREEM_WEBHOOK_SECRET`, and `UPSTASH_REDIS_REST_TOKEN` before going live if the test values were exposed
+- switch `CREEM_TEST_MODE` to `false` after validating the live Creem product setup
+- replace the temporary Creem product naming and media with the final `Wappkit` product assets
+- confirm the production webhook target is `https://wappkit.com/api/webhook/creem`

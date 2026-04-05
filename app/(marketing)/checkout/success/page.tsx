@@ -1,8 +1,15 @@
 import Link from "next/link";
 
+import {
+  retrieveCreemCheckout,
+  verifyCreemRedirectSignature,
+} from "@/lib/creem";
+import {
+  createLicenseRecordFromCreemCheckout,
+  getLicenseStore,
+  hasLicenseKeys,
+} from "@/lib/licenses";
 import { constructMetadata } from "@/lib/utils";
-import { retrieveCreemCheckout } from "@/lib/creem";
-import { createLicenseRecordFromCreemCheckout, getLicenseStore } from "@/lib/licenses";
 import { Button } from "@/components/ui/button";
 
 export const metadata = constructMetadata({
@@ -25,18 +32,52 @@ export default async function CheckoutSuccessPage({
     typeof searchParams.checkout_id === "string"
       ? searchParams.checkout_id
       : undefined;
+  const customerId =
+    typeof searchParams.customer_id === "string"
+      ? searchParams.customer_id
+      : undefined;
+  const productId =
+    typeof searchParams.product_id === "string"
+      ? searchParams.product_id
+      : undefined;
+  const requestId =
+    typeof searchParams.request_id === "string"
+      ? searchParams.request_id
+      : undefined;
+  const signature =
+    typeof searchParams.signature === "string"
+      ? searchParams.signature
+      : undefined;
   let syncedOrderId = orderId;
   let syncReady = false;
+  const canVerifyRedirect =
+    Boolean(process.env.CREEM_API_KEY) && Boolean(signature);
+  const hasValidRedirectSignature =
+    canVerifyRedirect &&
+    verifyCreemRedirectSignature(
+      {
+        checkout_id: checkoutId,
+        order_id: orderId,
+        customer_id: customerId,
+        product_id: productId,
+        request_id: requestId,
+        signature,
+      },
+      process.env.CREEM_API_KEY!,
+    );
 
-  if (checkoutId) {
+  if (checkoutId && (!canVerifyRedirect || hasValidRedirectSignature)) {
     try {
       const checkout = await retrieveCreemCheckout(checkoutId);
-      const record = createLicenseRecordFromCreemCheckout(checkout);
 
-      await getLicenseStore().save(record);
+      if (hasLicenseKeys(checkout)) {
+        const record = createLicenseRecordFromCreemCheckout(checkout);
 
-      syncedOrderId = record.orderId;
-      syncReady = true;
+        await getLicenseStore().save(record);
+
+        syncedOrderId = record.orderId;
+        syncReady = true;
+      }
     } catch {
       syncReady = false;
     }

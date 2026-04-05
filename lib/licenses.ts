@@ -24,6 +24,7 @@ export type LicenseRecord = {
 
 export type CreemCheckoutPayload = {
   id: string;
+  status?: string | null;
   request_id?: string | null;
   order?: {
     id?: string | null;
@@ -158,6 +159,10 @@ export function createLicenseRecordFromCreemCheckout(
     createdAt: now,
     updatedAt: now,
   };
+}
+
+export function hasLicenseKeys(payload: CreemCheckoutPayload) {
+  return Array.isArray(payload.license_keys) && payload.license_keys.length > 0;
 }
 
 function getCheckoutCustomer(payload: CreemCheckoutPayload) {

@@ -6,7 +6,24 @@ import {
   retrieveCreemCheckout,
   verifyCreemWebhookSignature,
 } from "@/lib/creem";
-import { createLicenseRecordFromCreemCheckout, getLicenseStore } from "@/lib/licenses";
+import {
+  createLicenseRecordFromCreemCheckout,
+  getLicenseStore,
+  hasLicenseKeys,
+} from "@/lib/licenses";
+
+function mergeCreemCheckoutPayloads(
+  checkout: Awaited<ReturnType<typeof retrieveCreemCheckout>>,
+  eventObject: Awaited<ReturnType<typeof parseCreemWebhookEvent>>["object"],
+) {
+  return {
+    ...checkout,
+    metadata: checkout.metadata ?? eventObject.metadata ?? undefined,
+    order: checkout.order ?? eventObject.order ?? undefined,
+    customer: checkout.customer ?? eventObject.customer ?? undefined,
+    product: checkout.product ?? eventObject.product ?? undefined,
+  };
+}
 
 export async function POST(request: NextRequest) {
   const secret = process.env.CREEM_WEBHOOK_SECRET;
@@ -35,17 +52,29 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ received: true, ignored: true });
     }
 
-    const checkout =
-      event.object.license_keys && event.object.license_keys.length > 0
-        ? event.object
-        : {
-            ...event.object,
-            ...(await retrieveCreemCheckout(event.object.id)),
-            order: event.object.order ?? undefined,
-            customer: event.object.customer ?? undefined,
-            product: event.object.product ?? undefined,
-            metadata: event.object.metadata ?? undefined,
-          };
+    const checkout = hasLicenseKeys(event.object)
+      ? event.object
+      : mergeCreemCheckoutPayloads(
+          await retrieveCreemCheckout(event.object.id),
+          event.object,
+        );
+
+    if (!hasLicenseKeys(checkout)) {
+      console.error("Creem webhook checkout missing license keys after sync.", {
+        eventId: event.id,
+        eventType: event.eventType,
+        checkoutId: event.object.id,
+      });
+
+      return NextResponse.json(
+        {
+          error: "License keys are not available yet for this checkout.",
+          received: true,
+          retryable: true,
+        },
+        { status: 503 },
+      );
+    }
 
     const record = createLicenseRecordFromCreemCheckout(checkout);
     const store = getLicenseStore();
@@ -58,6 +87,8 @@ export async function POST(request: NextRequest) {
       orderId: record.orderId,
     });
   } catch (error) {
+    console.error("Failed to process Creem webhook.", error);
+
     return NextResponse.json(
       {
         error:

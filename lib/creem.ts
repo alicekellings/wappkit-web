@@ -27,6 +27,16 @@ type CreemWebhookEvent = {
   object: CreemCheckoutPayload;
 };
 
+type CreemRedirectParams = {
+  checkout_id?: string | null;
+  order_id?: string | null;
+  customer_id?: string | null;
+  subscription_id?: string | null;
+  product_id?: string | null;
+  request_id?: string | null;
+  signature?: string | null;
+};
+
 function getCreemApiKey() {
   const apiKey = process.env.CREEM_API_KEY;
 
@@ -113,14 +123,18 @@ export function verifyCreemWebhookSignature(
     .update(rawBody)
     .digest("hex");
 
-  if (normalizedSignature.length !== computed.length) {
+  return timingSafeHexMatch(computed, normalizedSignature);
+}
+
+function timingSafeHexMatch(expected: string, received: string) {
+  if (expected.length !== received.length) {
     return false;
   }
 
   try {
     return crypto.timingSafeEqual(
-      Buffer.from(computed, "hex"),
-      Buffer.from(normalizedSignature, "hex"),
+      Buffer.from(expected, "hex"),
+      Buffer.from(received, "hex"),
     );
   } catch {
     return false;
@@ -131,10 +145,73 @@ export function getCreemWebhookSignature(headers: Headers) {
   return (
     headers.get("creem-signature") ??
     headers.get("x-creem-signature") ??
-    headers.get("x-signature")
+    headers.get("x-signature") ??
+    headers.get("signature")
   );
 }
 
 export function parseCreemWebhookEvent(rawBody: string) {
-  return JSON.parse(rawBody) as CreemWebhookEvent;
+  const parsed = JSON.parse(rawBody) as
+    | CreemWebhookEvent
+    | (Omit<CreemWebhookEvent, "eventType"> & { event_type?: string });
+
+  const eventType =
+    "eventType" in parsed && typeof parsed.eventType === "string"
+      ? parsed.eventType
+      : "event_type" in parsed && typeof parsed.event_type === "string"
+        ? parsed.event_type
+        : null;
+
+  if (!eventType || !parsed.object?.id) {
+    throw new Error("Invalid Creem webhook event payload.");
+  }
+
+  return {
+    id: parsed.id,
+    eventType,
+    created_at: parsed.created_at,
+    object: parsed.object,
+  } satisfies CreemWebhookEvent;
+}
+
+export function verifyCreemRedirectSignature(
+  params: CreemRedirectParams,
+  apiKey: string,
+) {
+  if (!params.signature) {
+    return false;
+  }
+
+  const { signature, ...rest } = params;
+  const serialized = Object.entries(rest)
+    .filter(([, value]) => value !== null && value !== undefined && value !== "")
+    .sort(([leftKey], [rightKey]) => leftKey.localeCompare(rightKey))
+    .map(([key, value]) => `${key}=${value}`)
+    .join("&");
+
+  const expectedSignature = crypto
+    .createHmac("sha256", apiKey)
+    .update(serialized)
+    .digest("hex");
+
+  return timingSafeHexMatch(expectedSignature, signature.trim());
+}
+
+export function getRequestIpFromHeaders(headers: Headers) {
+  const forwardedFor = headers.get("x-forwarded-for");
+
+  if (forwardedFor) {
+    const firstIp = forwardedFor.split(",")[0]?.trim();
+
+    if (firstIp) {
+      return firstIp;
+    }
+  }
+
+  return (
+    headers.get("cf-connecting-ip") ??
+    headers.get("x-real-ip") ??
+    headers.get("x-vercel-forwarded-for") ??
+    "unknown"
+  );
 }
