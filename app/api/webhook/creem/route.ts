@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 import {
   getCreemWebhookSignature,
+  isCreemInTestMode,
   parseCreemWebhookEvent,
   retrieveCreemCheckout,
   verifyCreemWebhookSignature,
@@ -51,6 +52,14 @@ export async function POST(request: NextRequest) {
 
     if (event.eventType !== "checkout.completed") {
       return NextResponse.json({ received: true, ignored: true });
+    }
+
+    if (event.object.mode === "test" && !isCreemInTestMode()) {
+      return NextResponse.json({
+        received: true,
+        ignored: true,
+        reason: "Ignoring Creem test webhook in production mode.",
+      });
     }
 
     const checkout = hasLicenseKeys(event.object)

@@ -26,6 +26,7 @@ export type LicenseRecord = {
 
 export type CreemCheckoutPayload = {
   id: string;
+  mode?: string | null;
   status?: string | null;
   request_id?: string | null;
   order?: {
