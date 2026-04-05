@@ -4,6 +4,13 @@
 
 The project has been rebuilt into a lightweight multi-tool website with no login, no user center, and no account dashboard.
 
+Deployment source of truth:
+
+- GitHub repository: `https://github.com/alicekellings/wappkit-web`
+- deployment model: GitHub push triggers Vercel deployment
+- current Vercel URL: `https://wappkit-web.vercel.app/`
+- final production domain: `https://wappkit.com/`
+
 Current verified areas:
 
 - homepage
@@ -40,8 +47,9 @@ Current verified areas:
 
 ## Pending Work
 
-- deploy this repository to a new Vercel project
+- verify each new GitHub push has deployed correctly on Vercel
 - add real production environment variables
+- switch the final domain from the old site to `wappkit.com` when ready
 - test Creem checkout end to end on the deployed site
 - migrate old blog content from the previous site
 - optionally enable Resend for original-email license resend

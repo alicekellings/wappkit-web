@@ -75,7 +75,14 @@ EMAIL_FROM=
 
 ## Deployment Notes
 
-- create a new Vercel project for this repository
+- deployment model: GitHub + Vercel
+- GitHub repository:
+  `https://github.com/alicekellings/wappkit-web`
+- pushes to the main repository are expected to trigger automatic Vercel deployments
+- current Vercel deployment URL:
+  `https://wappkit-web.vercel.app/`
+- final production domain target:
+  `https://wappkit.com/`
 - add the required environment variables in Vercel
 - use the public webhook endpoint:
   `https://wappkit.com/api/webhook/creem`
