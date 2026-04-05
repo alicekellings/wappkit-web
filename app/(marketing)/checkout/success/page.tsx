@@ -4,6 +4,7 @@ import {
   retrieveCreemCheckout,
   verifyCreemRedirectSignature,
 } from "@/lib/creem";
+import { getTrimmedEnv } from "@/lib/env-utils";
 import {
   createLicenseRecordFromCreemCheckout,
   getLicenseStore,
@@ -50,8 +51,9 @@ export default async function CheckoutSuccessPage({
       : undefined;
   let syncedOrderId = orderId;
   let syncReady = false;
+  const creemApiKey = getTrimmedEnv("CREEM_API_KEY");
   const canVerifyRedirect =
-    Boolean(process.env.CREEM_API_KEY) && Boolean(signature);
+    Boolean(creemApiKey) && Boolean(signature);
   const hasValidRedirectSignature =
     canVerifyRedirect &&
     verifyCreemRedirectSignature(
@@ -63,7 +65,7 @@ export default async function CheckoutSuccessPage({
         request_id: requestId,
         signature,
       },
-      process.env.CREEM_API_KEY!,
+      creemApiKey!,
     );
 
   if (checkoutId && (!canVerifyRedirect || hasValidRedirectSignature)) {

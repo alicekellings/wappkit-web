@@ -2,7 +2,14 @@ import { createEnv } from "@t3-oss/env-nextjs";
 import { z } from "zod";
 
 const optionalString = z.preprocess(
-  (value) => (value === "" ? undefined : value),
+  (value) => {
+    if (typeof value !== "string") {
+      return value;
+    }
+
+    const trimmed = value.trim();
+    return trimmed === "" ? undefined : trimmed;
+  },
   z.string().min(1).optional(),
 );
 

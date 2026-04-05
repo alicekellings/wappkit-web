@@ -6,6 +6,7 @@ import {
   retrieveCreemCheckout,
   verifyCreemWebhookSignature,
 } from "@/lib/creem";
+import { getTrimmedEnv } from "@/lib/env-utils";
 import {
   createLicenseRecordFromCreemCheckout,
   getLicenseStore,
@@ -26,7 +27,7 @@ function mergeCreemCheckoutPayloads(
 }
 
 export async function POST(request: NextRequest) {
-  const secret = process.env.CREEM_WEBHOOK_SECRET;
+  const secret = getTrimmedEnv("CREEM_WEBHOOK_SECRET");
   const signature = getCreemWebhookSignature(request.headers);
   const rawBody = await request.text();
 

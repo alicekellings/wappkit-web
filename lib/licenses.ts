@@ -1,5 +1,7 @@
 export type LicenseStatus = "active" | "inactive" | "disabled" | "unknown";
 
+import { getTrimmedEnv } from "@/lib/env-utils";
+
 export type LicenseKeyRecord = {
   id: string;
   key: string;
@@ -285,8 +287,8 @@ function createUpstashLicenseStore({
 }
 
 export function getLicenseStore(): LicenseStore {
-  const url = process.env.UPSTASH_REDIS_REST_URL;
-  const token = process.env.UPSTASH_REDIS_REST_TOKEN;
+  const url = getTrimmedEnv("UPSTASH_REDIS_REST_URL");
+  const token = getTrimmedEnv("UPSTASH_REDIS_REST_TOKEN");
 
   if (url && token) {
     return createUpstashLicenseStore({ url, token });

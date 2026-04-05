@@ -1,5 +1,6 @@
 import crypto from "node:crypto";
 
+import { getTrimmedEnv, isTrimmedEnvFlagEnabled } from "@/lib/env-utils";
 import type { CreemCheckoutPayload } from "@/lib/licenses";
 
 const CREEM_LIVE_API_URL = "https://api.creem.io";
@@ -38,7 +39,7 @@ type CreemRedirectParams = {
 };
 
 function getCreemApiKey() {
-  const apiKey = process.env.CREEM_API_KEY;
+  const apiKey = getTrimmedEnv("CREEM_API_KEY");
 
   if (!apiKey) {
     throw new Error("CREEM_API_KEY is not configured.");
@@ -48,7 +49,7 @@ function getCreemApiKey() {
 }
 
 export function isCreemInTestMode() {
-  return process.env.CREEM_TEST_MODE === "true";
+  return isTrimmedEnvFlagEnabled("CREEM_TEST_MODE");
 }
 
 export function getCreemApiBaseUrl() {

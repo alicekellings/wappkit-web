@@ -1,3 +1,5 @@
+import { getTrimmedEnv } from "@/lib/env-utils";
+
 type RateLimitOptions = {
   key: string;
   limit: number;
@@ -72,8 +74,8 @@ async function applyMemoryRateLimit(
 }
 
 async function runUpstashCommand<T>(command: Array<string>) {
-  const url = process.env.UPSTASH_REDIS_REST_URL;
-  const token = process.env.UPSTASH_REDIS_REST_TOKEN;
+  const url = getTrimmedEnv("UPSTASH_REDIS_REST_URL");
+  const token = getTrimmedEnv("UPSTASH_REDIS_REST_TOKEN");
 
   if (!url || !token) {
     return null;

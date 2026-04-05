@@ -1,10 +1,11 @@
 import { Resend } from "resend";
 
+import { getTrimmedEnv } from "@/lib/env-utils";
 import type { LicenseRecord } from "@/lib/licenses";
 import { getDisplayProductName } from "@/lib/tools";
 
 function getResendClient() {
-  const apiKey = process.env.RESEND_API_KEY;
+  const apiKey = getTrimmedEnv("RESEND_API_KEY");
 
   if (!apiKey) {
     return null;
@@ -14,12 +15,12 @@ function getResendClient() {
 }
 
 export function canSendLicenseEmail() {
-  return Boolean(process.env.RESEND_API_KEY && process.env.EMAIL_FROM);
+  return Boolean(getTrimmedEnv("RESEND_API_KEY") && getTrimmedEnv("EMAIL_FROM"));
 }
 
 export async function sendLicenseEmail(record: LicenseRecord) {
   const resend = getResendClient();
-  const emailFrom = process.env.EMAIL_FROM;
+  const emailFrom = getTrimmedEnv("EMAIL_FROM");
   const productName = getDisplayProductName(record.toolSlug, record.productName);
 
   if (!resend || !emailFrom) {

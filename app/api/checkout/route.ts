@@ -3,6 +3,7 @@ import crypto from "node:crypto";
 import { NextRequest, NextResponse } from "next/server";
 
 import { createCreemCheckout, isCreemInTestMode } from "@/lib/creem";
+import { getTrimmedEnv } from "@/lib/env-utils";
 import { checkoutRequestSchema } from "@/lib/validations/license";
 import { absoluteUrl } from "@/lib/utils";
 import { getToolBySlug } from "@/lib/tools";
@@ -32,7 +33,7 @@ export async function POST(request: NextRequest) {
     }
 
     const productEnvKey = TOOL_PRODUCT_ENV_MAP[tool.slug];
-    const productId = productEnvKey ? process.env[productEnvKey] : undefined;
+    const productId = productEnvKey ? getTrimmedEnv(productEnvKey) : undefined;
 
     if (!productId) {
       console.error("Creem checkout product is not configured.", {
@@ -71,8 +72,8 @@ export async function POST(request: NextRequest) {
       creemTestMode: isCreemInTestMode(),
       productEnvKey: TOOL_PRODUCT_ENV_MAP["reddit-toolbox"],
       configuredProductId:
-        process.env[TOOL_PRODUCT_ENV_MAP["reddit-toolbox"] ?? ""] ?? null,
-      nextPublicAppUrl: process.env.NEXT_PUBLIC_APP_URL ?? null,
+        getTrimmedEnv(TOOL_PRODUCT_ENV_MAP["reddit-toolbox"] ?? "") ?? null,
+      nextPublicAppUrl: getTrimmedEnv("NEXT_PUBLIC_APP_URL") ?? null,
       error,
     });
 
