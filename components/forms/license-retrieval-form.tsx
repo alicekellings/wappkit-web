@@ -5,6 +5,7 @@ import { FormEvent, useMemo, useState } from "react";
 import { CopyButton } from "@/components/shared/copy-button";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { normalizeEmailInput, trimInput } from "@/lib/input-utils";
 
 type LicenseLookupResult = {
   orderId: string;
@@ -103,8 +104,8 @@ export function LicenseRetrievalForm() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          orderId,
-          email,
+          orderId: trimInput(orderId),
+          email: normalizeEmailInput(email),
         }),
       });
 
@@ -148,7 +149,7 @@ export function LicenseRetrievalForm() {
         },
         body: JSON.stringify({
           orderId: result.orderId,
-          email,
+          email: normalizeEmailInput(email),
         }),
       });
 

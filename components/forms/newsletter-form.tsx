@@ -15,11 +15,15 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { toast } from "@/components/ui/use-toast";
+import { normalizeEmailInput } from "@/lib/input-utils";
 
 const FormSchema = z.object({
-  email: z.string().email({
-    message: "Enter a valid email.",
-  }),
+  email: z.preprocess(
+    normalizeEmailInput,
+    z.string().email({
+      message: "Enter a valid email.",
+    }),
+  ),
 });
 
 export function NewsletterForm() {

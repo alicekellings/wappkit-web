@@ -5,6 +5,7 @@ import {
   verifyCreemRedirectSignature,
 } from "@/lib/creem";
 import { getTrimmedEnv } from "@/lib/env-utils";
+import { getTrimmedSearchParam } from "@/lib/input-utils";
 import {
   createLicenseRecordFromCreemCheckout,
   getLicenseStore,
@@ -25,30 +26,34 @@ export default async function CheckoutSuccessPage({
 }: {
   searchParams: Record<string, string | string[] | undefined>;
 }) {
-  const toolSlug =
-    typeof searchParams.tool === "string" ? searchParams.tool : undefined;
-  const orderId =
-    typeof searchParams.order_id === "string" ? searchParams.order_id : undefined;
-  const checkoutId =
-    typeof searchParams.checkout_id === "string"
-      ? searchParams.checkout_id
-      : undefined;
-  const customerId =
-    typeof searchParams.customer_id === "string"
-      ? searchParams.customer_id
-      : undefined;
-  const productId =
-    typeof searchParams.product_id === "string"
-      ? searchParams.product_id
-      : undefined;
-  const requestId =
-    typeof searchParams.request_id === "string"
-      ? searchParams.request_id
-      : undefined;
-  const signature =
-    typeof searchParams.signature === "string"
-      ? searchParams.signature
-      : undefined;
+  const toolSlug = getTrimmedSearchParam(searchParams.tool, {
+    allowPattern: /^[a-z0-9-]+$/,
+    maxLength: 80,
+  });
+  const orderId = getTrimmedSearchParam(searchParams.order_id, {
+    allowPattern: /^[A-Za-z0-9_-]+$/,
+    maxLength: 120,
+  });
+  const checkoutId = getTrimmedSearchParam(searchParams.checkout_id, {
+    allowPattern: /^[A-Za-z0-9_-]+$/,
+    maxLength: 120,
+  });
+  const customerId = getTrimmedSearchParam(searchParams.customer_id, {
+    allowPattern: /^[A-Za-z0-9_-]+$/,
+    maxLength: 120,
+  });
+  const productId = getTrimmedSearchParam(searchParams.product_id, {
+    allowPattern: /^[A-Za-z0-9_-]+$/,
+    maxLength: 120,
+  });
+  const requestId = getTrimmedSearchParam(searchParams.request_id, {
+    allowPattern: /^[A-Za-z0-9_-]+$/,
+    maxLength: 120,
+  });
+  const signature = getTrimmedSearchParam(searchParams.signature, {
+    allowPattern: /^[A-Fa-f0-9=]+$/,
+    maxLength: 200,
+  });
   let syncedOrderId = orderId;
   let syncReady = false;
   const creemApiKey = getTrimmedEnv("CREEM_API_KEY");

@@ -1,6 +1,7 @@
 import { Resend } from "resend";
 
 import { getTrimmedEnv } from "@/lib/env-utils";
+import { escapeHtml } from "@/lib/input-utils";
 import type { LicenseRecord } from "@/lib/licenses";
 import { getDisplayProductName } from "@/lib/tools";
 
@@ -28,7 +29,10 @@ export async function sendLicenseEmail(record: LicenseRecord) {
   }
 
   const licenseList = record.licenseKeys
-    .map((item) => `<li><code>${item.key}</code> <span>(${item.status})</span></li>`)
+    .map(
+      (item) =>
+        `<li><code>${escapeHtml(item.key)}</code> <span>(${escapeHtml(item.status)})</span></li>`,
+    )
     .join("");
 
   const textList = record.licenseKeys
@@ -42,9 +46,9 @@ export async function sendLicenseEmail(record: LicenseRecord) {
     html: `
       <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #111827;">
         <h1 style="font-size: 20px;">Your Wappkit license</h1>
-        <p>Here is a copy of the license for <strong>${productName}</strong>.</p>
+        <p>Here is a copy of the license for <strong>${escapeHtml(productName)}</strong>.</p>
         <ul>${licenseList}</ul>
-        <p>Order ID: <strong>${record.orderId}</strong></p>
+        <p>Order ID: <strong>${escapeHtml(record.orderId)}</strong></p>
         <p>If you did not request this email, you can ignore it.</p>
       </div>
     `,
