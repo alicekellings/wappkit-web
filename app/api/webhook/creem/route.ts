@@ -97,6 +97,18 @@ export async function POST(request: NextRequest) {
       orderId: record.orderId,
     });
   } catch (error) {
+    if (
+      !isCreemInTestMode() &&
+      error instanceof Error &&
+      error.message.includes("Checkout not found")
+    ) {
+      return NextResponse.json({
+        received: true,
+        ignored: true,
+        reason: "Ignoring unmatched Creem test webhook payload in production mode.",
+      });
+    }
+
     console.error("Failed to process Creem webhook.", error);
 
     return NextResponse.json(
