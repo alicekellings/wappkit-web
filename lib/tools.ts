@@ -118,3 +118,9 @@ export function getFeaturedTools() {
 export function getToolBySlug(slug: string) {
   return tools.find((tool) => tool.slug === slug);
 }
+
+export function getDisplayProductName(toolSlug: string, fallbackName?: string | null) {
+  const tool = getToolBySlug(toolSlug);
+
+  return tool?.name ?? fallbackName ?? "Wappkit Tool";
+}

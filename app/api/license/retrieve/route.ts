@@ -4,6 +4,7 @@ import { getRequestIpFromHeaders } from "@/lib/creem";
 import { canSendLicenseEmail } from "@/lib/license-email";
 import { getLicenseStore } from "@/lib/licenses";
 import { applyRateLimit, buildRateLimitKey } from "@/lib/rate-limit";
+import { getDisplayProductName } from "@/lib/tools";
 import { licenseLookupSchema } from "@/lib/validations/license";
 
 const LICENSE_RETRIEVE_RATE_LIMIT = {
@@ -66,7 +67,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({
       data: {
         orderId: record.orderId,
-        productName: record.productName,
+        productName: getDisplayProductName(record.toolSlug, record.productName),
         toolSlug: record.toolSlug,
         customerEmail: record.customerEmail,
         licenseKeys: record.licenseKeys,
