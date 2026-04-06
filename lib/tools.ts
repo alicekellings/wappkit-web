@@ -26,29 +26,30 @@ export const tools: Tool[] = [
     name: "Reddit Toolbox",
     category: "Research",
     status: "live",
-    tagline: "A focused desktop tool for Reddit research and workflow support.",
+    tagline:
+      "Desktop Reddit research software with a free starting mode and a license-based full unlock.",
     shortDescription:
-      "Explore Reddit communities, inspect opportunities, and keep your workflow in one focused utility.",
+      "Start with the Reddit collector for free, then unlock the full desktop workflow with a Wappkit license key.",
     longDescription:
-      "Reddit Toolbox is the first Wappkit product page in the new platform structure. It is designed for focused research workflows and uses a license-based model instead of a web account dashboard.",
+      "Reddit Toolbox helps founders, marketers, and operators turn Reddit activity into a cleaner research workflow. The free version keeps the Reddit collector open, while the paid license unlocks the full toolbox inside the app without forcing users into a web account dashboard.",
     features: [
-      "Dedicated tool page with download and licensing guidance",
-      "English-first positioning for product, docs, and blog content",
-      "Structured placement inside the Wappkit multi-tool directory",
+      "Free mode keeps the Reddit collector open for hands-on evaluation",
+      "Paid activation unlocks the rest of the desktop toolbox inside the app",
+      "License retrieval and activation help live on the main Wappkit site",
     ],
     audience: [
-      "Founders validating communities",
-      "Marketers doing audience research",
-      "Operators who want simple desktop tooling",
+      "Founders validating communities and pain points",
+      "Marketers collecting live Reddit demand signals",
+      "Operators who want desktop software without account friction",
     ],
     platform: "Desktop",
-    downloadLabel: "Download Reddit Toolbox",
-    buyLabel: "Buy with Creem",
+    downloadLabel: "Download Free Version",
+    buyLabel: "Unlock Full Version",
     downloadHref: "/download",
     buyHref: "/license",
     docsHref: "/docs/checkout-and-activation",
     availabilityNote:
-      "Live product page structure ready now. App delivery and checkout wiring can be connected next.",
+      "Reddit Toolbox is live on Wappkit with checkout, license retrieval, and in-app activation connected.",
     checkoutEnabled: true,
   },
   {
@@ -119,7 +120,10 @@ export function getToolBySlug(slug: string) {
   return tools.find((tool) => tool.slug === slug);
 }
 
-export function getDisplayProductName(toolSlug: string, fallbackName?: string | null) {
+export function getDisplayProductName(
+  toolSlug: string,
+  fallbackName?: string | null,
+) {
   const tool = getToolBySlug(toolSlug);
 
   return tool?.name ?? fallbackName ?? "Wappkit Tool";
