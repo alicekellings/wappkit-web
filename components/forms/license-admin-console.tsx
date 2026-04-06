@@ -60,6 +60,7 @@ export function LicenseAdminConsole() {
   const [isSearching, setIsSearching] = useState(false);
   const [isLoggingOut, setIsLoggingOut] = useState(false);
   const [activeUnbindKey, setActiveUnbindKey] = useState<string | null>(null);
+  const [activeStatusKey, setActiveStatusKey] = useState<string | null>(null);
   const [result, setResult] = useState<AdminLicenseResult | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [notice, setNotice] = useState<string | null>(null);
@@ -172,6 +173,73 @@ export function LicenseAdminConsole() {
       );
     } finally {
       setActiveUnbindKey(null);
+    }
+  }
+
+  async function handleLicenseStatusChange(
+    targetLicenseKey: string,
+    action: "disable" | "enable",
+  ) {
+    try {
+      setActiveStatusKey(targetLicenseKey);
+      setError(null);
+      setNotice(null);
+
+      const response = await fetch("/api/admin/license/status", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          licenseKey: targetLicenseKey,
+          action,
+        }),
+      });
+
+      const payload = (await response.json()) as {
+        success?: boolean;
+        message?: string;
+        data?: {
+          licenseKey: string;
+          status: string;
+          boundDevice?: AdminLicenseResult["licenseKeys"][number]["boundDevice"];
+        };
+      };
+
+      if (response.status === 401) {
+        window.location.reload();
+        return;
+      }
+
+      if (!response.ok || !payload.success || !payload.data) {
+        throw new Error(payload.message ?? "Failed to update the license status.");
+      }
+
+      setResult((current) =>
+        current
+          ? {
+              ...current,
+              licenseKeys: current.licenseKeys.map((license) =>
+                license.key === payload.data?.licenseKey
+                  ? {
+                      ...license,
+                      status: payload.data.status,
+                      boundDevice: payload.data.boundDevice ?? null,
+                    }
+                  : license,
+              ),
+            }
+          : current,
+      );
+      setNotice(payload.message ?? "The license status was updated.");
+    } catch (caughtError) {
+      setError(
+        caughtError instanceof Error
+          ? caughtError.message
+          : "Failed to update the license status.",
+      );
+    } finally {
+      setActiveStatusKey(null);
     }
   }
 
@@ -371,13 +439,39 @@ export function LicenseAdminConsole() {
                         type="button"
                         variant="outline"
                         onClick={() => handleUnbindLicense(license.key)}
-                        disabled={activeUnbindKey === license.key}
+                        disabled={
+                          activeUnbindKey === license.key ||
+                          activeStatusKey === license.key
+                        }
                       >
                         {activeUnbindKey === license.key
                           ? "Removing..."
                           : "Force Unbind"}
                       </Button>
                     ) : null}
+                    {license.status === "disabled" ? (
+                      <Button
+                        type="button"
+                        variant="outline"
+                        onClick={() => handleLicenseStatusChange(license.key, "enable")}
+                        disabled={activeStatusKey === license.key}
+                      >
+                        {activeStatusKey === license.key
+                          ? "Updating..."
+                          : "Re-enable License"}
+                      </Button>
+                    ) : (
+                      <Button
+                        type="button"
+                        variant="destructive"
+                        onClick={() => handleLicenseStatusChange(license.key, "disable")}
+                        disabled={activeStatusKey === license.key}
+                      >
+                        {activeStatusKey === license.key
+                          ? "Updating..."
+                          : "Disable License"}
+                      </Button>
+                    )}
                   </div>
                 </div>
               </div>

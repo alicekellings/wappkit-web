@@ -11,6 +11,9 @@ This project includes:
 - shared docs
 - Creem checkout integration
 - license retrieval by `order ID + purchase email`
+- remote license validation for the desktop app
+- device-bound license activation and deactivate flows
+- internal admin support page for license search and manual unbind
 - optional email resend support via Resend
 
 ## Stack
@@ -63,6 +66,8 @@ UPSTASH_REDIS_REST_TOKEN=
 
 RESEND_API_KEY=
 EMAIL_FROM=
+
+INTERNAL_ADMIN_TOKEN=
 ```
 
 ## Current Architecture
@@ -70,6 +75,10 @@ EMAIL_FROM=
 - `Creem` issues licenses
 - `Wappkit` mirrors order and license data for retrieval
 - current retrieval flow shows licenses directly on the page
+- the desktop app validates licenses against `/api/license/validate`
+- each license key can stay bound to one active device at a time
+- users can unbind through `/license/retrieve`
+- internal support can search and unbind through `/ops/licenses`
 - optional email resend is reserved for later enablement
 - Upstash is the first persistence layer, with room to migrate later
 
@@ -94,3 +103,14 @@ EMAIL_FROM=
 - switch `CREEM_TEST_MODE` to `false` after validating the live Creem product setup
 - replace the temporary Creem product naming and media with the final `Wappkit` product assets
 - confirm the production webhook target is `https://wappkit.com/api/webhook/creem`
+
+## Current Verified Result
+
+The following flow has already been verified end to end:
+
+1. start checkout from `https://www.wappkit.com/tools/reddit-toolbox`
+2. complete Creem payment
+3. receive order details on the Wappkit success page
+4. retrieve the license from `https://www.wappkit.com/license/retrieve`
+5. activate the desktop app with the issued license
+6. confirm the device binding appears on the retrieval page

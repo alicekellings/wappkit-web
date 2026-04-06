@@ -181,3 +181,15 @@ export const adminLicenseUnbindSchema = z.object({
       .refine(isSafeIdentifier, "Invalid license key."),
   ),
 });
+
+export const adminLicenseStatusSchema = z.object({
+  licenseKey: z.preprocess(
+    trimInput,
+    z
+      .string()
+      .min(1)
+      .max(160)
+      .refine(isSafeIdentifier, "Invalid license key."),
+  ),
+  action: z.enum(["disable", "enable"]),
+});

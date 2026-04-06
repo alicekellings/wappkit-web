@@ -3,6 +3,7 @@ import test from "node:test";
 
 import {
   adminLicenseSearchSchema,
+  adminLicenseStatusSchema,
   adminLicenseUnbindSchema,
   adminSessionSchema,
   checkoutRequestSchema,
@@ -109,4 +110,14 @@ test("adminLicenseUnbindSchema trims the target license key", () => {
   });
 
   assert.equal(parsed.licenseKey, "WAAP-KEY-123");
+});
+
+test("adminLicenseStatusSchema accepts disable and enable actions", () => {
+  const parsed = adminLicenseStatusSchema.parse({
+    licenseKey: " WAAP-KEY-123 ",
+    action: "disable",
+  });
+
+  assert.equal(parsed.licenseKey, "WAAP-KEY-123");
+  assert.equal(parsed.action, "disable");
 });

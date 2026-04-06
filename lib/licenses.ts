@@ -274,6 +274,39 @@ export function unbindDeviceFromLicenseKey(
   };
 }
 
+export function setLicenseKeyAvailability(
+  record: LicenseRecord,
+  licenseKey: string,
+  nextStatus: "disabled" | "inactive",
+) {
+  const normalizedLicenseKey = normalizeLicenseKey(licenseKey);
+  const now = new Date().toISOString();
+  let didUpdate = false;
+
+  const licenseKeys: LicenseKeyRecord[] = record.licenseKeys.map((item) => {
+    if (normalizeLicenseKey(item.key) !== normalizedLicenseKey) {
+      return item;
+    }
+
+    didUpdate = true;
+    return {
+      ...item,
+      status: nextStatus,
+      boundDevice: null,
+    };
+  });
+
+  if (!didUpdate) {
+    return null;
+  }
+
+  return {
+    ...record,
+    licenseKeys,
+    updatedAt: now,
+  };
+}
+
 export function hasLicenseKeys(payload: CreemCheckoutPayload) {
   return Array.isArray(payload.license_keys) && payload.license_keys.length > 0;
 }

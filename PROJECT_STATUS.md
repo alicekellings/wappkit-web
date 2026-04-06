@@ -24,6 +24,35 @@ Current verified areas:
 - Creem checkout API route
 - Creem webhook route
 - license retrieval API route
+- license validate API route
+- license deactivate API route
+- license unbind API route
+- internal license admin page
+
+## Current Launch Status
+
+The website and desktop app license flow is now working as a real end-to-end product flow.
+
+Production status:
+
+- production domain is live on `https://www.wappkit.com`
+- root domain redirects to `www`
+- GitHub push triggers Vercel deployment
+- production checkout is back on the live Creem product after temporary test-mode validation
+- internal admin page is available at `https://www.wappkit.com/ops/licenses`
+
+## End-to-End Flow Verified
+
+The following path has been verified on the deployed site:
+
+1. open the Reddit Toolbox product page
+2. start checkout through Creem
+3. complete a Creem test-mode payment on the deployed production domain
+4. receive an order ID and checkout ID on the success page
+5. retrieve the issued license from `/license/retrieve`
+6. activate the desktop app with the retrieved license
+7. confirm the license becomes device-bound on the website
+8. confirm the website shows the active device and offers self-service unbind
 
 ## Validation Completed
 
@@ -38,6 +67,10 @@ Current verified areas:
 3. Creem webhook sends order data to Wappkit
 4. Wappkit mirrors order and license data
 5. customer retrieves the license with `order ID + purchase email`
+6. desktop app validates the license through `/api/license/validate`
+7. one license key remains bound to one active device
+8. customer can self-unbind from `/license/retrieve`
+9. internal support can search and unbind from `/ops/licenses`
 
 ## Current Persistence Strategy
 
@@ -47,9 +80,9 @@ Current verified areas:
 
 ## Pending Work
 
-- verify each new GitHub push has deployed correctly on Vercel
-- add real production environment variables
-- switch the final domain from the old site to `wappkit.com` when ready
-- test Creem checkout end to end on the deployed site
+- expand the internal admin tools beyond search + unbind
+- decide whether to add admin actions like disable license, notes, and resend support
 - migrate old blog content from the previous site
 - optionally enable Resend for original-email license resend
+- rotate `UPSTASH_REDIS_REST_TOKEN` later as a security cleanup item
+- complete one true live production payment when convenient

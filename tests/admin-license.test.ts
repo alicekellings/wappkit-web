@@ -3,6 +3,7 @@ import crypto from "node:crypto";
 import test from "node:test";
 
 import { POST as searchPOST } from "../app/api/admin/license/search/route";
+import { POST as statusPOST } from "../app/api/admin/license/status/route";
 import { POST as unbindPOST } from "../app/api/admin/license/unbind/route";
 import { POST as sessionPOST } from "../app/api/admin/session/route";
 import { POST as validatePOST } from "../app/api/license/validate/route";
@@ -143,4 +144,90 @@ test("admin search and unbind routes work with a valid admin session", async () 
   assert.equal(unbindPayload.success, true);
   assert.equal(unbindPayload.data.status, "inactive");
   assert.equal(unbindPayload.data.boundDevice, null);
+});
+
+test("admin status route can disable and re-enable a license", async () => {
+  process.env.INTERNAL_ADMIN_TOKEN = "support-secret";
+
+  const suffix = crypto.randomUUID();
+  const store = getLicenseStore();
+  const record = createLicenseRecordFromCreemCheckout({
+    ...checkoutPayload,
+    id: `chk_admin_status_${suffix}`,
+    request_id: `req_admin_status_${suffix}`,
+    order: {
+      id: `ord_admin_status_${suffix}`,
+      customer: {
+        id: `cus_admin_status_${suffix}`,
+        email: "admin@example.com",
+        name: "Admin User",
+      },
+    },
+    license_keys: [
+      {
+        id: `lic_admin_status_${suffix}`,
+        key: `WAAP-ADMIN-STATUS-${suffix}`,
+        status: "inactive",
+      },
+    ],
+  });
+  await store.save(record);
+
+  await validatePOST(
+    new Request("http://localhost/api/license/validate", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        "x-forwarded-for": "198.51.100.41",
+      },
+      body: JSON.stringify({
+        licenseKey: record.licenseKeys[0]?.key,
+        deviceId: "desktop_status",
+        deviceName: "Status Desktop",
+        toolSlug: "reddit-toolbox",
+      }),
+    }) as never,
+  );
+
+  const cookieHeader = "wappkit_admin_session=support-secret";
+
+  const disableResponse = await statusPOST(
+    new Request("http://localhost/api/admin/license/status", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        cookie: cookieHeader,
+      },
+      body: JSON.stringify({
+        licenseKey: record.licenseKeys[0]?.key,
+        action: "disable",
+      }),
+    }) as never,
+  );
+  const disablePayload = await disableResponse.json();
+
+  assert.equal(disableResponse.status, 200);
+  assert.equal(disablePayload.success, true);
+  assert.equal(disablePayload.data.status, "disabled");
+  assert.equal(disablePayload.data.boundDevice, null);
+
+  const enableResponse = await statusPOST(
+    new Request("http://localhost/api/admin/license/status", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        cookie: cookieHeader,
+      },
+      body: JSON.stringify({
+        licenseKey: record.licenseKeys[0]?.key,
+        action: "enable",
+      }),
+    }) as never,
+  );
+  const enablePayload = await enableResponse.json();
+
+  assert.equal(enableResponse.status, 200);
+  assert.equal(enablePayload.success, true);
+  assert.equal(enablePayload.data.status, "inactive");
+  assert.equal(enablePayload.data.boundDevice, null);
 });
