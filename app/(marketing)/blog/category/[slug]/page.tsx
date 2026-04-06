@@ -5,6 +5,11 @@ import { allPosts } from "contentlayer/generated";
 import { BLOG_CATEGORIES } from "@/config/blog";
 import { constructMetadata, getBlurDataURL } from "@/lib/utils";
 import { BlogCard } from "@/components/content/blog-card";
+import {
+  MarketingCard,
+  MarketingHero,
+  MarketingPageShell,
+} from "@/components/marketing/page-shell";
 
 export async function generateStaticParams() {
   return BLOG_CATEGORIES.map((category) => ({
@@ -52,10 +57,26 @@ export default async function BlogCategory({
   );
 
   return (
-    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {articles.map((article, idx) => (
-        <BlogCard key={article._id} data={article} priority={idx <= 2} />
-      ))}
-    </div>
+    <MarketingPageShell>
+      <MarketingHero
+        eyebrow="Blog category"
+        title={category.title}
+        description={category.description}
+        badges={[
+          { label: `${articles.length} posts`, tone: "warm" },
+          { label: "Wappkit writing", tone: "muted" },
+        ]}
+      />
+
+      <div className="mt-10">
+        <MarketingCard tone="soft">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {articles.map((article, idx) => (
+              <BlogCard key={article._id} data={article} priority={idx <= 2} />
+            ))}
+          </div>
+        </MarketingCard>
+      </div>
+    </MarketingPageShell>
   );
 }

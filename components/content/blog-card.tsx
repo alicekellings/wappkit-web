@@ -20,14 +20,14 @@ export function BlogCard({
   return (
     <article
       className={cn(
-        "group relative",
+        "group relative overflow-hidden rounded-[1.6rem] border border-border/70 bg-background/90 p-4 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:shadow-[0_18px_40px_-28px_rgba(15,23,42,0.35)]",
         horizontale
           ? "grid grid-cols-1 gap-3 md:grid-cols-2 md:gap-6"
           : "flex flex-col space-y-2",
       )}
     >
       {data.image && (
-        <div className="w-full overflow-hidden rounded-xl border">
+        <div className="w-full overflow-hidden rounded-[1.2rem] border border-border/70">
           <BlurImage
             alt={data.title}
             blurDataURL={data.blurDataURL ?? placeholderBlurhash}

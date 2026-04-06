@@ -1,27 +1,29 @@
-import { notFound } from "next/navigation";
-import { allPosts } from "contentlayer/generated";
-
-import { Mdx } from "@/components/content/mdx-components";
-
-import "@/styles/mdx.css";
-
 import { Metadata } from "next";
 import Link from "next/link";
+import { notFound } from "next/navigation";
+import { allPosts } from "contentlayer/generated";
 
 import { BLOG_CATEGORIES } from "@/config/blog";
 import { getTableOfContents } from "@/lib/toc";
 import {
-  cn,
   constructMetadata,
   formatDate,
   getBlurDataURL,
   placeholderBlurhash,
 } from "@/lib/utils";
-import { buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import Author from "@/components/content/author";
+import {
+  MarketingCard,
+  MarketingHero,
+  MarketingPageShell,
+} from "@/components/marketing/page-shell";
 import BlurImage from "@/components/shared/blur-image";
-import MaxWidthWrapper from "@/components/shared/max-width-wrapper";
 import { DashboardTableOfContents } from "@/components/shared/toc";
+
+import "@/styles/mdx.css";
+
+import { Mdx } from "@/components/content/mdx-components";
 
 export async function generateStaticParams() {
   return allPosts.map((post) => ({
@@ -87,100 +89,118 @@ export default async function PostPage({
   ]);
 
   return (
-    <>
-      <MaxWidthWrapper className="pt-6 md:pt-10">
-        <div className="flex flex-col space-y-4">
-          <div className="flex items-center space-x-4">
-            <Link
-              href={`/blog/category/${category.slug}`}
-              className={cn(
-                buttonVariants({
-                  variant: "outline",
-                  size: "sm",
-                  rounded: "lg",
-                }),
-                "h-8",
-              )}
-            >
-              {category.title}
+    <MarketingPageShell>
+      <MarketingHero
+        eyebrow="Wappkit Blog"
+        title={post.title}
+        description={post.description ?? "Read this Wappkit article and guide."}
+        badges={[
+          { label: category.title, tone: "warm" },
+          { label: formatDate(post.date), tone: "muted" },
+          { label: "Long-form guide" },
+        ]}
+        actions={
+          <>
+            <Link href="/blog">
+              <Button rounded="full" variant="outline">
+                Back to Blog
+              </Button>
             </Link>
-            <time
-              dateTime={post.date}
-              className="text-sm font-medium text-muted-foreground"
-            >
-              {formatDate(post.date)}
-            </time>
+            <Link href={`/blog/category/${category.slug}`}>
+              <Button rounded="full" variant="ghost">
+                More in {category.title}
+              </Button>
+            </Link>
+          </>
+        }
+        rightContent={
+          <MarketingCard tone="dark" className="space-y-5">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-400">
+                Article context
+              </p>
+              <h2 className="mt-3 font-heading text-2xl text-white">
+                Read the guide inside the same Wappkit surface as the product.
+              </h2>
+            </div>
+
+            <div className="rounded-[1.4rem] border border-white/10 bg-white/5 p-4">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
+                Authors
+              </p>
+              <div className="mt-4 space-y-4">
+                {post.authors.map((author) => (
+                  <Author username={author} key={post._id + author} />
+                ))}
+              </div>
+            </div>
+
+            <div className="rounded-[1.4rem] border border-white/10 bg-white/5 p-4">
+              <p className="text-sm leading-6 text-slate-300">
+                Practical content, product pages, activation docs, and downloads
+                should feel like one connected trust path instead of scattered
+                templates.
+              </p>
+            </div>
+          </MarketingCard>
+        }
+      />
+
+      <section className="mt-10 grid gap-6 xl:grid-cols-[minmax(0,1fr)_280px]">
+        <MarketingCard tone="soft" className="overflow-hidden p-0">
+          <BlurImage
+            alt={post.title}
+            blurDataURL={thumbnailBlurhash ?? placeholderBlurhash}
+            className="aspect-[1200/630] border-b border-border/70 object-cover"
+            width={1200}
+            height={630}
+            priority
+            placeholder="blur"
+            src={post.image}
+            sizes="(max-width: 768px) 100vw, 900px"
+          />
+          <div className="px-5 py-8 md:p-10">
+            <Mdx code={post.body.code} images={images} />
           </div>
-          <h1 className="font-heading text-3xl text-foreground sm:text-4xl">
-            {post.title}
-          </h1>
-          <p className="text-base text-muted-foreground md:text-lg">
-            {post.description}
-          </p>
-          <div className="flex flex-nowrap items-center space-x-5 pt-1 md:space-x-8">
-            {post.authors.map((author) => (
-              <Author username={author} key={post._id + author} />
-            ))}
+        </MarketingCard>
+
+        <div className="hidden xl:block">
+          <div className="sticky top-20">
+            <MarketingCard tone="soft" className="p-6">
+              <DashboardTableOfContents toc={toc} />
+            </MarketingCard>
           </div>
         </div>
-      </MaxWidthWrapper>
+      </section>
 
-      <div className="relative">
-        <div className="absolute top-52 w-full border-t" />
-
-        <MaxWidthWrapper className="grid grid-cols-4 gap-10 pt-8 max-md:px-0">
-          <div className="relative col-span-4 mb-10 flex flex-col space-y-8 border-y bg-background md:rounded-xl md:border lg:col-span-3">
-            <BlurImage
-              alt={post.title}
-              blurDataURL={thumbnailBlurhash ?? placeholderBlurhash}
-              className="aspect-[1200/630] border-b object-cover md:rounded-t-xl"
-              width={1200}
-              height={630}
-              priority
-              placeholder="blur"
-              src={post.image}
-              sizes="(max-width: 768px) 770px, 1000px"
-            />
-            <div className="px-[.8rem] pb-10 md:px-8">
-              <Mdx code={post.body.code} images={images} />
-            </div>
-          </div>
-
-          <div className="sticky top-20 col-span-1 mt-52 hidden flex-col divide-y divide-muted self-start pb-24 lg:flex">
-            <DashboardTableOfContents toc={toc} />
-          </div>
-        </MaxWidthWrapper>
-      </div>
-
-      <MaxWidthWrapper>
-        {relatedArticles.length > 0 && (
-          <div className="flex flex-col space-y-4 pb-16">
-            <p className="font-heading text-2xl text-foreground">
-              More Articles
+      {relatedArticles.length > 0 && (
+        <section className="mt-6">
+          <MarketingCard tone="soft">
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+              More articles
             </p>
-
-            <div className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:gap-6">
+            <div className="mt-5 grid grid-cols-1 gap-4 md:grid-cols-2">
               {relatedArticles.map((post) => (
                 <Link
                   key={post.slug}
                   href={post.slug}
-                  className="flex flex-col space-y-2 rounded-xl border p-5 transition-colors duration-300 hover:bg-muted/80"
+                  className="rounded-[1.4rem] border border-border/70 bg-background/80 p-5 transition hover:-translate-y-0.5 hover:border-orange-300"
                 >
                   <h3 className="font-heading text-xl text-foreground">
                     {post.title}
                   </h3>
-                  <p className="line-clamp-2 text-[15px] text-muted-foreground">
+                  <p className="mt-3 line-clamp-2 text-[15px] text-muted-foreground">
                     {post.description}
                   </p>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="mt-4 text-sm text-muted-foreground">
                     {formatDate(post.date)}
                   </p>
                 </Link>
               ))}
             </div>
-          </div>
-        )}
-      </MaxWidthWrapper>
-    </>
+          </MarketingCard>
+        </section>
+      )}
+    </MarketingPageShell>
   );
 }

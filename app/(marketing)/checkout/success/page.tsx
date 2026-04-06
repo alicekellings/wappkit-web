@@ -13,6 +13,11 @@ import {
 } from "@/lib/licenses";
 import { constructMetadata } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import {
+  MarketingCard,
+  MarketingHero,
+  MarketingPageShell,
+} from "@/components/marketing/page-shell";
 
 export const metadata = constructMetadata({
   title: "Checkout Success | Wappkit",
@@ -57,8 +62,7 @@ export default async function CheckoutSuccessPage({
   let syncedOrderId = orderId;
   let syncReady = false;
   const creemApiKey = getTrimmedEnv("CREEM_API_KEY");
-  const canVerifyRedirect =
-    Boolean(creemApiKey) && Boolean(signature);
+  const canVerifyRedirect = Boolean(creemApiKey) && Boolean(signature);
   const hasValidRedirectSignature =
     canVerifyRedirect &&
     verifyCreemRedirectSignature(
@@ -91,50 +95,53 @@ export default async function CheckoutSuccessPage({
   }
 
   return (
-    <div className="container max-w-4xl py-16 md:py-20">
-      <div className="rounded-[2rem] border bg-card p-8 md:p-10">
-        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-          Checkout Success
-        </p>
-        <h1 className="mt-3 font-heading text-4xl text-foreground">
-          Your payment has been completed.
-        </h1>
-        <p className="mt-4 max-w-2xl text-muted-foreground">
-          {syncReady
-            ? "Your order has been synced with Wappkit. You can retrieve the license using the original purchase email and the order ID shown below."
-            : "Creem is processing the order and issuing the license. The key is typically available from the purchase receipt and can also be retrieved from Wappkit using the original purchase email and order details."}
-        </p>
+    <MarketingPageShell containerClassName="max-w-5xl py-16 md:py-20">
+      <MarketingHero
+        eyebrow="Checkout Success"
+        title="Your payment has been completed."
+        description={
+          syncReady
+            ? "Your order has already been synced with Wappkit, so you can retrieve the license using the original purchase email and the order ID shown below."
+            : "Creem is processing the order and issuing the license. The key is typically available from the purchase receipt and can also be retrieved from Wappkit using the original purchase email and order details."
+        }
+        badges={[
+          {
+            label: syncReady ? "Synced with Wappkit" : "Processing order",
+            tone: "warm",
+          },
+          { label: "License retrieval ready", tone: "muted" },
+        ]}
+      />
 
-        <div className="mt-8 grid gap-4 md:grid-cols-2">
-          <div className="rounded-2xl border bg-muted/20 p-4">
-            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-              Order ID
-            </p>
-            <p className="mt-2 break-all text-sm text-foreground">
-              {syncedOrderId ?? "Available after sync"}
-            </p>
-          </div>
-          <div className="rounded-2xl border bg-muted/20 p-4">
-            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-              Checkout ID
-            </p>
-            <p className="mt-2 break-all text-sm text-foreground">
-              {checkoutId ?? "Provided by Creem after payment"}
-            </p>
-          </div>
-        </div>
-
-        <div className="mt-8 flex flex-wrap gap-3">
-          <Link href="/license/retrieve">
-            <Button rounded="full">Retrieve License</Button>
-          </Link>
-          <Link href={toolSlug ? `/tools/${toolSlug}` : "/tools"}>
-            <Button rounded="full" variant="outline">
-              Back to Product Page
-            </Button>
-          </Link>
-        </div>
+      <div className="mt-10 grid gap-4 md:grid-cols-2">
+        <MarketingCard tone="soft" className="p-5">
+          <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+            Order ID
+          </p>
+          <p className="mt-3 break-all text-sm text-foreground">
+            {syncedOrderId ?? "Available after sync"}
+          </p>
+        </MarketingCard>
+        <MarketingCard tone="soft" className="p-5">
+          <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+            Checkout ID
+          </p>
+          <p className="mt-3 break-all text-sm text-foreground">
+            {checkoutId ?? "Provided by Creem after payment"}
+          </p>
+        </MarketingCard>
       </div>
-    </div>
+
+      <div className="mt-6 flex flex-wrap gap-3">
+        <Link href="/license/retrieve">
+          <Button rounded="full">Retrieve License</Button>
+        </Link>
+        <Link href={toolSlug ? `/tools/${toolSlug}` : "/tools"}>
+          <Button rounded="full" variant="outline">
+            Back to Product Page
+          </Button>
+        </Link>
+      </div>
+    </MarketingPageShell>
   );
 }

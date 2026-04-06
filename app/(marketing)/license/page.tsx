@@ -1,7 +1,13 @@
 import Link from "next/link";
+import { CreditCard, KeyRound, LifeBuoy } from "lucide-react";
 
 import { constructMetadata } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import {
+  MarketingCard,
+  MarketingHero,
+  MarketingPageShell,
+} from "@/components/marketing/page-shell";
 
 export const metadata = constructMetadata({
   title: "License Center | Wappkit",
@@ -11,56 +17,69 @@ export const metadata = constructMetadata({
 
 export default function LicensePage() {
   return (
-    <div className="container max-w-5xl py-16 md:py-20">
-      <div className="max-w-3xl space-y-4">
-        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-          License Center
-        </p>
-        <h1 className="font-heading text-4xl text-foreground md:text-5xl">
-          Simple licensing without a customer dashboard.
-        </h1>
-        <p className="text-lg text-muted-foreground">
-          Wappkit tools use a lightweight license flow. After checkout, the
-          customer receives a license and activates it inside the product. If
-          the key is lost, the website provides a retrieval path instead of a
-          dedicated account center.
-        </p>
-      </div>
+    <MarketingPageShell>
+      <MarketingHero
+        eyebrow="License Center"
+        title="Simple licensing without a separate customer dashboard."
+        description="After checkout, the customer receives a license key and activates it inside the product. If the key is lost, Wappkit provides a direct retrieval path instead of forcing users through a separate account area."
+        badges={[
+          { label: "Checkout to activation", tone: "warm" },
+          { label: "Single brand surface", tone: "muted" },
+          { label: "Recovery built in" },
+        ]}
+        actions={
+          <>
+            <Link href="/license/retrieve">
+              <Button rounded="full" size="lg">
+                Retrieve a License
+              </Button>
+            </Link>
+            <Link href="/docs/license-retrieval">
+              <Button rounded="full" size="lg" variant="outline">
+                Read the Guide
+              </Button>
+            </Link>
+          </>
+        }
+        stats={[
+          { label: "Purchase", value: "Creem checkout" },
+          { label: "Unlock", value: "In-app activation" },
+          { label: "Fallback", value: "Order + email recovery" },
+        ]}
+      />
 
       <div className="mt-10 grid gap-6 md:grid-cols-3">
-        <div className="rounded-3xl border bg-card p-6">
-          <h2 className="font-heading text-xl text-foreground">1. Purchase</h2>
+        <MarketingCard tone="warm" className="p-6">
+          <CreditCard className="size-5 text-orange-700" />
+          <h2 className="mt-4 font-heading text-xl text-foreground">
+            1. Purchase
+          </h2>
           <p className="mt-3 text-muted-foreground">
-            Checkout runs through Creem. The purchase record stays tied to the
-            original order details.
+            Checkout runs through Creem and the order stays tied to the original
+            purchase details.
           </p>
-        </div>
-        <div className="rounded-3xl border bg-card p-6">
-          <h2 className="font-heading text-xl text-foreground">2. Activate</h2>
+        </MarketingCard>
+        <MarketingCard tone="soft" className="p-6">
+          <KeyRound className="size-5 text-orange-700" />
+          <h2 className="mt-4 font-heading text-xl text-foreground">
+            2. Activate
+          </h2>
           <p className="mt-3 text-muted-foreground">
             Enter the license directly inside the tool to unlock the paid
-            version. No web login required.
+            version. No web login is required.
           </p>
-        </div>
-        <div className="rounded-3xl border bg-card p-6">
-          <h2 className="font-heading text-xl text-foreground">3. Retrieve</h2>
+        </MarketingCard>
+        <MarketingCard tone="soft" className="p-6">
+          <LifeBuoy className="size-5 text-orange-700" />
+          <h2 className="mt-4 font-heading text-xl text-foreground">
+            3. Retrieve
+          </h2>
           <p className="mt-3 text-muted-foreground">
-            Use order details and purchase email to recover a lost key or
-            request a resend.
+            Use the original order details and purchase email to recover a lost
+            key or request a resend.
           </p>
-        </div>
+        </MarketingCard>
       </div>
-
-      <div className="mt-10 flex flex-wrap gap-3">
-        <Link href="/license/retrieve">
-          <Button rounded="full">Retrieve a License</Button>
-        </Link>
-        <Link href="/docs/license-retrieval">
-          <Button rounded="full" variant="outline">
-            Read the Guide
-          </Button>
-        </Link>
-      </div>
-    </div>
+    </MarketingPageShell>
   );
 }

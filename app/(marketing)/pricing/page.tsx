@@ -1,7 +1,13 @@
 import Link from "next/link";
+import { CreditCard, KeyRound, ShieldCheck } from "lucide-react";
 
 import { constructMetadata } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import {
+  MarketingCard,
+  MarketingHero,
+  MarketingPageShell,
+} from "@/components/marketing/page-shell";
 
 export const metadata = constructMetadata({
   title: "Pricing | Wappkit",
@@ -11,61 +17,70 @@ export const metadata = constructMetadata({
 
 export default function PricingPage() {
   return (
-    <div className="container max-w-5xl py-16 md:py-20">
-      <div className="max-w-3xl space-y-4">
-        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-          Pricing
-        </p>
-        <h1 className="font-heading text-4xl text-foreground md:text-5xl">
-          Tool pricing belongs on each product page.
-        </h1>
-        <p className="text-lg text-muted-foreground">
-          Wappkit is a multi-tool platform, not a subscription dashboard. Each
-          tool can have its own free version, paid license, and checkout flow
-          while the platform stays easy to manage and easy to understand.
-        </p>
-      </div>
+    <MarketingPageShell>
+      <MarketingHero
+        eyebrow="Pricing"
+        title="Tool pricing belongs inside each product story, not inside a generic plan wall."
+        description="Wappkit is a multi-tool surface, so pricing stays attached to the software that earns it. Each tool can have a free entry point, a paid unlock, and a retrieval path without pretending to be a seat-based SaaS dashboard."
+        badges={[
+          { label: "Per-tool offers", tone: "warm" },
+          { label: "License key delivery", tone: "muted" },
+          { label: "No forced account center" },
+        ]}
+        actions={
+          <>
+            <Link href="/tools/reddit-toolbox">
+              <Button rounded="full" size="lg">
+                View Live Product
+              </Button>
+            </Link>
+            <Link href="/license">
+              <Button rounded="full" size="lg" variant="outline">
+                See License Flow
+              </Button>
+            </Link>
+          </>
+        }
+        stats={[
+          { label: "Current paid tool", value: "Reddit Toolbox" },
+          { label: "Checkout path", value: "Creem" },
+          { label: "Recovery path", value: "Order + email" },
+        ]}
+      />
 
       <div className="mt-10 grid gap-6 md:grid-cols-3">
-        <div className="rounded-3xl border bg-card p-6">
-          <h2 className="font-heading text-xl text-foreground">
+        <MarketingCard tone="warm" className="p-6">
+          <CreditCard className="size-5 text-orange-700" />
+          <h2 className="mt-4 font-heading text-xl text-foreground">
             Per-tool offers
           </h2>
           <p className="mt-3 text-muted-foreground">
             Screenshots, features, pricing, and checkout calls-to-action should
-            live on each tool page instead of in a single SaaS-style plan grid.
+            live on the product page itself instead of being flattened into one
+            global pricing table.
           </p>
-        </div>
-        <div className="rounded-3xl border bg-card p-6">
-          <h2 className="font-heading text-xl text-foreground">
+        </MarketingCard>
+        <MarketingCard tone="soft" className="p-6">
+          <KeyRound className="size-5 text-orange-700" />
+          <h2 className="mt-4 font-heading text-xl text-foreground">
             License activation
           </h2>
           <p className="mt-3 text-muted-foreground">
-            Customers buy with Creem, receive a license, and unlock the paid
-            version inside the app. No sign-in is required.
+            Customers buy with Creem, receive a license key, and unlock the paid
+            version inside the desktop app. No sign-in is required.
           </p>
-        </div>
-        <div className="rounded-3xl border bg-card p-6">
-          <h2 className="font-heading text-xl text-foreground">
+        </MarketingCard>
+        <MarketingCard tone="soft" className="p-6">
+          <ShieldCheck className="size-5 text-orange-700" />
+          <h2 className="mt-4 font-heading text-xl text-foreground">
             Recovery path
           </h2>
           <p className="mt-3 text-muted-foreground">
-            Lost licenses are recovered with order ID and purchase email, not a
-            web account center.
+            Lost keys are recovered with order details and purchase email, which
+            keeps support clear without maintaining a bulky user portal.
           </p>
-        </div>
+        </MarketingCard>
       </div>
-
-      <div className="mt-10 flex flex-wrap gap-3">
-        <Link href="/tools">
-          <Button rounded="full">Browse Tools</Button>
-        </Link>
-        <Link href="/license">
-          <Button rounded="full" variant="outline">
-            See License Flow
-          </Button>
-        </Link>
-      </div>
-    </div>
+    </MarketingPageShell>
   );
 }

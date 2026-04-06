@@ -5,6 +5,7 @@ import { getTableOfContents } from "@/lib/toc";
 import { Mdx } from "@/components/content/mdx-components";
 import { DocsPageHeader } from "@/components/docs/page-header";
 import { DocsPager } from "@/components/docs/pager";
+import { MarketingCard } from "@/components/marketing/page-shell";
 import { DashboardTableOfContents } from "@/components/shared/toc";
 
 import "@/styles/mdx.css";
@@ -70,16 +71,20 @@ export default async function DocPage({ params }: DocPageProps) {
   return (
     <main className="relative py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[1fr_300px]">
       <div className="mx-auto w-full min-w-0">
-        <DocsPageHeader heading={doc.title} text={doc.description} />
-        <div className="pb-4 pt-11">
-          <Mdx code={doc.body.code} images={images} />
-        </div>
-        <hr className="my-4 md:my-6" />
-        <DocsPager doc={doc} />
+        <MarketingCard tone="soft" className="p-8 md:p-10">
+          <DocsPageHeader heading={doc.title} text={doc.description} />
+          <div className="pb-4 pt-11">
+            <Mdx code={doc.body.code} images={images} />
+          </div>
+          <hr className="my-4 md:my-6" />
+          <DocsPager doc={doc} />
+        </MarketingCard>
       </div>
       <div className="hidden text-sm xl:block">
-        <div className="sticky top-16 -mt-10 max-h-[calc(var(--vh)-4rem)] overflow-y-auto pt-8">
-          <DashboardTableOfContents toc={toc} />
+        <div className="sticky top-16 max-h-[calc(var(--vh)-4rem)] overflow-y-auto pt-2">
+          <MarketingCard tone="soft" className="p-6">
+            <DashboardTableOfContents toc={toc} />
+          </MarketingCard>
         </div>
       </div>
     </main>
