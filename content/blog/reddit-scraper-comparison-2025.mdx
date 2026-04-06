@@ -10,6 +10,10 @@ categories:
   - guides
 ---
 
+> Note: This article was migrated from the legacy site.
+> Product packaging, free-vs-paid access, and pricing may have changed since publication.
+> For the current Reddit Toolbox details, see [/tools/reddit-toolbox](/tools/reddit-toolbox).
+
 I broke my Reddit scraper last Tuesday.
 
 Well, technically Reddit broke it when they changed their API pricing in 2023. But I only noticed it NOW because my Python script that used to scrape 10,000 comments in 30 minutes suddenly started taking 8 HOURS.
@@ -136,7 +140,7 @@ posts = soup.find_all('div', {'data-testid': 'post-container'})
 
 **Verdict:** Only works for VERY small scrapes (under 100 posts). Not worth the pain for anything larger.
 
-After wasting two days on Selenium, I switched to [Reddit Toolbox](https://www.wappkit.com/download) - a desktop app that scrapes like a browser but without the headaches. Took 25 minutes to get 8,400 posts. Cost is $14/month with code BNWPJRLVJH (30% off), way cheaper than my time debugging Selenium.
+After wasting two days on Selenium, I switched to [Reddit Toolbox](/tools/reddit-toolbox) - a desktop app that scrapes like a browser but without the headaches. Took 25 minutes to get 8,400 posts. Cost is $14/month with code BNWPJRLVJH (30% off), way cheaper than my time debugging Selenium.
 
 **Who should use Selenium:**
 - Literally nobody (unless you enjoy suffering)
@@ -357,5 +361,5 @@ Now if you'll excuse me, I have 20,000 Reddit posts to analyze before they chang
 
 ---
 
-*Need to scrape Reddit without rate limit hell? [Reddit Toolbox](https://www.wappkit.com/download) has 3-day unlimited trial, then $14/month with code **BNWPJRLVJH** (30% off). Runs locally, no API needed, exports to CSV/JSON.*
+*Need to scrape Reddit without rate limit hell? [Reddit Toolbox](/tools/reddit-toolbox) has 3-day unlimited trial, then $14/month with code **BNWPJRLVJH** (30% off). Runs locally, no API needed, exports to CSV/JSON.*
 
