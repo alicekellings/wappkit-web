@@ -12,10 +12,17 @@ type LicenseLookupResult = {
   productName: string;
   toolSlug: string;
   customerEmail: string;
+  singleDeviceLimit: number;
   licenseKeys: Array<{
     id: string;
     key: string;
     status: string;
+    boundDevice?: {
+      deviceId: string;
+      deviceName: string;
+      boundAt: string;
+      lastValidatedAt: string;
+    } | null;
   }>;
   emailDeliveryAvailable: boolean;
 };
@@ -80,6 +87,7 @@ export function LicenseRetrievalForm() {
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isEmailSending, setIsEmailSending] = useState(false);
+  const [unbindingLicenseKey, setUnbindingLicenseKey] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [emailStatus, setEmailStatus] = useState<string | null>(null);
   const [result, setResult] = useState<LicenseLookupResult | null>(null);
@@ -171,6 +179,66 @@ export function LicenseRetrievalForm() {
     }
   }
 
+  async function handleUnbindLicense(licenseKey: string) {
+    if (!result) {
+      return;
+    }
+
+    try {
+      setUnbindingLicenseKey(licenseKey);
+      setError(null);
+      setEmailStatus(null);
+
+      const response = await fetch("/api/license/unbind", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          orderId: result.orderId,
+          email: normalizeEmailInput(email),
+          licenseKey,
+        }),
+      });
+
+      const payload = (await response.json()) as {
+        success?: boolean;
+        message?: string;
+        data?: {
+          licenseKey: string;
+          status: string;
+          boundDevice?: LicenseLookupResult["licenseKeys"][number]["boundDevice"];
+        };
+      };
+
+      if (!response.ok || !payload.success || !payload.data) {
+        throw new Error(payload.message ?? "Failed to remove the current device binding.");
+      }
+
+      setResult({
+        ...result,
+        licenseKeys: result.licenseKeys.map((license) =>
+          license.key === payload.data?.licenseKey
+            ? {
+                ...license,
+                status: payload.data.status,
+                boundDevice: payload.data.boundDevice ?? null,
+              }
+            : license,
+        ),
+      });
+      setEmailStatus(payload.message ?? "The device binding has been removed.");
+    } catch (caughtError) {
+      setError(
+        caughtError instanceof Error
+          ? caughtError.message
+          : "Failed to remove the current device binding.",
+      );
+    } finally {
+      setUnbindingLicenseKey(null);
+    }
+  }
+
   return (
     <div className="space-y-8">
       <form className="space-y-5" onSubmit={handleSubmit}>
@@ -219,6 +287,9 @@ export function LicenseRetrievalForm() {
               Order <span className="font-medium text-foreground">{result.orderId}</span>{" "}
               is linked to <span className="font-medium text-foreground">{maskedEmail}</span>.
             </p>
+            <p className="text-xs text-muted-foreground">
+              This product uses a single-device license rule. One key can stay bound to one active computer at a time.
+            </p>
           </div>
 
           <div className="space-y-3">
@@ -243,13 +314,44 @@ export function LicenseRetrievalForm() {
                           {getLicenseStatusMeta(license.status).description}
                         </p>
                       </div>
+                      {license.boundDevice ? (
+                        <div className="mt-3 rounded-2xl border border-orange-500/20 bg-orange-500/5 p-3 text-xs text-muted-foreground">
+                          <p className="font-medium text-foreground">
+                            Currently bound to: {license.boundDevice.deviceName}
+                          </p>
+                          <p className="mt-1 break-all">
+                            Device ID: {license.boundDevice.deviceId}
+                          </p>
+                          <p className="mt-1">
+                            Last validated: {new Date(license.boundDevice.lastValidatedAt).toLocaleString()}
+                          </p>
+                        </div>
+                      ) : (
+                        <div className="mt-3 rounded-2xl border border-emerald-500/20 bg-emerald-500/5 p-3 text-xs text-muted-foreground">
+                          This key is not currently bound to a computer. You can activate it on one device.
+                        </div>
+                      )}
                     </div>
-                    <CopyButton
-                      value={license.key}
-                      showText
-                      idleLabel="Copy key"
-                      copiedLabel="Copied"
-                    />
+                    <div className="flex flex-col gap-2">
+                      <CopyButton
+                        value={license.key}
+                        showText
+                        idleLabel="Copy key"
+                        copiedLabel="Copied"
+                      />
+                      {license.boundDevice ? (
+                        <Button
+                          type="button"
+                          variant="outline"
+                          onClick={() => handleUnbindLicense(license.key)}
+                          disabled={unbindingLicenseKey === license.key}
+                        >
+                          {unbindingLicenseKey === license.key
+                            ? "Removing..."
+                            : "Unbind Current Device"}
+                        </Button>
+                      ) : null}
+                    </div>
                   </div>
                 </div>
               ))
@@ -272,7 +374,7 @@ export function LicenseRetrievalForm() {
             </ol>
             <p className="mt-3 text-xs text-muted-foreground">
               If the status says <span className="font-medium text-foreground">Ready to activate</span>,
-              the key is valid and simply has not been used yet.
+              the key is valid and simply is not bound to a device yet.
             </p>
           </div>
 

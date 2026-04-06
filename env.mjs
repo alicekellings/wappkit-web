@@ -27,6 +27,7 @@ export const env = createEnv({
     CREEM_WEBHOOK_SECRET: optionalString,
     RESEND_API_KEY: optionalString,
     EMAIL_FROM: optionalString,
+    INTERNAL_ADMIN_TOKEN: optionalString,
   },
   client: {
     NEXT_PUBLIC_APP_URL: appUrl,
@@ -36,6 +37,7 @@ export const env = createEnv({
     CREEM_WEBHOOK_SECRET: process.env.CREEM_WEBHOOK_SECRET,
     RESEND_API_KEY: process.env.RESEND_API_KEY,
     EMAIL_FROM: process.env.EMAIL_FROM,
+    INTERNAL_ADMIN_TOKEN: process.env.INTERNAL_ADMIN_TOKEN,
     NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
   },
 });

@@ -72,6 +72,7 @@ export async function POST(request: NextRequest) {
         customerEmail: record.customerEmail,
         licenseKeys: record.licenseKeys,
         emailDeliveryAvailable: canSendLicenseEmail(),
+        singleDeviceLimit: 1,
       },
     }, {
       headers: {
