@@ -13,7 +13,7 @@ export const metadata = constructMetadata({
 export default function InternalLicenseAdminPage() {
   if (!isAdminTokenConfigured()) {
     return (
-      <div className="container max-w-4xl py-16 md:py-20">
+      <div className="container max-w-[980px] py-16 md:py-20">
         <div className="rounded-[2rem] border bg-card p-8 md:p-10">
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground">
             Internal Admin
@@ -31,7 +31,7 @@ export default function InternalLicenseAdminPage() {
   }
 
   return (
-    <div className="container max-w-6xl py-16 md:py-20">
+    <div className="container max-w-[1520px] py-16 md:py-20">
       {hasAdminPageSession() ? (
         <LicenseAdminConsole />
       ) : (

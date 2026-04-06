@@ -51,6 +51,7 @@ type SortField =
   | "status"
   | "productName";
 type SortDirection = "asc" | "desc";
+type DeviceFilter = "all" | "bound" | "unbound";
 
 type AdminLicenseListItem = {
   id: string;
@@ -248,6 +249,7 @@ export function LicenseAdminConsole() {
   const [items, setItems] = useState<AdminLicenseListItem[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState("all");
+  const [deviceFilter, setDeviceFilter] = useState<DeviceFilter>("all");
   const [selectedKeys, setSelectedKeys] = useState<string[]>([]);
   const [selectedItem, setSelectedItem] = useState<AdminLicenseListItem | null>(null);
   const [sortField, setSortField] = useState<SortField>("updatedAt");
@@ -318,15 +320,21 @@ export function LicenseAdminConsole() {
 
   useEffect(() => {
     setPage(1);
-  }, [searchQuery, statusFilter, sortField, sortDirection, pageSize]);
+  }, [searchQuery, statusFilter, deviceFilter, sortField, sortDirection, pageSize]);
 
   const filteredItems = useMemo(() => {
     return items.filter((item) => {
       const statusMatches =
         statusFilter === "all" ? true : item.status === statusFilter;
-      return statusMatches && matchesQuery(item, searchQuery);
+      const deviceMatches =
+        deviceFilter === "all"
+          ? true
+          : deviceFilter === "bound"
+            ? Boolean(item.boundDevice)
+            : !item.boundDevice;
+      return statusMatches && deviceMatches && matchesQuery(item, searchQuery);
     });
-  }, [items, searchQuery, statusFilter]);
+  }, [deviceFilter, items, searchQuery, statusFilter]);
 
   const sortedItems = useMemo(
     () => sortItems(filteredItems, sortField, sortDirection),
@@ -385,12 +393,43 @@ export function LicenseAdminConsole() {
     setSortDirection(field === "updatedAt" ? "desc" : "asc");
   }
 
+  function clearFilters() {
+    setSearchQuery("");
+    setStatusFilter("all");
+    setDeviceFilter("all");
+    setSelectedKeys([]);
+  }
+
+  function confirmLicenseAction(
+    action:
+      | { type: "unbind" }
+      | { type: "status"; value: "disable" | "enable" },
+  ) {
+    if (action.type === "status" && action.value === "enable") {
+      return true;
+    }
+
+    if (action.type === "unbind") {
+      return window.confirm(
+        "Unbind this device now? The customer will need to activate again on the next launch.",
+      );
+    }
+
+    return window.confirm(
+      "Disable this license now? The customer will no longer be able to validate it until you re-enable it.",
+    );
+  }
+
   async function handleLicenseAction(
     licenseKey: string,
     action:
       | { type: "unbind" }
       | { type: "status"; value: "disable" | "enable" },
   ) {
+    if (!confirmLicenseAction(action)) {
+      return;
+    }
+
     try {
       setActiveActionKey(licenseKey);
       setError(null);
@@ -448,6 +487,19 @@ export function LicenseAdminConsole() {
 
   async function handleBatchAction(action: "disable" | "enable" | "unbind") {
     if (selectedKeys.length === 0) {
+      return;
+    }
+
+    const confirmed =
+      action === "enable"
+        ? true
+        : window.confirm(
+            action === "unbind"
+              ? `Unbind ${selectedKeys.length} selected device binding(s)?`
+              : `Disable ${selectedKeys.length} selected license(s)?`,
+          );
+
+    if (!confirmed) {
       return;
     }
 
@@ -536,7 +588,7 @@ export function LicenseAdminConsole() {
 
   return (
     <div className="space-y-8">
-      <div className="rounded-[2rem] border bg-card p-8 md:p-10">
+      <div className="rounded-[2rem] border bg-card p-6 md:p-8">
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground">
@@ -624,7 +676,7 @@ export function LicenseAdminConsole() {
           </Card>
         </div>
 
-        <div className="mt-8 grid gap-4 xl:grid-cols-[minmax(0,2.1fr)_220px_180px]">
+        <div className="mt-8 grid gap-4 xl:grid-cols-[minmax(0,2fr)_200px_200px_170px]">
           <div className="space-y-2">
             <label className="text-sm font-medium text-foreground">
               Search licenses, orders, emails, devices
@@ -646,6 +698,22 @@ export function LicenseAdminConsole() {
                 <SelectItem value="active">Active</SelectItem>
                 <SelectItem value="inactive">Inactive</SelectItem>
                 <SelectItem value="disabled">Disabled</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="space-y-2">
+            <label className="text-sm font-medium text-foreground">Binding</label>
+            <Select
+              value={deviceFilter}
+              onValueChange={(value) => setDeviceFilter(value as DeviceFilter)}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="All bindings" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All bindings</SelectItem>
+                <SelectItem value="bound">Bound only</SelectItem>
+                <SelectItem value="unbound">Unbound only</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -698,14 +766,8 @@ export function LicenseAdminConsole() {
           >
             {activeBatchAction === "unbind" ? "Removing..." : "Batch Unbind"}
           </Button>
-          <Button
-            type="button"
-            rounded="full"
-            variant="ghost"
-            onClick={() => setSelectedKeys([])}
-            disabled={selectedKeys.length === 0}
-          >
-            Clear Selection
+          <Button type="button" rounded="full" variant="ghost" onClick={clearFilters}>
+            Clear Filters
           </Button>
           <div className="ml-auto rounded-full border bg-background px-4 py-2 text-sm text-muted-foreground">
             {selectedKeys.length} selected
@@ -731,7 +793,7 @@ export function LicenseAdminConsole() {
         </div>
       ) : null}
 
-      <div className="rounded-[2rem] border bg-card p-4 md:p-6">
+      <div className="rounded-[2rem] border bg-card p-4 md:p-5">
         <div className="flex flex-wrap items-center justify-between gap-3 border-b pb-4">
           <div>
             <p className="text-sm font-semibold text-foreground">License list</p>
@@ -740,12 +802,12 @@ export function LicenseAdminConsole() {
               licenses
             </p>
           </div>
-          <div className="rounded-full border bg-background px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-            Sorted by {sortField} {sortDirection}
+          <div className="rounded-full border bg-background px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+            {sortField} {sortDirection}
           </div>
         </div>
 
-        <div className="mt-4">
+        <div className="mt-4 overflow-x-auto">
           <Table>
             <TableHeader>
               <TableRow className="hover:bg-transparent">
@@ -771,7 +833,7 @@ export function LicenseAdminConsole() {
                   sortField={sortField}
                   sortDirection={sortDirection}
                   onSort={handleSort}
-                  className="min-w-[250px]"
+                  className="min-w-[220px]"
                 />
                 <SortableHeader
                   label="Status"
@@ -779,7 +841,7 @@ export function LicenseAdminConsole() {
                   sortField={sortField}
                   sortDirection={sortDirection}
                   onSort={handleSort}
-                  className="w-[140px]"
+                  className="w-[120px]"
                 />
                 <SortableHeader
                   label="Customer"
@@ -787,19 +849,21 @@ export function LicenseAdminConsole() {
                   sortField={sortField}
                   sortDirection={sortDirection}
                   onSort={handleSort}
-                  className="min-w-[220px]"
+                  className="min-w-[180px]"
                 />
-                <TableHead className="min-w-[150px]">Order</TableHead>
-                <TableHead className="min-w-[170px]">Device</TableHead>
+                <TableHead className="min-w-[130px]">Order</TableHead>
+                <TableHead className="min-w-[150px]">Device</TableHead>
                 <SortableHeader
                   label="Updated"
                   field="updatedAt"
                   sortField={sortField}
                   sortDirection={sortDirection}
                   onSort={handleSort}
-                  className="w-[190px]"
+                  className="w-[130px]"
                 />
-                <TableHead className="w-[72px] text-right">Actions</TableHead>
+                <TableHead className="sticky right-0 z-20 w-[72px] bg-card text-right shadow-[-10px_0_18px_-18px_rgba(15,23,42,0.45)]">
+                  Actions
+                </TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -875,9 +939,11 @@ export function LicenseAdminConsole() {
                       )}
                     </TableCell>
                     <TableCell className="py-3 text-sm text-muted-foreground">
-                      {formatDateTime(item.updatedAt)}
+                      <div className="leading-5">
+                        {formatDateTime(item.updatedAt)}
+                      </div>
                     </TableCell>
-                    <TableCell className="py-3 text-right">
+                    <TableCell className="sticky right-0 z-10 bg-card py-3 text-right shadow-[-10px_0_18px_-18px_rgba(15,23,42,0.45)]">
                       <DropdownMenu>
                         <DropdownMenuTrigger asChild>
                           <Button
@@ -952,8 +1018,25 @@ export function LicenseAdminConsole() {
                 ))
               ) : (
                 <TableRow>
-                  <TableCell colSpan={8} className="py-10 text-center text-sm text-muted-foreground">
-                    No license records match the current filter.
+                  <TableCell colSpan={8} className="py-12 text-center">
+                    <div className="space-y-3">
+                      <p className="text-sm font-medium text-foreground">
+                        No license records match the current filter.
+                      </p>
+                      <p className="text-sm text-muted-foreground">
+                        Try clearing one or more filters to see the full license list again.
+                      </p>
+                      <div className="flex justify-center">
+                        <Button
+                          type="button"
+                          variant="outline"
+                          rounded="full"
+                          onClick={clearFilters}
+                        >
+                          Reset filters
+                        </Button>
+                      </div>
+                    </div>
                   </TableCell>
                 </TableRow>
               )}
