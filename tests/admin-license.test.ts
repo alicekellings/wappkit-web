@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import crypto from "node:crypto";
 import test from "node:test";
 
+import { GET as listGET } from "../app/api/admin/license/list/route";
 import { POST as searchPOST } from "../app/api/admin/license/search/route";
 import { POST as statusPOST } from "../app/api/admin/license/status/route";
 import { POST as unbindPOST } from "../app/api/admin/license/unbind/route";
@@ -230,4 +231,52 @@ test("admin status route can disable and re-enable a license", async () => {
   assert.equal(enablePayload.success, true);
   assert.equal(enablePayload.data.status, "inactive");
   assert.equal(enablePayload.data.boundDevice, null);
+});
+
+test("admin list route returns flattened license items and summary", async () => {
+  process.env.INTERNAL_ADMIN_TOKEN = "support-secret";
+
+  const suffix = crypto.randomUUID();
+  const store = getLicenseStore();
+  const record = createLicenseRecordFromCreemCheckout({
+    ...checkoutPayload,
+    id: `chk_admin_list_${suffix}`,
+    request_id: `req_admin_list_${suffix}`,
+    order: {
+      id: `ord_admin_list_${suffix}`,
+      customer: {
+        id: `cus_admin_list_${suffix}`,
+        email: "admin-list@example.com",
+        name: "Admin List User",
+      },
+    },
+    license_keys: [
+      {
+        id: `lic_admin_list_${suffix}`,
+        key: `WAAP-ADMIN-LIST-${suffix}`,
+        status: "inactive",
+      },
+    ],
+  });
+  await store.save(record);
+
+  const response = await listGET(
+    new Request("http://localhost/api/admin/license/list", {
+      method: "GET",
+      headers: {
+        cookie: "wappkit_admin_session=support-secret",
+      },
+    }) as never,
+  );
+  const payload = await response.json();
+
+  assert.equal(response.status, 200);
+  assert.equal(payload.success, true);
+  assert.ok(Array.isArray(payload.data.items));
+  assert.ok(
+    payload.data.items.some(
+      (item: { orderId: string }) => item.orderId === record.orderId,
+    ),
+  );
+  assert.equal(typeof payload.data.summary.total, "number");
 });

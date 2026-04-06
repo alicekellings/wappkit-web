@@ -32,6 +32,22 @@ export type LicenseRecord = {
   updatedAt: string;
 };
 
+export type LicenseListEntry = {
+  id: string;
+  key: string;
+  status: LicenseStatus;
+  boundDevice?: LicenseBoundDevice | null;
+  checkoutId: string;
+  requestId: string | null;
+  orderId: string;
+  customerEmail: string;
+  customerName: string | null;
+  productName: string;
+  toolSlug: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
 export type CreemCheckoutPayload = {
   id: string;
   mode?: string | null;
@@ -88,6 +104,7 @@ export interface LicenseStore {
   getByOrderId(orderId: string): Promise<LicenseRecord | null>;
   findByOrderAndEmail(input: LicenseLookupInput): Promise<LicenseRecord | null>;
   findByLicenseKey(input: LicenseKeyLookupInput): Promise<LicenseRecord | null>;
+  listAllRecords(): Promise<LicenseRecord[]>;
 }
 
 type MemoryState = {
@@ -197,6 +214,24 @@ export function findLicenseKeyRecord(record: LicenseRecord, licenseKey: string) 
   return record.licenseKeys.find(
     (item) => item.key.trim().toUpperCase() === normalizeLicenseKey(licenseKey),
   );
+}
+
+export function flattenLicenseRecordEntries(record: LicenseRecord): LicenseListEntry[] {
+  return record.licenseKeys.map((license) => ({
+    id: license.id,
+    key: license.key,
+    status: license.status,
+    boundDevice: license.boundDevice ?? null,
+    checkoutId: record.checkoutId,
+    requestId: record.requestId,
+    orderId: record.orderId,
+    customerEmail: record.customerEmail,
+    customerName: record.customerName,
+    productName: record.productName,
+    toolSlug: record.toolSlug,
+    createdAt: record.createdAt,
+    updatedAt: record.updatedAt,
+  }));
 }
 
 export function bindDeviceToLicenseKey(
@@ -387,6 +422,11 @@ export function createMemoryLicenseStore(): LicenseStore {
 
       return record;
     },
+    async listAllRecords() {
+      return Array.from(state.records.values()).sort((left, right) =>
+        right.updatedAt.localeCompare(left.updatedAt),
+      );
+    },
   };
 }
 
@@ -472,6 +512,49 @@ function createUpstashLicenseStore({
       }
 
       return record;
+    },
+    async listAllRecords() {
+      const recordKeys = new Set<string>();
+      let cursor = "0";
+
+      do {
+        const scanResult = await run<[string, string[]]>([
+          "SCAN",
+          cursor,
+          "MATCH",
+          "license:record:*",
+          "COUNT",
+          "200",
+        ]);
+
+        const nextCursor =
+          Array.isArray(scanResult) && scanResult[0] != null
+            ? String(scanResult[0])
+            : "0";
+        const batchKeys =
+          Array.isArray(scanResult) && Array.isArray(scanResult[1])
+            ? scanResult[1]
+            : [];
+
+        for (const recordKey of batchKeys) {
+          if (typeof recordKey === "string") {
+            recordKeys.add(recordKey);
+          }
+        }
+
+        cursor = nextCursor;
+      } while (cursor !== "0");
+
+      const records = await Promise.all(
+        Array.from(recordKeys).map(async (recordKey) => {
+          const raw = await run<string>(["GET", recordKey]);
+          return raw ? (JSON.parse(raw) as LicenseRecord) : null;
+        }),
+      );
+
+      return records
+        .filter((record): record is LicenseRecord => record != null)
+        .sort((left, right) => right.updatedAt.localeCompare(left.updatedAt));
     },
   };
 }

@@ -1,14 +1,50 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import { CopyButton } from "@/components/shared/copy-button";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
-import { normalizeEmailInput, trimInput } from "@/lib/input-utils";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+} from "@/components/ui/sheet";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 
-type AdminLicenseResult = {
-  lookupMode: "licenseKey" | "orderId" | "orderAndEmail";
+type LicenseStatus = "active" | "inactive" | "disabled" | "unknown";
+
+type AdminLicenseListItem = {
+  id: string;
+  key: string;
+  status: LicenseStatus;
+  boundDevice?: {
+    deviceId: string;
+    deviceName: string;
+    boundAt: string;
+    lastValidatedAt: string;
+  } | null;
+  checkoutId: string;
+  requestId: string | null;
   orderId: string;
   customerEmail: string;
   customerName: string | null;
@@ -16,20 +52,20 @@ type AdminLicenseResult = {
   toolSlug: string;
   createdAt: string;
   updatedAt: string;
-  licenseKeys: Array<{
-    id: string;
-    key: string;
-    status: string;
-    boundDevice?: {
-      deviceId: string;
-      deviceName: string;
-      boundAt: string;
-      lastValidatedAt: string;
-    } | null;
-  }>;
 };
 
-function getLicenseStatusTone(status: string) {
+type AdminLicenseListResponse = {
+  items: AdminLicenseListItem[];
+  summary: {
+    total: number;
+    active: number;
+    inactive: number;
+    disabled: number;
+    bound: number;
+  };
+};
+
+function getLicenseStatusTone(status: LicenseStatus) {
   switch (status) {
     case "active":
       return "border-sky-500/20 bg-sky-500/10 text-sky-700 dark:text-sky-300";
@@ -42,53 +78,66 @@ function getLicenseStatusTone(status: string) {
   }
 }
 
-function getLookupModeLabel(mode: AdminLicenseResult["lookupMode"]) {
-  switch (mode) {
-    case "licenseKey":
-      return "License key lookup";
-    case "orderAndEmail":
-      return "Order + email lookup";
-    default:
-      return "Order lookup";
+function formatDateTime(value: string) {
+  return new Date(value).toLocaleString();
+}
+
+function matchesQuery(item: AdminLicenseListItem, query: string) {
+  const normalizedQuery = query.trim().toLowerCase();
+
+  if (!normalizedQuery) {
+    return true;
   }
+
+  return [
+    item.key,
+    item.orderId,
+    item.customerEmail,
+    item.customerName ?? "",
+    item.productName,
+    item.toolSlug,
+    item.boundDevice?.deviceName ?? "",
+    item.boundDevice?.deviceId ?? "",
+  ].some((value) => value.toLowerCase().includes(normalizedQuery));
 }
 
 export function LicenseAdminConsole() {
-  const [orderId, setOrderId] = useState("");
-  const [email, setEmail] = useState("");
-  const [licenseKey, setLicenseKey] = useState("");
-  const [isSearching, setIsSearching] = useState(false);
+  const [items, setItems] = useState<AdminLicenseListItem[]>([]);
+  const [summary, setSummary] = useState<AdminLicenseListResponse["summary"]>({
+    total: 0,
+    active: 0,
+    inactive: 0,
+    disabled: 0,
+    bound: 0,
+  });
+  const [searchQuery, setSearchQuery] = useState("");
+  const [statusFilter, setStatusFilter] = useState("all");
+  const [selectedKeys, setSelectedKeys] = useState<string[]>([]);
+  const [selectedItem, setSelectedItem] = useState<AdminLicenseListItem | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isRefreshing, setIsRefreshing] = useState(false);
   const [isLoggingOut, setIsLoggingOut] = useState(false);
-  const [activeUnbindKey, setActiveUnbindKey] = useState<string | null>(null);
-  const [activeStatusKey, setActiveStatusKey] = useState<string | null>(null);
-  const [result, setResult] = useState<AdminLicenseResult | null>(null);
+  const [activeActionKey, setActiveActionKey] = useState<string | null>(null);
+  const [activeBatchAction, setActiveBatchAction] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [notice, setNotice] = useState<string | null>(null);
 
-  async function handleSearch(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-
+  async function loadLicenseList(showSpinner = false) {
     try {
-      setIsSearching(true);
+      if (showSpinner) {
+        setIsRefreshing(true);
+      } else {
+        setIsLoading(true);
+      }
       setError(null);
-      setNotice(null);
 
-      const response = await fetch("/api/admin/license/search", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          orderId: trimInput(orderId),
-          email: normalizeEmailInput(email),
-          licenseKey: trimInput(licenseKey),
-        }),
+      const response = await fetch("/api/admin/license/list", {
+        method: "GET",
       });
-
       const payload = (await response.json()) as {
         success?: boolean;
         message?: string;
-        data?: AdminLicenseResult;
+        data?: AdminLicenseListResponse;
       };
 
       if (response.status === 401) {
@@ -97,103 +146,111 @@ export function LicenseAdminConsole() {
       }
 
       if (!response.ok || !payload.success || !payload.data) {
-        throw new Error(payload.message ?? "Admin lookup failed.");
+        throw new Error(payload.message ?? "Failed to load license records.");
       }
 
-      setResult(payload.data);
-    } catch (caughtError) {
-      setResult(null);
-      setError(
-        caughtError instanceof Error
-          ? caughtError.message
-          : "Admin lookup failed.",
+      const data = payload.data;
+
+      setItems(data.items);
+      setSummary(data.summary);
+      setSelectedKeys((current) =>
+        current.filter((key) => data.items.some((item) => item.key === key)),
       );
-    } finally {
-      setIsSearching(false);
-    }
-  }
-
-  async function handleUnbindLicense(targetLicenseKey: string) {
-    try {
-      setActiveUnbindKey(targetLicenseKey);
-      setError(null);
-      setNotice(null);
-
-      const response = await fetch("/api/admin/license/unbind", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          licenseKey: targetLicenseKey,
-        }),
-      });
-
-      const payload = (await response.json()) as {
-        success?: boolean;
-        message?: string;
-        data?: {
-          licenseKey: string;
-          status: string;
-          boundDevice?: AdminLicenseResult["licenseKeys"][number]["boundDevice"];
-        };
-      };
-
-      if (response.status === 401) {
-        window.location.reload();
-        return;
-      }
-
-      if (!response.ok || !payload.success || !payload.data) {
-        throw new Error(payload.message ?? "Failed to unbind the device.");
-      }
-
-      setResult((current) =>
-        current
-          ? {
-              ...current,
-              licenseKeys: current.licenseKeys.map((license) =>
-                license.key === payload.data?.licenseKey
-                  ? {
-                      ...license,
-                      status: payload.data.status,
-                      boundDevice: payload.data.boundDevice ?? null,
-                    }
-                  : license,
-              ),
-            }
-          : current,
+      setSelectedItem((current) =>
+        current ? data.items.find((item) => item.key === current.key) ?? null : null,
       );
-      setNotice(payload.message ?? "The device binding was removed.");
     } catch (caughtError) {
       setError(
         caughtError instanceof Error
           ? caughtError.message
-          : "Failed to unbind the device.",
+          : "Failed to load license records.",
       );
     } finally {
-      setActiveUnbindKey(null);
+      setIsLoading(false);
+      setIsRefreshing(false);
     }
   }
 
-  async function handleLicenseStatusChange(
-    targetLicenseKey: string,
-    action: "disable" | "enable",
+  useEffect(() => {
+    void loadLicenseList();
+  }, []);
+
+  const filteredItems = useMemo(() => {
+    return items.filter((item) => {
+      const statusMatches =
+        statusFilter === "all" ? true : item.status === statusFilter;
+      return statusMatches && matchesQuery(item, searchQuery);
+    });
+  }, [items, searchQuery, statusFilter]);
+
+  const allFilteredKeys = filteredItems.map((item) => item.key);
+  const allFilteredSelected =
+    allFilteredKeys.length > 0 &&
+    allFilteredKeys.every((key) => selectedKeys.includes(key));
+
+  function recalculateSummary(nextItems: AdminLicenseListItem[]) {
+    setSummary({
+      total: nextItems.length,
+      active: nextItems.filter((item) => item.status === "active").length,
+      inactive: nextItems.filter((item) => item.status === "inactive").length,
+      disabled: nextItems.filter((item) => item.status === "disabled").length,
+      bound: nextItems.filter((item) => item.boundDevice).length,
+    });
+  }
+
+  function updateLicenseLocally(
+    licenseKey: string,
+    data: { status: string; boundDevice?: AdminLicenseListItem["boundDevice"] },
+  ) {
+    const nextItems = items.map((item) =>
+      item.key === licenseKey
+        ? {
+            ...item,
+            status: data.status as LicenseStatus,
+            boundDevice: data.boundDevice ?? null,
+            updatedAt: new Date().toISOString(),
+          }
+        : item,
+    );
+
+    setItems(nextItems);
+    recalculateSummary(nextItems);
+    setSelectedItem((current) =>
+      current && current.key === licenseKey
+        ? {
+            ...current,
+            status: data.status as LicenseStatus,
+            boundDevice: data.boundDevice ?? null,
+            updatedAt: new Date().toISOString(),
+          }
+        : current,
+    );
+  }
+
+  async function handleLicenseAction(
+    licenseKey: string,
+    action:
+      | { type: "unbind" }
+      | { type: "status"; value: "disable" | "enable" },
   ) {
     try {
-      setActiveStatusKey(targetLicenseKey);
+      setActiveActionKey(licenseKey);
       setError(null);
       setNotice(null);
 
-      const response = await fetch("/api/admin/license/status", {
+      const endpoint =
+        action.type === "unbind"
+          ? "/api/admin/license/unbind"
+          : "/api/admin/license/status";
+      const response = await fetch(endpoint, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          licenseKey: targetLicenseKey,
-          action,
-        }),
+        body:
+          action.type === "unbind"
+            ? JSON.stringify({ licenseKey })
+            : JSON.stringify({ licenseKey, action: action.value }),
       });
 
       const payload = (await response.json()) as {
@@ -202,7 +259,7 @@ export function LicenseAdminConsole() {
         data?: {
           licenseKey: string;
           status: string;
-          boundDevice?: AdminLicenseResult["licenseKeys"][number]["boundDevice"];
+          boundDevice?: AdminLicenseListItem["boundDevice"];
         };
       };
 
@@ -212,34 +269,91 @@ export function LicenseAdminConsole() {
       }
 
       if (!response.ok || !payload.success || !payload.data) {
-        throw new Error(payload.message ?? "Failed to update the license status.");
+        throw new Error(payload.message ?? "Failed to update the license.");
       }
 
-      setResult((current) =>
-        current
-          ? {
-              ...current,
-              licenseKeys: current.licenseKeys.map((license) =>
-                license.key === payload.data?.licenseKey
-                  ? {
-                      ...license,
-                      status: payload.data.status,
-                      boundDevice: payload.data.boundDevice ?? null,
-                    }
-                  : license,
-              ),
-            }
-          : current,
-      );
-      setNotice(payload.message ?? "The license status was updated.");
+      updateLicenseLocally(payload.data.licenseKey, {
+        status: payload.data.status,
+        boundDevice: payload.data.boundDevice ?? null,
+      });
+      setNotice(payload.message ?? "The license was updated.");
     } catch (caughtError) {
       setError(
         caughtError instanceof Error
           ? caughtError.message
-          : "Failed to update the license status.",
+          : "Failed to update the license.",
       );
     } finally {
-      setActiveStatusKey(null);
+      setActiveActionKey(null);
+    }
+  }
+
+  async function handleBatchAction(action: "disable" | "enable" | "unbind") {
+    if (selectedKeys.length === 0) {
+      return;
+    }
+
+    try {
+      setActiveBatchAction(action);
+      setError(null);
+      setNotice(null);
+
+      for (const licenseKey of selectedKeys) {
+        const endpoint =
+          action === "unbind"
+            ? "/api/admin/license/unbind"
+            : "/api/admin/license/status";
+        const response = await fetch(endpoint, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body:
+            action === "unbind"
+              ? JSON.stringify({ licenseKey })
+              : JSON.stringify({ licenseKey, action }),
+        });
+        const payload = (await response.json()) as {
+          success?: boolean;
+          message?: string;
+          data?: {
+            licenseKey: string;
+            status: string;
+            boundDevice?: AdminLicenseListItem["boundDevice"];
+          };
+        };
+
+        if (response.status === 401) {
+          window.location.reload();
+          return;
+        }
+
+        if (!response.ok || !payload.success || !payload.data) {
+          throw new Error(payload.message ?? "Failed to update one or more licenses.");
+        }
+
+        updateLicenseLocally(payload.data.licenseKey, {
+          status: payload.data.status,
+          boundDevice: payload.data.boundDevice ?? null,
+        });
+      }
+
+      setNotice(
+        action === "unbind"
+          ? "Selected devices were unbound."
+          : action === "disable"
+            ? "Selected licenses were disabled."
+            : "Selected licenses were re-enabled.",
+      );
+      setSelectedKeys([]);
+    } catch (caughtError) {
+      setError(
+        caughtError instanceof Error
+          ? caughtError.message
+          : "Failed to update the selected licenses.",
+      );
+    } finally {
+      setActiveBatchAction(null);
     }
   }
 
@@ -254,6 +368,14 @@ export function LicenseAdminConsole() {
     }
   }
 
+  if (isLoading) {
+    return (
+      <div className="rounded-[2rem] border bg-card p-8 text-sm text-muted-foreground">
+        Loading license records...
+      </div>
+    );
+  }
+
   return (
     <div className="space-y-8">
       <div className="rounded-[2rem] border bg-card p-8 md:p-10">
@@ -266,65 +388,160 @@ export function LicenseAdminConsole() {
               License operations console
             </h1>
             <p className="mt-4 max-w-3xl text-muted-foreground">
-              Search by order ID, order + purchase email, or license key. Use
-              this page when a customer cannot unbind an old device on their own
-              and needs manual help.
+              Review licenses in one list, filter by status, inspect device
+              bindings, and perform support actions without jumping through
+              separate search screens.
             </p>
           </div>
+          <div className="flex flex-wrap gap-3">
+            <Button
+              type="button"
+              rounded="full"
+              variant="outline"
+              onClick={() => {
+                void loadLicenseList(true);
+              }}
+              disabled={isRefreshing}
+            >
+              {isRefreshing ? "Refreshing..." : "Refresh"}
+            </Button>
+            <Button
+              type="button"
+              rounded="full"
+              variant="outline"
+              onClick={handleLogout}
+              disabled={isLoggingOut}
+            >
+              {isLoggingOut ? "Closing..." : "Log Out"}
+            </Button>
+          </div>
+        </div>
+
+        <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-5">
+          <Card>
+            <CardHeader className="pb-2">
+              <CardTitle className="text-base">Total</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-3xl font-semibold text-foreground">{summary.total}</p>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader className="pb-2">
+              <CardTitle className="text-base">Active</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-3xl font-semibold text-sky-700 dark:text-sky-300">
+                {summary.active}
+              </p>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader className="pb-2">
+              <CardTitle className="text-base">Inactive</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-3xl font-semibold text-emerald-700 dark:text-emerald-300">
+                {summary.inactive}
+              </p>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader className="pb-2">
+              <CardTitle className="text-base">Disabled</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-3xl font-semibold text-amber-700 dark:text-amber-300">
+                {summary.disabled}
+              </p>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader className="pb-2">
+              <CardTitle className="text-base">Bound Devices</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-3xl font-semibold text-foreground">{summary.bound}</p>
+            </CardContent>
+          </Card>
+        </div>
+
+        <div className="mt-8 grid gap-4 md:grid-cols-[2fr_220px]">
+          <div className="space-y-2">
+            <label className="text-sm font-medium text-foreground">
+              Search licenses, orders, emails, devices
+            </label>
+            <Input
+              value={searchQuery}
+              onChange={(event) => setSearchQuery(event.target.value)}
+              placeholder="Search by key, order ID, email, customer, device..."
+            />
+          </div>
+          <div className="space-y-2">
+            <label className="text-sm font-medium text-foreground">Status</label>
+            <Select value={statusFilter} onValueChange={setStatusFilter}>
+              <SelectTrigger>
+                <SelectValue placeholder="All statuses" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All statuses</SelectItem>
+                <SelectItem value="active">Active</SelectItem>
+                <SelectItem value="inactive">Inactive</SelectItem>
+                <SelectItem value="disabled">Disabled</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+        </div>
+
+        <div className="mt-6 flex flex-wrap gap-3">
+          <Button
+            type="button"
+            rounded="full"
+            variant="destructive"
+            onClick={() => {
+              void handleBatchAction("disable");
+            }}
+            disabled={selectedKeys.length === 0 || activeBatchAction != null}
+          >
+            {activeBatchAction === "disable" ? "Disabling..." : "Batch Disable"}
+          </Button>
           <Button
             type="button"
             rounded="full"
             variant="outline"
-            onClick={handleLogout}
-            disabled={isLoggingOut}
+            onClick={() => {
+              void handleBatchAction("enable");
+            }}
+            disabled={selectedKeys.length === 0 || activeBatchAction != null}
           >
-            {isLoggingOut ? "Closing..." : "Log Out"}
+            {activeBatchAction === "enable" ? "Updating..." : "Batch Re-enable"}
+          </Button>
+          <Button
+            type="button"
+            rounded="full"
+            variant="outline"
+            onClick={() => {
+              void handleBatchAction("unbind");
+            }}
+            disabled={selectedKeys.length === 0 || activeBatchAction != null}
+          >
+            {activeBatchAction === "unbind" ? "Removing..." : "Batch Unbind"}
+          </Button>
+          <Button
+            type="button"
+            rounded="full"
+            variant="ghost"
+            onClick={() => setSelectedKeys([])}
+            disabled={selectedKeys.length === 0}
+          >
+            Clear Selection
           </Button>
         </div>
 
-        <form className="mt-8 grid gap-4 md:grid-cols-3" onSubmit={handleSearch}>
-          <div className="space-y-2">
-            <label className="text-sm font-medium text-foreground">
-              Order ID
-            </label>
-            <Input
-              value={orderId}
-              onChange={(event) => setOrderId(event.target.value)}
-              placeholder="ord_123..."
-            />
-          </div>
-          <div className="space-y-2">
-            <label className="text-sm font-medium text-foreground">
-              Purchase email
-            </label>
-            <Input
-              type="email"
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
-              placeholder="customer@example.com"
-            />
-          </div>
-          <div className="space-y-2">
-            <label className="text-sm font-medium text-foreground">
-              License key
-            </label>
-            <Input
-              value={licenseKey}
-              onChange={(event) => setLicenseKey(event.target.value)}
-              placeholder="WAAP-XXXX-XXXX"
-            />
-          </div>
-          <div className="md:col-span-3">
-            <Button type="submit" rounded="full" disabled={isSearching}>
-              {isSearching ? "Searching..." : "Search License Record"}
-            </Button>
-          </div>
-        </form>
-
         <p className="mt-4 text-xs text-muted-foreground">
-          Support rule: one license key can stay bound to one active computer at
-          a time. Force unbind should only be used when the customer can no
-          longer access the original machine.
+          Physical delete is intentionally not exposed here. For license support,
+          disable, re-enable, unbind, and audit-friendly detail views are safer
+          than destructive removal.
         </p>
       </div>
 
@@ -340,151 +557,309 @@ export function LicenseAdminConsole() {
         </div>
       ) : null}
 
-      {result ? (
-        <div className="space-y-5 rounded-[2rem] border bg-muted/20 p-6">
-          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-            <div className="rounded-2xl border bg-background p-4">
-              <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-                Lookup mode
-              </p>
-              <p className="mt-2 text-sm font-medium text-foreground">
-                {getLookupModeLabel(result.lookupMode)}
-              </p>
-            </div>
-            <div className="rounded-2xl border bg-background p-4">
-              <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-                Product
-              </p>
-              <p className="mt-2 text-sm font-medium text-foreground">
-                {result.productName}
-              </p>
-              <p className="mt-1 text-xs text-muted-foreground">
-                {result.toolSlug}
-              </p>
-            </div>
-            <div className="rounded-2xl border bg-background p-4">
-              <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-                Order
-              </p>
-              <p className="mt-2 break-all text-sm font-medium text-foreground">
-                {result.orderId}
-              </p>
-            </div>
-            <div className="rounded-2xl border bg-background p-4">
-              <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-                Customer
-              </p>
-              <p className="mt-2 text-sm font-medium text-foreground">
-                {result.customerName || "Name not provided"}
-              </p>
-              <p className="mt-1 break-all text-xs text-muted-foreground">
-                {result.customerEmail}
-              </p>
-            </div>
-          </div>
-
-          <div className="space-y-3">
-            {result.licenseKeys.map((license) => (
-              <div key={license.id} className="rounded-2xl border bg-background p-4">
-                <div className="flex flex-wrap items-start justify-between gap-4">
-                  <div className="min-w-0 flex-1">
-                    <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-                      License key
-                    </p>
-                    <code className="mt-2 block break-all text-sm text-foreground">
-                      {license.key}
-                    </code>
-                    <div className="mt-3">
-                      <span
-                        className={`inline-flex items-center rounded-full border px-2.5 py-1 text-xs font-medium ${getLicenseStatusTone(license.status)}`}
-                      >
-                        {license.status}
-                      </span>
+      <div className="rounded-[2rem] border bg-card p-4 md:p-6">
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead className="w-12">
+                <Checkbox
+                  checked={allFilteredSelected}
+                  onCheckedChange={(checked) => {
+                    if (checked) {
+                      setSelectedKeys(Array.from(new Set([...selectedKeys, ...allFilteredKeys])));
+                    } else {
+                      setSelectedKeys((current) =>
+                        current.filter((key) => !allFilteredKeys.includes(key)),
+                      );
+                    }
+                  }}
+                />
+              </TableHead>
+              <TableHead>License</TableHead>
+              <TableHead>Status</TableHead>
+              <TableHead>Customer</TableHead>
+              <TableHead>Order</TableHead>
+              <TableHead>Device</TableHead>
+              <TableHead>Updated</TableHead>
+              <TableHead className="min-w-[280px]">Actions</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {filteredItems.length > 0 ? (
+              filteredItems.map((item) => (
+                <TableRow key={item.key}>
+                  <TableCell>
+                    <Checkbox
+                      checked={selectedKeys.includes(item.key)}
+                      onCheckedChange={(checked) => {
+                        setSelectedKeys((current) =>
+                          checked
+                            ? Array.from(new Set([...current, item.key]))
+                            : current.filter((key) => key !== item.key),
+                        );
+                      }}
+                    />
+                  </TableCell>
+                  <TableCell>
+                    <div className="space-y-1">
+                      <p className="font-medium text-foreground">{item.productName}</p>
+                      <code className="block break-all text-xs text-muted-foreground">
+                        {item.key}
+                      </code>
                     </div>
-                    {license.boundDevice ? (
-                      <div className="mt-3 rounded-2xl border border-orange-500/20 bg-orange-500/5 p-3 text-xs text-muted-foreground">
+                  </TableCell>
+                  <TableCell>
+                    <Badge className={getLicenseStatusTone(item.status)} variant="outline">
+                      {item.status}
+                    </Badge>
+                  </TableCell>
+                  <TableCell>
+                    <div className="space-y-1 text-sm">
+                      <p className="font-medium text-foreground">
+                        {item.customerName || "Name not provided"}
+                      </p>
+                      <p className="break-all text-muted-foreground">
+                        {item.customerEmail}
+                      </p>
+                    </div>
+                  </TableCell>
+                  <TableCell>
+                    <div className="space-y-1 text-sm">
+                      <p className="break-all font-medium text-foreground">{item.orderId}</p>
+                      <p className="text-muted-foreground">{item.toolSlug}</p>
+                    </div>
+                  </TableCell>
+                  <TableCell>
+                    {item.boundDevice ? (
+                      <div className="space-y-1 text-sm">
                         <p className="font-medium text-foreground">
-                          Bound to: {license.boundDevice.deviceName}
+                          {item.boundDevice.deviceName}
                         </p>
-                        <p className="mt-1 break-all">
-                          Device ID: {license.boundDevice.deviceId}
-                        </p>
-                        <p className="mt-1">
-                          Bound at: {new Date(
-                            license.boundDevice.boundAt,
-                          ).toLocaleString()}
-                        </p>
-                        <p className="mt-1">
-                          Last validated:{" "}
-                          {new Date(
-                            license.boundDevice.lastValidatedAt,
-                          ).toLocaleString()}
+                        <p className="break-all text-muted-foreground">
+                          {item.boundDevice.deviceId}
                         </p>
                       </div>
                     ) : (
-                      <div className="mt-3 rounded-2xl border border-emerald-500/20 bg-emerald-500/5 p-3 text-xs text-muted-foreground">
-                        This license is not currently bound to a device.
-                      </div>
+                      <span className="text-sm text-muted-foreground">Not bound</span>
                     )}
-                  </div>
-                  <div className="flex flex-col gap-2">
+                  </TableCell>
+                  <TableCell className="text-sm text-muted-foreground">
+                    {formatDateTime(item.updatedAt)}
+                  </TableCell>
+                  <TableCell>
+                    <div className="flex flex-wrap gap-2">
+                      <Button
+                        type="button"
+                        size="sm"
+                        variant="outline"
+                        onClick={() => setSelectedItem(item)}
+                      >
+                        Details
+                      </Button>
+                      <CopyButton
+                        value={item.key}
+                        showText
+                        idleLabel="Copy"
+                        copiedLabel="Copied"
+                      />
+                      {item.boundDevice ? (
+                        <Button
+                          type="button"
+                          size="sm"
+                          variant="outline"
+                          onClick={() => {
+                            void handleLicenseAction(item.key, { type: "unbind" });
+                          }}
+                          disabled={activeActionKey === item.key || activeBatchAction != null}
+                        >
+                          {activeActionKey === item.key ? "Working..." : "Unbind"}
+                        </Button>
+                      ) : null}
+                      {item.status === "disabled" ? (
+                        <Button
+                          type="button"
+                          size="sm"
+                          variant="outline"
+                          onClick={() => {
+                            void handleLicenseAction(item.key, {
+                              type: "status",
+                              value: "enable",
+                            });
+                          }}
+                          disabled={activeActionKey === item.key || activeBatchAction != null}
+                        >
+                          {activeActionKey === item.key ? "Working..." : "Re-enable"}
+                        </Button>
+                      ) : (
+                        <Button
+                          type="button"
+                          size="sm"
+                          variant="destructive"
+                          onClick={() => {
+                            void handleLicenseAction(item.key, {
+                              type: "status",
+                              value: "disable",
+                            });
+                          }}
+                          disabled={activeActionKey === item.key || activeBatchAction != null}
+                        >
+                          {activeActionKey === item.key ? "Working..." : "Disable"}
+                        </Button>
+                      )}
+                    </div>
+                  </TableCell>
+                </TableRow>
+              ))
+            ) : (
+              <TableRow>
+                <TableCell colSpan={8} className="py-10 text-center text-sm text-muted-foreground">
+                  No license records match the current filter.
+                </TableCell>
+              </TableRow>
+            )}
+          </TableBody>
+        </Table>
+      </div>
+
+      <Sheet open={selectedItem != null} onOpenChange={(open) => !open && setSelectedItem(null)}>
+        <SheetContent side="right" className="w-full sm:max-w-xl">
+          {selectedItem ? (
+            <>
+              <SheetHeader>
+                <SheetTitle>License details</SheetTitle>
+                <SheetDescription>
+                  Review the current status, device binding, and order linkage for this
+                  license.
+                </SheetDescription>
+              </SheetHeader>
+              <div className="mt-6 space-y-6">
+                <div className="rounded-2xl border p-4">
+                  <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                    License key
+                  </p>
+                  <code className="mt-2 block break-all text-sm text-foreground">
+                    {selectedItem.key}
+                  </code>
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    <Badge className={getLicenseStatusTone(selectedItem.status)} variant="outline">
+                      {selectedItem.status}
+                    </Badge>
                     <CopyButton
-                      value={license.key}
+                      value={selectedItem.key}
                       showText
                       idleLabel="Copy key"
                       copiedLabel="Copied"
                     />
-                    {license.boundDevice ? (
-                      <Button
-                        type="button"
-                        variant="outline"
-                        onClick={() => handleUnbindLicense(license.key)}
-                        disabled={
-                          activeUnbindKey === license.key ||
-                          activeStatusKey === license.key
-                        }
-                      >
-                        {activeUnbindKey === license.key
-                          ? "Removing..."
-                          : "Force Unbind"}
-                      </Button>
-                    ) : null}
-                    {license.status === "disabled" ? (
-                      <Button
-                        type="button"
-                        variant="outline"
-                        onClick={() => handleLicenseStatusChange(license.key, "enable")}
-                        disabled={activeStatusKey === license.key}
-                      >
-                        {activeStatusKey === license.key
-                          ? "Updating..."
-                          : "Re-enable License"}
-                      </Button>
-                    ) : (
-                      <Button
-                        type="button"
-                        variant="destructive"
-                        onClick={() => handleLicenseStatusChange(license.key, "disable")}
-                        disabled={activeStatusKey === license.key}
-                      >
-                        {activeStatusKey === license.key
-                          ? "Updating..."
-                          : "Disable License"}
-                      </Button>
-                    )}
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
 
-          <div className="rounded-2xl border bg-background p-4 text-xs text-muted-foreground">
-            Record created: {new Date(result.createdAt).toLocaleString()}
-            {" | "}
-            Last updated: {new Date(result.updatedAt).toLocaleString()}
-          </div>
-        </div>
-      ) : null}
+                <div className="grid gap-4 md:grid-cols-2">
+                  <Card>
+                    <CardHeader className="pb-2">
+                      <CardTitle className="text-base">Customer</CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-2">
+                      <p className="font-medium text-foreground">
+                        {selectedItem.customerName || "Name not provided"}
+                      </p>
+                      <p className="break-all text-sm text-muted-foreground">
+                        {selectedItem.customerEmail}
+                      </p>
+                    </CardContent>
+                  </Card>
+                  <Card>
+                    <CardHeader className="pb-2">
+                      <CardTitle className="text-base">Product</CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-2">
+                      <p className="font-medium text-foreground">{selectedItem.productName}</p>
+                      <p className="text-sm text-muted-foreground">{selectedItem.toolSlug}</p>
+                    </CardContent>
+                  </Card>
+                </div>
+
+                <Card>
+                  <CardHeader className="pb-2">
+                    <CardTitle className="text-base">Order linkage</CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-2 text-sm">
+                    <p>
+                      <span className="font-medium text-foreground">Order ID:</span>{" "}
+                      <span className="break-all text-muted-foreground">{selectedItem.orderId}</span>
+                    </p>
+                    <p>
+                      <span className="font-medium text-foreground">Checkout ID:</span>{" "}
+                      <span className="break-all text-muted-foreground">
+                        {selectedItem.checkoutId}
+                      </span>
+                    </p>
+                    <p>
+                      <span className="font-medium text-foreground">Request ID:</span>{" "}
+                      <span className="break-all text-muted-foreground">
+                        {selectedItem.requestId || "Not captured"}
+                      </span>
+                    </p>
+                    <p>
+                      <span className="font-medium text-foreground">Created:</span>{" "}
+                      <span className="text-muted-foreground">
+                        {formatDateTime(selectedItem.createdAt)}
+                      </span>
+                    </p>
+                    <p>
+                      <span className="font-medium text-foreground">Updated:</span>{" "}
+                      <span className="text-muted-foreground">
+                        {formatDateTime(selectedItem.updatedAt)}
+                      </span>
+                    </p>
+                  </CardContent>
+                </Card>
+
+                <Card>
+                  <CardHeader className="pb-2">
+                    <CardTitle className="text-base">Device binding</CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-2 text-sm">
+                    {selectedItem.boundDevice ? (
+                      <>
+                        <p>
+                          <span className="font-medium text-foreground">Device:</span>{" "}
+                          <span className="text-muted-foreground">
+                            {selectedItem.boundDevice.deviceName}
+                          </span>
+                        </p>
+                        <p>
+                          <span className="font-medium text-foreground">Device ID:</span>{" "}
+                          <span className="break-all text-muted-foreground">
+                            {selectedItem.boundDevice.deviceId}
+                          </span>
+                        </p>
+                        <p>
+                          <span className="font-medium text-foreground">Bound at:</span>{" "}
+                          <span className="text-muted-foreground">
+                            {formatDateTime(selectedItem.boundDevice.boundAt)}
+                          </span>
+                        </p>
+                        <p>
+                          <span className="font-medium text-foreground">
+                            Last validated:
+                          </span>{" "}
+                          <span className="text-muted-foreground">
+                            {formatDateTime(selectedItem.boundDevice.lastValidatedAt)}
+                          </span>
+                        </p>
+                      </>
+                    ) : (
+                      <p className="text-muted-foreground">
+                        This license is not currently bound to a device.
+                      </p>
+                    )}
+                  </CardContent>
+                </Card>
+              </div>
+            </>
+          ) : null}
+        </SheetContent>
+      </Sheet>
     </div>
   );
 }

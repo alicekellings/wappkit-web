@@ -8,6 +8,7 @@ import {
   createLicenseRecordFromCreemCheckout,
   createMemoryLicenseStore,
   findLicenseKeyRecord,
+  getLicenseStore,
   normalizeLicenseEmail,
   normalizeLicenseKey,
   unbindDeviceFromLicenseKey,
@@ -133,4 +134,56 @@ test("unbindDeviceFromLicenseKey clears the device binding", () => {
   const license = findLicenseKeyRecord(unbound!, "WAAP-KEY-123");
   assert.equal(license?.status, "inactive");
   assert.equal(license?.boundDevice ?? null, null);
+});
+
+test("memory license store lists saved records", async () => {
+  const store = getLicenseStore();
+  const firstRecord = createLicenseRecordFromCreemCheckout({
+    ...checkoutPayload,
+    id: "chk_list_1",
+    request_id: "req_list_1",
+    order: {
+      id: "ord_list_1",
+      customer: {
+        id: "cus_list_1",
+        email: "list-one@example.com",
+        name: "List One",
+      },
+    },
+    license_keys: [
+      {
+        id: "lic_list_1",
+        key: "WAAP-LIST-1",
+        status: "inactive",
+      },
+    ],
+  });
+  const secondRecord = createLicenseRecordFromCreemCheckout({
+    ...checkoutPayload,
+    id: "chk_list_2",
+    request_id: "req_list_2",
+    order: {
+      id: "ord_list_2",
+      customer: {
+        id: "cus_list_2",
+        email: "list-two@example.com",
+        name: "List Two",
+      },
+    },
+    license_keys: [
+      {
+        id: "lic_list_2",
+        key: "WAAP-LIST-2",
+        status: "inactive",
+      },
+    ],
+  });
+
+  await store.save(firstRecord);
+  await store.save(secondRecord);
+
+  const records = await store.listAllRecords();
+
+  assert.ok(records.some((record) => record.orderId === "ord_list_1"));
+  assert.ok(records.some((record) => record.orderId === "ord_list_2"));
 });
