@@ -1,0 +1,291 @@
+---
+title: "How to Find Reddit Users by Username (Even When Their Profile is Hidden)"
+description: "Reddit changed their privacy settings in 2024. Here are 3 methods that still work to find any user - even when they hide their posts."
+date: "2025-12-30"
+published: true
+image: "/images/blog/find-reddit-users-2025.png"
+authors:
+  - wappkit
+categories:
+  - guides
+---
+
+So I wasted 20 minutes yesterday trying to find a Reddit user's post history.
+
+Their profile showed "0 posts, 0 comments." But I KNEW this person was active - I literally saw them comment on r/entrepreneur last week.
+
+Turns out Reddit rolled out new privacy settings in 2024 that let users hide all their content from public view. Great for privacy. Terrible for researchers, marketers, and anyone trying to track conversations.
+
+But here's the thing: the content isn't actually deleted. It's just hidden. And there are three workarounds that still work perfectly.
+
+## Why Reddit User Search Suddenly Broke in 2024
+
+Until late 2024, finding Reddit users was simple: go to `reddit.com/user/username` and boom - you see everything they posted.
+
+Then Reddit introduced a new privacy toggle: **"Make my posts and comments hidden from my profile."**
+
+When a user enables this (and a LOT of people did):
+- Their profile page looks empty
+- Reddit's "People" search feels broken
+- Direct username searches return nothing
+
+This hit researchers HARD. Suddenly, competitive analysis, influencer outreach, and customer discovery on Reddit became way harder.
+
+But the privacy setting only hides content from the PROFILE PAGE. It doesn't hide it from:
+- Reddit's search engine
+- Google's index
+- Third-party tools
+
+So if you know where to look, you can still find everything.
+
+## Method 1: The author: Operator (Works 95% of the Time)
+
+This is the simplest workaround and it works even on fully hidden profiles.
+
+**How it works:**
+
+1. Go to Reddit's search bar
+2. Type: `author:username` (replace "username" with the actual Reddit username)
+3. Hit search
+
+Boom. You'll see ALL their posts and comments, even if their profile says "0 posts."
+
+**Why it works:**
+
+Reddit's privacy setting only hides content from the `/user/username` profile page. It doesn't hide content from Reddit's SEARCH index. The `author:` operator searches that index directly.
+
+**Example:**
+
+Let's say I want to find all posts by user "john_doe123" who has hidden their profile.
+
+Search query:
+```
+author:john_doe123
+```
+
+Result: Every public post and comment they ever made, sorted by relevance.
+
+**Pro tip - Combine with keywords:**
+
+Want to find what a user said about a specific topic? Combine `author:` with keywords:
+
+```
+author:john_doe123 marketing
+```
+
+This shows only posts by john_doe123 that mention "marketing."
+
+Or search within a specific subreddit:
+```
+author:john_doe123 subreddit:entrepreneur
+```
+
+I use this ALL THE TIME with [Reddit Toolbox](https://www.wappkit.com/download) to:
+- Find competitor mentions in specific subreddits
+- Track what influencers say about certain topics
+- Monitor customer complaints about my product category
+
+Saves me hours compared to manual scrolling. The tool costs $14/month with code BNWPJRLVJH (30% off), but honestly the `author:` operator alone is free and works great for basic searches.
+
+## Method 2: The /search URL Hack (For Stubborn Cases)
+
+Sometimes the `author:` operator doesn't return everything (Reddit's search is notoriously buggy). When that happens, use this URL trick:
+
+**Standard profile URL:**
+```
+reddit.com/user/username
+```
+
+**Hidden profile URL (the hack):**
+```
+reddit.com/user/username/search
+```
+
+Just add `/search` to the end.
+
+**What happens:**
+
+This bypasses the "hidden profile" setting and shows you a search interface for that specific user's content. You can then filter by:
+- Subreddit
+- Time period
+- Post type (comments vs submissions)
+
+I discovered this trick when trying to find a user who commented on my product launch post. Their profile was blank, but adding `/search` revealed 300+ comments.
+
+Not sure why Reddit didn't hide this interface too, but hey - I'm not complaining.
+
+## Method 3: Use Google (When Reddit Search Fails)
+
+Reddit's internal search has always been... let's call it "unreliable." Sometimes it just doesn't return results that clearly exist.
+
+When that happens, Google is your friend.
+
+**The search query:**
+
+```
+site:reddit.com "username"
+```
+
+Replace "username" with the Reddit username you're looking for.
+
+**Example:**
+
+```
+site:reddit.com "john_doe123"
+```
+
+Google will show you every Reddit page that mentions that username, including:
+- Their posts (even hidden ones that Google already indexed)
+- Comments where others mentioned them
+- Discussions about them
+
+**Advanced Google tricks:**
+
+Search for specific keywords + username:
+```
+site:reddit.com "john_doe123" SaaS marketing
+```
+
+Find their activity in a specific subreddit:
+```
+site:reddit.com/r/entrepreneur "john_doe123"
+```
+
+Find recent activity (last month):
+```
+site:reddit.com "john_doe123" after:2024-12-01
+```
+
+Google's index is WAY more comprehensive than Reddit's search. Plus, even if someone enables privacy settings TODAY, Google still has their old posts indexed from months ago.
+
+The only downside: Google takes 1-3 days to index new Reddit content. So for real-time search, stick to Method 1 or 2.
+
+## Method 4: Desktop Tools for Bulk Research (When You Need Scale)
+
+The above methods work great for finding ONE user. But what if you need to:
+- Find ALL users discussing a specific topic?
+- Search across 10+ subreddits simultaneously?
+- Export user data to CSV for analysis?
+- Monitor keywords and get alerts when new posts appear?
+
+Manual search doesn't scale.
+
+That's when desktop tools become useful. You can set up keyword monitoring, filter across multiple subreddits, and export user data to CSV - way faster than doing everything manually.
+
+## Why You'd Want to Find Reddit Users (Legitimate Use Cases)
+
+Before you think this is creepy stalking behavior, here are legit reasons people search for Reddit users:
+
+**1. Competitive Analysis**
+
+Track what your competitors (or their employees) are saying on Reddit. Are they active in r/SaaS? What problems are they discussing? What features are users requesting?
+
+**2. Influencer Outreach**
+
+Find active users in your niche who have high karma and engaged followers. Reach out for collaborations, partnerships, or beta testing.
+
+**3. Customer Discovery**
+
+Identify people who are actively complaining about problems your product solves. Example: searching for users who posted "I need a better Reddit marketing tool" in the last 30 days.
+
+**4. Brand Monitoring**
+
+Track when people mention your company, product, or competitors. Respond to complaints, answer questions, or thank happy customers.
+
+**5. Market Research**
+
+Find users discussing specific pain points, then analyze their post history to understand their broader context (industry, company size, tech stack).
+
+I've used all five approaches to find my first 60 customers. Reddit user search is basically free market research if you know how to use it.
+
+## What Doesn't Work Anymore (Save Your Time)
+
+I tested a bunch of methods that USED TO work but are now broken:
+
+❌ **Reddit's "People" Filter** - Only works if you know the EXACT username, and even then it's buggy with hidden profiles
+
+❌ **Pushshift API** - Got shut down in 2023 because Reddit killed third-party API access (RIP to a real one)
+
+❌ **Old.reddit.com** - Same privacy restrictions apply, hiding content doesn't help
+
+❌ **Reddit Enhancement Suite (RES)** - Great for browsing, but doesn't bypass hidden profiles
+
+Stick to the three methods above. They're the only ones that reliably work in 2025.
+
+## Privacy Considerations (Don't Be Creepy)
+
+Look, everything you post on Reddit is PUBLIC. Even with the new privacy settings, your content is still visible to:
+- Other Reddit users (via search)
+- Google (via indexing)
+- Internet Archive (via Wayback Machine)
+
+So if someone doesn't want their Reddit history found, they should:
+1. Use a throwaway account with a random username
+2. Never mention identifying details
+3. Delete old posts manually (not just hide them)
+
+The new privacy toggle gives a FALSE sense of security. It doesn't actually make content private - it just makes it slightly harder to find.
+
+That said, if you're using these methods for research, be ethical:
+- Don't harass people
+- Don't doxx anyone
+- Don't violate Reddit's TOS by scraping at scale without permission
+- Don't spam users with unsolicited DMs
+
+Use this power for good (market research, customer discovery), not evil (stalking, harassment).
+
+## The Future: Reddit's AI Search in 2025
+
+Reddit just announced "Reddit Answers" - an AI-powered search feature launching in 2025 that uses Google's Gemini model.
+
+From what they've shown, it will:
+- Summarize discussions across multiple threads
+- Surface relevant users and communities
+- Provide direct answers to complex questions
+
+This might make user search even easier. Or it might make it harder if they add more privacy controls. We'll see.
+
+For now, the three methods above (author: operator, /search URL hack, Google search) work perfectly.
+
+## Quick Reference Guide
+
+**Finding a specific user:**
+1. Try `author:username` in Reddit search
+2. If that fails, try `reddit.com/user/username/search`
+3. If still nothing, use Google: `site:reddit.com "username"`
+
+**Finding users by topic:**
+1. Use `author:username topic_keyword` in Reddit search
+2. Or use desktop tools for bulk analysis
+
+**Finding users in a subreddit:**
+```
+author:username subreddit:subreddit_name
+```
+
+**Finding recent activity:**
+Use Google with timeframe:
+```
+site:reddit.com "username" after:2024-12-01
+```
+
+Save this guide. You'll need it every time Reddit's UI changes or a user hides their profile.
+
+## Final Thoughts
+
+Reddit's 2024 privacy update was meant to protect users. And it does - sort of.
+
+But anyone who understands how Reddit's search works (or uses Google, or has basic third-party tools) can still find everything you post.
+
+The "hidden profile" feature is more like "hidden from casual browsers" than "actually private."
+
+So if you're researching competitors, finding customers, or doing influencer outreach on Reddit, you're not blocked. You just need to use the right search methods.
+
+Bookmark this guide. You'll need it.
+
+Now if you'll excuse me, I have about 50 Reddit users to research for a new product launch. These methods don't run themselves.
+
+---
+
+*Need to search Reddit users at scale? [Reddit Toolbox](https://www.wappkit.com/download) has 3-day unlimited trial, then $14/month with code **BNWPJRLVJH** (30% off). Filters by subreddit, date, karma, keywords - way faster than manual search.*
+
