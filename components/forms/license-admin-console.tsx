@@ -1,12 +1,24 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import {
+  ArrowDown,
+  ArrowUp,
+  ChevronsUpDown,
+  MoreHorizontal,
+} from "lucide-react";
 
-import { CopyButton } from "@/components/shared/copy-button";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import {
   Select,
@@ -32,6 +44,13 @@ import {
 } from "@/components/ui/table";
 
 type LicenseStatus = "active" | "inactive" | "disabled" | "unknown";
+type SortField =
+  | "updatedAt"
+  | "createdAt"
+  | "customerEmail"
+  | "status"
+  | "productName";
+type SortDirection = "asc" | "desc";
 
 type AdminLicenseListItem = {
   id: string;
@@ -78,6 +97,16 @@ function getLicenseStatusTone(status: LicenseStatus) {
   }
 }
 
+function buildSummary(items: AdminLicenseListItem[]) {
+  return {
+    total: items.length,
+    active: items.filter((item) => item.status === "active").length,
+    inactive: items.filter((item) => item.status === "inactive").length,
+    disabled: items.filter((item) => item.status === "disabled").length,
+    bound: items.filter((item) => item.boundDevice).length,
+  };
+}
+
 function formatDateTime(value: string) {
   return new Date(value).toLocaleString();
 }
@@ -101,19 +130,130 @@ function matchesQuery(item: AdminLicenseListItem, query: string) {
   ].some((value) => value.toLowerCase().includes(normalizedQuery));
 }
 
+function truncateMiddle(value: string, start = 6, end = 5) {
+  if (value.length <= start + end + 3) {
+    return value;
+  }
+
+  return `${value.slice(0, start)}...${value.slice(-end)}`;
+}
+
+function compareStatus(left: LicenseStatus, right: LicenseStatus) {
+  const order: Record<LicenseStatus, number> = {
+    active: 0,
+    inactive: 1,
+    disabled: 2,
+    unknown: 3,
+  };
+
+  return order[left] - order[right];
+}
+
+function sortItems(
+  items: AdminLicenseListItem[],
+  sortField: SortField,
+  sortDirection: SortDirection,
+) {
+  const direction = sortDirection === "asc" ? 1 : -1;
+
+  return [...items].sort((left, right) => {
+    let comparison = 0;
+
+    switch (sortField) {
+      case "createdAt":
+        comparison = left.createdAt.localeCompare(right.createdAt);
+        break;
+      case "customerEmail":
+        comparison = left.customerEmail.localeCompare(right.customerEmail);
+        break;
+      case "status":
+        comparison = compareStatus(left.status, right.status);
+        break;
+      case "productName":
+        comparison = left.productName.localeCompare(right.productName);
+        break;
+      case "updatedAt":
+      default:
+        comparison = left.updatedAt.localeCompare(right.updatedAt);
+        break;
+    }
+
+    if (comparison === 0) {
+      comparison = left.key.localeCompare(right.key);
+    }
+
+    return comparison * direction;
+  });
+}
+
+function replaceLicenseState(
+  currentItems: AdminLicenseListItem[],
+  licenseKey: string,
+  data: { status: string; boundDevice?: AdminLicenseListItem["boundDevice"] },
+) {
+  const nextUpdatedAt = new Date().toISOString();
+
+  return currentItems.map((item) =>
+    item.key === licenseKey
+      ? {
+          ...item,
+          status: data.status as LicenseStatus,
+          boundDevice: data.boundDevice ?? null,
+          updatedAt: nextUpdatedAt,
+        }
+      : item,
+  );
+}
+
+function SortableHeader({
+  label,
+  field,
+  sortField,
+  sortDirection,
+  onSort,
+  className,
+}: {
+  label: string;
+  field: SortField;
+  sortField: SortField;
+  sortDirection: SortDirection;
+  onSort: (field: SortField) => void;
+  className?: string;
+}) {
+  const isActive = sortField === field;
+
+  return (
+    <TableHead className={className}>
+      <button
+        type="button"
+        className="inline-flex items-center gap-1.5 text-left text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground transition hover:text-foreground"
+        onClick={() => onSort(field)}
+      >
+        <span>{label}</span>
+        {isActive ? (
+          sortDirection === "asc" ? (
+            <ArrowUp className="size-3.5" />
+          ) : (
+            <ArrowDown className="size-3.5" />
+          )
+        ) : (
+          <ChevronsUpDown className="size-3.5 opacity-60" />
+        )}
+      </button>
+    </TableHead>
+  );
+}
+
 export function LicenseAdminConsole() {
   const [items, setItems] = useState<AdminLicenseListItem[]>([]);
-  const [summary, setSummary] = useState<AdminLicenseListResponse["summary"]>({
-    total: 0,
-    active: 0,
-    inactive: 0,
-    disabled: 0,
-    bound: 0,
-  });
   const [searchQuery, setSearchQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState("all");
   const [selectedKeys, setSelectedKeys] = useState<string[]>([]);
   const [selectedItem, setSelectedItem] = useState<AdminLicenseListItem | null>(null);
+  const [sortField, setSortField] = useState<SortField>("updatedAt");
+  const [sortDirection, setSortDirection] = useState<SortDirection>("desc");
+  const [page, setPage] = useState(1);
+  const [pageSize, setPageSize] = useState("10");
   const [isLoading, setIsLoading] = useState(true);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [isLoggingOut, setIsLoggingOut] = useState(false);
@@ -121,6 +261,8 @@ export function LicenseAdminConsole() {
   const [activeBatchAction, setActiveBatchAction] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [notice, setNotice] = useState<string | null>(null);
+
+  const summary = useMemo(() => buildSummary(items), [items]);
 
   async function loadLicenseList(showSpinner = false) {
     try {
@@ -152,7 +294,6 @@ export function LicenseAdminConsole() {
       const data = payload.data;
 
       setItems(data.items);
-      setSummary(data.summary);
       setSelectedKeys((current) =>
         current.filter((key) => data.items.some((item) => item.key === key)),
       );
@@ -175,6 +316,10 @@ export function LicenseAdminConsole() {
     void loadLicenseList();
   }, []);
 
+  useEffect(() => {
+    setPage(1);
+  }, [searchQuery, statusFilter, sortField, sortDirection, pageSize]);
+
   const filteredItems = useMemo(() => {
     return items.filter((item) => {
       const statusMatches =
@@ -183,38 +328,35 @@ export function LicenseAdminConsole() {
     });
   }, [items, searchQuery, statusFilter]);
 
-  const allFilteredKeys = filteredItems.map((item) => item.key);
-  const allFilteredSelected =
-    allFilteredKeys.length > 0 &&
-    allFilteredKeys.every((key) => selectedKeys.includes(key));
+  const sortedItems = useMemo(
+    () => sortItems(filteredItems, sortField, sortDirection),
+    [filteredItems, sortField, sortDirection],
+  );
 
-  function recalculateSummary(nextItems: AdminLicenseListItem[]) {
-    setSummary({
-      total: nextItems.length,
-      active: nextItems.filter((item) => item.status === "active").length,
-      inactive: nextItems.filter((item) => item.status === "inactive").length,
-      disabled: nextItems.filter((item) => item.status === "disabled").length,
-      bound: nextItems.filter((item) => item.boundDevice).length,
-    });
-  }
+  const pageSizeNumber = Number(pageSize);
+  const totalPages = Math.max(1, Math.ceil(sortedItems.length / pageSizeNumber));
+  const currentPage = Math.min(page, totalPages);
+  const paginatedItems = useMemo(() => {
+    const startIndex = (currentPage - 1) * pageSizeNumber;
+    return sortedItems.slice(startIndex, startIndex + pageSizeNumber);
+  }, [currentPage, pageSizeNumber, sortedItems]);
+
+  const allVisibleKeys = paginatedItems.map((item) => item.key);
+  const allVisibleSelected =
+    allVisibleKeys.length > 0 &&
+    allVisibleKeys.every((key) => selectedKeys.includes(key));
+  const visibleRangeStart =
+    sortedItems.length === 0 ? 0 : (currentPage - 1) * pageSizeNumber + 1;
+  const visibleRangeEnd =
+    sortedItems.length === 0
+      ? 0
+      : Math.min(currentPage * pageSizeNumber, sortedItems.length);
 
   function updateLicenseLocally(
     licenseKey: string,
     data: { status: string; boundDevice?: AdminLicenseListItem["boundDevice"] },
   ) {
-    const nextItems = items.map((item) =>
-      item.key === licenseKey
-        ? {
-            ...item,
-            status: data.status as LicenseStatus,
-            boundDevice: data.boundDevice ?? null,
-            updatedAt: new Date().toISOString(),
-          }
-        : item,
-    );
-
-    setItems(nextItems);
-    recalculateSummary(nextItems);
+    setItems((current) => replaceLicenseState(current, licenseKey, data));
     setSelectedItem((current) =>
       current && current.key === licenseKey
         ? {
@@ -225,6 +367,22 @@ export function LicenseAdminConsole() {
           }
         : current,
     );
+  }
+
+  async function handleCopyValue(value: string, label: string) {
+    await navigator.clipboard.writeText(value);
+    setNotice(`${label} copied.`);
+    setError(null);
+  }
+
+  function handleSort(field: SortField) {
+    if (sortField === field) {
+      setSortDirection((current) => (current === "asc" ? "desc" : "asc"));
+      return;
+    }
+
+    setSortField(field);
+    setSortDirection(field === "updatedAt" ? "desc" : "asc");
   }
 
   async function handleLicenseAction(
@@ -466,7 +624,7 @@ export function LicenseAdminConsole() {
           </Card>
         </div>
 
-        <div className="mt-8 grid gap-4 md:grid-cols-[2fr_220px]">
+        <div className="mt-8 grid gap-4 xl:grid-cols-[minmax(0,2.1fr)_220px_180px]">
           <div className="space-y-2">
             <label className="text-sm font-medium text-foreground">
               Search licenses, orders, emails, devices
@@ -491,9 +649,22 @@ export function LicenseAdminConsole() {
               </SelectContent>
             </Select>
           </div>
+          <div className="space-y-2">
+            <label className="text-sm font-medium text-foreground">Rows per page</label>
+            <Select value={pageSize} onValueChange={setPageSize}>
+              <SelectTrigger>
+                <SelectValue placeholder="10 rows" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="10">10 rows</SelectItem>
+                <SelectItem value="20">20 rows</SelectItem>
+                <SelectItem value="50">50 rows</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
         </div>
 
-        <div className="mt-6 flex flex-wrap gap-3">
+        <div className="mt-6 flex flex-wrap items-center gap-3">
           <Button
             type="button"
             rounded="full"
@@ -536,6 +707,9 @@ export function LicenseAdminConsole() {
           >
             Clear Selection
           </Button>
+          <div className="ml-auto rounded-full border bg-background px-4 py-2 text-sm text-muted-foreground">
+            {selectedKeys.length} selected
+          </div>
         </div>
 
         <p className="mt-4 text-xs text-muted-foreground">
@@ -558,167 +732,260 @@ export function LicenseAdminConsole() {
       ) : null}
 
       <div className="rounded-[2rem] border bg-card p-4 md:p-6">
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead className="w-12">
-                <Checkbox
-                  checked={allFilteredSelected}
-                  onCheckedChange={(checked) => {
-                    if (checked) {
-                      setSelectedKeys(Array.from(new Set([...selectedKeys, ...allFilteredKeys])));
-                    } else {
-                      setSelectedKeys((current) =>
-                        current.filter((key) => !allFilteredKeys.includes(key)),
-                      );
-                    }
-                  }}
-                />
-              </TableHead>
-              <TableHead>License</TableHead>
-              <TableHead>Status</TableHead>
-              <TableHead>Customer</TableHead>
-              <TableHead>Order</TableHead>
-              <TableHead>Device</TableHead>
-              <TableHead>Updated</TableHead>
-              <TableHead className="min-w-[280px]">Actions</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {filteredItems.length > 0 ? (
-              filteredItems.map((item) => (
-                <TableRow key={item.key}>
-                  <TableCell>
-                    <Checkbox
-                      checked={selectedKeys.includes(item.key)}
-                      onCheckedChange={(checked) => {
+        <div className="flex flex-wrap items-center justify-between gap-3 border-b pb-4">
+          <div>
+            <p className="text-sm font-semibold text-foreground">License list</p>
+            <p className="text-sm text-muted-foreground">
+              Showing {visibleRangeStart}-{visibleRangeEnd} of {sortedItems.length} matching
+              licenses
+            </p>
+          </div>
+          <div className="rounded-full border bg-background px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+            Sorted by {sortField} {sortDirection}
+          </div>
+        </div>
+
+        <div className="mt-4">
+          <Table>
+            <TableHeader>
+              <TableRow className="hover:bg-transparent">
+                <TableHead className="w-12">
+                  <Checkbox
+                    checked={allVisibleSelected}
+                    onCheckedChange={(checked) => {
+                      if (checked) {
                         setSelectedKeys((current) =>
-                          checked
-                            ? Array.from(new Set([...current, item.key]))
-                            : current.filter((key) => key !== item.key),
+                          Array.from(new Set([...current, ...allVisibleKeys])),
                         );
-                      }}
-                    />
-                  </TableCell>
-                  <TableCell>
-                    <div className="space-y-1">
-                      <p className="font-medium text-foreground">{item.productName}</p>
-                      <code className="block break-all text-xs text-muted-foreground">
-                        {item.key}
-                      </code>
-                    </div>
-                  </TableCell>
-                  <TableCell>
-                    <Badge className={getLicenseStatusTone(item.status)} variant="outline">
-                      {item.status}
-                    </Badge>
-                  </TableCell>
-                  <TableCell>
-                    <div className="space-y-1 text-sm">
-                      <p className="font-medium text-foreground">
-                        {item.customerName || "Name not provided"}
-                      </p>
-                      <p className="break-all text-muted-foreground">
-                        {item.customerEmail}
-                      </p>
-                    </div>
-                  </TableCell>
-                  <TableCell>
-                    <div className="space-y-1 text-sm">
-                      <p className="break-all font-medium text-foreground">{item.orderId}</p>
-                      <p className="text-muted-foreground">{item.toolSlug}</p>
-                    </div>
-                  </TableCell>
-                  <TableCell>
-                    {item.boundDevice ? (
+                      } else {
+                        setSelectedKeys((current) =>
+                          current.filter((key) => !allVisibleKeys.includes(key)),
+                        );
+                      }
+                    }}
+                  />
+                </TableHead>
+                <SortableHeader
+                  label="License"
+                  field="productName"
+                  sortField={sortField}
+                  sortDirection={sortDirection}
+                  onSort={handleSort}
+                  className="min-w-[250px]"
+                />
+                <SortableHeader
+                  label="Status"
+                  field="status"
+                  sortField={sortField}
+                  sortDirection={sortDirection}
+                  onSort={handleSort}
+                  className="w-[140px]"
+                />
+                <SortableHeader
+                  label="Customer"
+                  field="customerEmail"
+                  sortField={sortField}
+                  sortDirection={sortDirection}
+                  onSort={handleSort}
+                  className="min-w-[220px]"
+                />
+                <TableHead className="min-w-[150px]">Order</TableHead>
+                <TableHead className="min-w-[170px]">Device</TableHead>
+                <SortableHeader
+                  label="Updated"
+                  field="updatedAt"
+                  sortField={sortField}
+                  sortDirection={sortDirection}
+                  onSort={handleSort}
+                  className="w-[190px]"
+                />
+                <TableHead className="w-[72px] text-right">Actions</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {paginatedItems.length > 0 ? (
+                paginatedItems.map((item) => (
+                  <TableRow key={item.key}>
+                    <TableCell className="py-3">
+                      <Checkbox
+                        checked={selectedKeys.includes(item.key)}
+                        onCheckedChange={(checked) => {
+                          setSelectedKeys((current) =>
+                            checked
+                              ? Array.from(new Set([...current, item.key]))
+                              : current.filter((key) => key !== item.key),
+                          );
+                        }}
+                      />
+                    </TableCell>
+                    <TableCell className="py-3">
+                      <div className="space-y-1">
+                        <p className="font-medium text-foreground">{item.productName}</p>
+                        <code
+                          className="block text-xs text-muted-foreground"
+                          title={item.key}
+                        >
+                          {truncateMiddle(item.key, 8, 6)}
+                        </code>
+                      </div>
+                    </TableCell>
+                    <TableCell className="py-3">
+                      <Badge className={getLicenseStatusTone(item.status)} variant="outline">
+                        {item.status}
+                      </Badge>
+                    </TableCell>
+                    <TableCell className="py-3">
                       <div className="space-y-1 text-sm">
-                        <p className="font-medium text-foreground">
-                          {item.boundDevice.deviceName}
+                        <p className="truncate font-medium text-foreground" title={item.customerEmail}>
+                          {item.customerName || "Name not provided"}
                         </p>
-                        <p className="break-all text-muted-foreground">
-                          {item.boundDevice.deviceId}
+                        <p className="truncate text-muted-foreground" title={item.customerEmail}>
+                          {item.customerEmail}
                         </p>
                       </div>
-                    ) : (
-                      <span className="text-sm text-muted-foreground">Not bound</span>
-                    )}
-                  </TableCell>
-                  <TableCell className="text-sm text-muted-foreground">
-                    {formatDateTime(item.updatedAt)}
-                  </TableCell>
-                  <TableCell>
-                    <div className="flex flex-wrap gap-2">
-                      <Button
-                        type="button"
-                        size="sm"
-                        variant="outline"
-                        onClick={() => setSelectedItem(item)}
-                      >
-                        Details
-                      </Button>
-                      <CopyButton
-                        value={item.key}
-                        showText
-                        idleLabel="Copy"
-                        copiedLabel="Copied"
-                      />
+                    </TableCell>
+                    <TableCell className="py-3">
+                      <div className="space-y-1 text-sm">
+                        <p className="font-medium text-foreground" title={item.orderId}>
+                          {truncateMiddle(item.orderId, 7, 6)}
+                        </p>
+                        <p className="truncate text-muted-foreground" title={item.toolSlug}>
+                          {item.toolSlug}
+                        </p>
+                      </div>
+                    </TableCell>
+                    <TableCell className="py-3">
                       {item.boundDevice ? (
-                        <Button
-                          type="button"
-                          size="sm"
-                          variant="outline"
-                          onClick={() => {
-                            void handleLicenseAction(item.key, { type: "unbind" });
-                          }}
-                          disabled={activeActionKey === item.key || activeBatchAction != null}
-                        >
-                          {activeActionKey === item.key ? "Working..." : "Unbind"}
-                        </Button>
-                      ) : null}
-                      {item.status === "disabled" ? (
-                        <Button
-                          type="button"
-                          size="sm"
-                          variant="outline"
-                          onClick={() => {
-                            void handleLicenseAction(item.key, {
-                              type: "status",
-                              value: "enable",
-                            });
-                          }}
-                          disabled={activeActionKey === item.key || activeBatchAction != null}
-                        >
-                          {activeActionKey === item.key ? "Working..." : "Re-enable"}
-                        </Button>
+                        <div className="space-y-1 text-sm">
+                          <p
+                            className="truncate font-medium text-foreground"
+                            title={item.boundDevice.deviceName}
+                          >
+                            {item.boundDevice.deviceName}
+                          </p>
+                          <p
+                            className="truncate text-muted-foreground"
+                            title={item.boundDevice.deviceId}
+                          >
+                            {truncateMiddle(item.boundDevice.deviceId, 8, 6)}
+                          </p>
+                        </div>
                       ) : (
-                        <Button
-                          type="button"
-                          size="sm"
-                          variant="destructive"
-                          onClick={() => {
-                            void handleLicenseAction(item.key, {
-                              type: "status",
-                              value: "disable",
-                            });
-                          }}
-                          disabled={activeActionKey === item.key || activeBatchAction != null}
-                        >
-                          {activeActionKey === item.key ? "Working..." : "Disable"}
-                        </Button>
+                        <span className="text-sm text-muted-foreground">Not bound</span>
                       )}
-                    </div>
+                    </TableCell>
+                    <TableCell className="py-3 text-sm text-muted-foreground">
+                      {formatDateTime(item.updatedAt)}
+                    </TableCell>
+                    <TableCell className="py-3 text-right">
+                      <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                          <Button
+                            type="button"
+                            size="icon"
+                            variant="ghost"
+                            rounded="full"
+                            className="size-9"
+                          >
+                            <MoreHorizontal className="size-4" />
+                            <span className="sr-only">Open actions</span>
+                          </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="end" className="w-48">
+                          <DropdownMenuItem onClick={() => setSelectedItem(item)}>
+                            View details
+                          </DropdownMenuItem>
+                          <DropdownMenuItem
+                            onClick={() => {
+                              void handleCopyValue(item.key, "License key");
+                            }}
+                          >
+                            Copy license
+                          </DropdownMenuItem>
+                          <DropdownMenuSeparator />
+                          {item.boundDevice ? (
+                            <DropdownMenuItem
+                              onClick={() => {
+                                void handleLicenseAction(item.key, { type: "unbind" });
+                              }}
+                              disabled={
+                                activeActionKey === item.key || activeBatchAction != null
+                              }
+                            >
+                              {activeActionKey === item.key ? "Working..." : "Unbind device"}
+                            </DropdownMenuItem>
+                          ) : null}
+                          {item.status === "disabled" ? (
+                            <DropdownMenuItem
+                              onClick={() => {
+                                void handleLicenseAction(item.key, {
+                                  type: "status",
+                                  value: "enable",
+                                });
+                              }}
+                              disabled={
+                                activeActionKey === item.key || activeBatchAction != null
+                              }
+                            >
+                              {activeActionKey === item.key ? "Working..." : "Re-enable license"}
+                            </DropdownMenuItem>
+                          ) : (
+                            <DropdownMenuItem
+                              className="text-destructive focus:text-destructive"
+                              onClick={() => {
+                                void handleLicenseAction(item.key, {
+                                  type: "status",
+                                  value: "disable",
+                                });
+                              }}
+                              disabled={
+                                activeActionKey === item.key || activeBatchAction != null
+                              }
+                            >
+                              {activeActionKey === item.key ? "Working..." : "Disable license"}
+                            </DropdownMenuItem>
+                          )}
+                        </DropdownMenuContent>
+                      </DropdownMenu>
+                    </TableCell>
+                  </TableRow>
+                ))
+              ) : (
+                <TableRow>
+                  <TableCell colSpan={8} className="py-10 text-center text-sm text-muted-foreground">
+                    No license records match the current filter.
                   </TableCell>
                 </TableRow>
-              ))
-            ) : (
-              <TableRow>
-                <TableCell colSpan={8} className="py-10 text-center text-sm text-muted-foreground">
-                  No license records match the current filter.
-                </TableCell>
-              </TableRow>
-            )}
-          </TableBody>
-        </Table>
+              )}
+            </TableBody>
+          </Table>
+        </div>
+
+        <div className="mt-4 flex flex-wrap items-center justify-between gap-3 border-t pt-4">
+          <p className="text-sm text-muted-foreground">
+            Page {currentPage} of {totalPages}
+          </p>
+          <div className="flex items-center gap-2">
+            <Button
+              type="button"
+              rounded="full"
+              variant="outline"
+              onClick={() => setPage((current) => Math.max(1, current - 1))}
+              disabled={currentPage <= 1}
+            >
+              Previous
+            </Button>
+            <Button
+              type="button"
+              rounded="full"
+              variant="outline"
+              onClick={() => setPage((current) => Math.min(totalPages, current + 1))}
+              disabled={currentPage >= totalPages}
+            >
+              Next
+            </Button>
+          </div>
+        </div>
       </div>
 
       <Sheet open={selectedItem != null} onOpenChange={(open) => !open && setSelectedItem(null)}>
@@ -744,12 +1011,17 @@ export function LicenseAdminConsole() {
                     <Badge className={getLicenseStatusTone(selectedItem.status)} variant="outline">
                       {selectedItem.status}
                     </Badge>
-                    <CopyButton
-                      value={selectedItem.key}
-                      showText
-                      idleLabel="Copy key"
-                      copiedLabel="Copied"
-                    />
+                    <Button
+                      type="button"
+                      size="sm"
+                      variant="outline"
+                      rounded="full"
+                      onClick={() => {
+                        void handleCopyValue(selectedItem.key, "License key");
+                      }}
+                    >
+                      Copy key
+                    </Button>
                   </div>
                 </div>
 
