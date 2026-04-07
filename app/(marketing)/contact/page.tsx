@@ -1,4 +1,5 @@
 import { constructMetadata } from "@/lib/utils";
+import { siteConfig } from "@/config/site";
 import {
   MarketingCard,
   MarketingHero,
@@ -29,10 +30,10 @@ export default function ContactPage() {
               Support email
             </p>
             <a
-              href="mailto:support@wappkit.com"
+              href={`mailto:${siteConfig.mailSupport}`}
               className="mt-4 block font-heading text-3xl text-white"
             >
-              support@wappkit.com
+              {siteConfig.mailSupport}
             </a>
             <p className="mt-4 text-sm leading-7 text-slate-300">
               Include the tool name, your order ID when relevant, and a short

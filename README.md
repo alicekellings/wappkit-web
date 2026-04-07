@@ -55,6 +55,7 @@ npm run build
 
 ```env
 NEXT_PUBLIC_APP_URL=http://localhost:3000
+NEXT_PUBLIC_SUPPORT_EMAIL=asphero@gmail.com
 
 CREEM_API_KEY=
 CREEM_TEST_MODE=true

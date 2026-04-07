@@ -31,6 +31,7 @@ export const env = createEnv({
   },
   client: {
     NEXT_PUBLIC_APP_URL: appUrl,
+    NEXT_PUBLIC_SUPPORT_EMAIL: optionalString,
   },
   runtimeEnv: {
     CREEM_API_KEY: process.env.CREEM_API_KEY,
@@ -39,5 +40,6 @@ export const env = createEnv({
     EMAIL_FROM: process.env.EMAIL_FROM,
     INTERNAL_ADMIN_TOKEN: process.env.INTERNAL_ADMIN_TOKEN,
     NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
+    NEXT_PUBLIC_SUPPORT_EMAIL: process.env.NEXT_PUBLIC_SUPPORT_EMAIL,
   },
 });
