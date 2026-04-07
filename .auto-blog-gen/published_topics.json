@@ -1,11 +1,13 @@
 {
   "published_topics": [
     "reddit_toolbox:manual:reddit pain point research",
-    "reddit_toolbox:keyword:reddit analytics subreddit"
+    "reddit_toolbox:keyword:reddit analytics subreddit",
+    "reddit_toolbox:topic:how to find low-competition reddit threads"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
-    "how-to-use-reddit-toolbox-to-analyze-the-ranalytics-subreddit-in-2026"
+    "how-to-use-reddit-toolbox-to-analyze-the-ranalytics-subreddit-in-2026",
+    "how-to-find-low-competition-reddit-threads-for-growth-in-2026"
   ],
   "events": [
     {
@@ -21,6 +23,13 @@
       "source_type": "keyword",
       "slug": "how-to-use-reddit-toolbox-to-analyze-the-ranalytics-subreddit-in-2026",
       "title": "How to Use Reddit Toolbox to Analyze the r/analytics Subreddit in 2026"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "how to find low-competition reddit threads",
+      "source_type": "topic",
+      "slug": "how-to-find-low-competition-reddit-threads-for-growth-in-2026",
+      "title": "How to Find Low-Competition Reddit Threads for Growth in 2026"
     }
   ]
 }
