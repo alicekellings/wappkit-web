@@ -20,6 +20,7 @@ import {
 } from "@/components/marketing/page-shell";
 import BlurImage from "@/components/shared/blur-image";
 import { DashboardTableOfContents } from "@/components/shared/toc";
+import { BlogProductPromo } from "@/components/content/blog-product-promo";
 
 import "@/styles/mdx.css";
 
@@ -77,6 +78,7 @@ export default async function PostPage({
     [];
 
   const toc = await getTableOfContents(post.body.raw);
+  const hasToc = Boolean(toc.items?.length);
 
   const [thumbnailBlurhash, images] = await Promise.all([
     getBlurDataURL(post.image),
@@ -165,13 +167,20 @@ export default async function PostPage({
         </MarketingCard>
 
         <div className="hidden xl:block">
-          <div className="sticky top-20">
-            <MarketingCard tone="soft" className="p-6">
-              <DashboardTableOfContents toc={toc} />
-            </MarketingCard>
+          <div className="sticky top-20 space-y-4">
+            {hasToc ? (
+              <MarketingCard tone="soft" className="p-6">
+                <DashboardTableOfContents toc={toc} />
+              </MarketingCard>
+            ) : null}
+            <BlogProductPromo seed={post.slugAsParams} />
           </div>
         </div>
       </section>
+
+      <div className="mt-6 xl:hidden">
+        <BlogProductPromo seed={post.slugAsParams} />
+      </div>
 
       {relatedArticles.length > 0 && (
         <section className="mt-6">

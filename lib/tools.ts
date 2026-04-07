@@ -116,6 +116,26 @@ export function getFeaturedTools() {
   return tools.slice(0, 3);
 }
 
+export function getPromotableTools() {
+  const liveTools = tools.filter((tool) => tool.status === "live");
+
+  return liveTools.length > 0 ? liveTools : getFeaturedTools();
+}
+
+export function getPromotedTool(seed: string) {
+  const promotableTools = getPromotableTools();
+
+  if (promotableTools.length === 0) {
+    return null;
+  }
+
+  const hash = seed
+    .split("")
+    .reduce((total, char) => total + char.charCodeAt(0), 0);
+
+  return promotableTools[hash % promotableTools.length];
+}
+
 export function getToolBySlug(slug: string) {
   return tools.find((tool) => tool.slug === slug);
 }
