@@ -1,9 +1,11 @@
 {
   "published_topics": [
-    "reddit_toolbox:manual:reddit pain point research"
+    "reddit_toolbox:manual:reddit pain point research",
+    "reddit_toolbox:keyword:reddit analytics subreddit"
   ],
   "published_slugs": [
-    "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation"
+    "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
+    "how-to-use-reddit-toolbox-to-analyze-the-ranalytics-subreddit-in-2026"
   ],
   "events": [
     {
@@ -12,6 +14,13 @@
       "source_type": "manual",
       "slug": "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
       "title": "How to Use Reddit Toolbox for Pain Point Research and SaaS Validation"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "reddit analytics subreddit",
+      "source_type": "keyword",
+      "slug": "how-to-use-reddit-toolbox-to-analyze-the-ranalytics-subreddit-in-2026",
+      "title": "How to Use Reddit Toolbox to Analyze the r/analytics Subreddit in 2026"
     }
   ]
 }
