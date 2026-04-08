@@ -1,11 +1,13 @@
 {
   "published_topics": [
     "reddit_toolbox:manual:reddit pain point research",
-    "reddit_toolbox:keyword:reddit analytics subreddit"
+    "reddit_toolbox:keyword:reddit analytics subreddit",
+    "reddit_toolbox:keyword:reddit keyword monitor"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
-    "how-to-use-reddit-toolbox-to-analyze-the-ranalytics-subreddit-in-2026"
+    "how-to-use-reddit-toolbox-to-analyze-the-ranalytics-subreddit-in-2026",
+    "mastering-reddit-keyword-monitoring-in-2026-tools-strategies-and-best-practices"
   ],
   "events": [
     {
@@ -21,6 +23,13 @@
       "source_type": "keyword",
       "slug": "how-to-use-reddit-toolbox-to-analyze-the-ranalytics-subreddit-in-2026",
       "title": "How to Use Reddit Toolbox to Analyze the r/analytics Subreddit in 2026"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "reddit keyword monitor",
+      "source_type": "keyword",
+      "slug": "mastering-reddit-keyword-monitoring-in-2026-tools-strategies-and-best-practices",
+      "title": "Mastering Reddit Keyword Monitoring in 2026: Tools, Strategies, and Best Practices"
     }
   ]
 }
