@@ -3,13 +3,15 @@
     "reddit_toolbox:manual:reddit pain point research",
     "reddit_toolbox:keyword:reddit analytics subreddit",
     "reddit_toolbox:topic:reddit sentiment tracking for product research",
-    "reddit_toolbox:keyword:reddit keyword monitor"
+    "reddit_toolbox:keyword:reddit keyword monitor",
+    "reddit_toolbox:keyword:reddit research"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
     "how-to-use-reddit-toolbox-to-analyze-the-ranalytics-subreddit-in-2026",
     "reddit-sentiment-tracking-for-product-research-a-practical-workflow-for-founders",
-    "how-to-set-up-a-keyword-monitoring-system-on-reddit-for-founders-and-growth-oper"
+    "how-to-set-up-a-keyword-monitoring-system-on-reddit-for-founders-and-growth-oper",
+    "unlocking-reddit-insights-for-founders-and-growth-operators"
   ],
   "events": [
     {
@@ -39,6 +41,13 @@
       "source_type": "keyword",
       "slug": "how-to-set-up-a-keyword-monitoring-system-on-reddit-for-founders-and-growth-oper",
       "title": "How to Set Up a Keyword Monitoring System on Reddit for Founders and Growth Operators"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "reddit research",
+      "source_type": "keyword",
+      "slug": "unlocking-reddit-insights-for-founders-and-growth-operators",
+      "title": "Unlocking Reddit Insights for Founders and Growth Operators"
     }
   ]
 }
