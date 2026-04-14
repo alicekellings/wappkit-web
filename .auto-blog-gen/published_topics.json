@@ -5,7 +5,8 @@
     "reddit_toolbox:topic:reddit sentiment tracking for product research",
     "reddit_toolbox:keyword:reddit keyword monitor",
     "reddit_toolbox:keyword:reddit research",
-    "reddit_toolbox:topic:reddit competitor analysis workflow for small teams"
+    "reddit_toolbox:topic:reddit competitor analysis workflow for small teams",
+    "reddit_toolbox:keyword:monitor reddit"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -13,7 +14,8 @@
     "reddit-sentiment-tracking-for-product-research-a-practical-workflow-for-founders",
     "how-to-set-up-a-keyword-monitoring-system-on-reddit-for-founders-and-growth-oper",
     "unlocking-reddit-insights-for-founders-and-growth-operators",
-    "simplifying-reddit-competitor-analysis-for-small-teams-a-step-by-step-workflow"
+    "simplifying-reddit-competitor-analysis-for-small-teams-a-step-by-step-workflow",
+    "a-step-by-step-guide-to-effective-reddit-monitoring-for-businesses"
   ],
   "events": [
     {
@@ -57,6 +59,13 @@
       "source_type": "topic",
       "slug": "simplifying-reddit-competitor-analysis-for-small-teams-a-step-by-step-workflow",
       "title": "Simplifying Reddit Competitor Analysis for Small Teams: A Step-by-Step Workflow"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "monitor reddit",
+      "source_type": "keyword",
+      "slug": "a-step-by-step-guide-to-effective-reddit-monitoring-for-businesses",
+      "title": "A Step-by-Step Guide to Effective Reddit Monitoring for Businesses"
     }
   ]
 }
