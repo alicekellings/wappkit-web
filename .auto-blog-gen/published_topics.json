@@ -7,7 +7,8 @@
     "reddit_toolbox:keyword:reddit research",
     "reddit_toolbox:topic:reddit competitor analysis workflow for small teams",
     "reddit_toolbox:keyword:monitor reddit",
-    "reddit_toolbox:keyword:subreddit analytics"
+    "reddit_toolbox:keyword:subreddit analytics",
+    "reddit_toolbox:keyword:reddit monitoring tools"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -17,7 +18,8 @@
     "unlocking-reddit-insights-for-founders-and-growth-operators",
     "simplifying-reddit-competitor-analysis-for-small-teams-a-step-by-step-workflow",
     "a-step-by-step-guide-to-effective-reddit-monitoring-for-businesses",
-    "unlocking-reddits-hidden-gems-a-guide-to-subreddit-analytics-for-founders-and-gr"
+    "unlocking-reddits-hidden-gems-a-guide-to-subreddit-analytics-for-founders-and-gr",
+    "a-founders-guide-to-effective-reddit-monitoring-tools-in-2026"
   ],
   "events": [
     {
@@ -75,6 +77,13 @@
       "source_type": "keyword",
       "slug": "unlocking-reddits-hidden-gems-a-guide-to-subreddit-analytics-for-founders-and-gr",
       "title": "Unlocking Reddit's Hidden Gems: A Guide to Subreddit Analytics for Founders and Growth Operators"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "reddit monitoring tools",
+      "source_type": "keyword",
+      "slug": "a-founders-guide-to-effective-reddit-monitoring-tools-in-2026",
+      "title": "A Founder's Guide to Effective Reddit Monitoring Tools in 2026"
     }
   ]
 }
