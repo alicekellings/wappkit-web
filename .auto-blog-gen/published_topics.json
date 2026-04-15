@@ -6,7 +6,8 @@
     "reddit_toolbox:keyword:reddit keyword monitor",
     "reddit_toolbox:keyword:reddit research",
     "reddit_toolbox:topic:reddit competitor analysis workflow for small teams",
-    "reddit_toolbox:keyword:monitor reddit"
+    "reddit_toolbox:keyword:monitor reddit",
+    "reddit_toolbox:keyword:subreddit analytics"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -15,7 +16,8 @@
     "how-to-set-up-a-keyword-monitoring-system-on-reddit-for-founders-and-growth-oper",
     "unlocking-reddit-insights-for-founders-and-growth-operators",
     "simplifying-reddit-competitor-analysis-for-small-teams-a-step-by-step-workflow",
-    "a-step-by-step-guide-to-effective-reddit-monitoring-for-businesses"
+    "a-step-by-step-guide-to-effective-reddit-monitoring-for-businesses",
+    "unlocking-reddits-hidden-gems-a-guide-to-subreddit-analytics-for-founders-and-gr"
   ],
   "events": [
     {
@@ -66,6 +68,13 @@
       "source_type": "keyword",
       "slug": "a-step-by-step-guide-to-effective-reddit-monitoring-for-businesses",
       "title": "A Step-by-Step Guide to Effective Reddit Monitoring for Businesses"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "subreddit analytics",
+      "source_type": "keyword",
+      "slug": "unlocking-reddits-hidden-gems-a-guide-to-subreddit-analytics-for-founders-and-gr",
+      "title": "Unlocking Reddit's Hidden Gems: A Guide to Subreddit Analytics for Founders and Growth Operators"
     }
   ]
 }
