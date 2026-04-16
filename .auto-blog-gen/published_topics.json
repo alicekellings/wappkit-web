@@ -9,7 +9,8 @@
     "reddit_toolbox:keyword:monitor reddit",
     "reddit_toolbox:keyword:subreddit analytics",
     "reddit_toolbox:keyword:reddit monitoring tools",
-    "reddit_toolbox:keyword:monitor reddit keywords"
+    "reddit_toolbox:keyword:monitor reddit keywords",
+    "reddit_toolbox:keyword:reddit scraping"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -21,7 +22,8 @@
     "a-step-by-step-guide-to-effective-reddit-monitoring-for-businesses",
     "unlocking-reddits-hidden-gems-a-guide-to-subreddit-analytics-for-founders-and-gr",
     "a-founders-guide-to-effective-reddit-monitoring-tools-in-2026",
-    "a-step-by-step-guide-to-monitoring-reddit-keywords-for-business-growth"
+    "a-step-by-step-guide-to-monitoring-reddit-keywords-for-business-growth",
+    "a-practical-guide-to-reddit-scraping-tools-techniques-and-best-practices"
   ],
   "events": [
     {
@@ -93,6 +95,13 @@
       "source_type": "keyword",
       "slug": "a-step-by-step-guide-to-monitoring-reddit-keywords-for-business-growth",
       "title": "A Step-by-Step Guide to Monitoring Reddit Keywords for Business Growth"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "reddit scraping",
+      "source_type": "keyword",
+      "slug": "a-practical-guide-to-reddit-scraping-tools-techniques-and-best-practices",
+      "title": "A Practical Guide to Reddit Scraping: Tools, Techniques, and Best Practices"
     }
   ]
 }
