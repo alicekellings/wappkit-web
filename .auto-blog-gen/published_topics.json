@@ -11,7 +11,8 @@
     "reddit_toolbox:keyword:reddit monitoring tools",
     "reddit_toolbox:keyword:monitor reddit keywords",
     "reddit_toolbox:keyword:reddit scraping",
-    "reddit_toolbox:keyword:reddit scraper"
+    "reddit_toolbox:keyword:reddit scraper",
+    "reddit_toolbox:topic:how to export reddit posts for offline analysis"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -25,7 +26,8 @@
     "a-founders-guide-to-effective-reddit-monitoring-tools-in-2026",
     "a-step-by-step-guide-to-monitoring-reddit-keywords-for-business-growth",
     "a-practical-guide-to-reddit-scraping-tools-techniques-and-best-practices",
-    "the-ultimate-reddit-scraping-workflow-a-step-by-step-guide"
+    "the-ultimate-reddit-scraping-workflow-a-step-by-step-guide",
+    "a-step-by-step-guide-to-exporting-reddit-posts-for-offline-analysis"
   ],
   "events": [
     {
@@ -111,6 +113,13 @@
       "source_type": "keyword",
       "slug": "the-ultimate-reddit-scraping-workflow-a-step-by-step-guide",
       "title": "The Ultimate Reddit Scraping Workflow: A Step-by-Step Guide"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "how to export reddit posts for offline analysis",
+      "source_type": "topic",
+      "slug": "a-step-by-step-guide-to-exporting-reddit-posts-for-offline-analysis",
+      "title": "A Step-by-Step Guide to Exporting Reddit Posts for Offline Analysis"
     }
   ]
 }
