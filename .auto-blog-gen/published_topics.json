@@ -13,7 +13,8 @@
     "reddit_toolbox:keyword:reddit scraping",
     "reddit_toolbox:keyword:reddit scraper",
     "reddit_toolbox:topic:how to export reddit posts for offline analysis",
-    "reddit_toolbox:keyword:free reddit tools"
+    "reddit_toolbox:keyword:free reddit tools",
+    "reddit_toolbox:topic:best reddit keyword monitoring workflow for founders"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -29,7 +30,8 @@
     "a-practical-guide-to-reddit-scraping-tools-techniques-and-best-practices",
     "the-ultimate-reddit-scraping-workflow-a-step-by-step-guide",
     "a-step-by-step-guide-to-exporting-reddit-posts-for-offline-analysis",
-    "7-essential-free-reddit-tools-for-founders-and-growth-operators"
+    "7-essential-free-reddit-tools-for-founders-and-growth-operators",
+    "building-a-reddit-keyword-monitoring-workflow-for-founders"
   ],
   "events": [
     {
@@ -129,6 +131,13 @@
       "source_type": "keyword",
       "slug": "7-essential-free-reddit-tools-for-founders-and-growth-operators",
       "title": "7 Essential Free Reddit Tools for Founders and Growth Operators"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "best reddit keyword monitoring workflow for founders",
+      "source_type": "topic",
+      "slug": "building-a-reddit-keyword-monitoring-workflow-for-founders",
+      "title": "Building a Reddit Keyword Monitoring Workflow for Founders"
     }
   ]
 }
