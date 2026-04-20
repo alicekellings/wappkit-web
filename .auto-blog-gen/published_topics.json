@@ -16,7 +16,8 @@
     "reddit_toolbox:keyword:free reddit tools",
     "reddit_toolbox:topic:best reddit keyword monitoring workflow for founders",
     "reddit_toolbox:topic:best way to monitor multiple subreddits from desktop",
-    "reddit_toolbox:topic:reddit comment monitoring workflow that saves time"
+    "reddit_toolbox:topic:reddit comment monitoring workflow that saves time",
+    "reddit_toolbox:trend:how to use subreddit analytics to validate a product idea in under an hour"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -35,7 +36,8 @@
     "7-essential-free-reddit-tools-for-founders-and-growth-operators",
     "building-a-reddit-keyword-monitoring-workflow-for-founders",
     "the-ultimate-guide-to-monitoring-multiple-subreddits-from-desktop",
-    "10-essential-steps-for-a-time-saving-reddit-comment-monitoring-workflow"
+    "10-essential-steps-for-a-time-saving-reddit-comment-monitoring-workflow",
+    "how-to-validate-a-product-idea-with-subreddit-analytics-in-under-an-hour"
   ],
   "events": [
     {
@@ -156,6 +158,13 @@
       "source_type": "topic",
       "slug": "10-essential-steps-for-a-time-saving-reddit-comment-monitoring-workflow",
       "title": "10 Essential Steps for a Time-Saving Reddit Comment Monitoring Workflow"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "How to Use Subreddit Analytics to Validate a Product Idea in Under an Hour",
+      "source_type": "trend",
+      "slug": "how-to-validate-a-product-idea-with-subreddit-analytics-in-under-an-hour",
+      "title": "How to Validate a Product Idea with Subreddit Analytics in Under an Hour"
     }
   ]
 }
