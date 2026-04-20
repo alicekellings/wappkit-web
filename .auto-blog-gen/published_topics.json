@@ -15,7 +15,8 @@
     "reddit_toolbox:topic:how to export reddit posts for offline analysis",
     "reddit_toolbox:keyword:free reddit tools",
     "reddit_toolbox:topic:best reddit keyword monitoring workflow for founders",
-    "reddit_toolbox:topic:best way to monitor multiple subreddits from desktop"
+    "reddit_toolbox:topic:best way to monitor multiple subreddits from desktop",
+    "reddit_toolbox:topic:reddit comment monitoring workflow that saves time"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -33,7 +34,8 @@
     "a-step-by-step-guide-to-exporting-reddit-posts-for-offline-analysis",
     "7-essential-free-reddit-tools-for-founders-and-growth-operators",
     "building-a-reddit-keyword-monitoring-workflow-for-founders",
-    "the-ultimate-guide-to-monitoring-multiple-subreddits-from-desktop"
+    "the-ultimate-guide-to-monitoring-multiple-subreddits-from-desktop",
+    "10-essential-steps-for-a-time-saving-reddit-comment-monitoring-workflow"
   ],
   "events": [
     {
@@ -147,6 +149,13 @@
       "source_type": "topic",
       "slug": "the-ultimate-guide-to-monitoring-multiple-subreddits-from-desktop",
       "title": "The Ultimate Guide to Monitoring Multiple Subreddits from Desktop"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "reddit comment monitoring workflow that saves time",
+      "source_type": "topic",
+      "slug": "10-essential-steps-for-a-time-saving-reddit-comment-monitoring-workflow",
+      "title": "10 Essential Steps for a Time-Saving Reddit Comment Monitoring Workflow"
     }
   ]
 }
