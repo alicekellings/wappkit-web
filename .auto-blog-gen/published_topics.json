@@ -17,7 +17,8 @@
     "reddit_toolbox:topic:best reddit keyword monitoring workflow for founders",
     "reddit_toolbox:topic:best way to monitor multiple subreddits from desktop",
     "reddit_toolbox:topic:reddit comment monitoring workflow that saves time",
-    "reddit_toolbox:trend:how to use subreddit analytics to validate a product idea in under an hour"
+    "reddit_toolbox:trend:how to use subreddit analytics to validate a product idea in under an hour",
+    "reddit_toolbox:trend:how growth operators use reddit keyword monitoring to feed their content calendar"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -37,7 +38,8 @@
     "building-a-reddit-keyword-monitoring-workflow-for-founders",
     "the-ultimate-guide-to-monitoring-multiple-subreddits-from-desktop",
     "10-essential-steps-for-a-time-saving-reddit-comment-monitoring-workflow",
-    "how-to-validate-a-product-idea-with-subreddit-analytics-in-under-an-hour"
+    "how-to-validate-a-product-idea-with-subreddit-analytics-in-under-an-hour",
+    "how-growth-operators-use-reddit-keyword-monitoring-to-boost-content-calendar"
   ],
   "events": [
     {
@@ -165,6 +167,13 @@
       "source_type": "trend",
       "slug": "how-to-validate-a-product-idea-with-subreddit-analytics-in-under-an-hour",
       "title": "How to Validate a Product Idea with Subreddit Analytics in Under an Hour"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "How Growth Operators Use Reddit Keyword Monitoring to Feed Their Content Calendar",
+      "source_type": "trend",
+      "slug": "how-growth-operators-use-reddit-keyword-monitoring-to-boost-content-calendar",
+      "title": "How Growth Operators Use Reddit Keyword Monitoring to Boost Content Calendar"
     }
   ]
 }
