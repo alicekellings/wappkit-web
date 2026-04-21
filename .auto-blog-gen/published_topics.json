@@ -18,7 +18,8 @@
     "reddit_toolbox:topic:best way to monitor multiple subreddits from desktop",
     "reddit_toolbox:topic:reddit comment monitoring workflow that saves time",
     "reddit_toolbox:trend:how to use subreddit analytics to validate a product idea in under an hour",
-    "reddit_toolbox:trend:how growth operators use reddit keyword monitoring to feed their content calendar"
+    "reddit_toolbox:trend:how growth operators use reddit keyword monitoring to feed their content calendar",
+    "reddit_toolbox:topic:how to scrape reddit data without overbuilding"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -39,7 +40,8 @@
     "the-ultimate-guide-to-monitoring-multiple-subreddits-from-desktop",
     "10-essential-steps-for-a-time-saving-reddit-comment-monitoring-workflow",
     "how-to-validate-a-product-idea-with-subreddit-analytics-in-under-an-hour",
-    "how-growth-operators-use-reddit-keyword-monitoring-to-boost-content-calendar"
+    "how-growth-operators-use-reddit-keyword-monitoring-to-boost-content-calendar",
+    "a-practical-guide-to-scraping-reddit-data-without-overbuilding"
   ],
   "events": [
     {
@@ -174,6 +176,13 @@
       "source_type": "trend",
       "slug": "how-growth-operators-use-reddit-keyword-monitoring-to-boost-content-calendar",
       "title": "How Growth Operators Use Reddit Keyword Monitoring to Boost Content Calendar"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "how to scrape reddit data without overbuilding",
+      "source_type": "topic",
+      "slug": "a-practical-guide-to-scraping-reddit-data-without-overbuilding",
+      "title": "A Practical Guide to Scraping Reddit Data Without Overbuilding"
     }
   ]
 }
