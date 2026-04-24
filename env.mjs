@@ -13,11 +13,21 @@ const optionalString = z.preprocess(
   z.string().min(1).optional(),
 );
 
+function normalizeAppUrlValue(value) {
+  if (typeof value !== "string") {
+    return value;
+  }
+
+  const trimmed = value.trim();
+  if (trimmed.length === 0) {
+    return undefined;
+  }
+
+  return trimmed.replace(/\/+$/, "");
+}
+
 const appUrl = z.preprocess(
-  (value) =>
-    typeof value === "string" && value.trim().length > 0
-      ? value
-      : "http://localhost:3000",
+  (value) => normalizeAppUrlValue(value) ?? "http://localhost:3000",
   z.string().url(),
 );
 
