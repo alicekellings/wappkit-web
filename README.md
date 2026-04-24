@@ -127,6 +127,16 @@ Current action for `Wappkit App Setup`:
 - confirm `NEXT_PUBLIC_APP_URL` matches the domain being tested
 - confirm the current webhook target matches the same domain
 
+## Preview Testing
+
+For isolated Creem test-mode work that must not affect `www.wappkit.com`, use:
+
+- `PREVIEW_TESTING.md`
+
+Current dedicated preview branch recorded there:
+
+- `wappkit-app-setup-preview-test`
+
 ## Production Launch Checklist
 
 - rotate `CREEM_API_KEY`, `CREEM_WEBHOOK_SECRET`, and `UPSTASH_REDIS_REST_TOKEN` before going live if the test values were exposed

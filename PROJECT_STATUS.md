@@ -70,6 +70,11 @@ Current gap for `Wappkit App Setup` rollout:
 
 - `CREEM_PRODUCT_WAPPKIT_APP_SETUP_ID` still needs to be added or explicitly confirmed in Vercel
 
+Current isolated preview test branch:
+
+- `wappkit-app-setup-preview-test`
+- reference doc: `PREVIEW_TESTING.md`
+
 Before the next manual checkout test, verify:
 
 1. which public domain is the active test target:
