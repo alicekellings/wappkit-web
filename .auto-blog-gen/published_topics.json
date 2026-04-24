@@ -19,7 +19,8 @@
     "reddit_toolbox:topic:reddit comment monitoring workflow that saves time",
     "reddit_toolbox:trend:how to use subreddit analytics to validate a product idea in under an hour",
     "reddit_toolbox:trend:how growth operators use reddit keyword monitoring to feed their content calendar",
-    "reddit_toolbox:topic:how to scrape reddit data without overbuilding"
+    "reddit_toolbox:topic:how to scrape reddit data without overbuilding",
+    "reddit_toolbox:trend:subreddit research 101: identifying the communities where your audience already hangs out"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -41,7 +42,8 @@
     "10-essential-steps-for-a-time-saving-reddit-comment-monitoring-workflow",
     "how-to-validate-a-product-idea-with-subreddit-analytics-in-under-an-hour",
     "how-growth-operators-use-reddit-keyword-monitoring-to-boost-content-calendar",
-    "a-practical-guide-to-scraping-reddit-data-without-overbuilding"
+    "a-practical-guide-to-scraping-reddit-data-without-overbuilding",
+    "subreddit-research-101-finding-your-target-audience-on-reddit"
   ],
   "events": [
     {
@@ -183,6 +185,13 @@
       "source_type": "topic",
       "slug": "a-practical-guide-to-scraping-reddit-data-without-overbuilding",
       "title": "A Practical Guide to Scraping Reddit Data Without Overbuilding"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "Subreddit Research 101: Identifying the Communities Where Your Audience Already Hangs Out",
+      "source_type": "trend",
+      "slug": "subreddit-research-101-finding-your-target-audience-on-reddit",
+      "title": "Subreddit Research 101: Finding Your Target Audience on Reddit"
     }
   ]
 }
