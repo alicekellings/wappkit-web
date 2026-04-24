@@ -39,6 +39,7 @@ export const footerLinks: SidebarNavItem[] = [
   {
     title: "Products",
     items: [
+      { title: "Wappkit App Setup", href: "/tools/wappkit-app-setup" },
       { title: "Reddit Toolbox", href: "/tools/reddit-toolbox" },
       { title: "Download Center", href: "/download" },
       { title: "Activation Guide", href: "/docs/checkout-and-activation" },

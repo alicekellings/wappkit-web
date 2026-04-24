@@ -23,6 +23,14 @@ test("checkoutRequestSchema trims and normalizes input", () => {
   assert.equal(parsed.customerEmail, "test@example.com");
 });
 
+test("checkoutRequestSchema accepts wappkit-app-setup slug", () => {
+  const parsed = checkoutRequestSchema.parse({
+    toolSlug: " wappkit-app-setup ",
+  });
+
+  assert.equal(parsed.toolSlug, "wappkit-app-setup");
+});
+
 test("licenseLookupSchema trims and normalizes lookup fields", () => {
   const parsed = licenseLookupSchema.parse({
     orderId: " ord_ABC123 ",

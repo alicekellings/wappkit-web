@@ -59,6 +59,7 @@ NEXT_PUBLIC_SUPPORT_EMAIL=asphero@gmail.com
 
 CREEM_API_KEY=
 CREEM_TEST_MODE=true
+CREEM_PRODUCT_WAPPKIT_APP_SETUP_ID=
 CREEM_PRODUCT_REDDIT_TOOLBOX_ID=
 CREEM_WEBHOOK_SECRET=
 
@@ -70,6 +71,11 @@ EMAIL_FROM=
 
 INTERNAL_ADMIN_TOKEN=
 ```
+
+Current product-specific billing env keys:
+
+- `CREEM_PRODUCT_REDDIT_TOOLBOX_ID`
+- `CREEM_PRODUCT_WAPPKIT_APP_SETUP_ID`
 
 ## Current Architecture
 
@@ -97,6 +103,29 @@ INTERNAL_ADMIN_TOKEN=
 - use the public webhook endpoint:
   `https://wappkit.com/api/webhook/creem`
 - test payments in Creem test mode before switching the production domain
+
+## Current Vercel Env Snapshot
+
+As of `2026-04-24`, the Vercel project UI already shows these env variable names as present.
+This is a deployment snapshot only; secret values are intentionally not stored in repo docs.
+
+Confirmed visible in Vercel:
+
+- `NEXT_PUBLIC_SUPPORT_EMAIL`
+- `CREEM_WEBHOOK_SECRET`
+- `CREEM_PRODUCT_REDDIT_TOOLBOX_ID`
+- `CREEM_API_KEY`
+- `CREEM_TEST_MODE`
+- `INTERNAL_ADMIN_TOKEN`
+- `NEXT_PUBLIC_APP_URL`
+- `UPSTASH_REDIS_REST_URL`
+- `UPSTASH_REDIS_REST_TOKEN`
+
+Current action for `Wappkit App Setup`:
+
+- add or confirm `CREEM_PRODUCT_WAPPKIT_APP_SETUP_ID`
+- confirm `NEXT_PUBLIC_APP_URL` matches the domain being tested
+- confirm the current webhook target matches the same domain
 
 ## Production Launch Checklist
 

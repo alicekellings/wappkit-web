@@ -22,6 +22,37 @@ export type Tool = {
 
 export const tools: Tool[] = [
   {
+    slug: "wappkit-app-setup",
+    name: "Wappkit App Setup",
+    category: "Windows Setup",
+    status: "live",
+    tagline:
+      "Windows app setup desktop tool with optional WinGet workflows and license-based premium unlock.",
+    shortDescription:
+      "Queue useful Windows apps faster, run setup packs, and unlock premium diagnostics and profile workflows with one license key.",
+    longDescription:
+      "Wappkit App Setup is a Windows-first desktop utility for installing baseline software faster, with a direct flow for optional WinGet maintenance and a premium license unlock path for advanced workflow features.",
+    features: [
+      "Starter packs and supported app install flow",
+      "Optional WinGet repair and diagnostics workflow",
+      "License activation and device-based premium unlock",
+    ],
+    audience: [
+      "Windows users setting up fresh or reset PCs",
+      "Operators who repeat app setup tasks",
+      "Small teams standardizing baseline app installs",
+    ],
+    platform: "Desktop",
+    downloadLabel: "Download App Setup",
+    buyLabel: "Unlock Premium",
+    downloadHref: "/download",
+    buyHref: "/license",
+    docsHref: "/docs/checkout-and-activation",
+    availabilityNote:
+      "Wappkit App Setup is live with license activation flow and Creem checkout support.",
+    checkoutEnabled: true,
+  },
+  {
     slug: "reddit-toolbox",
     name: "Reddit Toolbox",
     category: "Research",

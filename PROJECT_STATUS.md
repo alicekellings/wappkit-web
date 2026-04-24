@@ -41,6 +41,44 @@ Production status:
 - production checkout is back on the live Creem product after temporary test-mode validation
 - internal admin page is available at `https://www.wappkit.com/ops/licenses`
 
+## Current Vercel Environment Snapshot
+
+The current deployment is not only local. The site is already deployed to:
+
+- Vercel preview/primary project URL: `https://wappkit-web.vercel.app/`
+- intended real domain: `https://www.wappkit.com`
+
+Based on the current Vercel project settings screenshot reviewed on `2026-04-24`,
+these env variable names are already present in the project:
+
+- `NEXT_PUBLIC_SUPPORT_EMAIL`
+- `CREEM_WEBHOOK_SECRET`
+- `CREEM_PRODUCT_REDDIT_TOOLBOX_ID`
+- `CREEM_API_KEY`
+- `CREEM_TEST_MODE`
+- `INTERNAL_ADMIN_TOKEN`
+- `NEXT_PUBLIC_APP_URL`
+- `UPSTASH_REDIS_REST_URL`
+- `UPSTASH_REDIS_REST_TOKEN`
+
+Important note:
+
+- this repo documents variable names and deployment state only
+- secret values are intentionally not written into local docs
+
+Current gap for `Wappkit App Setup` rollout:
+
+- `CREEM_PRODUCT_WAPPKIT_APP_SETUP_ID` still needs to be added or explicitly confirmed in Vercel
+
+Before the next manual checkout test, verify:
+
+1. which public domain is the active test target:
+   - `https://wappkit-web.vercel.app`
+   - or `https://www.wappkit.com`
+2. `NEXT_PUBLIC_APP_URL` matches that target
+3. Creem webhook points to the same target domain
+4. `CREEM_TEST_MODE` is still `true` for the current test cycle
+
 ## End-to-End Flow Verified
 
 The following path has been verified on the deployed site:
@@ -86,3 +124,4 @@ The following path has been verified on the deployed site:
 - optionally enable Resend for original-email license resend
 - rotate `UPSTASH_REDIS_REST_TOKEN` later as a security cleanup item
 - complete one true live production payment when convenient
+- add and verify `CREEM_PRODUCT_WAPPKIT_APP_SETUP_ID` for the new `wappkit-app-setup` product

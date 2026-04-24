@@ -9,6 +9,7 @@ import { absoluteUrl } from "@/lib/utils";
 import { getToolBySlug } from "@/lib/tools";
 
 const TOOL_PRODUCT_ENV_MAP: Record<string, string> = {
+  "wappkit-app-setup": "CREEM_PRODUCT_WAPPKIT_APP_SETUP_ID",
   "reddit-toolbox": "CREEM_PRODUCT_REDDIT_TOOLBOX_ID",
 };
 
@@ -72,7 +73,11 @@ export async function POST(request: NextRequest) {
       creemTestMode: isCreemInTestMode(),
       productEnvKey: TOOL_PRODUCT_ENV_MAP["reddit-toolbox"],
       configuredProductId:
-        getTrimmedEnv(TOOL_PRODUCT_ENV_MAP["reddit-toolbox"] ?? "") ?? null,
+        getTrimmedEnv(
+          TOOL_PRODUCT_ENV_MAP["wappkit-app-setup"] ??
+            TOOL_PRODUCT_ENV_MAP["reddit-toolbox"] ??
+            "",
+        ) ?? null,
       nextPublicAppUrl: getTrimmedEnv("NEXT_PUBLIC_APP_URL") ?? null,
       error,
     });
