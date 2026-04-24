@@ -60,6 +60,7 @@ these env variable names are already present in the project:
 - `NEXT_PUBLIC_APP_URL`
 - `UPSTASH_REDIS_REST_URL`
 - `UPSTASH_REDIS_REST_TOKEN`
+- `CRON_SECRET`
 
 Important note:
 
@@ -128,5 +129,6 @@ The following path has been verified on the deployed site:
 - migrate old blog content from the previous site
 - optionally enable Resend for original-email license resend
 - rotate `UPSTASH_REDIS_REST_TOKEN` later as a security cleanup item
+- production now has a code path ready for a daily Upstash keepalive cron at `/api/internal/upstash-keepalive`
 - complete one true live production payment when convenient
 - add and verify `CREEM_PRODUCT_WAPPKIT_APP_SETUP_ID` for the new `wappkit-app-setup` product

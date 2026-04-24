@@ -65,6 +65,7 @@ CREEM_WEBHOOK_SECRET=
 
 UPSTASH_REDIS_REST_URL=
 UPSTASH_REDIS_REST_TOKEN=
+CRON_SECRET=
 
 RESEND_API_KEY=
 EMAIL_FROM=
@@ -88,6 +89,7 @@ Current product-specific billing env keys:
 - internal support can search and unbind through `/ops/licenses`
 - optional email resend is reserved for later enablement
 - Upstash is the first persistence layer, with room to migrate later
+- a Vercel cron keeps the Upstash database active with a daily keepalive write
 
 ## Deployment Notes
 
@@ -120,6 +122,15 @@ Confirmed visible in Vercel:
 - `NEXT_PUBLIC_APP_URL`
 - `UPSTASH_REDIS_REST_URL`
 - `UPSTASH_REDIS_REST_TOKEN`
+- `CRON_SECRET`
+
+## Upstash Keepalive
+
+- `vercel.json` registers a daily cron for `/api/internal/upstash-keepalive`
+- Vercel Hobby cron jobs currently run at most once per day, so daily is the safe minimum
+- set `CRON_SECRET` in Vercel so the cron request carries `Authorization: Bearer <CRON_SECRET>`
+- the keepalive route writes a timestamped marker key into Upstash, which is enough to prevent free-tier inactivity archival as long as production keeps running
+- Vercel cron jobs hit the production deployment URL, so this protects the production Upstash database; preview-only databases can still archive if left unused
 
 Current action for `Wappkit App Setup`:
 
