@@ -7,8 +7,12 @@ const optionalString = z.preprocess(
       return value;
     }
 
-    const trimmed = value.trim();
-    return trimmed === "" ? undefined : trimmed;
+    const normalized = value.replace(
+      /^[\s\u200B-\u200D\u2060\uFEFF]+|[\s\u200B-\u200D\u2060\uFEFF]+$/g,
+      "",
+    );
+
+    return normalized === "" ? undefined : normalized;
   },
   z.string().min(1).optional(),
 );
@@ -18,12 +22,16 @@ function normalizeAppUrlValue(value) {
     return value;
   }
 
-  const trimmed = value.trim();
-  if (trimmed.length === 0) {
+  const normalized = value.replace(
+    /^[\s\u200B-\u200D\u2060\uFEFF]+|[\s\u200B-\u200D\u2060\uFEFF]+$/g,
+    "",
+  );
+
+  if (normalized.length === 0) {
     return undefined;
   }
 
-  return trimmed.replace(/\/+$/, "");
+  return normalized.replace(/\/+$/, "");
 }
 
 const appUrl = z.preprocess(
