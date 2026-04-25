@@ -42,6 +42,7 @@ Production status:
 - internal admin page is available at `https://www.wappkit.com/ops/licenses`
 - `Wappkit App Setup` production license validate and deactivate endpoints were re-verified on `2026-04-25`
 - production Upstash Redis now points at the new `funny-guppy-84113` database after redeploy
+- production `CRON_SECRET` is now configured and the Upstash keepalive route has been verified
 
 ## Current Vercel Environment Snapshot
 
@@ -144,3 +145,4 @@ Additional `Wappkit App Setup` verification completed on `2026-04-25`:
 - production now has a code path ready for a daily Upstash keepalive cron at `/api/internal/upstash-keepalive`
 - complete one true live production payment when convenient
 - rotate the exposed Upstash token because it was visible in screenshots during manual ops
+- rotate the exposed `CRON_SECRET` later because it appeared in manual setup screenshots

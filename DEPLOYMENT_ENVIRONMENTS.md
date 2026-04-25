@@ -111,6 +111,9 @@ Observed after Production env correction and redeploy on 2026-04-25:
 - the real `Wappkit App Setup` license activated successfully in the desktop app
 - the same license was removed successfully through the desktop app deactivate flow
 - this confirms Production is now using the corrected Upstash Redis configuration
+- unauthenticated `GET https://www.wappkit.com/api/internal/upstash-keepalive` returned `401`
+- authenticated keepalive execution returned `200` and wrote the keepalive marker successfully
+- this confirms Production `CRON_SECRET` is configured and the keepalive route is operational
 
 Current implication:
 
