@@ -40,6 +40,8 @@ Production status:
 - GitHub push triggers Vercel deployment
 - production checkout is back on the live Creem product after temporary test-mode validation
 - internal admin page is available at `https://www.wappkit.com/ops/licenses`
+- `Wappkit App Setup` production license validate and deactivate endpoints were re-verified on `2026-04-25`
+- production Upstash Redis now points at the new `funny-guppy-84113` database after redeploy
 
 ## Current Vercel Environment Snapshot
 
@@ -60,15 +62,23 @@ these env variable names are already present in the project:
 - `NEXT_PUBLIC_APP_URL`
 - `UPSTASH_REDIS_REST_URL`
 - `UPSTASH_REDIS_REST_TOKEN`
+- `CRON_SECRET`
 
 Important note:
 
 - this repo documents variable names and deployment state only
 - secret values are intentionally not written into local docs
 
-Current gap for `Wappkit App Setup` rollout:
+Current `Wappkit App Setup` status:
 
-- `CREEM_PRODUCT_WAPPKIT_APP_SETUP_ID` still needs to be added or explicitly confirmed in Vercel
+- `CREEM_PRODUCT_WAPPKIT_APP_SETUP_ID` has been added and confirmed in Vercel
+- production activation and self-service device removal have both been verified manually
+
+Current isolated preview test branch:
+
+- `wappkit-app-setup-preview-test`
+- reference doc: `PREVIEW_TESTING.md`
+- environment split doc: `DEPLOYMENT_ENVIRONMENTS.md`
 
 Before the next manual checkout test, verify:
 
@@ -91,6 +101,14 @@ The following path has been verified on the deployed site:
 6. activate the desktop app with the retrieved license
 7. confirm the license becomes device-bound on the website
 8. confirm the website shows the active device and offers self-service unbind
+
+Additional `Wappkit App Setup` verification completed on `2026-04-25`:
+
+1. retrieve the issued production license from `/license/retrieve`
+2. activate the desktop app against `https://www.wappkit.com/api/license/validate`
+3. confirm desktop UI switches to `Premium active`
+4. remove the license from the same desktop device through `https://www.wappkit.com/api/license/deactivate`
+5. confirm desktop UI returns to `Premium locked`
 
 ## Validation Completed
 
@@ -123,5 +141,6 @@ The following path has been verified on the deployed site:
 - migrate old blog content from the previous site
 - optionally enable Resend for original-email license resend
 - rotate `UPSTASH_REDIS_REST_TOKEN` later as a security cleanup item
+- production now has a code path ready for a daily Upstash keepalive cron at `/api/internal/upstash-keepalive`
 - complete one true live production payment when convenient
-- add and verify `CREEM_PRODUCT_WAPPKIT_APP_SETUP_ID` for the new `wappkit-app-setup` product
+- rotate the exposed Upstash token because it was visible in screenshots during manual ops

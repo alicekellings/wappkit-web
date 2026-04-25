@@ -1,3 +1,4 @@
+import { getSafeUrlOrigin, serializeError } from "@/lib/error-utils";
 import { getTrimmedEnv } from "@/lib/env-utils";
 
 type RateLimitOptions = {
@@ -81,22 +82,50 @@ async function runUpstashCommand<T>(command: Array<string>) {
     return null;
   }
 
-  const response = await fetch(url, {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${token}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(command),
-    cache: "no-store",
-  });
+  const operation = command[0] ?? "UNKNOWN";
+  let response: Response;
+
+  try {
+    response = await fetch(url, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(command),
+      cache: "no-store",
+    });
+  } catch (error) {
+    console.error("Upstash rate-limit request failed before response.", {
+      operation,
+      commandPreview: command.slice(0, 3),
+      upstashOrigin: getSafeUrlOrigin(url),
+      error: serializeError(error),
+    });
+    throw error;
+  }
 
   if (!response.ok) {
+    const responseText = await response.text();
+
+    console.error("Upstash rate-limit returned non-ok response.", {
+      operation,
+      commandPreview: command.slice(0, 3),
+      upstashOrigin: getSafeUrlOrigin(url),
+      status: response.status,
+      responseText,
+    });
     throw new Error(`Upstash request failed with status ${response.status}.`);
   }
 
   const payload = (await response.json()) as { result?: T; error?: string };
   if (payload.error) {
+    console.error("Upstash rate-limit returned command error.", {
+      operation,
+      commandPreview: command.slice(0, 3),
+      upstashOrigin: getSafeUrlOrigin(url),
+      payloadError: payload.error,
+    });
     throw new Error(payload.error);
   }
 
@@ -131,7 +160,12 @@ export async function applyRateLimit(options: RateLimitOptions) {
       return upstashResult;
     }
   } catch (error) {
-    console.error("Rate limit fallback to memory store:", error);
+    console.error("Rate limit fallback to memory store.", {
+      key: options.key,
+      limit: options.limit,
+      windowMs: options.windowMs,
+      error: serializeError(error),
+    });
   }
 
   return applyMemoryRateLimit(options);

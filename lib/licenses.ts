@@ -1,5 +1,6 @@
 export type LicenseStatus = "active" | "inactive" | "disabled" | "unknown";
 
+import { getSafeUrlOrigin, serializeError } from "@/lib/error-utils";
 import { getTrimmedEnv } from "@/lib/env-utils";
 
 export type LicenseBoundDevice = {
@@ -440,22 +441,50 @@ function createUpstashLicenseStore({
   token,
 }: UpstashClientOptions): LicenseStore {
   async function run<T>(command: Array<string>) {
-    const response = await fetch(url, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(command),
-      cache: "no-store",
-    });
+    const operation = command[0] ?? "UNKNOWN";
+    let response: Response;
+
+    try {
+      response = await fetch(url, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(command),
+        cache: "no-store",
+      });
+    } catch (error) {
+      console.error("Upstash license store request failed before response.", {
+        operation,
+        commandPreview: command.slice(0, 3),
+        upstashOrigin: getSafeUrlOrigin(url),
+        error: serializeError(error),
+      });
+      throw error;
+    }
 
     if (!response.ok) {
+      const responseText = await response.text();
+
+      console.error("Upstash license store returned non-ok response.", {
+        operation,
+        commandPreview: command.slice(0, 3),
+        upstashOrigin: getSafeUrlOrigin(url),
+        status: response.status,
+        responseText,
+      });
       throw new Error(`Upstash request failed with status ${response.status}.`);
     }
 
     const payload = (await response.json()) as { result?: T; error?: string };
     if (payload.error) {
+      console.error("Upstash license store returned command error.", {
+        operation,
+        commandPreview: command.slice(0, 3),
+        upstashOrigin: getSafeUrlOrigin(url),
+        payloadError: payload.error,
+      });
       throw new Error(payload.error);
     }
 

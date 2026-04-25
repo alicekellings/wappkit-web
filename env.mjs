@@ -7,17 +7,35 @@ const optionalString = z.preprocess(
       return value;
     }
 
-    const trimmed = value.trim();
-    return trimmed === "" ? undefined : trimmed;
+    const normalized = value.replace(
+      /^[\s\u200B-\u200D\u2060\uFEFF]+|[\s\u200B-\u200D\u2060\uFEFF]+$/g,
+      "",
+    );
+
+    return normalized === "" ? undefined : normalized;
   },
   z.string().min(1).optional(),
 );
 
+function normalizeAppUrlValue(value) {
+  if (typeof value !== "string") {
+    return value;
+  }
+
+  const normalized = value.replace(
+    /^[\s\u200B-\u200D\u2060\uFEFF]+|[\s\u200B-\u200D\u2060\uFEFF]+$/g,
+    "",
+  );
+
+  if (normalized.length === 0) {
+    return undefined;
+  }
+
+  return normalized.replace(/\/+$/, "");
+}
+
 const appUrl = z.preprocess(
-  (value) =>
-    typeof value === "string" && value.trim().length > 0
-      ? value
-      : "http://localhost:3000",
+  (value) => normalizeAppUrlValue(value) ?? "http://localhost:3000",
   z.string().url(),
 );
 
