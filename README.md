@@ -143,6 +143,7 @@ Current action for `Wappkit App Setup`:
 For isolated Creem test-mode work that must not affect `www.wappkit.com`, use:
 
 - `PREVIEW_TESTING.md`
+- `DEPLOYMENT_ENVIRONMENTS.md`
 
 Current dedicated preview branch recorded there:
 
