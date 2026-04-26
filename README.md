@@ -55,7 +55,12 @@ npm run build
 
 ```env
 NEXT_PUBLIC_APP_URL=http://localhost:3000
-NEXT_PUBLIC_SUPPORT_EMAIL=asphero@gmail.com
+NEXT_PUBLIC_SUPPORT_EMAIL=support@wappkit.com
+
+WAPPKIT_APP_SETUP_DOWNLOAD_URL=
+WAPPKIT_APP_SETUP_RELEASE_URL=
+WAPPKIT_APP_SETUP_CHECKSUM_URL=
+WAPPKIT_APP_SETUP_SHA256=
 
 CREEM_API_KEY=
 CREEM_TEST_MODE=true
@@ -77,6 +82,10 @@ Current product-specific billing env keys:
 
 - `CREEM_PRODUCT_REDDIT_TOOLBOX_ID`
 - `CREEM_PRODUCT_WAPPKIT_APP_SETUP_ID`
+- `WAPPKIT_APP_SETUP_DOWNLOAD_URL`
+- `WAPPKIT_APP_SETUP_RELEASE_URL`
+- `WAPPKIT_APP_SETUP_CHECKSUM_URL`
+- `WAPPKIT_APP_SETUP_SHA256`
 
 ## Current Architecture
 
@@ -136,6 +145,9 @@ Current action for `Wappkit App Setup`:
 
 - add or confirm `CREEM_PRODUCT_WAPPKIT_APP_SETUP_ID`
 - confirm `NEXT_PUBLIC_APP_URL` matches the domain being tested
+- set `NEXT_PUBLIC_SUPPORT_EMAIL=support@wappkit.com`
+- set `WAPPKIT_APP_SETUP_DOWNLOAD_URL` to the final hosted installer
+- set `WAPPKIT_APP_SETUP_SHA256` after the signed build is uploaded
 - confirm the current webhook target matches the same domain
 
 ## Preview Testing

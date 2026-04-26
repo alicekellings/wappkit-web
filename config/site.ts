@@ -13,7 +13,7 @@ export const siteConfig: SiteConfig = {
     twitter: "https://x.com/wappkit",
     github: "https://github.com/alicekellings/wappkit-web",
   },
-  mailSupport: env.NEXT_PUBLIC_SUPPORT_EMAIL ?? "asphero@gmail.com",
+  mailSupport: env.NEXT_PUBLIC_SUPPORT_EMAIL ?? "support@wappkit.com",
 };
 
 export const footerLinks: SidebarNavItem[] = [
