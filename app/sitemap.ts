@@ -58,6 +58,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: toAbsoluteUrl("/tools/wappkit-app-setup/support"),
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
       url: toAbsoluteUrl("/contact"),
       lastModified: now,
       changeFrequency: "monthly",

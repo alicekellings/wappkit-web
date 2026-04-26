@@ -129,9 +129,9 @@ function getToolMarketingContent(
       ],
       workflow: [
         {
-          title: "Download and start free",
+          title: "Download and start with core setup",
           description:
-            "Install the desktop app and use the Reddit collector immediately as the free entry point.",
+            "Install the desktop app and start with the free setup workflow, starter packs, and supported app queue.",
         },
         {
           title: "Upgrade when the workflow proves useful",
@@ -170,12 +170,12 @@ function getToolMarketingContent(
         {
           question: "What does the free version include?",
           answer:
-            "The free version keeps the Reddit collector open so users can test the workflow before upgrading.",
+            "The free version keeps starter packs, supported app search, install queues, and basic WinGet install or repair help available before any upgrade.",
         },
         {
           question: "What unlocks after purchase?",
           answer:
-            "The paid license upgrades the app from the free collector entry point to the full desktop toolbox.",
+            "The paid license unlocks saved profiles, command export, diagnostics, source reset, and app upgrade workflows inside the desktop app.",
         },
         {
           question: "What if the customer loses the license key?",
@@ -694,6 +694,14 @@ export default function ToolDetailPage({
                     <ArrowRight className="size-4" />
                   </div>
                 </Link>
+                {tool.slug === "wappkit-app-setup" ? (
+                  <Link href="/tools/wappkit-app-setup/support" className="block">
+                    <div className="flex items-center justify-between rounded-2xl border bg-background px-4 py-3 text-sm font-medium text-foreground transition hover:border-orange-300">
+                      <span>Open App Setup support page</span>
+                      <ArrowRight className="size-4" />
+                    </div>
+                  </Link>
+                ) : null}
               </div>
             </div>
           </div>
