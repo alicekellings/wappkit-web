@@ -66,6 +66,12 @@ type ToolMarketingContent = {
     question: string;
     answer: string;
   }>;
+  workspacePrimaryLabel: string;
+  workspacePrimaryDescription: string;
+  workspaceSecondaryLabel: string;
+  workspaceSecondaryDescription: string;
+  freeSectionTitle: string;
+  proSectionTitle: string;
   finalCtaTitle: string;
   finalCtaDescription: string;
 };
@@ -183,10 +189,145 @@ function getToolMarketingContent(
             "They can use the Wappkit retrieval flow with the original order details and purchase email to get the key again.",
         },
       ],
+      workspacePrimaryLabel: "Reddit collector",
+      workspacePrimaryDescription:
+        "Free access entry point for real-world testing.",
+      workspaceSecondaryLabel: "Advanced workflow modules",
+      workspaceSecondaryDescription:
+        "Full workflow stays locked until a valid key is activated.",
+      freeSectionTitle: "Validate the Reddit workflow first",
+      proSectionTitle: "Unlock the rest of the toolbox",
       finalCtaTitle:
         "Start free now and move to the full version only when the workflow earns it.",
       finalCtaDescription:
         "This keeps the product approachable for new users while still making the upgrade path feel like a real software purchase, not a vague sign-up funnel.",
+    };
+  }
+
+  if (tool.slug === "wappkit-app-setup") {
+    return {
+      eyebrow: "Windows setup desktop tool",
+      heroTitle: "Set up a Windows PC faster without overbuilding the workflow.",
+      heroDescription:
+        "Wappkit App Setup helps users start with practical starter packs, queue missing apps, and keep WinGet repair or premium maintenance tools close when they need them.",
+      trustPoints: [
+        "Starter packs work before any upgrade",
+        "Find Apps helps build the install list faster",
+        "Premium unlock stays inside the desktop app",
+      ],
+      stats: [
+        {
+          label: "Free mode",
+          value: "Starter packs + app queue",
+        },
+        {
+          label: "Premium unlock",
+          value: "Profiles and maintenance",
+        },
+        {
+          label: "Activation model",
+          value: "License key inside the app",
+        },
+      ],
+      showcaseItems: [
+        {
+          label: "Starter packs",
+          description:
+            "Choose a baseline setup pack and immediately see what is missing on the current machine.",
+        },
+        {
+          label: "Find Apps",
+          description:
+            "Search supported or WinGet-backed apps and move them into the install queue without rebuilding the list by hand.",
+        },
+        {
+          label: "Premium maintenance tools",
+          description:
+            "Profiles, diagnostics, copy commands, and WinGet maintenance stay locked until a valid license is activated.",
+          locked: true,
+        },
+      ],
+      freeFeatures: [
+        "Starter packs for common Windows setup flows",
+        "Supported app search and queue building",
+        "Install queue execution",
+        "Direct WinGet download help",
+        "Inline WinGet install or repair help",
+      ],
+      proFeatures: [
+        "Save and load app setup profiles",
+        "Copy install commands for repeatable workflows",
+        "Run diagnostics and open the diagnostics folder",
+        "Copy fix commands, reset WinGet sources, and upgrade apps via WinGet",
+      ],
+      workflow: [
+        {
+          title: "Download the desktop app",
+          description:
+            "Start with the free setup workflow and use starter packs or Find Apps on a real Windows machine.",
+        },
+        {
+          title: "Build the install list quickly",
+          description:
+            "Use packs and search together to queue the apps you actually need instead of reinstalling everything blindly.",
+        },
+        {
+          title: "Unlock Premium only if the workflow earns it",
+          description:
+            "Buy once on Wappkit, paste the key inside the app, and unlock profiles or maintenance shortcuts on that device.",
+        },
+      ],
+      assurances: [
+        {
+          title: "Free mode stays useful",
+          description:
+            "The core setup workflow does not disappear behind a license wall, which makes evaluation clearer and support lighter.",
+        },
+        {
+          title: "Premium is reserved for repeatable admin work",
+          description:
+            "Profiles, diagnostics, and WinGet maintenance tools are positioned as workflow upgrades, not basic usability fixes.",
+        },
+        {
+          title: "Support and recovery stay on Wappkit",
+          description:
+            "License retrieval, privacy details, activation docs, and direct support live on the same domain as the product page.",
+        },
+      ],
+      faq: [
+        {
+          question: "What does the free version include?",
+          answer:
+            "Free mode includes starter packs, Find Apps search, install queue execution, and direct WinGet install or repair help.",
+        },
+        {
+          question: "What unlocks after purchase?",
+          answer:
+            "Premium unlocks saved profiles, command export, diagnostics, WinGet source reset, and upgrade workflows inside the desktop app.",
+        },
+        {
+          question: "Do I need a web account to use Premium?",
+          answer:
+            "No. Customers buy on Wappkit, receive a license key, and activate directly inside the app.",
+        },
+        {
+          question: "What if I lose the key later?",
+          answer:
+            "Use the Wappkit retrieval flow with the original order details and purchase email to recover the license key.",
+        },
+      ],
+      workspacePrimaryLabel: "Starter packs",
+      workspacePrimaryDescription:
+        "Free setup entry point for fresh PCs and baseline installs.",
+      workspaceSecondaryLabel: "Premium tools",
+      workspaceSecondaryDescription:
+        "Profiles, diagnostics, and maintenance shortcuts unlock only after activation.",
+      freeSectionTitle: "Handle the core setup flow for free",
+      proSectionTitle: "Upgrade when repeatable workflows matter",
+      finalCtaTitle:
+        "Use the free setup flow first, then unlock Premium only when it saves you real time.",
+      finalCtaDescription:
+        "That keeps the product easy to try on a messy or fresh Windows machine, while still giving power users a clear path to advanced admin-style tools.",
     };
   }
 
@@ -265,6 +406,14 @@ function getToolMarketingContent(
           "Use the tool page, docs, or contact page depending on your stage.",
       },
     ],
+    workspacePrimaryLabel: "Core workflow",
+    workspacePrimaryDescription:
+      "A practical entry point for understanding the product before launch.",
+    workspaceSecondaryLabel: "Future paid modules",
+    workspaceSecondaryDescription:
+      "Launch-state placeholder for premium or advanced features later.",
+    freeSectionTitle: "Use the product details as the starting point",
+    proSectionTitle: "Expand the launch surface over time",
     finalCtaTitle:
       "Track this tool on Wappkit while the launch surface is taking shape.",
     finalCtaDescription: tool.availabilityNote,
@@ -405,19 +554,18 @@ export default function ToolDetailPage({
                     <div className="mt-4 space-y-3">
                       <div className="bg-orange-500/12 rounded-2xl p-3">
                         <p className="text-sm font-semibold text-orange-100">
-                          Reddit Collector
+                          {marketing.workspacePrimaryLabel}
                         </p>
                         <p className="mt-1 text-xs leading-5 text-slate-300">
-                          Free access entry point for real-world testing.
+                          {marketing.workspacePrimaryDescription}
                         </p>
                       </div>
                       <div className="rounded-2xl border border-dashed border-white/10 p-3">
                         <p className="text-sm font-semibold text-slate-200">
-                          Premium Modules
+                          {marketing.workspaceSecondaryLabel}
                         </p>
                         <p className="mt-1 text-xs leading-5 text-slate-400">
-                          Full workflow stays locked until a valid key is
-                          applied.
+                          {marketing.workspaceSecondaryDescription}
                         </p>
                       </div>
                     </div>
@@ -499,7 +647,7 @@ export default function ToolDetailPage({
                   Free version
                 </p>
                 <h3 className="mt-3 font-heading text-2xl text-foreground">
-                  Validate the Reddit workflow first
+                  {marketing.freeSectionTitle}
                 </h3>
                 <ul className="mt-5 space-y-3 text-sm leading-6 text-foreground">
                   {marketing.freeFeatures.map((feature) => (
@@ -516,7 +664,7 @@ export default function ToolDetailPage({
                   Paid version
                 </p>
                 <h3 className="mt-3 font-heading text-2xl text-white">
-                  Unlock the rest of the toolbox
+                  {marketing.proSectionTitle}
                 </h3>
                 <ul className="mt-5 space-y-3 text-sm leading-6 text-slate-200">
                   {marketing.proFeatures.map((feature) => (
