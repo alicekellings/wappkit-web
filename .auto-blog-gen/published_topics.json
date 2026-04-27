@@ -22,7 +22,8 @@
     "reddit_toolbox:topic:how to scrape reddit data without overbuilding",
     "reddit_toolbox:trend:subreddit research 101: identifying the communities where your audience already hangs out",
     "reddit_toolbox:keyword:subreddit research",
-    "reddit_toolbox:keyword:reddit export csv"
+    "reddit_toolbox:keyword:reddit export csv",
+    "reddit_toolbox:keyword:free subreddit analytics"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -47,7 +48,8 @@
     "a-practical-guide-to-scraping-reddit-data-without-overbuilding",
     "subreddit-research-101-finding-your-target-audience-on-reddit",
     "how-to-use-subreddit-research-for-market-insights-and-competitive-advantage",
-    "a-practical-guide-to-exporting-reddit-data-to-csv-for-founders-and-growth-operat"
+    "a-practical-guide-to-exporting-reddit-data-to-csv-for-founders-and-growth-operat",
+    "maximizing-reddit-growth-with-free-subreddit-analytics-tools"
   ],
   "events": [
     {
@@ -210,6 +212,13 @@
       "source_type": "keyword",
       "slug": "a-practical-guide-to-exporting-reddit-data-to-csv-for-founders-and-growth-operat",
       "title": "A Practical Guide to Exporting Reddit Data to CSV for Founders and Growth Operators"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "free subreddit analytics",
+      "source_type": "keyword",
+      "slug": "maximizing-reddit-growth-with-free-subreddit-analytics-tools",
+      "title": "Maximizing Reddit Growth with Free Subreddit Analytics Tools"
     }
   ]
 }
