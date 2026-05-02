@@ -25,7 +25,8 @@
     "reddit_toolbox:keyword:reddit export csv",
     "reddit_toolbox:keyword:free subreddit analytics",
     "reddit_toolbox:keyword:reddit keyword monitoring",
-    "reddit_toolbox:keyword:reddit pain point research"
+    "reddit_toolbox:keyword:reddit pain point research",
+    "reddit_toolbox:topic:how to find low-competition reddit threads"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -53,7 +54,8 @@
     "a-practical-guide-to-exporting-reddit-data-to-csv-for-founders-and-growth-operat",
     "maximizing-reddit-growth-with-free-subreddit-analytics-tools",
     "a-practical-guide-to-reddit-keyword-monitoring-for-founders-and-growth-operators",
-    "unlocking-customer-frustrations-a-guide-to-reddit-pain-point-analysis"
+    "unlocking-customer-frustrations-a-guide-to-reddit-pain-point-analysis",
+    "finding-low-competition-reddit-threads-a-step-by-step-guide"
   ],
   "events": [
     {
@@ -237,6 +239,13 @@
       "source_type": "keyword",
       "slug": "unlocking-customer-frustrations-a-guide-to-reddit-pain-point-analysis",
       "title": "Unlocking Customer Frustrations: A Guide to Reddit Pain Point Analysis"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "how to find low-competition reddit threads",
+      "source_type": "topic",
+      "slug": "finding-low-competition-reddit-threads-a-step-by-step-guide",
+      "title": "Finding Low-Competition Reddit Threads: A Step-by-Step Guide"
     }
   ]
 }
