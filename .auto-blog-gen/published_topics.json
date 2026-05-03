@@ -27,7 +27,8 @@
     "reddit_toolbox:keyword:reddit keyword monitoring",
     "reddit_toolbox:keyword:reddit pain point research",
     "reddit_toolbox:topic:how to find low-competition reddit threads",
-    "reddit_toolbox:trend:reddit monitoring tools compared: what to look for when you're scaling content and outreach"
+    "reddit_toolbox:trend:reddit monitoring tools compared: what to look for when you're scaling content and outreach",
+    "reddit_toolbox:topic:how to validate product pain points with reddit research"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -57,7 +58,8 @@
     "a-practical-guide-to-reddit-keyword-monitoring-for-founders-and-growth-operators",
     "unlocking-customer-frustrations-a-guide-to-reddit-pain-point-analysis",
     "finding-low-competition-reddit-threads-a-step-by-step-guide",
-    "reddit-monitoring-tools-compared-a-practical-guide-to-scaling-content-and-outrea"
+    "reddit-monitoring-tools-compared-a-practical-guide-to-scaling-content-and-outrea",
+    "how-to-validate-product-pain-points-using-reddit-research"
   ],
   "events": [
     {
@@ -255,6 +257,13 @@
       "source_type": "trend",
       "slug": "reddit-monitoring-tools-compared-a-practical-guide-to-scaling-content-and-outrea",
       "title": "Reddit Monitoring Tools Compared: A Practical Guide to Scaling Content and Outreach"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "how to validate product pain points with reddit research",
+      "source_type": "topic",
+      "slug": "how-to-validate-product-pain-points-using-reddit-research",
+      "title": "How to Validate Product Pain Points Using Reddit Research"
     }
   ]
 }
