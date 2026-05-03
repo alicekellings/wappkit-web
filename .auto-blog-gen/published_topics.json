@@ -26,7 +26,8 @@
     "reddit_toolbox:keyword:free subreddit analytics",
     "reddit_toolbox:keyword:reddit keyword monitoring",
     "reddit_toolbox:keyword:reddit pain point research",
-    "reddit_toolbox:topic:how to find low-competition reddit threads"
+    "reddit_toolbox:topic:how to find low-competition reddit threads",
+    "reddit_toolbox:trend:reddit monitoring tools compared: what to look for when you're scaling content and outreach"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -55,7 +56,8 @@
     "maximizing-reddit-growth-with-free-subreddit-analytics-tools",
     "a-practical-guide-to-reddit-keyword-monitoring-for-founders-and-growth-operators",
     "unlocking-customer-frustrations-a-guide-to-reddit-pain-point-analysis",
-    "finding-low-competition-reddit-threads-a-step-by-step-guide"
+    "finding-low-competition-reddit-threads-a-step-by-step-guide",
+    "reddit-monitoring-tools-compared-a-practical-guide-to-scaling-content-and-outrea"
   ],
   "events": [
     {
@@ -246,6 +248,13 @@
       "source_type": "topic",
       "slug": "finding-low-competition-reddit-threads-a-step-by-step-guide",
       "title": "Finding Low-Competition Reddit Threads: A Step-by-Step Guide"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "Reddit Monitoring Tools Compared: What to Look For When You're Scaling Content and Outreach",
+      "source_type": "trend",
+      "slug": "reddit-monitoring-tools-compared-a-practical-guide-to-scaling-content-and-outrea",
+      "title": "Reddit Monitoring Tools Compared: A Practical Guide to Scaling Content and Outreach"
     }
   ]
 }
