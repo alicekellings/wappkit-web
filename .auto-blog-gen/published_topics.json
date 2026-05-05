@@ -29,7 +29,8 @@
     "reddit_toolbox:topic:how to find low-competition reddit threads",
     "reddit_toolbox:trend:reddit monitoring tools compared: what to look for when you're scaling content and outreach",
     "reddit_toolbox:topic:how to validate product pain points with reddit research",
-    "reddit_toolbox:keyword:ai-powered reddit research tool"
+    "reddit_toolbox:keyword:ai-powered reddit research tool",
+    "reddit_toolbox:keyword:subreddit tracker"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -61,7 +62,8 @@
     "finding-low-competition-reddit-threads-a-step-by-step-guide",
     "reddit-monitoring-tools-compared-a-practical-guide-to-scaling-content-and-outrea",
     "how-to-validate-product-pain-points-using-reddit-research",
-    "unlocking-reddits-potential-a-guide-to-ai-powered-research-tools"
+    "unlocking-reddits-potential-a-guide-to-ai-powered-research-tools",
+    "how-to-choose-the-best-subreddit-tracker-for-your-marketing-strategy"
   ],
   "events": [
     {
@@ -273,6 +275,13 @@
       "source_type": "keyword",
       "slug": "unlocking-reddits-potential-a-guide-to-ai-powered-research-tools",
       "title": "Unlocking Reddit's Potential: A Guide to AI-Powered Research Tools"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "subreddit tracker",
+      "source_type": "keyword",
+      "slug": "how-to-choose-the-best-subreddit-tracker-for-your-marketing-strategy",
+      "title": "How to Choose the Best Subreddit Tracker for Your Marketing Strategy"
     }
   ]
 }
