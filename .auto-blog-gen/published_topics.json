@@ -30,7 +30,8 @@
     "reddit_toolbox:trend:reddit monitoring tools compared: what to look for when you're scaling content and outreach",
     "reddit_toolbox:topic:how to validate product pain points with reddit research",
     "reddit_toolbox:keyword:ai-powered reddit research tool",
-    "reddit_toolbox:keyword:subreddit tracker"
+    "reddit_toolbox:keyword:subreddit tracker",
+    "reddit_toolbox:keyword:reddit toolbox alternatives"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -63,7 +64,8 @@
     "reddit-monitoring-tools-compared-a-practical-guide-to-scaling-content-and-outrea",
     "how-to-validate-product-pain-points-using-reddit-research",
     "unlocking-reddits-potential-a-guide-to-ai-powered-research-tools",
-    "how-to-choose-the-best-subreddit-tracker-for-your-marketing-strategy"
+    "how-to-choose-the-best-subreddit-tracker-for-your-marketing-strategy",
+    "top-reddit-toolbox-alternatives-for-founders-and-growth-operators-in-2026"
   ],
   "events": [
     {
@@ -282,6 +284,13 @@
       "source_type": "keyword",
       "slug": "how-to-choose-the-best-subreddit-tracker-for-your-marketing-strategy",
       "title": "How to Choose the Best Subreddit Tracker for Your Marketing Strategy"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "reddit toolbox alternatives",
+      "source_type": "keyword",
+      "slug": "top-reddit-toolbox-alternatives-for-founders-and-growth-operators-in-2026",
+      "title": "Top Reddit Toolbox Alternatives for Founders and Growth Operators in 2026"
     }
   ]
 }
