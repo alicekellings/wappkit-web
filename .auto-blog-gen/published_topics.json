@@ -31,7 +31,8 @@
     "reddit_toolbox:topic:how to validate product pain points with reddit research",
     "reddit_toolbox:keyword:ai-powered reddit research tool",
     "reddit_toolbox:keyword:subreddit tracker",
-    "reddit_toolbox:keyword:reddit toolbox alternatives"
+    "reddit_toolbox:keyword:reddit toolbox alternatives",
+    "reddit_toolbox:keyword:reddit toolbox alternative"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -65,7 +66,8 @@
     "how-to-validate-product-pain-points-using-reddit-research",
     "unlocking-reddits-potential-a-guide-to-ai-powered-research-tools",
     "how-to-choose-the-best-subreddit-tracker-for-your-marketing-strategy",
-    "top-reddit-toolbox-alternatives-for-founders-and-growth-operators-in-2026"
+    "top-reddit-toolbox-alternatives-for-founders-and-growth-operators-in-2026",
+    "5-essential-reddit-toolbox-alternatives-for-founders-and-growth-operators"
   ],
   "events": [
     {
@@ -291,6 +293,13 @@
       "source_type": "keyword",
       "slug": "top-reddit-toolbox-alternatives-for-founders-and-growth-operators-in-2026",
       "title": "Top Reddit Toolbox Alternatives for Founders and Growth Operators in 2026"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "reddit toolbox alternative",
+      "source_type": "keyword",
+      "slug": "5-essential-reddit-toolbox-alternatives-for-founders-and-growth-operators",
+      "title": "5 Essential Reddit Toolbox Alternatives for Founders and Growth Operators"
     }
   ]
 }
