@@ -32,7 +32,8 @@
     "reddit_toolbox:keyword:ai-powered reddit research tool",
     "reddit_toolbox:keyword:subreddit tracker",
     "reddit_toolbox:keyword:reddit toolbox alternatives",
-    "reddit_toolbox:keyword:reddit toolbox alternative"
+    "reddit_toolbox:keyword:reddit toolbox alternative",
+    "reddit_toolbox:keyword:subreddit finder"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -67,7 +68,8 @@
     "unlocking-reddits-potential-a-guide-to-ai-powered-research-tools",
     "how-to-choose-the-best-subreddit-tracker-for-your-marketing-strategy",
     "top-reddit-toolbox-alternatives-for-founders-and-growth-operators-in-2026",
-    "5-essential-reddit-toolbox-alternatives-for-founders-and-growth-operators"
+    "5-essential-reddit-toolbox-alternatives-for-founders-and-growth-operators",
+    "unlocking-reddits-potential-a-practical-guide-to-finding-the-right-subreddits"
   ],
   "events": [
     {
@@ -300,6 +302,13 @@
       "source_type": "keyword",
       "slug": "5-essential-reddit-toolbox-alternatives-for-founders-and-growth-operators",
       "title": "5 Essential Reddit Toolbox Alternatives for Founders and Growth Operators"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "subreddit finder",
+      "source_type": "keyword",
+      "slug": "unlocking-reddits-potential-a-practical-guide-to-finding-the-right-subreddits",
+      "title": "Unlocking Reddit's Potential: A Practical Guide to Finding the Right Subreddits"
     }
   ]
 }
