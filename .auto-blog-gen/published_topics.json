@@ -34,7 +34,8 @@
     "reddit_toolbox:keyword:reddit toolbox alternatives",
     "reddit_toolbox:keyword:reddit toolbox alternative",
     "reddit_toolbox:keyword:subreddit finder",
-    "reddit_toolbox:topic:reddit scraping workflow for marketers in 2026"
+    "reddit_toolbox:topic:reddit scraping workflow for marketers in 2026",
+    "reddit_toolbox:trend:reddit as a research tool: why founders are replacing survey forms with reddit listening"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -71,7 +72,8 @@
     "top-reddit-toolbox-alternatives-for-founders-and-growth-operators-in-2026",
     "5-essential-reddit-toolbox-alternatives-for-founders-and-growth-operators",
     "unlocking-reddits-potential-a-practical-guide-to-finding-the-right-subreddits",
-    "the-ultimate-reddit-scraping-workflow-for-marketers-in-2026"
+    "the-ultimate-reddit-scraping-workflow-for-marketers-in-2026",
+    "why-reddit-listening-is-replacing-survey-forms-for-startup-research"
   ],
   "events": [
     {
@@ -318,6 +320,13 @@
       "source_type": "topic",
       "slug": "the-ultimate-reddit-scraping-workflow-for-marketers-in-2026",
       "title": "The Ultimate Reddit Scraping Workflow for Marketers in 2026"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "Reddit as a Research Tool: Why Founders Are Replacing Survey Forms With Reddit Listening",
+      "source_type": "trend",
+      "slug": "why-reddit-listening-is-replacing-survey-forms-for-startup-research",
+      "title": "Why Reddit Listening is Replacing Survey Forms for Startup Research"
     }
   ]
 }
