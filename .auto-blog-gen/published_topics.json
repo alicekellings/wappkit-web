@@ -33,7 +33,8 @@
     "reddit_toolbox:keyword:subreddit tracker",
     "reddit_toolbox:keyword:reddit toolbox alternatives",
     "reddit_toolbox:keyword:reddit toolbox alternative",
-    "reddit_toolbox:keyword:subreddit finder"
+    "reddit_toolbox:keyword:subreddit finder",
+    "reddit_toolbox:topic:reddit scraping workflow for marketers in 2026"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -69,7 +70,8 @@
     "how-to-choose-the-best-subreddit-tracker-for-your-marketing-strategy",
     "top-reddit-toolbox-alternatives-for-founders-and-growth-operators-in-2026",
     "5-essential-reddit-toolbox-alternatives-for-founders-and-growth-operators",
-    "unlocking-reddits-potential-a-practical-guide-to-finding-the-right-subreddits"
+    "unlocking-reddits-potential-a-practical-guide-to-finding-the-right-subreddits",
+    "the-ultimate-reddit-scraping-workflow-for-marketers-in-2026"
   ],
   "events": [
     {
@@ -309,6 +311,13 @@
       "source_type": "keyword",
       "slug": "unlocking-reddits-potential-a-practical-guide-to-finding-the-right-subreddits",
       "title": "Unlocking Reddit's Potential: A Practical Guide to Finding the Right Subreddits"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "reddit scraping workflow for marketers in 2026",
+      "source_type": "topic",
+      "slug": "the-ultimate-reddit-scraping-workflow-for-marketers-in-2026",
+      "title": "The Ultimate Reddit Scraping Workflow for Marketers in 2026"
     }
   ]
 }
