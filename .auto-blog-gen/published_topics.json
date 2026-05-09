@@ -36,7 +36,8 @@
     "reddit_toolbox:keyword:subreddit finder",
     "reddit_toolbox:topic:reddit scraping workflow for marketers in 2026",
     "reddit_toolbox:trend:reddit as a research tool: why founders are replacing survey forms with reddit listening",
-    "reddit_toolbox:keyword:subreddit search"
+    "reddit_toolbox:keyword:subreddit search",
+    "reddit_toolbox:keyword:reddit keywords"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -75,7 +76,8 @@
     "unlocking-reddits-potential-a-practical-guide-to-finding-the-right-subreddits",
     "the-ultimate-reddit-scraping-workflow-for-marketers-in-2026",
     "why-reddit-listening-is-replacing-survey-forms-for-startup-research",
-    "mastering-subreddit-search-tips-and-tricks-for-founders-and-growth-operators"
+    "mastering-subreddit-search-tips-and-tricks-for-founders-and-growth-operators",
+    "maximizing-reddit-keyword-research-for-founders-and-growth-operators"
   ],
   "events": [
     {
@@ -336,6 +338,13 @@
       "source_type": "keyword",
       "slug": "mastering-subreddit-search-tips-and-tricks-for-founders-and-growth-operators",
       "title": "Mastering Subreddit Search: Tips and Tricks for Founders and Growth Operators"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "reddit keywords",
+      "source_type": "keyword",
+      "slug": "maximizing-reddit-keyword-research-for-founders-and-growth-operators",
+      "title": "Maximizing Reddit Keyword Research for Founders and Growth Operators"
     }
   ]
 }
