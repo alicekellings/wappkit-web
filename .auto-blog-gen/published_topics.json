@@ -38,7 +38,8 @@
     "reddit_toolbox:trend:reddit as a research tool: why founders are replacing survey forms with reddit listening",
     "reddit_toolbox:keyword:subreddit search",
     "reddit_toolbox:keyword:reddit keywords",
-    "reddit_toolbox:keyword:ai-powered reddit research"
+    "reddit_toolbox:keyword:ai-powered reddit research",
+    "reddit_toolbox:keyword:reddit monitoring"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -79,7 +80,8 @@
     "why-reddit-listening-is-replacing-survey-forms-for-startup-research",
     "mastering-subreddit-search-tips-and-tricks-for-founders-and-growth-operators",
     "maximizing-reddit-keyword-research-for-founders-and-growth-operators",
-    "unlocking-reddit-insights-how-ai-powered-research-tools-can-transform-your-workf"
+    "unlocking-reddit-insights-how-ai-powered-research-tools-can-transform-your-workf",
+    "the-ultimate-reddit-monitoring-workflow-for-founders-and-creators"
   ],
   "events": [
     {
@@ -354,6 +356,13 @@
       "source_type": "keyword",
       "slug": "unlocking-reddit-insights-how-ai-powered-research-tools-can-transform-your-workf",
       "title": "Unlocking Reddit Insights: How AI-Powered Research Tools Can Transform Your Workflow"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "reddit monitoring",
+      "source_type": "keyword",
+      "slug": "the-ultimate-reddit-monitoring-workflow-for-founders-and-creators",
+      "title": "The Ultimate Reddit Monitoring Workflow for Founders and Creators"
     }
   ]
 }
