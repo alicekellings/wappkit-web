@@ -37,7 +37,8 @@
     "reddit_toolbox:topic:reddit scraping workflow for marketers in 2026",
     "reddit_toolbox:trend:reddit as a research tool: why founders are replacing survey forms with reddit listening",
     "reddit_toolbox:keyword:subreddit search",
-    "reddit_toolbox:keyword:reddit keywords"
+    "reddit_toolbox:keyword:reddit keywords",
+    "reddit_toolbox:keyword:ai-powered reddit research"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -77,7 +78,8 @@
     "the-ultimate-reddit-scraping-workflow-for-marketers-in-2026",
     "why-reddit-listening-is-replacing-survey-forms-for-startup-research",
     "mastering-subreddit-search-tips-and-tricks-for-founders-and-growth-operators",
-    "maximizing-reddit-keyword-research-for-founders-and-growth-operators"
+    "maximizing-reddit-keyword-research-for-founders-and-growth-operators",
+    "unlocking-reddit-insights-how-ai-powered-research-tools-can-transform-your-workf"
   ],
   "events": [
     {
@@ -345,6 +347,13 @@
       "source_type": "keyword",
       "slug": "maximizing-reddit-keyword-research-for-founders-and-growth-operators",
       "title": "Maximizing Reddit Keyword Research for Founders and Growth Operators"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "ai-powered reddit research",
+      "source_type": "keyword",
+      "slug": "unlocking-reddit-insights-how-ai-powered-research-tools-can-transform-your-workf",
+      "title": "Unlocking Reddit Insights: How AI-Powered Research Tools Can Transform Your Workflow"
     }
   ]
 }
