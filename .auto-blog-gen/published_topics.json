@@ -39,7 +39,8 @@
     "reddit_toolbox:keyword:subreddit search",
     "reddit_toolbox:keyword:reddit keywords",
     "reddit_toolbox:keyword:ai-powered reddit research",
-    "reddit_toolbox:keyword:reddit monitoring"
+    "reddit_toolbox:keyword:reddit monitoring",
+    "reddit_toolbox:trend:competitor research on reddit: how to track brand mentions and spot gaps in the market"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -81,7 +82,8 @@
     "mastering-subreddit-search-tips-and-tricks-for-founders-and-growth-operators",
     "maximizing-reddit-keyword-research-for-founders-and-growth-operators",
     "unlocking-reddit-insights-how-ai-powered-research-tools-can-transform-your-workf",
-    "the-ultimate-reddit-monitoring-workflow-for-founders-and-creators"
+    "the-ultimate-reddit-monitoring-workflow-for-founders-and-creators",
+    "competitor-research-on-reddit-uncovering-market-gaps-and-tracking-brand-mentions"
   ],
   "events": [
     {
@@ -363,6 +365,13 @@
       "source_type": "keyword",
       "slug": "the-ultimate-reddit-monitoring-workflow-for-founders-and-creators",
       "title": "The Ultimate Reddit Monitoring Workflow for Founders and Creators"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "Competitor Research on Reddit: How to Track Brand Mentions and Spot Gaps in the Market",
+      "source_type": "trend",
+      "slug": "competitor-research-on-reddit-uncovering-market-gaps-and-tracking-brand-mentions",
+      "title": "Competitor Research on Reddit: Uncovering Market Gaps and Tracking Brand Mentions"
     }
   ]
 }
