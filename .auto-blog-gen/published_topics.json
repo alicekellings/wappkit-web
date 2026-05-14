@@ -42,7 +42,8 @@
     "reddit_toolbox:keyword:reddit monitoring",
     "reddit_toolbox:trend:competitor research on reddit: how to track brand mentions and spot gaps in the market",
     "reddit_toolbox:keyword:reddit audience research",
-    "reddit_toolbox:trend:reddit scraping for market research: ethical methods and the tools that make it easy"
+    "reddit_toolbox:trend:reddit scraping for market research: ethical methods and the tools that make it easy",
+    "reddit_toolbox:keyword:reddit tools"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -87,7 +88,8 @@
     "the-ultimate-reddit-monitoring-workflow-for-founders-and-creators",
     "competitor-research-on-reddit-uncovering-market-gaps-and-tracking-brand-mentions",
     "how-to-conduct-effective-reddit-audience-research-in-2026",
-    "unlocking-reddit-insights-a-guide-to-ethical-scraping-for-market-research"
+    "unlocking-reddit-insights-a-guide-to-ethical-scraping-for-market-research",
+    "unlocking-reddits-full-potential-a-workflow-playbook-for-founders-and-growth-ope"
   ],
   "events": [
     {
@@ -390,6 +392,13 @@
       "source_type": "trend",
       "slug": "unlocking-reddit-insights-a-guide-to-ethical-scraping-for-market-research",
       "title": "Unlocking Reddit Insights: A Guide to Ethical Scraping for Market Research"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "reddit tools",
+      "source_type": "keyword",
+      "slug": "unlocking-reddits-full-potential-a-workflow-playbook-for-founders-and-growth-ope",
+      "title": "Unlocking Reddit's Full Potential: A Workflow Playbook for Founders and Growth Operators"
     }
   ]
 }
