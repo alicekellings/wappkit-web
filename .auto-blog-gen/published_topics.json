@@ -44,7 +44,8 @@
     "reddit_toolbox:keyword:reddit audience research",
     "reddit_toolbox:trend:reddit scraping for market research: ethical methods and the tools that make it easy",
     "reddit_toolbox:keyword:reddit tools",
-    "reddit_toolbox:keyword:ai-powered reddit monitoring"
+    "reddit_toolbox:keyword:ai-powered reddit monitoring",
+    "reddit_toolbox:trend:the founder's guide to reddit audience research: finding pain points that actually convert"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -91,7 +92,8 @@
     "how-to-conduct-effective-reddit-audience-research-in-2026",
     "unlocking-reddit-insights-a-guide-to-ethical-scraping-for-market-research",
     "unlocking-reddits-full-potential-a-workflow-playbook-for-founders-and-growth-ope",
-    "maximizing-business-opportunities-with-ai-powered-reddit-monitoring-tools"
+    "maximizing-business-opportunities-with-ai-powered-reddit-monitoring-tools",
+    "unlocking-reddit-a-founders-guide-to-audience-research-and-pain-point-discovery"
   ],
   "events": [
     {
@@ -408,6 +410,13 @@
       "source_type": "keyword",
       "slug": "maximizing-business-opportunities-with-ai-powered-reddit-monitoring-tools",
       "title": "Maximizing Business Opportunities with AI-Powered Reddit Monitoring Tools"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "The Founder's Guide to Reddit Audience Research: Finding Pain Points That Actually Convert",
+      "source_type": "trend",
+      "slug": "unlocking-reddit-a-founders-guide-to-audience-research-and-pain-point-discovery",
+      "title": "Unlocking Reddit: A Founder's Guide to Audience Research and Pain Point Discovery"
     }
   ]
 }
