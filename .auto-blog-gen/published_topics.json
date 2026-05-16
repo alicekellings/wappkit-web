@@ -45,7 +45,8 @@
     "reddit_toolbox:trend:reddit scraping for market research: ethical methods and the tools that make it easy",
     "reddit_toolbox:keyword:reddit tools",
     "reddit_toolbox:keyword:ai-powered reddit monitoring",
-    "reddit_toolbox:trend:the founder's guide to reddit audience research: finding pain points that actually convert"
+    "reddit_toolbox:trend:the founder's guide to reddit audience research: finding pain points that actually convert",
+    "reddit_toolbox:keyword:reddit keyword alerts"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -93,7 +94,8 @@
     "unlocking-reddit-insights-a-guide-to-ethical-scraping-for-market-research",
     "unlocking-reddits-full-potential-a-workflow-playbook-for-founders-and-growth-ope",
     "maximizing-business-opportunities-with-ai-powered-reddit-monitoring-tools",
-    "unlocking-reddit-a-founders-guide-to-audience-research-and-pain-point-discovery"
+    "unlocking-reddit-a-founders-guide-to-audience-research-and-pain-point-discovery",
+    "a-step-by-step-guide-to-creating-effective-reddit-keyword-alerts"
   ],
   "events": [
     {
@@ -417,6 +419,13 @@
       "source_type": "trend",
       "slug": "unlocking-reddit-a-founders-guide-to-audience-research-and-pain-point-discovery",
       "title": "Unlocking Reddit: A Founder's Guide to Audience Research and Pain Point Discovery"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "reddit keyword alerts",
+      "source_type": "keyword",
+      "slug": "a-step-by-step-guide-to-creating-effective-reddit-keyword-alerts",
+      "title": "A Step-by-Step Guide to Creating Effective Reddit Keyword Alerts"
     }
   ]
 }
