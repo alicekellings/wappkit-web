@@ -46,7 +46,8 @@
     "reddit_toolbox:keyword:reddit tools",
     "reddit_toolbox:keyword:ai-powered reddit monitoring",
     "reddit_toolbox:trend:the founder's guide to reddit audience research: finding pain points that actually convert",
-    "reddit_toolbox:keyword:reddit keyword alerts"
+    "reddit_toolbox:keyword:reddit keyword alerts",
+    "reddit_toolbox:keyword:best reddit scrapers"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -95,7 +96,8 @@
     "unlocking-reddits-full-potential-a-workflow-playbook-for-founders-and-growth-ope",
     "maximizing-business-opportunities-with-ai-powered-reddit-monitoring-tools",
     "unlocking-reddit-a-founders-guide-to-audience-research-and-pain-point-discovery",
-    "a-step-by-step-guide-to-creating-effective-reddit-keyword-alerts"
+    "a-step-by-step-guide-to-creating-effective-reddit-keyword-alerts",
+    "best-reddit-scrapers-for-2026-a-comparison-of-top-tools"
   ],
   "events": [
     {
@@ -426,6 +428,13 @@
       "source_type": "keyword",
       "slug": "a-step-by-step-guide-to-creating-effective-reddit-keyword-alerts",
       "title": "A Step-by-Step Guide to Creating Effective Reddit Keyword Alerts"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "best reddit scrapers",
+      "source_type": "keyword",
+      "slug": "best-reddit-scrapers-for-2026-a-comparison-of-top-tools",
+      "title": "Best Reddit Scrapers for 2026: A Comparison of Top Tools"
     }
   ]
 }
