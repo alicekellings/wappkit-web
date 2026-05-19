@@ -48,7 +48,8 @@
     "reddit_toolbox:trend:the founder's guide to reddit audience research: finding pain points that actually convert",
     "reddit_toolbox:keyword:reddit keyword alerts",
     "reddit_toolbox:keyword:best reddit scrapers",
-    "reddit_toolbox:keyword:reddit search tool"
+    "reddit_toolbox:keyword:reddit search tool",
+    "reddit_toolbox:trend:free vs paid reddit research tools: when to upgrade and what you get"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -99,7 +100,8 @@
     "unlocking-reddit-a-founders-guide-to-audience-research-and-pain-point-discovery",
     "a-step-by-step-guide-to-creating-effective-reddit-keyword-alerts",
     "best-reddit-scrapers-for-2026-a-comparison-of-top-tools",
-    "unlocking-reddit-search-a-practical-guide-for-founders-and-creators"
+    "unlocking-reddit-search-a-practical-guide-for-founders-and-creators",
+    "free-vs-paid-reddit-research-tools-when-to-upgrade-and-what-you-get"
   ],
   "events": [
     {
@@ -444,6 +446,13 @@
       "source_type": "keyword",
       "slug": "unlocking-reddit-search-a-practical-guide-for-founders-and-creators",
       "title": "Unlocking Reddit Search: A Practical Guide for Founders and Creators"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "Free vs Paid Reddit Research Tools: When to Upgrade and What You Get",
+      "source_type": "trend",
+      "slug": "free-vs-paid-reddit-research-tools-when-to-upgrade-and-what-you-get",
+      "title": "Free vs Paid Reddit Research Tools: When to Upgrade and What You Get"
     }
   ]
 }
