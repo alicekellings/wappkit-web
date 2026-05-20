@@ -49,7 +49,8 @@
     "reddit_toolbox:keyword:reddit keyword alerts",
     "reddit_toolbox:keyword:best reddit scrapers",
     "reddit_toolbox:keyword:reddit search tool",
-    "reddit_toolbox:trend:free vs paid reddit research tools: when to upgrade and what you get"
+    "reddit_toolbox:trend:free vs paid reddit research tools: when to upgrade and what you get",
+    "reddit_toolbox:trend:how to set up reddit keyword alerts to catch buying signals before your competitors do"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -101,7 +102,8 @@
     "a-step-by-step-guide-to-creating-effective-reddit-keyword-alerts",
     "best-reddit-scrapers-for-2026-a-comparison-of-top-tools",
     "unlocking-reddit-search-a-practical-guide-for-founders-and-creators",
-    "free-vs-paid-reddit-research-tools-when-to-upgrade-and-what-you-get"
+    "free-vs-paid-reddit-research-tools-when-to-upgrade-and-what-you-get",
+    "setting-up-reddit-keyword-alerts-for-founders-and-growth-operators"
   ],
   "events": [
     {
@@ -453,6 +455,13 @@
       "source_type": "trend",
       "slug": "free-vs-paid-reddit-research-tools-when-to-upgrade-and-what-you-get",
       "title": "Free vs Paid Reddit Research Tools: When to Upgrade and What You Get"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "How to Set Up Reddit Keyword Alerts to Catch Buying Signals Before Your Competitors Do",
+      "source_type": "trend",
+      "slug": "setting-up-reddit-keyword-alerts-for-founders-and-growth-operators",
+      "title": "Setting Up Reddit Keyword Alerts for Founders and Growth Operators"
     }
   ]
 }
