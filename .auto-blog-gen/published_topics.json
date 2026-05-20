@@ -50,7 +50,8 @@
     "reddit_toolbox:keyword:best reddit scrapers",
     "reddit_toolbox:keyword:reddit search tool",
     "reddit_toolbox:trend:free vs paid reddit research tools: when to upgrade and what you get",
-    "reddit_toolbox:trend:how to set up reddit keyword alerts to catch buying signals before your competitors do"
+    "reddit_toolbox:trend:how to set up reddit keyword alerts to catch buying signals before your competitors do",
+    "reddit_toolbox:keyword:reddit monitoring software"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -103,7 +104,8 @@
     "best-reddit-scrapers-for-2026-a-comparison-of-top-tools",
     "unlocking-reddit-search-a-practical-guide-for-founders-and-creators",
     "free-vs-paid-reddit-research-tools-when-to-upgrade-and-what-you-get",
-    "setting-up-reddit-keyword-alerts-for-founders-and-growth-operators"
+    "setting-up-reddit-keyword-alerts-for-founders-and-growth-operators",
+    "a-step-by-step-guide-to-choosing-the-right-reddit-monitoring-software-for-your-b"
   ],
   "events": [
     {
@@ -462,6 +464,13 @@
       "source_type": "trend",
       "slug": "setting-up-reddit-keyword-alerts-for-founders-and-growth-operators",
       "title": "Setting Up Reddit Keyword Alerts for Founders and Growth Operators"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "reddit monitoring software",
+      "source_type": "keyword",
+      "slug": "a-step-by-step-guide-to-choosing-the-right-reddit-monitoring-software-for-your-b",
+      "title": "A Step-by-Step Guide to Choosing the Right Reddit Monitoring Software for Your Business"
     }
   ]
 }
