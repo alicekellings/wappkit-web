@@ -51,7 +51,8 @@
     "reddit_toolbox:keyword:reddit search tool",
     "reddit_toolbox:trend:free vs paid reddit research tools: when to upgrade and what you get",
     "reddit_toolbox:trend:how to set up reddit keyword alerts to catch buying signals before your competitors do",
-    "reddit_toolbox:keyword:reddit monitoring software"
+    "reddit_toolbox:keyword:reddit monitoring software",
+    "reddit_toolbox:keyword:reddit monitoring tool"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -105,7 +106,8 @@
     "unlocking-reddit-search-a-practical-guide-for-founders-and-creators",
     "free-vs-paid-reddit-research-tools-when-to-upgrade-and-what-you-get",
     "setting-up-reddit-keyword-alerts-for-founders-and-growth-operators",
-    "a-step-by-step-guide-to-choosing-the-right-reddit-monitoring-software-for-your-b"
+    "a-step-by-step-guide-to-choosing-the-right-reddit-monitoring-software-for-your-b",
+    "the-ultimate-guide-to-choosing-the-best-reddit-monitoring-tool-for-your-business"
   ],
   "events": [
     {
@@ -471,6 +473,13 @@
       "source_type": "keyword",
       "slug": "a-step-by-step-guide-to-choosing-the-right-reddit-monitoring-software-for-your-b",
       "title": "A Step-by-Step Guide to Choosing the Right Reddit Monitoring Software for Your Business"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "reddit monitoring tool",
+      "source_type": "keyword",
+      "slug": "the-ultimate-guide-to-choosing-the-best-reddit-monitoring-tool-for-your-business",
+      "title": "The Ultimate Guide to Choosing the Best Reddit Monitoring Tool for Your Business"
     }
   ]
 }
