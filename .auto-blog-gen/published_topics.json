@@ -53,7 +53,8 @@
     "reddit_toolbox:trend:how to set up reddit keyword alerts to catch buying signals before your competitors do",
     "reddit_toolbox:keyword:reddit monitoring software",
     "reddit_toolbox:keyword:reddit monitoring tool",
-    "reddit_toolbox:keyword:reddit competitor research"
+    "reddit_toolbox:keyword:reddit competitor research",
+    "reddit_toolbox:keyword:reddit scraper posts"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -109,7 +110,8 @@
     "setting-up-reddit-keyword-alerts-for-founders-and-growth-operators",
     "a-step-by-step-guide-to-choosing-the-right-reddit-monitoring-software-for-your-b",
     "the-ultimate-guide-to-choosing-the-best-reddit-monitoring-tool-for-your-business",
-    "how-to-conduct-competitor-research-on-reddit-a-practical-guide"
+    "how-to-conduct-competitor-research-on-reddit-a-practical-guide",
+    "the-ultimate-guide-to-reddit-scraping-best-practices-and-tools-for-2026"
   ],
   "events": [
     {
@@ -489,6 +491,13 @@
       "source_type": "keyword",
       "slug": "how-to-conduct-competitor-research-on-reddit-a-practical-guide",
       "title": "How to Conduct Competitor Research on Reddit: A Practical Guide"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "reddit scraper posts",
+      "source_type": "keyword",
+      "slug": "the-ultimate-guide-to-reddit-scraping-best-practices-and-tools-for-2026",
+      "title": "The Ultimate Guide to Reddit Scraping: Best Practices and Tools for 2026"
     }
   ]
 }
