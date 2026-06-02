@@ -1,5 +1,12 @@
 import Link from "next/link";
-import { ArrowRight, BookOpen, Download, KeyRound } from "lucide-react";
+import {
+  ArrowRight,
+  BookOpen,
+  Download,
+  ExternalLink,
+  KeyRound,
+  ServerCog,
+} from "lucide-react";
 
 import { getFeaturedTools } from "@/lib/tools";
 import { constructMetadata } from "@/lib/utils";
@@ -34,8 +41,18 @@ export default function IndexPage() {
         ]}
         actions={
           <>
-            <Link href="/tools">
+            <Link
+              href="https://api.wappkit.com"
+              target="_blank"
+              rel="noreferrer"
+            >
               <Button size="lg" rounded="full">
+                Open Wappkit API
+                <ExternalLink className="ml-2 size-4" />
+              </Button>
+            </Link>
+            <Link href="/tools">
+              <Button size="lg" variant="outline" rounded="full">
                 Browse Tools
               </Button>
             </Link>
@@ -102,6 +119,40 @@ export default function IndexPage() {
           </MarketingCard>
         }
       />
+
+      <section className="mt-6 overflow-hidden rounded-[1.8rem] border border-orange-200 bg-[linear-gradient(120deg,rgba(255,247,237,0.96),rgba(255,255,255,0.98))] p-6 shadow-sm md:p-7">
+        <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
+          <div className="flex items-start gap-4">
+            <span className="rounded-2xl border border-orange-200 bg-white p-3 text-orange-700 shadow-sm">
+              <ServerCog className="size-5" />
+            </span>
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-orange-700">
+                Looking for Wappkit API?
+              </p>
+              <h2 className="mt-2 font-heading text-2xl text-foreground">
+                The API service lives at api.wappkit.com.
+              </h2>
+              <p className="mt-2 max-w-2xl text-sm leading-6 text-muted-foreground">
+                This main domain hosts Wappkit tools and product pages. For
+                OpenAI-compatible API credits, model access, tokens, and usage
+                logs, go straight to the API platform.
+              </p>
+            </div>
+          </div>
+          <Link
+            href="https://api.wappkit.com"
+            target="_blank"
+            rel="noreferrer"
+            className="shrink-0"
+          >
+            <Button rounded="full" className="gap-2">
+              Go to API platform
+              <ExternalLink className="size-4" />
+            </Button>
+          </Link>
+        </div>
+      </section>
 
       <section className="mt-10">
         <MarketingSectionIntro

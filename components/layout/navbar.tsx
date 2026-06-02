@@ -54,10 +54,12 @@ export function NavBar({ scroll = false }: NavBarProps) {
                 <Link
                   key={index}
                   href={item.disabled ? "#" : item.href}
+                  target={item.external ? "_blank" : undefined}
+                  rel={item.external ? "noreferrer" : undefined}
                   prefetch={true}
                   className={cn(
                     "flex items-center text-lg font-medium transition-colors hover:text-foreground/80 sm:text-sm",
-                    item.href.startsWith(`/${selectedLayout}`)
+                    !item.external && item.href.startsWith(`/${selectedLayout}`)
                       ? "text-foreground"
                       : "text-foreground/60",
                     item.disabled && "cursor-not-allowed opacity-80",
@@ -114,6 +116,22 @@ export function NavBar({ scroll = false }: NavBarProps) {
               rounded="full"
             >
               <span>Browse Tools</span>
+              <Icons.arrowRight className="size-4" />
+            </Button>
+          </Link>
+          <Link
+            href="https://api.wappkit.com"
+            target="_blank"
+            rel="noreferrer"
+            className="hidden md:block"
+          >
+            <Button
+              className="hidden gap-2 px-5 md:flex"
+              variant="outline"
+              size="sm"
+              rounded="full"
+            >
+              <span>Open API</span>
               <Icons.arrowRight className="size-4" />
             </Button>
           </Link>
