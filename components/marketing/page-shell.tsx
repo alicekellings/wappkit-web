@@ -31,7 +31,10 @@ export function MarketingPageShell({
     <div className={cn("relative isolate overflow-hidden", className)}>
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,rgba(251,191,36,0.2),transparent_28%),radial-gradient(circle_at_top_right,rgba(249,115,22,0.14),transparent_24%),linear-gradient(to_bottom,#ffffff,#fffbf5_42%,#ffffff)]" />
       <div
-        className={cn("container max-w-6xl py-16 md:py-20", containerClassName)}
+        className={cn(
+          "container max-w-6xl pb-16 pt-8 md:pb-20 md:pt-10",
+          containerClassName,
+        )}
       >
         {children}
       </div>
