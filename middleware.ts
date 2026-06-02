@@ -6,7 +6,9 @@ export function middleware(request: NextRequest) {
   const country = getRequestCountry(request.headers);
 
   if (!shouldBlockCountry(country)) {
-    return NextResponse.next();
+    const response = NextResponse.next();
+    response.headers.set("X-Wappkit-Geo-Block", "active");
+    return response;
   }
 
   return new NextResponse("Access unavailable from this region.", {
