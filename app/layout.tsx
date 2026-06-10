@@ -17,7 +17,9 @@ export const metadata = constructMetadata();
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head />
+      <head>
+        <meta name="waffo-verify" content="83f3e1cdb1c6b26137336d6417bae11b" />
+      </head>
       <body
         className={cn(
           "min-h-screen bg-background font-sans antialiased",
