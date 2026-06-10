@@ -62,7 +62,7 @@ export function constructMetadata({
     manifest: `${siteConfig.url}/site.webmanifest`,
     verification: {
       other: {
-        "waffo-verify": "83f3e1cdb1c6b26137336d6417bae11b",
+        "waffo-verify": "1edad47662092044a5e8c97c6b4887ac",
       },
     },
     ...(noIndex && {
