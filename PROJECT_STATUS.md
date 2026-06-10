@@ -29,6 +29,21 @@ Current verified areas:
 - license unbind API route
 - internal license admin page
 
+## Brand / Domain Boundary
+
+Keep the public positioning clear:
+
+- `https://www.wappkit.com` is the main Wappkit website for SaaS products, software tools, product pages, documentation, licensing, checkout, and support.
+- `https://api.wappkit.com` is the developer API platform for token-based API access, quota controls, usage logs, and model/API pricing visibility.
+- In payment provider reviews, describe the API platform as developer infrastructure for legitimate app, automation, coding assistant, and internal workflow integrations.
+- Avoid using risky wording in payment-provider forms or public review text, such as account sharing, recharge, unlocking, resale, unlimited credits, or proxying third-party accounts.
+
+DNS ownership:
+
+- Domain: `wappkit.com`
+- DNS provider: Cloudflare
+- Cloudflare login/account note: `asphero@gmail.com`
+
 ## Current Launch Status
 
 The website and desktop app license flow is now working as a real end-to-end product flow.
@@ -43,6 +58,38 @@ Production status:
 - `Wappkit App Setup` production license validate and deactivate endpoints were re-verified on `2026-04-25`
 - production Upstash Redis now points at the new `funny-guppy-84113` database after redeploy
 - production `CRON_SECRET` is now configured and the Upstash keepalive route has been verified
+
+## Waffo Pancake Review
+
+Status as of 2026-06-10:
+
+- `https://pancake.waffo.ai/` merchant/business submission for Wappkit has been submitted and is under review.
+- Review page says Waffo will notify by email after review completion.
+- Follow up in a few days if no email arrives.
+
+Submitted positioning:
+
+- Wappkit is an independent software and SaaS business under `wappkit.com`.
+- Main website sells/supports software tools, SaaS utilities, licensing, checkout, and docs.
+- API service at `api.wappkit.com` is described as a developer API platform with tokens, quotas, usage logs, and pricing visibility.
+
+Domain verification notes:
+
+- HTML meta tag was deployed first, but Waffo verification did not pass.
+- Well-known file verification was deployed at `/.well-known/waffo-challenge.txt`; it was publicly reachable, but Waffo still failed.
+- `/.well-known/` was excluded from geo-block middleware so verification files are globally reachable.
+- DNS TXT verification succeeded after adding Cloudflare TXT:
+  - type: `TXT`
+  - name: `_waffo-challenge`
+  - final name: `_waffo-challenge.wappkit.com`
+  - value: `waffo-verify=4493de39f00772e08785585161a0a244`
+- DNS check command:
+
+```powershell
+Resolve-DnsName -Type TXT _waffo-challenge.wappkit.com -Server 1.1.1.1
+```
+
+Important: if Waffo verification is retried later, it may generate a new challenge value. Always copy the latest value from Waffo before editing DNS or files.
 
 ## Current Vercel Environment Snapshot
 

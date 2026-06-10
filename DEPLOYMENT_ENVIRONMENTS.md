@@ -17,11 +17,18 @@ Use this for the live public site and real customer traffic.
 
 - public production domain: `https://www.wappkit.com`
 - root domain behavior: `https://wappkit.com` redirects to `https://www.wappkit.com`
+- DNS provider: Cloudflare
+- Cloudflare account note: `asphero@gmail.com`
 - Vercel project URL: `https://wappkit-web.vercel.app`
 - production webhook target: `https://www.wappkit.com/api/webhook/creem`
 - production license validate endpoint: `https://www.wappkit.com/api/license/validate`
 - production license deactivate endpoint: `https://www.wappkit.com/api/license/deactivate`
 - production license retrieval page: `https://www.wappkit.com/license/retrieve`
+
+Production domain boundary:
+
+- `www.wappkit.com` / `wappkit.com`: main SaaS and software website, checkout, docs, licensing, and support.
+- `api.wappkit.com`: separate developer API platform. Do not describe the main site as an AI API resale site in payment-provider reviews.
 
 Production Vercel variables should represent live values:
 
@@ -119,6 +126,18 @@ Current implication:
 
 - Production desktop activation against `https://www.wappkit.com` is working again after the Upstash fix and Production redeploy
 - Preview desktop activation may still fail unless the preview deployment is publicly reachable to the desktop app
+
+Observed during Waffo Pancake onboarding on 2026-06-10:
+
+- Waffo/Pancake URL: `https://pancake.waffo.ai/`
+- Business submission status: under review.
+- Domain verification eventually succeeded with Cloudflare DNS TXT for `wappkit.com`.
+- TXT record:
+  - final name: `_waffo-challenge.wappkit.com`
+  - value: `waffo-verify=4493de39f00772e08785585161a0a244`
+- HTML meta and well-known file approaches were deployed but did not complete verification reliably.
+- `/.well-known/` is excluded from geo-block middleware to keep future verification files publicly reachable.
+- If Waffo is retried later, confirm the current challenge value because Waffo may rotate it.
 
 ## Minimum Checklist Before Future Testing
 
