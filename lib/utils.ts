@@ -60,6 +60,11 @@ export function constructMetadata({
     icons,
     metadataBase: new URL(siteConfig.url),
     manifest: `${siteConfig.url}/site.webmanifest`,
+    verification: {
+      other: {
+        "waffo-verify": "83f3e1cdb1c6b26137336d6417bae11b",
+      },
+    },
     ...(noIndex && {
       robots: {
         index: false,
