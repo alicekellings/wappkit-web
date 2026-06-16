@@ -1,4 +1,4 @@
-const BLOCKED_COUNTRIES = new Set(["CN"]);
+const BLOCKED_COUNTRIES = new Set<string>();
 
 export function normalizeCountryCode(country: string | null | undefined) {
   const value = country?.trim();

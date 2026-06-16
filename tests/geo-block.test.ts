@@ -3,12 +3,9 @@ import test from "node:test";
 
 import { getRequestCountry, shouldBlockCountry } from "../lib/geo-block";
 
-test("geo block rejects China country codes from Vercel", () => {
-  assert.equal(shouldBlockCountry("CN"), true);
-  assert.equal(shouldBlockCountry("cn"), true);
-});
-
-test("geo block accepts non-China and missing country codes", () => {
+test("geo block accepts all country codes", () => {
+  assert.equal(shouldBlockCountry("CN"), false);
+  assert.equal(shouldBlockCountry("cn"), false);
   assert.equal(shouldBlockCountry("US"), false);
   assert.equal(shouldBlockCountry(null), false);
   assert.equal(shouldBlockCountry(""), false);
