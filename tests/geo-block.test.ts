@@ -3,9 +3,9 @@ import test from "node:test";
 
 import { getRequestCountry, shouldBlockCountry } from "../lib/geo-block";
 
-test("geo block accepts all country codes", () => {
-  assert.equal(shouldBlockCountry("CN"), false);
-  assert.equal(shouldBlockCountry("cn"), false);
+test("geo block rejects China country codes", () => {
+  assert.equal(shouldBlockCountry("CN"), true);
+  assert.equal(shouldBlockCountry("cn"), true);
   assert.equal(shouldBlockCountry("US"), false);
   assert.equal(shouldBlockCountry(null), false);
   assert.equal(shouldBlockCountry(""), false);
