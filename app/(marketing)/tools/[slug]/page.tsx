@@ -79,6 +79,133 @@ type ToolMarketingContent = {
 function getToolMarketingContent(
   tool: (typeof tools)[number],
 ): ToolMarketingContent {
+  if (tool.slug === "ai-ecom-visual-studio") {
+    return {
+      eyebrow: "E-commerce product image studio",
+      heroTitle:
+        "Prepare cleaner product photos for marketplaces without rebuilding the workflow every time.",
+      heroDescription:
+        "AI E-commerce Visual Studio helps sellers remove backgrounds, compose product shots on clean scenes, enhance output, clean metadata, and export marketplace or social sizes from a Windows desktop app.",
+      trustPoints: [
+        "Built for product photos and catalog batches",
+        "Amazon, Shopify, and social export presets",
+        "License activation fits the existing Wappkit checkout flow",
+      ],
+      stats: [
+        {
+          label: "Core task",
+          value: "Background removal",
+        },
+        {
+          label: "Batch flow",
+          value: "Remove + replace",
+        },
+        {
+          label: "Output targets",
+          value: "Marketplace + social",
+        },
+      ],
+      showcaseItems: [
+        {
+          label: "Product cutout",
+          description:
+            "Remove the original background and export transparent PNG or clean listing-ready images.",
+        },
+        {
+          label: "Background replacement",
+          description:
+            "Place one or many product images onto a chosen background with simple position and scale controls.",
+        },
+        {
+          label: "Export presets",
+          description:
+            "Create original-size, Amazon, Shopify, Instagram, and Facebook output sets without resizing by hand.",
+        },
+      ],
+      freeFeatures: [
+        "Single-image background removal and preview",
+        "Transparent PNG and current-size result saving",
+        "Basic background replacement with custom image or color",
+        "Temporary output folder for cleaner file handling",
+      ],
+      proFeatures: [
+        "Batch background removal for product queues",
+        "Batch background replacement with shared scene settings",
+        "Marketplace and social export presets",
+        "Optional image enhancement plus EXIF / metadata cleanup",
+        "License retrieval and activation through Wappkit",
+      ],
+      workflow: [
+        {
+          title: "Load product photos",
+          description:
+            "Start with one hero image or bulk-add a batch of catalog photos that need the same cleanup flow.",
+        },
+        {
+          title: "Remove or replace the background",
+          description:
+            "Use cutout mode for transparent assets, or compose the product onto a chosen background for listing and campaign images.",
+        },
+        {
+          title: "Export clean deliverables",
+          description:
+            "Save current-size results or export preset sizes for Amazon, Shopify, and social channels with metadata cleanup enabled.",
+        },
+      ],
+      assurances: [
+        {
+          title: "Quality-first desktop workflow",
+          description:
+            "The tool is positioned for e-commerce users who need repeatable results and local control over product images.",
+        },
+        {
+          title: "AI background generation can stay optional",
+          description:
+            "Future AI background creation can be sold through separate API credits without mixing it into the base license.",
+        },
+        {
+          title: "Checkout and recovery stay on Wappkit",
+          description:
+            "Customers can buy, retrieve a lost license, and read activation guidance from the same domain.",
+        },
+      ],
+      faq: [
+        {
+          question: "Is this for marketplace product images or social posts?",
+          answer:
+            "Both. The core workflow targets e-commerce product cleanup, while preset exports also create social-ready image sizes.",
+        },
+        {
+          question: "Does it support batch processing?",
+          answer:
+            "Yes. The desktop app is designed for batch background removal and batch background replacement when users need repeated catalog work.",
+        },
+        {
+          question: "Can customers remove private image metadata?",
+          answer:
+            "Yes. Metadata cleanup is part of the output options and is intended to reduce privacy and AI-generation trace leakage in exported files.",
+        },
+        {
+          question: "Will AI-generated backgrounds be included?",
+          answer:
+            "The base product can ship first. AI background generation is planned as a later optional feature that can use separate API tokens or credits.",
+        },
+      ],
+      workspacePrimaryLabel: "Product cleanup",
+      workspacePrimaryDescription:
+        "Remove backgrounds, preview results, and keep output focused on listing quality.",
+      workspaceSecondaryLabel: "Batch composition",
+      workspaceSecondaryDescription:
+        "Apply shared background and export settings across product queues.",
+      freeSectionTitle: "Start with useful product image cleanup",
+      proSectionTitle: "Unlock batch and marketplace output workflows",
+      finalCtaTitle:
+        "Launch the image studio under Wappkit first, then add AI background credits when the base workflow is solid.",
+      finalCtaDescription:
+        "This keeps the product simple for sellers today while leaving a clean upgrade path for AI background generation, prompt optimization, and API token sales later.",
+    };
+  }
+
   if (tool.slug === "reddit-toolbox") {
     return {
       eyebrow: "Desktop Reddit Research Software",

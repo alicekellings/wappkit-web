@@ -64,7 +64,7 @@ export default function IndexPage() {
           </>
         }
         stats={[
-          { label: "Live product", value: "Reddit Toolbox" },
+          { label: "Live products", value: "3 desktop tools" },
           { label: "License model", value: "Key activation" },
           { label: "Content hub", value: "Blog + docs" },
         ]}

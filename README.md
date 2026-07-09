@@ -64,6 +64,7 @@ WAPPKIT_APP_SETUP_SHA256=
 
 CREEM_API_KEY=
 CREEM_TEST_MODE=true
+CREEM_PRODUCT_AI_ECOM_VISUAL_STUDIO_ID=
 CREEM_PRODUCT_WAPPKIT_APP_SETUP_ID=
 CREEM_PRODUCT_REDDIT_TOOLBOX_ID=
 CREEM_WEBHOOK_SECRET=
@@ -80,6 +81,7 @@ INTERNAL_ADMIN_TOKEN=
 
 Current product-specific billing env keys:
 
+- `CREEM_PRODUCT_AI_ECOM_VISUAL_STUDIO_ID`
 - `CREEM_PRODUCT_REDDIT_TOOLBOX_ID`
 - `CREEM_PRODUCT_WAPPKIT_APP_SETUP_ID`
 - `WAPPKIT_APP_SETUP_DOWNLOAD_URL`
@@ -149,6 +151,14 @@ Current action for `Wappkit App Setup`:
 - set `WAPPKIT_APP_SETUP_DOWNLOAD_URL` to the final hosted installer
 - set `WAPPKIT_APP_SETUP_SHA256` after the signed build is uploaded
 - confirm the current webhook target matches the same domain
+
+Current action for `AI E-commerce Visual Studio`:
+
+- create the Creem product and add `CREEM_PRODUCT_AI_ECOM_VISUAL_STUDIO_ID`
+- confirm whether checkout should be enabled before the public installer is uploaded
+- upload the signed Windows installer and publish its SHA256 checksum
+- update the download center card from packaging status to a direct download button
+- wire the desktop app activation screen to `/api/license/validate` with `toolSlug=ai-ecom-visual-studio`
 
 ## Preview Testing
 

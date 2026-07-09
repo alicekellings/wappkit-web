@@ -122,6 +122,13 @@ Current `Wappkit App Setup` status:
 - `CREEM_PRODUCT_WAPPKIT_APP_SETUP_ID` has been added and confirmed in Vercel
 - production activation and self-service device removal have both been verified manually
 
+Current `AI E-commerce Visual Studio` status:
+
+- product page is registered at `/tools/ai-ecom-visual-studio`
+- checkout route is ready to read `CREEM_PRODUCT_AI_ECOM_VISUAL_STUDIO_ID`
+- download center shows packaging status until a signed installer and SHA256 are published
+- desktop license activation still needs to be wired into the app before public sale
+
 Current isolated preview test branch:
 
 - `wappkit-app-setup-preview-test`

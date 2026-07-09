@@ -140,10 +140,12 @@ export function MarketingHero({
 export function MarketingCard({
   children,
   className,
+  id,
   tone = "default",
 }: {
   children: ReactNode;
   className?: string;
+  id?: string;
   tone?: "default" | "dark" | "warm" | "soft";
 }) {
   const toneClasses = {
@@ -155,6 +157,7 @@ export function MarketingCard({
 
   return (
     <div
+      id={id}
       className={cn(
         "rounded-[1.8rem] p-8 shadow-sm",
         toneClasses[tone],

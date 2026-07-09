@@ -29,9 +29,9 @@ export default function PricingPage() {
         ]}
         actions={
           <>
-            <Link href="/tools/reddit-toolbox">
+            <Link href="/tools">
               <Button rounded="full" size="lg">
-                View Live Product
+                View Live Products
               </Button>
             </Link>
             <Link href="/license">
@@ -42,7 +42,7 @@ export default function PricingPage() {
           </>
         }
         stats={[
-          { label: "Current paid tool", value: "Reddit Toolbox" },
+          { label: "Paid tools", value: "Per product" },
           { label: "Checkout path", value: "Creem" },
           { label: "Recovery path", value: "Order + email" },
         ]}

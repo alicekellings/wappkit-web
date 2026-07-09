@@ -14,26 +14,26 @@ import {
 export const metadata = constructMetadata({
   title: "Download Center | Wappkit",
   description:
-    "Download the latest Wappkit desktop build, verify the release, and jump into product pages for setup and licensing details.",
+    "Download Wappkit desktop tools, verify releases, and jump into product pages for setup and licensing details.",
 });
 
 export default function DownloadPage() {
-  const upcomingTools = tools.filter((tool) => tool.slug !== "reddit-toolbox");
+  const otherTools = tools.filter((tool) => tool.slug !== "reddit-toolbox");
 
   return (
     <MarketingPageShell>
       <MarketingHero
         eyebrow="Download Center"
-        title="Download the latest Reddit Toolbox desktop build."
-        description="This is the clean handoff for users who already want the Windows installer, GitHub release, checksum, and activation details in one place."
+        title="Download Wappkit desktop tools from one place."
+        description="Use this page as the clean handoff for Windows installers, release checksums, product pages, and activation details as each tool becomes ready for distribution."
         badges={[
-          { label: "Windows release", tone: "warm" },
+          { label: "Windows tools", tone: "warm" },
           {
-            label: `Version ${redditToolboxDesktopRelease.version}`,
+            label: `Reddit Toolbox ${redditToolboxDesktopRelease.version}`,
             tone: "muted",
           },
           {
-            label: `Released ${formatDate(redditToolboxDesktopRelease.releasedAt)}`,
+            label: `Latest release ${formatDate(redditToolboxDesktopRelease.releasedAt)}`,
           },
         ]}
         actions={
@@ -48,16 +48,16 @@ export default function DownloadPage() {
                 View GitHub Release
               </Button>
             </Link>
-            <Link href="/tools/reddit-toolbox">
+            <Link href="/tools">
               <Button rounded="full" size="lg" variant="ghost">
-                Open Product Page
+                Browse Product Pages
               </Button>
             </Link>
           </>
         }
         stats={[
+          { label: "Ready download", value: "Reddit Toolbox" },
           { label: "File", value: redditToolboxDesktopRelease.fileName },
-          { label: "Size", value: redditToolboxDesktopRelease.fileSizeLabel },
           { label: "Checksum", value: "SHA256 published" },
         ]}
         rightContent={
@@ -94,6 +94,82 @@ export default function DownloadPage() {
         </div>
       </MarketingHero>
 
+      <section className="mt-10">
+        <MarketingSectionIntro
+          eyebrow="Desktop tools"
+          title="Each product can ship on the same download surface."
+          description="Tools with a packaged installer get direct download buttons. Tools that are still being packaged stay visible here with their product page, purchase flow, and release status."
+        />
+
+        <div className="mt-6 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          <MarketingCard id="reddit-toolbox" tone="soft" className="p-6">
+            <div className="flex items-center justify-between gap-3">
+              <span className="rounded-full bg-orange-50 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-orange-700">
+                Installer ready
+              </span>
+              <span className="text-sm text-muted-foreground">
+                {redditToolboxDesktopRelease.fileSizeLabel}
+              </span>
+            </div>
+            <h2 className="mt-5 font-heading text-2xl text-foreground">
+              Reddit Toolbox
+            </h2>
+            <p className="mt-3 text-muted-foreground">
+              Download the current Windows installer and verify it with the
+              published SHA256 checksum.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Link href={redditToolboxDesktopRelease.directDownloadUrl}>
+                <Button rounded="full">Download</Button>
+              </Link>
+              <Link href="/tools/reddit-toolbox">
+                <Button rounded="full" variant="outline">
+                  Product Page
+                </Button>
+              </Link>
+            </div>
+          </MarketingCard>
+
+          {otherTools.map((tool) => (
+            <MarketingCard
+              key={tool.slug}
+              id={tool.slug}
+              tone="soft"
+              className="p-6"
+            >
+              <div className="flex items-center justify-between gap-3">
+                <span className="rounded-full bg-muted px-3 py-1 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                  {tool.status === "live" ? "Packaging" : "Planned"}
+                </span>
+                <span className="text-sm text-muted-foreground">
+                  {tool.platform}
+                </span>
+              </div>
+              <h2 className="mt-5 font-heading text-2xl text-foreground">
+                {tool.name}
+              </h2>
+              <p className="mt-3 text-muted-foreground">
+                {tool.status === "live"
+                  ? "The product page and checkout path are being prepared. The public installer link should be added after the signed build is uploaded."
+                  : tool.shortDescription}
+              </p>
+              <div className="mt-6 flex flex-wrap gap-3">
+                <Link href={`/tools/${tool.slug}`}>
+                  <Button rounded="full" variant="outline">
+                    Product Page
+                  </Button>
+                </Link>
+                <Link href={tool.docsHref}>
+                  <Button rounded="full" variant="ghost">
+                    Activation Guide
+                  </Button>
+                </Link>
+              </div>
+            </MarketingCard>
+          ))}
+        </div>
+      </section>
+
       <section className="mt-10 grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
         <MarketingCard tone="soft">
           <MarketingSectionIntro
@@ -128,30 +204,10 @@ export default function DownloadPage() {
 
       <section className="mt-10">
         <MarketingSectionIntro
-          eyebrow="Other tools"
-          title="More Wappkit products can grow into the same download surface."
-          description="The release infrastructure is already in place, so future desktop tools can slot into this page without inventing a new pattern."
+          eyebrow="Release checklist"
+          title="Before a new installer becomes public, keep the release details explicit."
+          description="For AI E-commerce Visual Studio, the next website step is to upload a signed Windows build, publish its checksum, then replace the packaging note with a direct download button."
         />
-
-        <div className="mt-6 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-          {upcomingTools.map((tool) => (
-            <MarketingCard key={tool.slug} tone="soft" className="p-6">
-              <h3 className="font-heading text-2xl text-foreground">
-                {tool.name}
-              </h3>
-              <p className="mt-3 text-muted-foreground">
-                {tool.shortDescription}
-              </p>
-              <div className="mt-6">
-                <Link href={`/tools/${tool.slug}`}>
-                  <Button rounded="full" variant="outline">
-                    Open Product Page
-                  </Button>
-                </Link>
-              </div>
-            </MarketingCard>
-          ))}
-        </div>
       </section>
     </MarketingPageShell>
   );

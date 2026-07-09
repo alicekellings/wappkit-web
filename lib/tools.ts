@@ -22,6 +22,40 @@ export type Tool = {
 
 export const tools: Tool[] = [
   {
+    slug: "ai-ecom-visual-studio",
+    name: "AI E-commerce Visual Studio",
+    category: "E-commerce Images",
+    status: "live",
+    tagline:
+      "Desktop product image studio for clean backgrounds, batch composition, and marketplace-ready exports.",
+    shortDescription:
+      "Prepare product photos for Amazon, Shopify, and social channels with background removal, replacement, enhancement, and metadata cleanup in one desktop workflow.",
+    longDescription:
+      "AI E-commerce Visual Studio is a Windows desktop image tool for sellers and operators who need clean product photos without sending every file through a browser. It combines background removal, custom background composition, batch processing, image enhancement, metadata cleanup, and export presets for e-commerce and social media.",
+    features: [
+      "Product background removal with transparent PNG output",
+      "Batch background removal and batch background replacement",
+      "Amazon, Shopify, Instagram, and Facebook export presets",
+      "Optional image enhancement and EXIF / metadata cleanup",
+      "Custom background composition with position and scale controls",
+    ],
+    audience: [
+      "Shopify and Amazon sellers preparing product listings",
+      "E-commerce operators creating repeatable image workflows",
+      "Marketplace agencies handling batches of catalog photos",
+      "Social commerce teams turning product shots into campaign images",
+    ],
+    platform: "Windows Desktop",
+    downloadLabel: "Download Image Studio",
+    buyLabel: "Unlock Pro",
+    downloadHref: "/download#ai-ecom-visual-studio",
+    buyHref: "/license",
+    docsHref: "/docs/checkout-and-activation",
+    availabilityNote:
+      "AI E-commerce Visual Studio is being prepared for Wappkit checkout, license retrieval, and in-app activation.",
+    checkoutEnabled: false,
+  },
+  {
     slug: "wappkit-app-setup",
     name: "Wappkit App Setup",
     category: "Windows Setup",

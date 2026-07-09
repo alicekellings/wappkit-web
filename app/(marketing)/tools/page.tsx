@@ -43,7 +43,7 @@ export default function ToolsPage() {
           </>
         }
         stats={[
-          { label: "Live now", value: "Reddit Toolbox" },
+          { label: "Live now", value: "3 desktop tools" },
           { label: "Future tools", value: "Template-ready" },
           { label: "Support model", value: "Docs + recovery" },
         ]}
