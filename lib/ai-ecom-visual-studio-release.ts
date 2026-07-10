@@ -1,6 +1,6 @@
 import { env } from "@/env.mjs";
 
-const version = "0.1.0";
+const version = "0.1.1";
 const appUrl = env.NEXT_PUBLIC_APP_URL;
 const hasHostedInstaller = Boolean(env.AI_ECOM_VISUAL_STUDIO_DOWNLOAD_URL);
 
@@ -10,8 +10,8 @@ export const aiEcomVisualStudioRelease = {
   releasedAt: "2026-07-10",
   minSupportedVersion: "0.1.0",
   fileName: `AI-Ecommerce-Visual-Studio-Setup-${version}.exe`,
-  fileSizeBytes: null,
-  fileSizeLabel: hasHostedInstaller ? "Installer" : "Installer pending",
+  fileSizeBytes: 76664469,
+  fileSizeLabel: hasHostedInstaller ? "73.11 MB installer" : "Installer pending",
   sha256: env.AI_ECOM_VISUAL_STUDIO_SHA256 ?? null,
   releaseUrl:
     env.AI_ECOM_VISUAL_STUDIO_RELEASE_URL ??
@@ -21,8 +21,8 @@ export const aiEcomVisualStudioRelease = {
     : null,
   checksumUrl: env.AI_ECOM_VISUAL_STUDIO_CHECKSUM_URL ?? null,
   changelog: [
-    "Background removal, batch removal, and background replacement workflows are available.",
-    "Amazon, Shopify, Instagram, and Facebook export presets are included.",
-    "Metadata cleanup, Smart Product Optimize, enhancement presets, and persistent settings are enabled.",
+    "Adds Free / Pro licensing gate: free users can remove one image background and save transparent PNG output.",
+    "Pro unlocks batch background removal, background replacement, e-commerce/social export presets, JPEG output, enhancement, and Smart Product Optimize.",
+    "Keeps marketplace-focused output quality controls, metadata cleanup, and persistent settings enabled for the full workflow.",
   ],
 } as const;

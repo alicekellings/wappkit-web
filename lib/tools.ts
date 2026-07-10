@@ -29,15 +29,15 @@ export const tools: Tool[] = [
     tagline:
       "Desktop product image studio for clean backgrounds, batch composition, and marketplace-ready exports.",
     shortDescription:
-      "Prepare product photos for Amazon, Shopify, and social channels with background removal, replacement, enhancement, and metadata cleanup in one desktop workflow.",
+      "Start free with single-image background removal, then unlock batch processing, background replacement, enhancement, and marketplace-ready exports with a Pro license key.",
     longDescription:
-      "AI E-commerce Visual Studio is a Windows desktop image tool for sellers and operators who need clean product photos without sending every file through a browser. It combines background removal, custom background composition, batch processing, image enhancement, metadata cleanup, and export presets for e-commerce and social media.",
+      "AI E-commerce Visual Studio is a Windows desktop image tool for sellers and operators who need clean product photos without sending every file through a browser. The free mode keeps single-image background removal and transparent PNG saving available, while Pro unlocks custom background composition, batch processing, image enhancement, metadata cleanup, and export presets for e-commerce and social media.",
     features: [
-      "Product background removal with transparent PNG output",
-      "Batch background removal and batch background replacement",
-      "Amazon, Shopify, Instagram, and Facebook export presets",
-      "Optional image enhancement and EXIF / metadata cleanup",
-      "Custom background composition with position and scale controls",
+      "Free single-image background removal with transparent PNG output",
+      "Pro batch background removal and batch background replacement",
+      "Pro Amazon, Shopify, Instagram, and Facebook export presets",
+      "Pro image enhancement, Smart Product Optimize, and EXIF / metadata cleanup",
+      "Pro custom background composition with position and scale controls",
     ],
     audience: [
       "Shopify and Amazon sellers preparing product listings",
