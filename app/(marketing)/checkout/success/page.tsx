@@ -80,7 +80,26 @@ export default async function CheckoutSuccessPage({
       creemApiKey!,
     );
 
-  if (checkoutId && (!canVerifyRedirect || hasValidRedirectSignature)) {
+  if (orderId && (!canVerifyRedirect || hasValidRedirectSignature)) {
+    try {
+      const record = await getLicenseStore().getByOrderId(orderId);
+
+      if (record) {
+        syncedOrderId = record.orderId;
+        syncedCustomerEmail = record.customerEmail;
+        licenseKeys = record.licenseKeys;
+        syncReady = true;
+      }
+    } catch {
+      syncReady = false;
+    }
+  }
+
+  if (
+    licenseKeys.length === 0 &&
+    checkoutId &&
+    (!canVerifyRedirect || hasValidRedirectSignature)
+  ) {
     try {
       const checkout = await retrieveCreemCheckout(checkoutId);
 
