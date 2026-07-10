@@ -80,11 +80,15 @@ export default async function CheckoutSuccessPage({
       creemApiKey!,
     );
 
-  if (orderId && (!canVerifyRedirect || hasValidRedirectSignature)) {
+  if (orderId) {
     try {
       const record = await getLicenseStore().getByOrderId(orderId);
+      const matchesCheckout =
+        checkoutId && record?.checkoutId === checkoutId;
+      const matchesSignedRedirect =
+        !canVerifyRedirect || Boolean(hasValidRedirectSignature);
 
-      if (record) {
+      if (record && (matchesSignedRedirect || matchesCheckout)) {
         syncedOrderId = record.orderId;
         syncedCustomerEmail = record.customerEmail;
         licenseKeys = record.licenseKeys;
