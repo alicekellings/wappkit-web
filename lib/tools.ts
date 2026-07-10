@@ -52,8 +52,8 @@ export const tools: Tool[] = [
     buyHref: "/license",
     docsHref: "/docs/checkout-and-activation",
     availabilityNote:
-      "AI E-commerce Visual Studio is being prepared for Wappkit checkout, license retrieval, and in-app activation.",
-    checkoutEnabled: false,
+      "AI E-commerce Visual Studio uses Wappkit checkout, license retrieval, and in-app activation support.",
+    checkoutEnabled: true,
   },
   {
     slug: "wappkit-app-setup",

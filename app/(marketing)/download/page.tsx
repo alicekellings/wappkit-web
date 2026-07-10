@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { aiEcomVisualStudioRelease } from "@/lib/ai-ecom-visual-studio-release";
 import { redditToolboxDesktopRelease } from "@/lib/desktop-release";
 import { tools } from "@/lib/tools";
 import { constructMetadata, formatDate } from "@/lib/utils";
@@ -34,6 +35,10 @@ export default function DownloadPage() {
           },
           {
             label: `Latest release ${formatDate(redditToolboxDesktopRelease.releasedAt)}`,
+          },
+          {
+            label: `Image Studio ${aiEcomVisualStudioRelease.version}`,
+            tone: "muted",
           },
         ]}
         actions={
@@ -130,43 +135,67 @@ export default function DownloadPage() {
             </div>
           </MarketingCard>
 
-          {otherTools.map((tool) => (
-            <MarketingCard
-              key={tool.slug}
-              id={tool.slug}
-              tone="soft"
-              className="p-6"
-            >
-              <div className="flex items-center justify-between gap-3">
-                <span className="rounded-full bg-muted px-3 py-1 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-                  {tool.status === "live" ? "Packaging" : "Planned"}
-                </span>
-                <span className="text-sm text-muted-foreground">
-                  {tool.platform}
-                </span>
-              </div>
-              <h2 className="mt-5 font-heading text-2xl text-foreground">
-                {tool.name}
-              </h2>
-              <p className="mt-3 text-muted-foreground">
-                {tool.status === "live"
-                  ? "The product page and checkout path are being prepared. The public installer link should be added after the signed build is uploaded."
-                  : tool.shortDescription}
-              </p>
-              <div className="mt-6 flex flex-wrap gap-3">
-                <Link href={`/tools/${tool.slug}`}>
-                  <Button rounded="full" variant="outline">
-                    Product Page
-                  </Button>
-                </Link>
-                <Link href={tool.docsHref}>
-                  <Button rounded="full" variant="ghost">
-                    Activation Guide
-                  </Button>
-                </Link>
-              </div>
-            </MarketingCard>
-          ))}
+          {otherTools.map((tool) => {
+            const isImageStudio = tool.slug === aiEcomVisualStudioRelease.toolSlug;
+            const hasImageStudioInstaller =
+              isImageStudio && aiEcomVisualStudioRelease.directDownloadUrl;
+
+            return (
+              <MarketingCard
+                key={tool.slug}
+                id={tool.slug}
+                tone="soft"
+                className="p-6"
+              >
+                <div className="flex items-center justify-between gap-3">
+                  <span className="rounded-full bg-muted px-3 py-1 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                    {hasImageStudioInstaller
+                      ? "Installer ready"
+                      : tool.status === "live"
+                        ? "Packaging"
+                        : "Planned"}
+                  </span>
+                  <span className="text-sm text-muted-foreground">
+                    {isImageStudio
+                      ? aiEcomVisualStudioRelease.fileSizeLabel
+                      : tool.platform}
+                  </span>
+                </div>
+                <h2 className="mt-5 font-heading text-2xl text-foreground">
+                  {tool.name}
+                </h2>
+                <p className="mt-3 text-muted-foreground">
+                  {isImageStudio
+                    ? hasImageStudioInstaller
+                      ? "Download the current Windows installer, then buy or retrieve a Wappkit license when the paid workflow is needed."
+                      : "The release API is ready. Upload the signed installer and set AI_ECOM_VISUAL_STUDIO_DOWNLOAD_URL to show the public download button."
+                    : tool.status === "live"
+                      ? "The product page and checkout path are being prepared. The public installer link should be added after the signed build is uploaded."
+                      : tool.shortDescription}
+                </p>
+                <div className="mt-6 flex flex-wrap gap-3">
+                  {hasImageStudioInstaller ? (
+                    <Link href={aiEcomVisualStudioRelease.directDownloadUrl!}>
+                      <Button rounded="full">Download</Button>
+                    </Link>
+                  ) : null}
+                  <Link href={`/tools/${tool.slug}`}>
+                    <Button
+                      rounded="full"
+                      variant={hasImageStudioInstaller ? "outline" : "outline"}
+                    >
+                      Product Page
+                    </Button>
+                  </Link>
+                  <Link href={tool.docsHref}>
+                    <Button rounded="full" variant="ghost">
+                      Activation Guide
+                    </Button>
+                  </Link>
+                </div>
+              </MarketingCard>
+            );
+          })}
         </div>
       </section>
 

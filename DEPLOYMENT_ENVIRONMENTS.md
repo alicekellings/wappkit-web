@@ -39,6 +39,10 @@ Production Vercel variables should represent live values:
 - `CREEM_PRODUCT_AI_ECOM_VISUAL_STUDIO_ID=<live product id when this tool goes live>`
 - `CREEM_PRODUCT_REDDIT_TOOLBOX_ID=<live product id>`
 - `CREEM_PRODUCT_WAPPKIT_APP_SETUP_ID=<live product id when this tool goes live>`
+- `AI_ECOM_VISUAL_STUDIO_DOWNLOAD_URL=<direct live installer asset url>`
+- `AI_ECOM_VISUAL_STUDIO_RELEASE_URL=<public release notes url>`
+- `AI_ECOM_VISUAL_STUDIO_CHECKSUM_URL=<sha256 file url>`
+- `AI_ECOM_VISUAL_STUDIO_SHA256=<installer sha256>`
 - `UPSTASH_REDIS_REST_URL=<production license store>`
 - `UPSTASH_REDIS_REST_TOKEN=<production license store token>`
 - `CRON_SECRET=<production keepalive auth>`
@@ -63,6 +67,10 @@ Preview Vercel variables should represent test values:
 - `CREEM_API_KEY=<Creem test key>`
 - `CREEM_WEBHOOK_SECRET=<Creem test webhook secret>`
 - `CREEM_PRODUCT_AI_ECOM_VISUAL_STUDIO_ID=<test product id when testing this tool>`
+- `AI_ECOM_VISUAL_STUDIO_DOWNLOAD_URL=<preview/test installer asset url if available>`
+- `AI_ECOM_VISUAL_STUDIO_RELEASE_URL=<preview/test release notes url if available>`
+- `AI_ECOM_VISUAL_STUDIO_CHECKSUM_URL=<preview/test sha256 file url if available>`
+- `AI_ECOM_VISUAL_STUDIO_SHA256=<preview/test installer sha256 if available>`
 - `CREEM_PRODUCT_WAPPKIT_APP_SETUP_ID=prod_6wN9wGJ08OY9y75J2s1gDZ`
 - `UPSTASH_REDIS_REST_URL=<preview test license store>`
 - `UPSTASH_REDIS_REST_TOKEN=<preview test license store token>`

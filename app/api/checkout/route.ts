@@ -72,13 +72,9 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error("Failed to create Creem checkout.", {
       creemTestMode: isCreemInTestMode(),
-      productEnvKey: TOOL_PRODUCT_ENV_MAP["reddit-toolbox"],
+      productEnvKeys: TOOL_PRODUCT_ENV_MAP,
       configuredProductId:
-        getTrimmedEnv(
-          TOOL_PRODUCT_ENV_MAP["wappkit-app-setup"] ??
-            TOOL_PRODUCT_ENV_MAP["reddit-toolbox"] ??
-            "",
-        ) ?? null,
+        getTrimmedEnv(TOOL_PRODUCT_ENV_MAP["ai-ecom-visual-studio"]) ?? null,
       nextPublicAppUrl: getTrimmedEnv("NEXT_PUBLIC_APP_URL") ?? null,
       error,
     });

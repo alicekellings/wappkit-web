@@ -61,6 +61,10 @@ WAPPKIT_APP_SETUP_DOWNLOAD_URL=
 WAPPKIT_APP_SETUP_RELEASE_URL=
 WAPPKIT_APP_SETUP_CHECKSUM_URL=
 WAPPKIT_APP_SETUP_SHA256=
+AI_ECOM_VISUAL_STUDIO_DOWNLOAD_URL=
+AI_ECOM_VISUAL_STUDIO_RELEASE_URL=
+AI_ECOM_VISUAL_STUDIO_CHECKSUM_URL=
+AI_ECOM_VISUAL_STUDIO_SHA256=
 
 CREEM_API_KEY=
 CREEM_TEST_MODE=true
@@ -88,6 +92,10 @@ Current product-specific billing env keys:
 - `WAPPKIT_APP_SETUP_RELEASE_URL`
 - `WAPPKIT_APP_SETUP_CHECKSUM_URL`
 - `WAPPKIT_APP_SETUP_SHA256`
+- `AI_ECOM_VISUAL_STUDIO_DOWNLOAD_URL`
+- `AI_ECOM_VISUAL_STUDIO_RELEASE_URL`
+- `AI_ECOM_VISUAL_STUDIO_CHECKSUM_URL`
+- `AI_ECOM_VISUAL_STUDIO_SHA256`
 
 ## Current Architecture
 
@@ -155,9 +163,10 @@ Current action for `Wappkit App Setup`:
 Current action for `AI E-commerce Visual Studio`:
 
 - create the Creem product and add `CREEM_PRODUCT_AI_ECOM_VISUAL_STUDIO_ID`
-- confirm whether checkout should be enabled before the public installer is uploaded
+- checkout is enabled in the product page, so keep it in Creem test mode until the product id and webhook have been verified
 - upload the signed Windows installer and publish its SHA256 checksum
-- update the download center card from packaging status to a direct download button
+- set `AI_ECOM_VISUAL_STUDIO_DOWNLOAD_URL`, `AI_ECOM_VISUAL_STUDIO_RELEASE_URL`, `AI_ECOM_VISUAL_STUDIO_CHECKSUM_URL`, and `AI_ECOM_VISUAL_STUDIO_SHA256`
+- confirm `/api/desktop/ai-ecom-visual-studio/version` returns the expected update metadata
 - wire the desktop app activation screen to `/api/license/validate` with `toolSlug=ai-ecom-visual-studio`
 
 ## Preview Testing
