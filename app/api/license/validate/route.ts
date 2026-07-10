@@ -10,6 +10,7 @@ import {
 import { applyRateLimit, buildRateLimitKey } from "@/lib/rate-limit";
 import { getDisplayProductName } from "@/lib/tools";
 import { licenseValidateSchema } from "@/lib/validations/license";
+import { createLicenseToken } from "@/lib/license-token";
 
 const LICENSE_VALIDATE_RATE_LIMIT = {
   windowMs: 10 * 60 * 1000,
@@ -148,6 +149,15 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    const productName = getDisplayProductName(record.toolSlug, record.productName);
+    const signedLicense = createLicenseToken({
+      licenseKey: updatedLicense.key,
+      toolSlug: record.toolSlug,
+      orderId: record.orderId,
+      productName,
+      deviceId: parsed.data.deviceId,
+    });
+
     return NextResponse.json(
       {
         valid: true,
@@ -158,9 +168,12 @@ export async function POST(request: NextRequest) {
           tier: "premium",
           orderId: record.orderId,
           toolSlug: record.toolSlug,
-          productName: getDisplayProductName(record.toolSlug, record.productName),
+          productName,
           email: record.customerEmail,
           boundDevice: updatedLicense.boundDevice,
+          licenseToken: signedLicense?.token ?? null,
+          tokenExpiresAt: signedLicense?.expiresAt ?? null,
+          features: signedLicense?.features ?? ["premium"],
         },
       },
       {

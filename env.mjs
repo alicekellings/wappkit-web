@@ -46,6 +46,7 @@ export const env = createEnv({
     RESEND_API_KEY: optionalString,
     EMAIL_FROM: optionalString,
     INTERNAL_ADMIN_TOKEN: optionalString,
+    LICENSE_TOKEN_PRIVATE_KEY: optionalString,
     WAPPKIT_APP_SETUP_DOWNLOAD_URL: optionalString,
     WAPPKIT_APP_SETUP_RELEASE_URL: optionalString,
     WAPPKIT_APP_SETUP_CHECKSUM_URL: optionalString,
@@ -65,6 +66,7 @@ export const env = createEnv({
     RESEND_API_KEY: process.env.RESEND_API_KEY,
     EMAIL_FROM: process.env.EMAIL_FROM,
     INTERNAL_ADMIN_TOKEN: process.env.INTERNAL_ADMIN_TOKEN,
+    LICENSE_TOKEN_PRIVATE_KEY: process.env.LICENSE_TOKEN_PRIVATE_KEY,
     WAPPKIT_APP_SETUP_DOWNLOAD_URL:
       process.env.WAPPKIT_APP_SETUP_DOWNLOAD_URL,
     WAPPKIT_APP_SETUP_RELEASE_URL: process.env.WAPPKIT_APP_SETUP_RELEASE_URL,
