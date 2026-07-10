@@ -1,6 +1,6 @@
 import { env } from "@/env.mjs";
 
-const version = "0.1.2";
+const version = "0.1.3";
 const appUrl = env.NEXT_PUBLIC_APP_URL;
 const fileName = `AI-Ecommerce-Visual-Studio-Setup-${version}.exe`;
 const githubReleaseTag = `ai-ecom-visual-studio-v${version}`;
@@ -10,7 +10,7 @@ const defaultReleaseUrl = `${githubReleaseBase}/tag/${githubReleaseTag}`;
 const defaultHostedInstallerUrl = `${githubReleaseBase}/download/${githubReleaseTag}/${fileName}`;
 const defaultChecksumUrl = `${defaultHostedInstallerUrl}.sha256`;
 const defaultSha256 =
-  "89c1dc997ff63733adf00b4251db6a4e5c945ce0988a66bfe5a11c24cc435bb0";
+  "1700d58fac3d8d6f17ac35cd6e621047a50c0b20757addae39d12f3ff36c4b0a";
 
 function getVersionMatchedUrl(value: string | undefined, fallback: string) {
   if (!value) {
@@ -39,7 +39,7 @@ export const aiEcomVisualStudioRelease = {
   releasedAt: "2026-07-10",
   minSupportedVersion: "0.1.0",
   fileName,
-  fileSizeBytes: 80310452,
+  fileSizeBytes: 80320418,
   fileSizeLabel: "76.59 MB installer",
   sha256:
     env.AI_ECOM_VISUAL_STUDIO_SHA256?.includes(defaultSha256)
@@ -50,8 +50,8 @@ export const aiEcomVisualStudioRelease = {
   directDownloadUrl: `${appUrl}/api/desktop/ai-ecom-visual-studio/download`,
   checksumUrl,
   changelog: [
-    "Adds signed desktop license tokens so Pro unlocks are verified by the Wappkit server instead of local settings alone.",
-    "Keeps Free mode available for single-image background removal and transparent PNG export.",
-    "Pro continues to unlock batch processing, background replacement, e-commerce/social exports, JPEG output, enhancement, and Smart Product Optimize.",
+    "Improves license activation feedback with a clearer Pro active state and customer-friendly status text.",
+    "Moves save and export work to background threads so large batch exports keep the interface responsive.",
+    "Keeps Free mode available for single-image background removal, while Pro unlocks batch processing, background replacement, e-commerce/social exports, JPEG output, enhancement, and Smart Product Optimize.",
   ],
 } as const;
