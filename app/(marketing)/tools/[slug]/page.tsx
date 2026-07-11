@@ -15,6 +15,7 @@ import {
 import { getToolBySlug, tools } from "@/lib/tools";
 import { constructMetadata } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { TrackedDownloadLink } from "@/components/analytics/tracked-download-link";
 import { CheckoutButton } from "@/components/forms/checkout-button";
 
 export async function generateStaticParams() {
@@ -87,9 +88,9 @@ function getToolMarketingContent(
       heroDescription:
         "AI E-commerce Visual Studio helps sellers remove backgrounds, compose product shots on clean scenes, enhance output, clean metadata, and export marketplace or social sizes from a Windows desktop app.",
       trustPoints: [
-        "Built for product photos and catalog batches",
-        "Amazon, Shopify, and social export presets",
-        "License activation fits the existing Wappkit checkout flow",
+        "Start free with a usable single-image workflow",
+        "Use batch tools only when catalog work needs them",
+        "Export original, marketplace, and social sizes in one desktop app",
       ],
       stats: [
         {
@@ -154,26 +155,26 @@ function getToolMarketingContent(
       ],
       assurances: [
         {
-          title: "Quality-first desktop workflow",
+          title: "Local-first image workflow",
           description:
-            "The tool is positioned for e-commerce users who need repeatable results and local control over product images.",
+            "Core image editing runs on the Windows PC. Wappkit is used for license validation, recovery, and update checks rather than routing product photos through a web editor.",
         },
         {
-          title: "AI background generation can stay optional",
+          title: "Controls that stay practical",
           description:
-            "Future AI background creation can be sold through separate API credits without mixing it into the base license.",
+            "Choose a clean color or a background image, then adjust product placement and scale before exporting. The goal is a repeatable listing workflow, not a decorative template editor.",
         },
         {
-          title: "Checkout and recovery stay on Wappkit",
+          title: "Review before publishing",
           description:
-            "Customers can buy, retrieve a lost license, and read activation guidance from the same domain.",
+            "Export presets speed up common output sizes, but marketplace image policies can change. Review the finished image against the current listing requirements before publishing.",
         },
       ],
       faq: [
         {
-          question: "Is this for marketplace product images or social posts?",
+          question: "What can I do before buying Pro?",
           answer:
-            "Both. The core workflow targets e-commerce product cleanup, while preset exports also create social-ready image sizes.",
+            "The free version includes single-image background removal, previewing, transparent PNG output, and current-size result saving. Use it on a real listing image before deciding whether batch and export workflows are worth unlocking.",
         },
         {
           question: "Does it support batch processing?",
@@ -181,14 +182,19 @@ function getToolMarketingContent(
             "Yes. The desktop app is designed for batch background removal and batch background replacement when users need repeated catalog work.",
         },
         {
-          question: "Can customers remove private image metadata?",
+          question: "Are my product photos uploaded to a web editor?",
           answer:
-            "Yes. Metadata cleanup is part of the output options and is intended to reduce privacy and AI-generation trace leakage in exported files.",
+            "Core image processing happens in the desktop app on the Windows PC. Internet access is used for optional license activation, license recovery, and update checks.",
         },
         {
-          question: "Will AI-generated backgrounds be included?",
+          question: "Can I use the export presets for Amazon or Shopify?",
           answer:
-            "The base product can ship first. AI background generation is planned as a later optional feature that can use separate API tokens or credits.",
+            "Yes. The presets create common working sizes for marketplace and social workflows. They do not replace the seller's final review of each platform's current image rules.",
+        },
+        {
+          question: "Where are results saved?",
+          answer:
+            "The app keeps its working results in a local temporary workspace until you choose Save Result or Export All, so source folders do not get mixed with unfinished files by default.",
         },
       ],
       workspacePrimaryLabel: "Product cleanup",
@@ -200,9 +206,9 @@ function getToolMarketingContent(
       freeSectionTitle: "Start with useful product image cleanup",
       proSectionTitle: "Unlock batch and marketplace output workflows",
       finalCtaTitle:
-        "Launch the image studio under Wappkit first, then add AI background credits when the base workflow is solid.",
+        "Start with one product image. Unlock batch output when it saves real time.",
       finalCtaDescription:
-        "This keeps the product simple for sellers today while leaving a clean upgrade path for AI background generation, prompt optimization, and API token sales later.",
+        "Download the Windows app, test the free cleanup workflow on a real listing photo, and move to Pro only when batch processing, background replacement, enhancement, or export presets become useful.",
     };
   }
 
@@ -623,12 +629,24 @@ export default function ToolDetailPage({
                     </Button>
                   </Link>
                 )}
-                <Link href={tool.downloadHref}>
-                  <Button rounded="full" size="lg" variant="outline">
+                {tool.slug === "ai-ecom-visual-studio" ? (
+                  <TrackedDownloadLink
+                    href={tool.downloadHref}
+                    toolSlug={tool.slug}
+                    size="lg"
+                    variant="outline"
+                  >
                     <Download className="mr-2 size-4" />
                     {tool.downloadLabel}
-                  </Button>
-                </Link>
+                  </TrackedDownloadLink>
+                ) : (
+                  <Link href={tool.downloadHref}>
+                    <Button rounded="full" size="lg" variant="outline">
+                      <Download className="mr-2 size-4" />
+                      {tool.downloadLabel}
+                    </Button>
+                  </Link>
+                )}
                 <Link href={tool.docsHref}>
                   <Button rounded="full" size="lg" variant="ghost">
                     <BookOpen className="mr-2 size-4" />
@@ -973,6 +991,17 @@ export default function ToolDetailPage({
                   <Link href="/tools/wappkit-app-setup/support" className="block">
                     <div className="flex items-center justify-between rounded-2xl border bg-background px-4 py-3 text-sm font-medium text-foreground transition hover:border-orange-300">
                       <span>Open App Setup support page</span>
+                      <ArrowRight className="size-4" />
+                    </div>
+                  </Link>
+                ) : null}
+                {tool.slug === "ai-ecom-visual-studio" ? (
+                  <Link
+                    href="/tools/ai-ecom-visual-studio/support"
+                    className="block"
+                  >
+                    <div className="flex items-center justify-between rounded-2xl border bg-background px-4 py-3 text-sm font-medium text-foreground transition hover:border-orange-300">
+                      <span>Open Image Studio support</span>
                       <ArrowRight className="size-4" />
                     </div>
                   </Link>

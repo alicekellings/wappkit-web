@@ -14,6 +14,7 @@ import {
 } from "@/lib/licenses";
 import { constructMetadata } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { PurchaseCompleteTracker } from "@/components/analytics/purchase-complete-tracker";
 import {
   MarketingCard,
   MarketingHero,
@@ -124,6 +125,12 @@ export default async function CheckoutSuccessPage({
 
   return (
     <MarketingPageShell containerClassName="max-w-5xl py-16 md:py-20">
+      {licenseKeys.length > 0 && checkoutId ? (
+        <PurchaseCompleteTracker
+          checkoutId={checkoutId}
+          toolSlug={toolSlug ?? "unknown"}
+        />
+      ) : null}
       <MarketingHero
         eyebrow="Checkout Success"
         title="Your payment has been completed."

@@ -48,7 +48,7 @@ export const tools: Tool[] = [
     platform: "Windows Desktop",
     downloadLabel: "Download Image Studio",
     buyLabel: "Unlock Pro",
-    downloadHref: "/download#ai-ecom-visual-studio",
+    downloadHref: "/api/desktop/ai-ecom-visual-studio/download",
     buyHref: "/license",
     docsHref: "/docs/checkout-and-activation",
     availabilityNote:

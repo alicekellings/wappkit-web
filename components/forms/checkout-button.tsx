@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { track } from "@vercel/analytics/react";
 
 import { Button, type ButtonProps } from "@/components/ui/button";
 
@@ -28,6 +29,14 @@ export function CheckoutButton({
     try {
       setIsPending(true);
       setError(null);
+      const campaignSource =
+        new URLSearchParams(window.location.search).get("utm_source") ??
+        "direct";
+
+      track("checkout_clicked", {
+        tool: toolSlug,
+        campaign_source: campaignSource,
+      });
 
       const response = await fetch("/api/checkout", {
         method: "POST",
@@ -48,6 +57,10 @@ export function CheckoutButton({
         throw new Error(payload.error ?? "Failed to create checkout.");
       }
 
+      track("checkout_redirected", {
+        tool: toolSlug,
+        campaign_source: campaignSource,
+      });
       window.location.href = payload.checkoutUrl;
     } catch (caughtError) {
       setError(
