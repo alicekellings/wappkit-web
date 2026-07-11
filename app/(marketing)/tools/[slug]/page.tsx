@@ -88,8 +88,8 @@ function getToolMarketingContent(
       heroDescription:
         "AI E-commerce Visual Studio helps sellers remove backgrounds, compose product shots on clean scenes, enhance output, clean metadata, and export marketplace or social sizes from a Windows desktop app.",
       trustPoints: [
-        "Start free with a usable single-image workflow",
-        "Use batch tools only when catalog work needs them",
+        "Start free with single-image cleanup and 100 batch removals",
+        "Unlock unlimited batch work when catalog volume grows",
         "Export original, marketplace, and social sizes in one desktop app",
       ],
       stats: [
@@ -125,12 +125,13 @@ function getToolMarketingContent(
       ],
       freeFeatures: [
         "Single-image background removal and preview",
+        "100 free batch background removals",
         "Transparent PNG and current-size result saving",
         "Clear EXIF / metadata when saving a finished image",
         "Temporary output folder for cleaner file handling",
       ],
       proFeatures: [
-        "Batch background removal for product queues",
+        "Unlimited batch background removal for product queues",
         "Batch background replacement with shared scene settings",
         "Marketplace and social export presets",
         "Optional image enhancement and Smart Product Optimize",
@@ -174,12 +175,12 @@ function getToolMarketingContent(
         {
           question: "What can I do before buying Pro?",
           answer:
-            "The free version includes single-image background removal, previewing, transparent PNG output, and current-size result saving. Use it on a real listing image before deciding whether batch and export workflows are worth unlocking.",
+            "Free mode includes single-image background removal, previewing, transparent PNG output, current-size result saving, and 100 batch background removals. Use it on real listing images before deciding whether unlimited batch workflows and Pro tools are worth unlocking.",
         },
         {
           question: "Does it support batch processing?",
           answer:
-            "Yes. The desktop app is designed for batch background removal and batch background replacement when users need repeated catalog work.",
+            "Yes. Free mode includes 100 batch background removals. Pro unlocks unlimited batch background removal and batch background replacement for repeated catalog work.",
         },
         {
           question: "Are my product photos uploaded to a web editor?",
@@ -204,11 +205,11 @@ function getToolMarketingContent(
       workspaceSecondaryDescription:
         "Apply shared background and export settings across product queues.",
       freeSectionTitle: "Start with useful product image cleanup",
-      proSectionTitle: "Unlock batch and marketplace output workflows",
+      proSectionTitle: "Unlock unlimited batch and marketplace output workflows",
       finalCtaTitle:
-        "Start with one product image. Unlock batch output when it saves real time.",
+        "Start with a real product image and 100 free batch removals.",
       finalCtaDescription:
-        "Download the Windows app, test the free cleanup workflow on a real listing photo, and move to Pro only when batch processing, background replacement, enhancement, or export presets become useful.",
+        "Download the Windows app, test the free cleanup workflow on real listing photos, and move to Pro only when unlimited batch processing, background replacement, enhancement, or export presets become useful.",
     };
   }
 

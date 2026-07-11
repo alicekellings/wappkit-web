@@ -19,13 +19,14 @@ export const metadata = constructMetadata({
 
 const freeFeatures = [
   "Single-image background removal and preview",
+  "100 free batch background removals",
   "Transparent PNG output and current-size result saving",
   "Optional EXIF / metadata cleanup when saving",
   "A local temporary workspace before final export",
 ];
 
 const proFeatures = [
-  "Batch background removal and background replacement",
+  "Unlimited batch background removal and background replacement",
   "Background position and scale controls",
   "Marketplace and social export presets",
   "Image enhancement and Smart Product Optimize",
@@ -40,7 +41,7 @@ const licensePolicy = [
 
 const commonTopics = [
   "Download and install the Windows application",
-  "Run a free single-image background removal test",
+  "Run a free background removal test, including the 100-image batch allowance",
   "Export a product image at its original size",
   "Choose a background and adjust the product position",
   "Activate, retrieve, or move a Pro license",
