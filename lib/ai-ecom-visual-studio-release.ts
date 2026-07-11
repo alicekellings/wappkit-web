@@ -10,7 +10,7 @@ const defaultReleaseUrl = `${githubReleaseBase}/tag/${githubReleaseTag}`;
 const defaultHostedInstallerUrl = `${githubReleaseBase}/download/${githubReleaseTag}/${fileName}`;
 const defaultChecksumUrl = `${defaultHostedInstallerUrl}.sha256`;
 const defaultSha256 =
-  "842bbfc4080314db95924a65ba289a5bad3ee082c40f6d5e20c324dc1fd3e669";
+  "406e5f0025085e1247fe931843827284b7906f67827761ebb29c5011ddb80e05";
 
 function getVersionMatchedUrl(value: string | undefined, fallback: string) {
   if (!value) {
@@ -39,7 +39,7 @@ export const aiEcomVisualStudioRelease = {
   releasedAt: "2026-07-11",
   minSupportedVersion: "0.1.0",
   fileName,
-  fileSizeBytes: 80330941,
+  fileSizeBytes: 80329118,
   fileSizeLabel: "76.61 MB installer",
   sha256:
     env.AI_ECOM_VISUAL_STUDIO_SHA256?.includes(defaultSha256)
