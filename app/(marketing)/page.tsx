@@ -3,7 +3,6 @@ import {
   ArrowRight,
   BookOpen,
   Download,
-  ExternalLink,
   KeyRound,
 } from "lucide-react";
 
@@ -21,7 +20,7 @@ import {
 export const metadata = constructMetadata({
   title: "Wappkit | Multi-Tool Product Site for Focused Utilities",
   description:
-    "Discover Wappkit tools and find the Wappkit API or Wappkit AI service at api.wappkit.com. Browse product pages, guides, and license activation paths.",
+    "Discover Wappkit tools, product pages, guides, downloads, and license activation paths.",
 });
 
 export default function IndexPage() {
@@ -40,18 +39,8 @@ export default function IndexPage() {
         ]}
         actions={
           <>
-            <Link
-              href="https://api.wappkit.com"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <Button size="lg" rounded="full">
-                Open Wappkit API
-                <ExternalLink className="ml-2 size-4" />
-              </Button>
-            </Link>
             <Link href="/tools">
-              <Button size="lg" variant="outline" rounded="full">
+              <Button size="lg" rounded="full">
                 Browse Tools
               </Button>
             </Link>

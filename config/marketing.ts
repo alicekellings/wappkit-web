@@ -15,11 +15,6 @@ export const marketingConfig: MarketingConfig = {
       href: "/docs",
     },
     {
-      title: "API",
-      href: "https://api.wappkit.com",
-      external: true,
-    },
-    {
       title: "License",
       href: "/license",
     },

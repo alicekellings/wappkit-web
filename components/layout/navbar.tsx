@@ -119,22 +119,6 @@ export function NavBar({ scroll = false }: NavBarProps) {
               <Icons.arrowRight className="size-4" />
             </Button>
           </Link>
-          <Link
-            href="https://api.wappkit.com"
-            target="_blank"
-            rel="noreferrer"
-            className="hidden md:block"
-          >
-            <Button
-              className="hidden gap-2 px-5 md:flex"
-              variant="outline"
-              size="sm"
-              rounded="full"
-            >
-              <span>Open API</span>
-              <Icons.arrowRight className="size-4" />
-            </Button>
-          </Link>
         </div>
       </MaxWidthWrapper>
     </header>
