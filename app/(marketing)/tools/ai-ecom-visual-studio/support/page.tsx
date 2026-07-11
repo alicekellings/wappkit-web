@@ -42,6 +42,7 @@ const licensePolicy = [
 const commonTopics = [
   "Download and install the Windows application",
   "Run a free background removal test, including the 100-image batch allowance",
+  "Keep the app online for the first local AI model download (about 170 MB)",
   "Export a product image at its original size",
   "Choose a background and adjust the product position",
   "Activate, retrieve, or move a Pro license",
@@ -180,6 +181,16 @@ export default function AiEcomVisualStudioSupportPage() {
               </div>
             </Link>
           </div>
+        </MarketingCard>
+      </section>
+
+      <section className="mt-10">
+        <MarketingCard tone="soft">
+          <MarketingSectionIntro
+            eyebrow="First background removal"
+            title="Let the local model finish downloading once."
+            description="To keep the Windows installer smaller, the first background removal downloads and verifies a local AI model of about 170 MB. Keep the app online until that first download finishes. Later removals reuse the local model and do not upload product photos to a web editor."
+          />
         </MarketingCard>
       </section>
 
