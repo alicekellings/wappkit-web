@@ -77,6 +77,7 @@ export async function POST(request: NextRequest) {
         licenseKey: updatedLicense?.key ?? parsed.data.licenseKey,
         status: updatedLicense?.status ?? "inactive",
         boundDevice: updatedLicense?.boundDevice ?? null,
+        lastDeviceTransferAt: updatedLicense?.lastDeviceTransferAt ?? null,
       },
     });
   } catch (error) {

@@ -132,7 +132,10 @@ export async function POST(request: NextRequest) {
         productName: getDisplayProductName(record.toolSlug, record.productName),
         toolSlug: record.toolSlug,
         customerEmail: record.customerEmail,
-        licenseKeys: record.licenseKeys,
+        licenseKeys: record.licenseKeys.map((license) => ({
+          ...license,
+          lastDeviceTransferAt: license.lastDeviceTransferAt ?? null,
+        })),
         emailDeliveryAvailable: canSendLicenseEmail(),
         singleDeviceLimit: 1,
       },

@@ -110,7 +110,8 @@ export async function POST(request: NextRequest) {
           code: "DEVICE_ALREADY_BOUND",
           message:
             `This license is already linked to "${boundDevice.deviceName}". ` +
-            "Remove that device from Wappkit License Retrieval before activating a new computer.",
+            "Move the license from Wappkit License Retrieval before activating a new computer. " +
+            "Device moves are available once every 30 days.",
           data: {
             status: license.status,
             toolSlug: record.toolSlug,
@@ -118,6 +119,27 @@ export async function POST(request: NextRequest) {
           },
         },
         { status: 409 },
+      );
+    }
+
+    const productName = getDisplayProductName(record.toolSlug, record.productName);
+    const signedLicense = createLicenseToken({
+      licenseKey: license.key,
+      toolSlug: record.toolSlug,
+      orderId: record.orderId,
+      productName,
+      deviceId: parsed.data.deviceId,
+    });
+
+    if (!signedLicense) {
+      return NextResponse.json(
+        {
+          valid: false,
+          code: "LICENSE_SIGNING_UNAVAILABLE",
+          message:
+            "License activation is temporarily unavailable. Please try again later.",
+        },
+        { status: 503 },
       );
     }
 
@@ -149,15 +171,6 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const productName = getDisplayProductName(record.toolSlug, record.productName);
-    const signedLicense = createLicenseToken({
-      licenseKey: updatedLicense.key,
-      toolSlug: record.toolSlug,
-      orderId: record.orderId,
-      productName,
-      deviceId: parsed.data.deviceId,
-    });
-
     return NextResponse.json(
       {
         valid: true,
@@ -171,9 +184,9 @@ export async function POST(request: NextRequest) {
           productName,
           email: record.customerEmail,
           boundDevice: updatedLicense.boundDevice,
-          licenseToken: signedLicense?.token ?? null,
-          tokenExpiresAt: signedLicense?.expiresAt ?? null,
-          features: signedLicense?.features ?? ["premium"],
+          licenseToken: signedLicense.token,
+          tokenExpiresAt: signedLicense.expiresAt,
+          features: signedLicense.features,
         },
       },
       {

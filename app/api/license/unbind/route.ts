@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getRequestIpFromHeaders } from "@/lib/creem";
 import {
   findLicenseKeyRecord,
+  getDeviceTransferEligibility,
   getLicenseStore,
   unbindDeviceFromLicenseKey,
 } from "@/lib/licenses";
@@ -78,6 +79,36 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    if (!license.boundDevice) {
+      return NextResponse.json({
+        success: true,
+        message: "This license is already ready to activate on a computer.",
+        data: {
+          orderId: record.orderId,
+          licenseKey: license.key,
+          status: license.status === "disabled" ? "disabled" : "inactive",
+          boundDevice: null,
+          lastDeviceTransferAt: license.lastDeviceTransferAt ?? null,
+        },
+      });
+    }
+
+    const transfer = getDeviceTransferEligibility(license);
+    if (!transfer.allowed) {
+      return NextResponse.json(
+        {
+          success: false,
+          code: "DEVICE_TRANSFER_COOLDOWN",
+          message:
+            "This license can be moved once every 30 days. Try again after the date shown below.",
+          data: {
+            nextTransferAt: transfer.nextTransferAt,
+          },
+        },
+        { status: 409 },
+      );
+    }
+
     const updatedRecord = unbindDeviceFromLicenseKey(record, parsed.data.licenseKey);
     if (!updatedRecord) {
       return NextResponse.json(
@@ -91,12 +122,14 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({
       success: true,
-      message: "The current device binding has been removed. You can now activate another computer.",
+      message:
+        "The license is ready to move. Open the app on the new computer and activate it with this same key.",
       data: {
         orderId: updatedRecord.orderId,
         licenseKey: updatedLicense?.key ?? parsed.data.licenseKey,
         status: updatedLicense?.status ?? "inactive",
         boundDevice: updatedLicense?.boundDevice ?? null,
+        lastDeviceTransferAt: updatedLicense?.lastDeviceTransferAt ?? null,
       },
     });
   } catch (error) {

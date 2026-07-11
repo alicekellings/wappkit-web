@@ -15,6 +15,7 @@ export type LicenseKeyRecord = {
   key: string;
   status: LicenseStatus;
   boundDevice?: LicenseBoundDevice | null;
+  lastDeviceTransferAt?: string | null;
 };
 
 export type LicenseRecord = {
@@ -38,6 +39,7 @@ export type LicenseListEntry = {
   key: string;
   status: LicenseStatus;
   boundDevice?: LicenseBoundDevice | null;
+  lastDeviceTransferAt?: string | null;
   checkoutId: string;
   requestId: string | null;
   orderId: string;
@@ -48,6 +50,30 @@ export type LicenseListEntry = {
   createdAt: string;
   updatedAt: string;
 };
+
+export const DEVICE_TRANSFER_COOLDOWN_MS = 30 * 24 * 60 * 60 * 1000;
+
+export function getDeviceTransferEligibility(
+  license: LicenseKeyRecord,
+  now = Date.now(),
+) {
+  const lastTransferAt = license.lastDeviceTransferAt
+    ? Date.parse(license.lastDeviceTransferAt)
+    : Number.NaN;
+
+  if (!Number.isFinite(lastTransferAt)) {
+    return {
+      allowed: true,
+      nextTransferAt: null,
+    };
+  }
+
+  const nextTransferAtMs = lastTransferAt + DEVICE_TRANSFER_COOLDOWN_MS;
+  return {
+    allowed: now >= nextTransferAtMs,
+    nextTransferAt: new Date(nextTransferAtMs).toISOString(),
+  };
+}
 
 export type CreemCheckoutPayload = {
   id: string;
@@ -205,6 +231,7 @@ export function createLicenseRecordFromCreemCheckout(
         key: String(item.key),
         status: normalizeLicenseStatus(item.status),
         boundDevice: null,
+        lastDeviceTransferAt: null,
       })),
     createdAt: now,
     updatedAt: now,
@@ -223,6 +250,7 @@ export function flattenLicenseRecordEntries(record: LicenseRecord): LicenseListE
     key: license.key,
     status: license.status,
     boundDevice: license.boundDevice ?? null,
+    lastDeviceTransferAt: license.lastDeviceTransferAt ?? null,
     checkoutId: record.checkoutId,
     requestId: record.requestId,
     orderId: record.orderId,
@@ -281,6 +309,9 @@ export function bindDeviceToLicenseKey(
 export function unbindDeviceFromLicenseKey(
   record: LicenseRecord,
   licenseKey: string,
+  options: {
+    recordDeviceTransfer?: boolean;
+  } = {},
 ) {
   const normalizedLicenseKey = normalizeLicenseKey(licenseKey);
   const now = new Date().toISOString();
@@ -296,6 +327,10 @@ export function unbindDeviceFromLicenseKey(
       ...item,
       status: item.status === "disabled" ? "disabled" : "inactive",
       boundDevice: null,
+      lastDeviceTransferAt:
+        options.recordDeviceTransfer === false
+          ? item.lastDeviceTransferAt ?? null
+          : now,
     };
   });
 

@@ -34,7 +34,7 @@ export const tools: Tool[] = [
     shortDescription:
       "Start free with single-image background removal, then unlock batch processing, background replacement, enhancement, and marketplace-ready exports with a Pro license key.",
     longDescription:
-      "AI E-commerce Visual Studio is a Windows desktop image tool for sellers and operators who need clean product photos without sending every file through a browser. The free mode keeps single-image background removal and transparent PNG saving available, while Pro unlocks custom background composition, batch processing, image enhancement, metadata cleanup, and export presets for e-commerce and social media.",
+      "AI E-commerce Visual Studio is a Windows desktop image tool for sellers and operators who need clean product photos without sending every file through a browser. The free mode keeps single-image background removal, transparent PNG saving, and metadata cleanup available, while Pro unlocks custom background composition, unlimited batch processing, image enhancement, and export presets for e-commerce and social media.",
     features: [
       "Free single-image background removal with transparent PNG output",
       "Pro batch background removal and batch background replacement",

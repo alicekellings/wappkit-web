@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getRequestIpFromHeaders } from "@/lib/creem";
 import {
   findLicenseKeyRecord,
+  getDeviceTransferEligibility,
   getLicenseStore,
   normalizeDeviceId,
   unbindDeviceFromLicenseKey,
@@ -100,6 +101,22 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    const transfer = getDeviceTransferEligibility(license);
+    if (!transfer.allowed) {
+      return NextResponse.json(
+        {
+          success: false,
+          code: "DEVICE_TRANSFER_COOLDOWN",
+          message:
+            "This license can be moved once every 30 days. Use Wappkit License Retrieval after the cooldown date.",
+          data: {
+            nextTransferAt: transfer.nextTransferAt,
+          },
+        },
+        { status: 409 },
+      );
+    }
+
     const updatedRecord = unbindDeviceFromLicenseKey(record, parsed.data.licenseKey);
     if (!updatedRecord) {
       return NextResponse.json(
@@ -113,11 +130,13 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({
       success: true,
-      message: "The license binding was removed from this device.",
+      message:
+        "The license is ready to move. Activate the new computer with the same key.",
       data: {
         licenseKey: updatedLicense?.key ?? parsed.data.licenseKey,
         status: updatedLicense?.status ?? "inactive",
         boundDevice: updatedLicense?.boundDevice ?? null,
+        lastDeviceTransferAt: updatedLicense?.lastDeviceTransferAt ?? null,
       },
     });
   } catch (error) {

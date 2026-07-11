@@ -11,6 +11,13 @@ import {
   type CreemCheckoutPayload,
 } from "../lib/licenses";
 
+const TEST_PRIVATE_KEY =
+  "-----BEGIN PRIVATE KEY-----\\n" +
+  "MC4CAQAwBQYDK2VwBCIEIK6v8VvlBPOfCea4nqYXeiWAbywbtvFzQzXqRMHLDMqR\\n" +
+  "-----END PRIVATE KEY-----";
+
+process.env.LICENSE_TOKEN_PRIVATE_KEY = TEST_PRIVATE_KEY;
+
 const checkoutPayload: CreemCheckoutPayload = {
   id: "chk_device_123",
   request_id: "req_device_123",
@@ -166,7 +173,7 @@ test("license deactivate route removes the current device binding", async () => 
   assert.equal(payload.data.boundDevice, null);
 });
 
-test("license unbind route clears the active device by order lookup", async () => {
+test("license move clears the active device, activates the new device, and enforces cooldown", async () => {
   const suffix = crypto.randomUUID();
   const store = getLicenseStore();
   const record = createLicenseRecordFromCreemCheckout({
@@ -227,4 +234,101 @@ test("license unbind route clears the active device by order lookup", async () =
   assert.equal(payload.success, true);
   assert.equal(payload.data.status, "inactive");
   assert.equal(payload.data.boundDevice, null);
+  assert.ok(payload.data.lastDeviceTransferAt);
+
+  const secondActivationResponse = await validatePOST(
+    new Request("http://localhost/api/license/validate", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        "x-forwarded-for": "198.51.100.36",
+      },
+      body: JSON.stringify({
+        licenseKey: record.licenseKeys[0]?.key,
+        deviceId: "desktop_beta",
+        deviceName: "Beta Desktop",
+        toolSlug: "reddit-toolbox",
+      }),
+    }) as never,
+  );
+  assert.equal(secondActivationResponse.status, 200);
+
+  const cooldownResponse = await unbindPOST(
+    new Request("http://localhost/api/license/unbind", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        "x-forwarded-for": "198.51.100.37",
+      },
+      body: JSON.stringify({
+        orderId: record.orderId,
+        email: record.customerEmail,
+        licenseKey: record.licenseKeys[0]?.key,
+      }),
+    }) as never,
+  );
+  const cooldownPayload = await cooldownResponse.json();
+
+  assert.equal(cooldownResponse.status, 409);
+  assert.equal(cooldownPayload.success, false);
+  assert.equal(cooldownPayload.code, "DEVICE_TRANSFER_COOLDOWN");
+  assert.ok(cooldownPayload.data.nextTransferAt);
+});
+
+test("license validation does not bind a device when token signing is unavailable", async () => {
+  const suffix = crypto.randomUUID();
+  const store = getLicenseStore();
+  const record = createLicenseRecordFromCreemCheckout({
+    ...checkoutPayload,
+    id: `chk_signing_${suffix}`,
+    request_id: `req_signing_${suffix}`,
+    order: {
+      id: `ord_signing_${suffix}`,
+      customer: {
+        id: `cus_signing_${suffix}`,
+        email: "device@example.com",
+        name: "Device User",
+      },
+    },
+    license_keys: [
+      {
+        id: `lic_signing_${suffix}`,
+        key: `WAAP-SIGNING-${suffix}`,
+        status: "inactive",
+      },
+    ],
+  });
+  await store.save(record);
+
+  const savedPrivateKey = process.env.LICENSE_TOKEN_PRIVATE_KEY;
+  delete process.env.LICENSE_TOKEN_PRIVATE_KEY;
+
+  try {
+    const response = await validatePOST(
+      new Request("http://localhost/api/license/validate", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          "x-forwarded-for": "198.51.100.38",
+        },
+        body: JSON.stringify({
+          licenseKey: record.licenseKeys[0]?.key,
+          deviceId: "desktop_signing",
+          deviceName: "Signing Desktop",
+          toolSlug: "reddit-toolbox",
+        }),
+      }) as never,
+    );
+    const payload = await response.json();
+
+    assert.equal(response.status, 503);
+    assert.equal(payload.valid, false);
+    assert.equal(payload.code, "LICENSE_SIGNING_UNAVAILABLE");
+
+    const savedRecord = await store.getByOrderId(record.orderId);
+    assert.equal(savedRecord?.licenseKeys[0]?.boundDevice, null);
+    assert.equal(savedRecord?.licenseKeys[0]?.status, "inactive");
+  } finally {
+    process.env.LICENSE_TOKEN_PRIVATE_KEY = savedPrivateKey;
+  }
 });

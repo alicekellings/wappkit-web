@@ -15,6 +15,11 @@ import {
   type CreemCheckoutPayload,
 } from "../lib/licenses";
 
+process.env.LICENSE_TOKEN_PRIVATE_KEY =
+  "-----BEGIN PRIVATE KEY-----\\n" +
+  "MC4CAQAwBQYDK2VwBCIEIK6v8VvlBPOfCea4nqYXeiWAbywbtvFzQzXqRMHLDMqR\\n" +
+  "-----END PRIVATE KEY-----";
+
 const checkoutPayload: CreemCheckoutPayload = {
   id: "chk_admin_123",
   request_id: "req_admin_123",

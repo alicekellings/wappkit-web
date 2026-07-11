@@ -8,6 +8,7 @@ import {
   createLicenseRecordFromCreemCheckout,
   createMemoryLicenseStore,
   findLicenseKeyRecord,
+  getDeviceTransferEligibility,
   getLicenseStore,
   normalizeLicenseEmail,
   normalizeLicenseKey,
@@ -134,6 +135,31 @@ test("unbindDeviceFromLicenseKey clears the device binding", () => {
   const license = findLicenseKeyRecord(unbound!, "WAAP-KEY-123");
   assert.equal(license?.status, "inactive");
   assert.equal(license?.boundDevice ?? null, null);
+  assert.ok(license?.lastDeviceTransferAt);
+});
+
+test("legacy licenses can move once before the 30-day cooldown starts", () => {
+  const record = createLicenseRecordFromCreemCheckout(checkoutPayload);
+  const license = findLicenseKeyRecord(record, "WAAP-KEY-123");
+
+  assert.ok(license);
+  assert.deepEqual(getDeviceTransferEligibility(license!), {
+    allowed: true,
+    nextTransferAt: null,
+  });
+
+  const transferAt = "2026-07-10T12:00:00.000Z";
+  const moved = {
+    ...license!,
+    lastDeviceTransferAt: transferAt,
+  };
+  const blocked = getDeviceTransferEligibility(
+    moved,
+    Date.parse("2026-07-11T12:00:00.000Z"),
+  );
+
+  assert.equal(blocked.allowed, false);
+  assert.equal(blocked.nextTransferAt, "2026-08-09T12:00:00.000Z");
 });
 
 test("memory license store lists saved records", async () => {

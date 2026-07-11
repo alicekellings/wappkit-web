@@ -12,7 +12,7 @@ import {
 export const metadata = constructMetadata({
   title: "Retrieve a License | Wappkit",
   description:
-    "Recover a Wappkit license using order details and the purchase email.",
+    "Recover a Wappkit license or move its one-device activation using order details and the purchase email.",
 });
 
 export default function LicenseRetrievePage() {
@@ -21,11 +21,11 @@ export default function LicenseRetrievePage() {
       <MarketingHero
         eyebrow="License Retrieval"
         title="Find your license with the same details used during checkout."
-        description="Enter the original order ID and purchase email to look up the license mirrored from Creem. Direct display is the primary recovery flow, and email resend can stay optional."
+        description="Enter the original order ID and purchase email to retrieve a key or move its one-device activation. Each license can be moved once every 30 days."
         badges={[
           { label: "Order ID", tone: "warm" },
           { label: "Purchase email", tone: "muted" },
-          { label: "Direct on-page retrieval" },
+          { label: "One-device move every 30 days" },
         ]}
         rightContent={
           <MarketingCard tone="dark">

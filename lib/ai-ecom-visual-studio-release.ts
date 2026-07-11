@@ -1,6 +1,6 @@
 import { env } from "@/env.mjs";
 
-const version = "0.1.5";
+const version = "0.1.7";
 const appUrl = env.NEXT_PUBLIC_APP_URL;
 const fileName = `AI-Ecommerce-Visual-Studio-Setup-${version}.exe`;
 const githubReleaseTag = `ai-ecom-visual-studio-v${version}`;
@@ -10,7 +10,7 @@ const defaultReleaseUrl = `${githubReleaseBase}/tag/${githubReleaseTag}`;
 const defaultHostedInstallerUrl = `${githubReleaseBase}/download/${githubReleaseTag}/${fileName}`;
 const defaultChecksumUrl = `${defaultHostedInstallerUrl}.sha256`;
 const defaultSha256 =
-  "56c7a939d0688d3709cdc13a2908688826f7e9ace518245e47f5c142be5123fa";
+  "842bbfc4080314db95924a65ba289a5bad3ee082c40f6d5e20c324dc1fd3e669";
 
 function getVersionMatchedUrl(value: string | undefined, fallback: string) {
   if (!value) {
@@ -36,11 +36,11 @@ const checksumUrl = getVersionMatchedUrl(
 export const aiEcomVisualStudioRelease = {
   toolSlug: "ai-ecom-visual-studio",
   version,
-  releasedAt: "2026-07-10",
+  releasedAt: "2026-07-11",
   minSupportedVersion: "0.1.0",
   fileName,
-  fileSizeBytes: 80324558,
-  fileSizeLabel: "76.60 MB installer",
+  fileSizeBytes: 80330941,
+  fileSizeLabel: "76.61 MB installer",
   sha256:
     env.AI_ECOM_VISUAL_STUDIO_SHA256?.includes(defaultSha256)
       ? env.AI_ECOM_VISUAL_STUDIO_SHA256
@@ -50,8 +50,8 @@ export const aiEcomVisualStudioRelease = {
   directDownloadUrl: `${appUrl}/api/desktop/ai-ecom-visual-studio/download`,
   checksumUrl,
   changelog: [
-    "Shows Free or Pro Activated clearly in the desktop title bar and app header after license changes.",
-    "Avoids accidental overwrites during multi-size and batch exports by generating unique output filenames.",
-    "Keeps the verified update download flow from 0.1.4 with progress, checksum verification, and automatic launch of the new version.",
+    "Adds one-device Pro licensing with a verified self-service move path and a 30-day transfer cooldown.",
+    "Refreshes signed Pro access at startup and every six hours without blocking image work.",
+    "Keeps Free batch background removal at 100 locally protected images and Pro batch processing unlimited.",
   ],
 } as const;

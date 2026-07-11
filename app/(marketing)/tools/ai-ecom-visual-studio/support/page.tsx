@@ -31,6 +31,13 @@ const proFeatures = [
   "Image enhancement and Smart Product Optimize",
 ];
 
+const licensePolicy = [
+  "One active computer per Pro license key",
+  "Move a license from the retrieval page using the order ID and purchase email",
+  "One self-service device move every 30 days",
+  "The old computer loses Pro access on its next license check",
+];
+
 const commonTopics = [
   "Download and install the Windows application",
   "Run a free single-image background removal test",
@@ -115,6 +122,21 @@ export default function AiEcomVisualStudioSupportPage() {
           <ul className="mt-6 space-y-3 text-sm leading-6 text-slate-200">
             {proFeatures.map((feature) => (
               <li key={feature}>{feature}</li>
+            ))}
+          </ul>
+        </MarketingCard>
+      </section>
+
+      <section className="mt-10">
+        <MarketingCard tone="soft">
+          <MarketingSectionIntro
+            eyebrow="Pro license policy"
+            title="One active computer, with a predictable move path."
+            description="Use License Retrieval to move a Pro key before activating a replacement computer. The desktop app refreshes its signed license regularly, so an old device returns to Free mode after its next validation."
+          />
+          <ul className="mt-6 space-y-3 text-sm leading-6 text-foreground">
+            {licensePolicy.map((item) => (
+              <li key={item}>{item}</li>
             ))}
           </ul>
         </MarketingCard>

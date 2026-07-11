@@ -54,6 +54,8 @@ test("createLicenseToken returns a verifiable Ed25519 signed desktop token", () 
   assert.equal(payload.licenseKeySha256, hashLicenseKey("WAAP-TOKEN-123"));
   assert.ok(payload.features.includes("batch"));
   assert.ok(payload.features.includes("background_replace"));
-  assert.ok(payload.exp > payload.iat);
+  const tokenLifetimeSeconds = payload.exp - payload.iat;
+  assert.ok(tokenLifetimeSeconds >= 24 * 60 * 60 - 1);
+  assert.ok(tokenLifetimeSeconds <= 24 * 60 * 60);
   assert.ok(signed.expiresAt);
 });

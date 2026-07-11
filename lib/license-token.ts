@@ -3,7 +3,7 @@ import crypto from "node:crypto";
 import { env } from "@/env.mjs";
 
 const TOKEN_PREFIX = "wlk1";
-const TOKEN_TTL_MS = 14 * 24 * 60 * 60 * 1000;
+const TOKEN_TTL_MS = 24 * 60 * 60 * 1000;
 
 export type LicenseTokenPayload = {
   iss: "wappkit";

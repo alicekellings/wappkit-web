@@ -23,6 +23,7 @@ type LicenseLookupResult = {
       boundAt: string;
       lastValidatedAt: string;
     } | null;
+    lastDeviceTransferAt?: string | null;
   }>;
   emailDeliveryAvailable: boolean;
 };
@@ -208,11 +209,18 @@ export function LicenseRetrievalForm() {
           licenseKey: string;
           status: string;
           boundDevice?: LicenseLookupResult["licenseKeys"][number]["boundDevice"];
+          lastDeviceTransferAt?: string | null;
+          nextTransferAt?: string | null;
         };
       };
 
       if (!response.ok || !payload.success || !payload.data) {
-        throw new Error(payload.message ?? "Failed to remove the current device binding.");
+        const cooldownDate = payload.data?.nextTransferAt
+          ? ` Next move: ${new Date(payload.data.nextTransferAt).toLocaleString()}.`
+          : "";
+        throw new Error(
+          `${payload.message ?? "Failed to move the license to a new device."}${cooldownDate}`,
+        );
       }
 
       setResult({
@@ -223,11 +231,12 @@ export function LicenseRetrievalForm() {
                 ...license,
                 status: payload.data.status,
                 boundDevice: payload.data.boundDevice ?? null,
+                lastDeviceTransferAt: payload.data.lastDeviceTransferAt ?? license.lastDeviceTransferAt ?? null,
               }
             : license,
         ),
       });
-      setEmailStatus(payload.message ?? "The device binding has been removed.");
+      setEmailStatus(payload.message ?? "The license is ready to move.");
     } catch (caughtError) {
       setError(
         caughtError instanceof Error
@@ -288,7 +297,7 @@ export function LicenseRetrievalForm() {
               is linked to <span className="font-medium text-foreground">{maskedEmail}</span>.
             </p>
             <p className="text-xs text-muted-foreground">
-              This product uses a single-device license rule. One key can stay bound to one active computer at a time.
+              This product uses a single-device license rule. One key can stay bound to one active computer at a time, with one self-service device move every 30 days.
             </p>
           </div>
 
@@ -325,6 +334,11 @@ export function LicenseRetrievalForm() {
                           <p className="mt-1">
                             Last validated: {new Date(license.boundDevice.lastValidatedAt).toLocaleString()}
                           </p>
+                          {license.lastDeviceTransferAt ? (
+                            <p className="mt-1">
+                              Last device move: {new Date(license.lastDeviceTransferAt).toLocaleString()}
+                            </p>
+                          ) : null}
                         </div>
                       ) : (
                         <div className="mt-3 rounded-2xl border border-emerald-500/20 bg-emerald-500/5 p-3 text-xs text-muted-foreground">
@@ -347,8 +361,8 @@ export function LicenseRetrievalForm() {
                           disabled={unbindingLicenseKey === license.key}
                         >
                           {unbindingLicenseKey === license.key
-                            ? "Removing..."
-                            : "Unbind Current Device"}
+                            ? "Moving..."
+                            : "Move License to New Device"}
                         </Button>
                       ) : null}
                     </div>
@@ -369,12 +383,12 @@ export function LicenseRetrievalForm() {
             </p>
             <ol className="mt-3 space-y-2 text-sm text-muted-foreground">
               <li>1. Copy the license key shown above.</li>
-              <li>2. Open your Wappkit app and find the activation screen.</li>
-              <li>3. Paste the key and confirm to unlock the paid version.</li>
+              <li>2. To change computers, select Move License to New Device above.</li>
+              <li>3. Open the app on the new computer, paste the same key, and activate.</li>
             </ol>
             <p className="mt-3 text-xs text-muted-foreground">
               If the status says <span className="font-medium text-foreground">Ready to activate</span>,
-              the key is valid and simply is not bound to a device yet.
+              the key is valid and simply is not bound to a device yet. Device moves are limited to once every 30 days.
             </p>
           </div>
 
