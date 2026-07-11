@@ -43,5 +43,8 @@ next-env.d.ts
 
 .vscode
 .contentlayer
+
+# local-only internal notes
+/internal-docs/desktop-tool-creem-wappkit-release-flow.md
 /start*.log
 /澶囦唤/
