@@ -594,6 +594,18 @@ export default function ToolDetailPage({
               <p className="mt-5 max-w-2xl text-lg leading-8 text-muted-foreground md:text-xl">
                 {marketing.heroDescription}
               </p>
+              {tool.priceLabel ? (
+                <div className="mt-5 flex flex-wrap items-center gap-3">
+                  <span className="rounded-full border border-orange-200 bg-orange-50 px-4 py-2 text-sm font-semibold text-orange-800">
+                    {tool.priceLabel}
+                  </span>
+                  {tool.regularPriceLabel ? (
+                    <span className="text-sm text-muted-foreground">
+                      {tool.regularPriceLabel} after the launch offer
+                    </span>
+                  ) : null}
+                </div>
+              ) : null}
 
               <div className="mt-6 grid gap-3 sm:grid-cols-3">
                 {marketing.trustPoints.map((point) => (
@@ -844,6 +856,28 @@ export default function ToolDetailPage({
               <p className="text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground">
                 Included in this product
               </p>
+              {tool.priceLabel ? (
+                <div className="mt-5 rounded-3xl border border-orange-200 bg-orange-50/70 p-5">
+                  <p className="text-sm font-semibold uppercase tracking-[0.18em] text-orange-700">
+                    Pro price
+                  </p>
+                  <div className="mt-3 flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                    <span className="font-heading text-4xl text-foreground">
+                      {tool.priceLabel.replace(" launch special", "")}
+                    </span>
+                    {tool.regularPriceLabel ? (
+                      <span className="text-sm text-muted-foreground">
+                        {tool.regularPriceLabel}
+                      </span>
+                    ) : null}
+                  </div>
+                  {tool.priceNote ? (
+                    <p className="mt-3 text-sm leading-6 text-muted-foreground">
+                      {tool.priceNote}
+                    </p>
+                  ) : null}
+                </div>
+              ) : null}
               <ul className="mt-5 space-y-4">
                 {tool.features.map((feature) => (
                   <li key={feature} className="flex items-start gap-3">

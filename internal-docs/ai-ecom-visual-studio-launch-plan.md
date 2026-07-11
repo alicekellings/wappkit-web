@@ -20,12 +20,25 @@ download, Pro upgrade, activation, and support path in one place.
 - [x] Vercel Analytics tracks download, checkout click, checkout redirect, and
   completed purchase events without recording email addresses, order IDs, or
   license keys.
+- [x] Product page shows the current one-time Pro price.
 - [ ] Complete one real paid order before paid promotion starts.
 - [ ] Publish real screenshots and a short workflow video.
-- [ ] Add the final one-time Pro price to the product page after it is fixed in
-  Creem.
 - [ ] Rotate any production credentials that appeared in prior screenshots or
   chat history.
+
+## Price Positioning
+
+Current public offer:
+
+- Launch special: `$6` one-time Pro license.
+- Planned regular price: `$9` one-time Pro license.
+
+This is a reasonable early price for the current product. It is low enough to
+reduce purchase friction while the app is unsigned and still young, but it also
+sets the expectation that Pro is paid software rather than a permanently free
+utility. Keep `$6` during the first promotion round. Move to `$9` after there
+are real user screenshots, at least a few successful purchases, and no major
+activation or installer complaints.
 
 ## Exact Free and Pro Scope
 

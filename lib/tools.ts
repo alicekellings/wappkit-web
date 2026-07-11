@@ -18,6 +18,9 @@ export type Tool = {
   docsHref: string;
   availabilityNote: string;
   checkoutEnabled?: boolean;
+  priceLabel?: string;
+  regularPriceLabel?: string;
+  priceNote?: string;
 };
 
 export const tools: Tool[] = [
@@ -54,6 +57,10 @@ export const tools: Tool[] = [
     availabilityNote:
       "AI E-commerce Visual Studio uses Wappkit checkout, license retrieval, and in-app activation support.",
     checkoutEnabled: true,
+    priceLabel: "$6 launch special",
+    regularPriceLabel: "$9 regular price",
+    priceNote:
+      "One-time Pro license for the current desktop workflow. Future AI generation credits, if added, can stay separate.",
   },
   {
     slug: "wappkit-app-setup",
