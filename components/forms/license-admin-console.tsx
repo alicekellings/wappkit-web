@@ -85,6 +85,15 @@ type AdminLicenseListResponse = {
   };
 };
 
+type QaLicenseResult = {
+  orderId: string;
+  customerEmail: string;
+  productName: string;
+  toolSlug: string;
+  licenseKey: string;
+  status: LicenseStatus;
+};
+
 function getLicenseStatusTone(status: LicenseStatus) {
   switch (status) {
     case "active":
@@ -259,6 +268,8 @@ export function LicenseAdminConsole() {
   const [isLoading, setIsLoading] = useState(true);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [isLoggingOut, setIsLoggingOut] = useState(false);
+  const [isCreatingQaLicense, setIsCreatingQaLicense] = useState(false);
+  const [qaLicenseResult, setQaLicenseResult] = useState<QaLicenseResult | null>(null);
   const [activeActionKey, setActiveActionKey] = useState<string | null>(null);
   const [activeBatchAction, setActiveBatchAction] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -381,6 +392,59 @@ export function LicenseAdminConsole() {
     await navigator.clipboard.writeText(value);
     setNotice(`${label} copied.`);
     setError(null);
+  }
+
+  async function handleCreateQaLicense() {
+    const confirmed = window.confirm(
+      "Create an internal QA license for AI E-commerce Visual Studio? This writes a test record to the live license store.",
+    );
+
+    if (!confirmed) {
+      return;
+    }
+
+    try {
+      setIsCreatingQaLicense(true);
+      setError(null);
+      setNotice(null);
+      setQaLicenseResult(null);
+
+      const response = await fetch("/api/admin/license/create-qa", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          toolSlug: "ai-ecom-visual-studio",
+        }),
+      });
+      const payload = (await response.json()) as {
+        success?: boolean;
+        message?: string;
+        data?: QaLicenseResult;
+      };
+
+      if (response.status === 401) {
+        window.location.reload();
+        return;
+      }
+
+      if (!response.ok || !payload.success || !payload.data) {
+        throw new Error(payload.message ?? "Failed to create the QA license.");
+      }
+
+      setQaLicenseResult(payload.data);
+      setNotice("Internal QA license created. Use it to test activation and unbind.");
+      await loadLicenseList(true);
+    } catch (caughtError) {
+      setError(
+        caughtError instanceof Error
+          ? caughtError.message
+          : "Failed to create the QA license.",
+      );
+    } finally {
+      setIsCreatingQaLicense(false);
+    }
   }
 
   function handleSort(field: SortField) {
@@ -609,6 +673,17 @@ export function LicenseAdminConsole() {
               rounded="full"
               variant="outline"
               onClick={() => {
+                void handleCreateQaLicense();
+              }}
+              disabled={isCreatingQaLicense}
+            >
+              {isCreatingQaLicense ? "Creating..." : "Create QA License"}
+            </Button>
+            <Button
+              type="button"
+              rounded="full"
+              variant="outline"
+              onClick={() => {
                 void loadLicenseList(true);
               }}
               disabled={isRefreshing}
@@ -626,6 +701,59 @@ export function LicenseAdminConsole() {
             </Button>
           </div>
         </div>
+
+        {qaLicenseResult ? (
+          <div className="mt-6 rounded-2xl border border-sky-500/30 bg-sky-500/5 p-4 text-sm">
+            <div className="flex flex-wrap items-start justify-between gap-3">
+              <div>
+                <p className="font-semibold text-foreground">
+                  Internal QA license ready
+                </p>
+                <p className="mt-1 text-muted-foreground">
+                  Use this key in the desktop app, then test retrieval and unbind with
+                  the order ID and email below.
+                </p>
+              </div>
+              <Button
+                type="button"
+                size="sm"
+                rounded="full"
+                variant="outline"
+                onClick={() => {
+                  void handleCopyValue(qaLicenseResult.licenseKey, "QA license key");
+                }}
+              >
+                Copy key
+              </Button>
+            </div>
+            <div className="mt-4 grid gap-3 md:grid-cols-3">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                  License key
+                </p>
+                <code className="mt-1 block break-all text-foreground">
+                  {qaLicenseResult.licenseKey}
+                </code>
+              </div>
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                  Order ID
+                </p>
+                <code className="mt-1 block break-all text-foreground">
+                  {qaLicenseResult.orderId}
+                </code>
+              </div>
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                  Email
+                </p>
+                <code className="mt-1 block break-all text-foreground">
+                  {qaLicenseResult.customerEmail}
+                </code>
+              </div>
+            </div>
+          </div>
+        ) : null}
 
         <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-5">
           <Card>

@@ -193,3 +193,17 @@ export const adminLicenseStatusSchema = z.object({
   ),
   action: z.enum(["disable", "enable"]),
 });
+
+export const adminCreateQaLicenseSchema = z.object({
+  toolSlug: z.preprocess(
+    (value) => {
+      const trimmed = trimInput(value);
+      return trimmed === "" ? "ai-ecom-visual-studio" : trimmed;
+    },
+    z
+      .string()
+      .min(1)
+      .max(80)
+      .refine(isSafeSlug, "Invalid tool slug."),
+  ),
+});

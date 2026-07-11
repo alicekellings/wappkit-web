@@ -3,6 +3,7 @@ import crypto from "node:crypto";
 import test from "node:test";
 
 import { GET as listGET } from "../app/api/admin/license/list/route";
+import { POST as createQaPOST } from "../app/api/admin/license/create-qa/route";
 import { POST as searchPOST } from "../app/api/admin/license/search/route";
 import { POST as statusPOST } from "../app/api/admin/license/status/route";
 import { POST as unbindPOST } from "../app/api/admin/license/unbind/route";
@@ -279,4 +280,81 @@ test("admin list route returns flattened license items and summary", async () =>
     ),
   );
   assert.equal(typeof payload.data.summary.total, "number");
+});
+
+test("admin can create an internal QA license for activation testing", async () => {
+  process.env.INTERNAL_ADMIN_TOKEN = "support-secret";
+
+  const unauthorizedResponse = await createQaPOST(
+    new Request("http://localhost/api/admin/license/create-qa", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({
+        toolSlug: "ai-ecom-visual-studio",
+      }),
+    }) as never,
+  );
+
+  assert.equal(unauthorizedResponse.status, 401);
+
+  const response = await createQaPOST(
+    new Request("http://localhost/api/admin/license/create-qa", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        cookie: "wappkit_admin_session=support-secret",
+      },
+      body: JSON.stringify({
+        toolSlug: "ai-ecom-visual-studio",
+      }),
+    }) as never,
+  );
+  const payload = await response.json();
+
+  assert.equal(response.status, 200);
+  assert.equal(payload.success, true);
+  assert.equal(payload.data.toolSlug, "ai-ecom-visual-studio");
+  assert.match(payload.data.licenseKey, /^WAPPKIT-AIECOM-/);
+
+  const searchResponse = await searchPOST(
+    new Request("http://localhost/api/admin/license/search", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        cookie: "wappkit_admin_session=support-secret",
+      },
+      body: JSON.stringify({
+        licenseKey: payload.data.licenseKey,
+      }),
+    }) as never,
+  );
+  const searchPayload = await searchResponse.json();
+
+  assert.equal(searchResponse.status, 200);
+  assert.equal(searchPayload.success, true);
+  assert.equal(searchPayload.data.orderId, payload.data.orderId);
+
+  const validateResponse = await validatePOST(
+    new Request("http://localhost/api/license/validate", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        "x-forwarded-for": "198.51.100.42",
+      },
+      body: JSON.stringify({
+        licenseKey: payload.data.licenseKey,
+        deviceId: "desktop_qa",
+        deviceName: "QA Desktop",
+        toolSlug: "ai-ecom-visual-studio",
+      }),
+    }) as never,
+  );
+  const validatePayload = await validateResponse.json();
+
+  assert.equal(validateResponse.status, 200);
+  assert.equal(validatePayload.valid, true);
+  assert.equal(validatePayload.data.toolSlug, "ai-ecom-visual-studio");
+  assert.equal(validatePayload.data.boundDevice.deviceId, "desktop_qa");
 });
