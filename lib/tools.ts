@@ -36,7 +36,7 @@ export const tools: Tool[] = [
       "Free single-image background removal with transparent PNG output",
       "Pro batch background removal and batch background replacement",
       "Pro Amazon, Shopify, Instagram, and Facebook export presets",
-      "Pro image enhancement, Smart Product Optimize, and EXIF / metadata cleanup",
+      "Pro image enhancement and Smart Product Optimize",
       "Pro custom background composition with position and scale controls",
     ],
     audience: [

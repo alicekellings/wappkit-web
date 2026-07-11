@@ -24,7 +24,11 @@ export function PurchaseCompleteTracker({
     }
 
     window.sessionStorage.setItem(storageKey, "1");
-    track("purchase_completed", { tool: toolSlug || "unknown" });
+    track("purchase_completed", {
+      tool: toolSlug || "unknown",
+      campaign_source:
+        window.sessionStorage.getItem("wappkit.campaign-source") ?? "direct",
+    });
   }, [checkoutId, toolSlug]);
 
   return null;

@@ -126,14 +126,14 @@ function getToolMarketingContent(
       freeFeatures: [
         "Single-image background removal and preview",
         "Transparent PNG and current-size result saving",
-        "Basic background replacement with custom image or color",
+        "Clear EXIF / metadata when saving a finished image",
         "Temporary output folder for cleaner file handling",
       ],
       proFeatures: [
         "Batch background removal for product queues",
         "Batch background replacement with shared scene settings",
         "Marketplace and social export presets",
-        "Optional image enhancement plus EXIF / metadata cleanup",
+        "Optional image enhancement and Smart Product Optimize",
         "License retrieval and activation through Wappkit",
       ],
       workflow: [

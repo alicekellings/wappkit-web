@@ -33,6 +33,10 @@ export function CheckoutButton({
         new URLSearchParams(window.location.search).get("utm_source") ??
         "direct";
 
+      window.sessionStorage.setItem(
+        "wappkit.campaign-source",
+        campaignSource,
+      );
       track("checkout_clicked", {
         tool: toolSlug,
         campaign_source: campaignSource,

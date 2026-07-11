@@ -20,6 +20,7 @@ export const metadata = constructMetadata({
 const freeFeatures = [
   "Single-image background removal and preview",
   "Transparent PNG output and current-size result saving",
+  "Optional EXIF / metadata cleanup when saving",
   "A local temporary workspace before final export",
 ];
 
@@ -27,7 +28,7 @@ const proFeatures = [
   "Batch background removal and background replacement",
   "Background position and scale controls",
   "Marketplace and social export presets",
-  "Image enhancement and metadata cleanup",
+  "Image enhancement and Smart Product Optimize",
 ];
 
 const commonTopics = [
