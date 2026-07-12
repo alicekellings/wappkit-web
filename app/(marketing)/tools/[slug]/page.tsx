@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import {
   ArrowRight,
@@ -783,6 +784,64 @@ export default function ToolDetailPage({
             </div>
           </div>
         </section>
+
+        {tool.slug === "ai-ecom-visual-studio" ? (
+          <section className="mt-10 rounded-[2rem] border bg-card p-6 shadow-[0_24px_80px_-42px_rgba(15,23,42,0.28)] md:p-8">
+            <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+              <div>
+                <p className="text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+                  Product screenshots
+                </p>
+                <h2 className="mt-3 font-heading text-3xl text-foreground">
+                  A practical desktop workflow for real product photos.
+                </h2>
+              </div>
+              <p className="max-w-xl text-sm leading-6 text-muted-foreground">
+                Current 0.1.7 screenshots show background removal, background
+                replacement, batch folder import, and marketplace export options.
+              </p>
+            </div>
+
+            <div className="mt-6 grid gap-5">
+              {[
+                {
+                  title: "Remove background and preview transparent output",
+                  src: "/tools/ai-ecom-visual-studio/01-remove-background-pro-0.1.7.webp",
+                },
+                {
+                  title: "Replace background with product scale and position controls",
+                  src: "/tools/ai-ecom-visual-studio/02-background-replace-pro-0.1.7.webp",
+                },
+                {
+                  title: "Batch remove backgrounds from selected files or a folder",
+                  src: "/tools/ai-ecom-visual-studio/03-batch-remove-bg-add-folder-pro-0.1.7.webp",
+                },
+                {
+                  title: "Export marketplace and social sizes with cleanup options",
+                  src: "/tools/ai-ecom-visual-studio/04-marketplace-export-options-pro-0.1.7.webp",
+                },
+              ].map((screenshot) => (
+                <figure
+                  key={screenshot.src}
+                  className="overflow-hidden rounded-[1.4rem] border bg-background"
+                >
+                  <Image
+                    src={screenshot.src}
+                    alt={`${tool.name}: ${screenshot.title}`}
+                    width={1925}
+                    height={1050}
+                    className="h-auto w-full"
+                    loading="lazy"
+                    sizes="(min-width: 1024px) 1024px, 100vw"
+                  />
+                  <figcaption className="border-t bg-muted/40 px-4 py-3 text-sm font-medium text-foreground">
+                    {screenshot.title}
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+          </section>
+        ) : null}
 
         <section className="mt-10 grid gap-6 xl:grid-cols-[1.1fr_0.9fr]">
           <div className="rounded-[1.8rem] border bg-card p-8">
