@@ -56,6 +56,8 @@ npm run build
 ```env
 NEXT_PUBLIC_APP_URL=http://localhost:3000
 NEXT_PUBLIC_SUPPORT_EMAIL=support@wappkit.com
+NEXT_PUBLIC_UMAMI_WEBSITE_ID=0faee38f-350a-479a-b5a3-e442914b17c5
+NEXT_PUBLIC_UMAMI_SCRIPT_URL=https://cloud.umami.is/script.js
 
 WAPPKIT_APP_SETUP_DOWNLOAD_URL=
 WAPPKIT_APP_SETUP_RELEASE_URL=
@@ -133,6 +135,7 @@ This is a deployment snapshot only; secret values are intentionally not stored i
 Confirmed visible in Vercel:
 
 - `NEXT_PUBLIC_SUPPORT_EMAIL`
+- `NEXT_PUBLIC_UMAMI_WEBSITE_ID` / `NEXT_PUBLIC_UMAMI_SCRIPT_URL` for lightweight page analytics
 - `CREEM_WEBHOOK_SECRET`
 - `CREEM_PRODUCT_REDDIT_TOOLBOX_ID`
 - `CREEM_API_KEY`

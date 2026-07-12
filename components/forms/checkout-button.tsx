@@ -86,6 +86,8 @@ export function CheckoutButton({
         variant={variant}
         onClick={handleCheckout}
         disabled={isPending}
+        data-umami-event="checkout_clicked"
+        data-umami-event-tool={toolSlug}
       >
         {isPending ? "Redirecting..." : label}
       </Button>

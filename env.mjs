@@ -59,6 +59,8 @@ export const env = createEnv({
   client: {
     NEXT_PUBLIC_APP_URL: appUrl,
     NEXT_PUBLIC_SUPPORT_EMAIL: optionalString,
+    NEXT_PUBLIC_UMAMI_WEBSITE_ID: optionalString,
+    NEXT_PUBLIC_UMAMI_SCRIPT_URL: optionalString,
   },
   runtimeEnv: {
     CREEM_API_KEY: process.env.CREEM_API_KEY,
@@ -83,5 +85,7 @@ export const env = createEnv({
       process.env.AI_ECOM_VISUAL_STUDIO_SHA256,
     NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
     NEXT_PUBLIC_SUPPORT_EMAIL: process.env.NEXT_PUBLIC_SUPPORT_EMAIL,
+    NEXT_PUBLIC_UMAMI_WEBSITE_ID: process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID,
+    NEXT_PUBLIC_UMAMI_SCRIPT_URL: process.env.NEXT_PUBLIC_UMAMI_SCRIPT_URL,
   },
 });

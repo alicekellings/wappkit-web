@@ -32,6 +32,8 @@ export function TrackedDownloadLink({
     <a
       href={href}
       className={cn(buttonVariants({ className, rounded, size, variant }))}
+      data-umami-event="download_clicked"
+      data-umami-event-tool={toolSlug}
       onClick={() => {
         track("download_clicked", {
           tool: toolSlug,
