@@ -56,7 +56,8 @@
     "reddit_toolbox:keyword:reddit competitor research",
     "reddit_toolbox:keyword:reddit scraper posts",
     "reddit_toolbox:keyword:ai-powered reddit monitoring software",
-    "reddit_toolbox:keyword:reddit keyword alert"
+    "reddit_toolbox:keyword:reddit keyword alert",
+    "platform:topic:what should a small software site include before launch"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -115,7 +116,8 @@
     "how-to-conduct-competitor-research-on-reddit-a-practical-guide",
     "the-ultimate-guide-to-reddit-scraping-best-practices-and-tools-for-2026",
     "streamlining-reddit-monitoring-with-ai-a-practical-workflow-guide",
-    "a-step-by-step-guide-to-reddit-keyword-alerts-for-founders-and-growth-operators"
+    "a-step-by-step-guide-to-reddit-keyword-alerts-for-founders-and-growth-operators",
+    "pre-launch-checklist-for-small-software-sites-what-to-include-before-going-live"
   ],
   "events": [
     {
@@ -516,6 +518,13 @@
       "source_type": "keyword",
       "slug": "a-step-by-step-guide-to-reddit-keyword-alerts-for-founders-and-growth-operators",
       "title": "A Step-by-Step Guide to Reddit Keyword Alerts for Founders and Growth Operators"
+    },
+    {
+      "theme": "platform",
+      "topic": "what should a small software site include before launch",
+      "source_type": "topic",
+      "slug": "pre-launch-checklist-for-small-software-sites-what-to-include-before-going-live",
+      "title": "Pre-Launch Checklist for Small Software Sites: What to Include Before Going Live"
     }
   ]
 }
