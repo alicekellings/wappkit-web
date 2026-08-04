@@ -57,7 +57,8 @@
     "reddit_toolbox:keyword:reddit scraper posts",
     "reddit_toolbox:keyword:ai-powered reddit monitoring software",
     "reddit_toolbox:keyword:reddit keyword alert",
-    "platform:topic:what should a small software site include before launch"
+    "platform:topic:what should a small software site include before launch",
+    "reddit_toolbox:keyword:wappkit reddit toolbox"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -117,7 +118,8 @@
     "the-ultimate-guide-to-reddit-scraping-best-practices-and-tools-for-2026",
     "streamlining-reddit-monitoring-with-ai-a-practical-workflow-guide",
     "a-step-by-step-guide-to-reddit-keyword-alerts-for-founders-and-growth-operators",
-    "pre-launch-checklist-for-small-software-sites-what-to-include-before-going-live"
+    "pre-launch-checklist-for-small-software-sites-what-to-include-before-going-live",
+    "reddit-toolbox-workflow-step-by-step-guide-to-research-scrape-and-monitor-subred"
   ],
   "events": [
     {
@@ -525,6 +527,13 @@
       "source_type": "topic",
       "slug": "pre-launch-checklist-for-small-software-sites-what-to-include-before-going-live",
       "title": "Pre-Launch Checklist for Small Software Sites: What to Include Before Going Live"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "wappkit reddit toolbox",
+      "source_type": "keyword",
+      "slug": "reddit-toolbox-workflow-step-by-step-guide-to-research-scrape-and-monitor-subred",
+      "title": "Reddit Toolbox Workflow: Step-by-Step Guide to Research, Scrape, and Monitor Subreddits with Wappkit"
     }
   ]
 }
