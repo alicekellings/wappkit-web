@@ -58,7 +58,8 @@
     "reddit_toolbox:keyword:ai-powered reddit monitoring software",
     "reddit_toolbox:keyword:reddit keyword alert",
     "platform:topic:what should a small software site include before launch",
-    "reddit_toolbox:keyword:wappkit reddit toolbox"
+    "reddit_toolbox:keyword:wappkit reddit toolbox",
+    "platform:topic:how to publish release notes for a small software company"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -119,7 +120,8 @@
     "streamlining-reddit-monitoring-with-ai-a-practical-workflow-guide",
     "a-step-by-step-guide-to-reddit-keyword-alerts-for-founders-and-growth-operators",
     "pre-launch-checklist-for-small-software-sites-what-to-include-before-going-live",
-    "reddit-toolbox-workflow-step-by-step-guide-to-research-scrape-and-monitor-subred"
+    "reddit-toolbox-workflow-step-by-step-guide-to-research-scrape-and-monitor-subred",
+    "how-to-publish-release-notes-for-small-software-companies-a-practical-2026-workf"
   ],
   "events": [
     {
@@ -534,6 +536,13 @@
       "source_type": "keyword",
       "slug": "reddit-toolbox-workflow-step-by-step-guide-to-research-scrape-and-monitor-subred",
       "title": "Reddit Toolbox Workflow: Step-by-Step Guide to Research, Scrape, and Monitor Subreddits with Wappkit"
+    },
+    {
+      "theme": "platform",
+      "topic": "how to publish release notes for a small software company",
+      "source_type": "topic",
+      "slug": "how-to-publish-release-notes-for-small-software-companies-a-practical-2026-workf",
+      "title": "How to Publish Release Notes for Small Software Companies: A Practical 2026 Workflow"
     }
   ]
 }
