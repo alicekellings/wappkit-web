@@ -59,7 +59,8 @@
     "reddit_toolbox:keyword:reddit keyword alert",
     "platform:topic:what should a small software site include before launch",
     "reddit_toolbox:keyword:wappkit reddit toolbox",
-    "platform:topic:how to publish release notes for a small software company"
+    "platform:topic:how to publish release notes for a small software company",
+    "reddit_toolbox:trend:ai-powered reddit research: practical strategies for audience analysis, pain point discovery, and growth"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -121,7 +122,8 @@
     "a-step-by-step-guide-to-reddit-keyword-alerts-for-founders-and-growth-operators",
     "pre-launch-checklist-for-small-software-sites-what-to-include-before-going-live",
     "reddit-toolbox-workflow-step-by-step-guide-to-research-scrape-and-monitor-subred",
-    "how-to-publish-release-notes-for-small-software-companies-a-practical-2026-workf"
+    "how-to-publish-release-notes-for-small-software-companies-a-practical-2026-workf",
+    "ai-powered-reddit-research-practical-strategies-for-audience-analysis-pain-point"
   ],
   "events": [
     {
@@ -543,6 +545,13 @@
       "source_type": "topic",
       "slug": "how-to-publish-release-notes-for-small-software-companies-a-practical-2026-workf",
       "title": "How to Publish Release Notes for Small Software Companies: A Practical 2026 Workflow"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "AI-Powered Reddit Research: Practical Strategies for Audience Analysis, Pain Point Discovery, and Growth",
+      "source_type": "trend",
+      "slug": "ai-powered-reddit-research-practical-strategies-for-audience-analysis-pain-point",
+      "title": "AI-Powered Reddit Research: Practical Strategies for Audience Analysis, Pain Point Discovery, and Growth in 2026"
     }
   ]
 }
