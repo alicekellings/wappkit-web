@@ -61,7 +61,8 @@
     "reddit_toolbox:keyword:wappkit reddit toolbox",
     "platform:topic:how to publish release notes for a small software company",
     "reddit_toolbox:trend:ai-powered reddit research: practical strategies for audience analysis, pain point discovery, and growth",
-    "reddit_toolbox:keyword:reddit research tool"
+    "reddit_toolbox:keyword:reddit research tool",
+    "reddit_toolbox:trend:setting up effective reddit keyword monitoring and alerts for brand and competitor insights"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -125,7 +126,8 @@
     "reddit-toolbox-workflow-step-by-step-guide-to-research-scrape-and-monitor-subred",
     "how-to-publish-release-notes-for-small-software-companies-a-practical-2026-workf",
     "ai-powered-reddit-research-practical-strategies-for-audience-analysis-pain-point",
-    "best-reddit-research-tools-in-2026-practical-alternatives-after-gummysearch-shut"
+    "best-reddit-research-tools-in-2026-practical-alternatives-after-gummysearch-shut",
+    "setting-up-effective-reddit-keyword-monitoring-and-alerts-in-2026-workflow-playb"
   ],
   "events": [
     {
@@ -561,6 +563,13 @@
       "source_type": "keyword",
       "slug": "best-reddit-research-tools-in-2026-practical-alternatives-after-gummysearch-shut",
       "title": "Best Reddit Research Tools in 2026: Practical Alternatives After GummySearch Shutdown"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "Setting Up Effective Reddit Keyword Monitoring and Alerts for Brand and Competitor Insights",
+      "source_type": "trend",
+      "slug": "setting-up-effective-reddit-keyword-monitoring-and-alerts-in-2026-workflow-playb",
+      "title": "Setting Up Effective Reddit Keyword Monitoring and Alerts in 2026: Workflow Playbook for Brand and Competitor Insights"
     }
   ]
 }
