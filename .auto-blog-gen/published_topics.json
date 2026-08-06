@@ -60,7 +60,8 @@
     "platform:topic:what should a small software site include before launch",
     "reddit_toolbox:keyword:wappkit reddit toolbox",
     "platform:topic:how to publish release notes for a small software company",
-    "reddit_toolbox:trend:ai-powered reddit research: practical strategies for audience analysis, pain point discovery, and growth"
+    "reddit_toolbox:trend:ai-powered reddit research: practical strategies for audience analysis, pain point discovery, and growth",
+    "reddit_toolbox:keyword:reddit research tool"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -123,7 +124,8 @@
     "pre-launch-checklist-for-small-software-sites-what-to-include-before-going-live",
     "reddit-toolbox-workflow-step-by-step-guide-to-research-scrape-and-monitor-subred",
     "how-to-publish-release-notes-for-small-software-companies-a-practical-2026-workf",
-    "ai-powered-reddit-research-practical-strategies-for-audience-analysis-pain-point"
+    "ai-powered-reddit-research-practical-strategies-for-audience-analysis-pain-point",
+    "best-reddit-research-tools-in-2026-practical-alternatives-after-gummysearch-shut"
   ],
   "events": [
     {
@@ -552,6 +554,13 @@
       "source_type": "trend",
       "slug": "ai-powered-reddit-research-practical-strategies-for-audience-analysis-pain-point",
       "title": "AI-Powered Reddit Research: Practical Strategies for Audience Analysis, Pain Point Discovery, and Growth in 2026"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "reddit research tool",
+      "source_type": "keyword",
+      "slug": "best-reddit-research-tools-in-2026-practical-alternatives-after-gummysearch-shut",
+      "title": "Best Reddit Research Tools in 2026: Practical Alternatives After GummySearch Shutdown"
     }
   ]
 }
