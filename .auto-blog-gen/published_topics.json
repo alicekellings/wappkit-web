@@ -63,7 +63,8 @@
     "reddit_toolbox:trend:ai-powered reddit research: practical strategies for audience analysis, pain point discovery, and growth",
     "reddit_toolbox:keyword:reddit research tool",
     "reddit_toolbox:trend:setting up effective reddit keyword monitoring and alerts for brand and competitor insights",
-    "reddit_toolbox:keyword:best reddit monitoring"
+    "reddit_toolbox:keyword:best reddit monitoring",
+    "reddit_toolbox:keyword:subreddit tracker desktop"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -129,7 +130,8 @@
     "ai-powered-reddit-research-practical-strategies-for-audience-analysis-pain-point",
     "best-reddit-research-tools-in-2026-practical-alternatives-after-gummysearch-shut",
     "setting-up-effective-reddit-keyword-monitoring-and-alerts-in-2026-workflow-playb",
-    "how-to-monitor-reddit-in-2026-practical-workflow-for-real-conversations-and-oppo"
+    "how-to-monitor-reddit-in-2026-practical-workflow-for-real-conversations-and-oppo",
+    "subreddit-tracker-desktop-workflow-monitor-multiple-communities-without-extensio"
   ],
   "events": [
     {
@@ -579,6 +581,13 @@
       "source_type": "keyword",
       "slug": "how-to-monitor-reddit-in-2026-practical-workflow-for-real-conversations-and-oppo",
       "title": "How to Monitor Reddit in 2026: Practical Workflow for Real Conversations and Opportunity Discovery"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "subreddit tracker desktop",
+      "source_type": "keyword",
+      "slug": "subreddit-tracker-desktop-workflow-monitor-multiple-communities-without-extensio",
+      "title": "Subreddit Tracker Desktop Workflow: Monitor Multiple Communities Without Extensions"
     }
   ]
 }
