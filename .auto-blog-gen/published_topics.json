@@ -66,7 +66,8 @@
     "reddit_toolbox:keyword:best reddit monitoring",
     "reddit_toolbox:keyword:subreddit tracker desktop",
     "platform:keyword:wappkit multi-tool website",
-    "reddit_toolbox:trend:how founders and growth teams use reddit monitoring tools to spot opportunities in 2026"
+    "reddit_toolbox:trend:how founders and growth teams use reddit monitoring tools to spot opportunities in 2026",
+    "platform:keyword:reddit toolbox wappkit"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -135,7 +136,8 @@
     "how-to-monitor-reddit-in-2026-practical-workflow-for-real-conversations-and-oppo",
     "subreddit-tracker-desktop-workflow-monitor-multiple-communities-without-extensio",
     "wappkit-multi-tool-website-workflow-how-to-discover-license-and-activate-focused",
-    "reddit-monitoring-workflow-for-founders-in-2026-spot-opportunities-with-the-simp"
+    "reddit-monitoring-workflow-for-founders-in-2026-spot-opportunities-with-the-simp",
+    "reddit-toolbox-wappkit-workflow-analyze-subreddits-without-api-approval-in-2026"
   ],
   "events": [
     {
@@ -606,6 +608,13 @@
       "source_type": "trend",
       "slug": "reddit-monitoring-workflow-for-founders-in-2026-spot-opportunities-with-the-simp",
       "title": "Reddit Monitoring Workflow for Founders in 2026: Spot Opportunities with the Simplest Setup That Works"
+    },
+    {
+      "theme": "platform",
+      "topic": "reddit toolbox wappkit",
+      "source_type": "keyword",
+      "slug": "reddit-toolbox-wappkit-workflow-analyze-subreddits-without-api-approval-in-2026",
+      "title": "Reddit Toolbox Wappkit Workflow: Analyze Subreddits Without API Approval in 2026"
     }
   ]
 }
