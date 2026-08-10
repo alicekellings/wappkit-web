@@ -70,7 +70,8 @@
     "platform:keyword:reddit toolbox wappkit",
     "reddit_toolbox:keyword:best reddit tools",
     "reddit_toolbox:trend:reddit research tools in 2026: what growth teams and creators actually need",
-    "reddit_toolbox:keyword:reddit research tools"
+    "reddit_toolbox:keyword:reddit research tools",
+    "reddit_toolbox:keyword:best reddit keyword monitoring"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -143,7 +144,8 @@
     "reddit-toolbox-wappkit-workflow-analyze-subreddits-without-api-approval-in-2026",
     "best-reddit-tools-2026-workflow-research-monitor-analyze-subreddits-efficiently",
     "reddit-research-tools-in-2026-what-growth-teams-and-creators-actually-need",
-    "reddit-research-tools-in-2026-three-patterns-after-the-gummysearch-shutdown"
+    "reddit-research-tools-in-2026-three-patterns-after-the-gummysearch-shutdown",
+    "reddit-keyword-monitoring-workflow-track-conversations-effectively-in-2026"
   ],
   "events": [
     {
@@ -642,6 +644,13 @@
       "source_type": "keyword",
       "slug": "reddit-research-tools-in-2026-three-patterns-after-the-gummysearch-shutdown",
       "title": "Reddit Research Tools in 2026: Three Patterns After the GummySearch Shutdown"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "best reddit keyword monitoring",
+      "source_type": "keyword",
+      "slug": "reddit-keyword-monitoring-workflow-track-conversations-effectively-in-2026",
+      "title": "Reddit Keyword Monitoring Workflow: Track Conversations Effectively in 2026"
     }
   ]
 }
