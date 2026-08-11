@@ -73,7 +73,8 @@
     "reddit_toolbox:keyword:reddit research tools",
     "reddit_toolbox:keyword:best reddit keyword monitoring",
     "platform:topic:how to run license key activation without user accounts",
-    "platform:keyword:wappkit license key"
+    "platform:keyword:wappkit license key",
+    "reddit_toolbox:keyword:reddit monitoring keyword alerts"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -149,7 +150,8 @@
     "reddit-research-tools-in-2026-three-patterns-after-the-gummysearch-shutdown",
     "reddit-keyword-monitoring-workflow-track-conversations-effectively-in-2026",
     "how-to-run-license-key-activation-without-user-accounts",
-    "wappkit-license-key-retrieval-workflow-retrieve-activate-and-manage-keys"
+    "wappkit-license-key-retrieval-workflow-retrieve-activate-and-manage-keys",
+    "reddit-keyword-alerts-workflow-set-up-monitoring-that-cuts-noise-and-surfaces-re"
   ],
   "events": [
     {
@@ -669,6 +671,13 @@
       "source_type": "keyword",
       "slug": "wappkit-license-key-retrieval-workflow-retrieve-activate-and-manage-keys",
       "title": "Wappkit License Key Retrieval Workflow: Retrieve, Activate, and Manage Keys"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "reddit monitoring keyword alerts",
+      "source_type": "keyword",
+      "slug": "reddit-keyword-alerts-workflow-set-up-monitoring-that-cuts-noise-and-surfaces-re",
+      "title": "Reddit Keyword Alerts Workflow: Set Up Monitoring That Cuts Noise and Surfaces Real Opportunities"
     }
   ]
 }
