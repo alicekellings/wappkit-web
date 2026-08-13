@@ -75,7 +75,8 @@
     "platform:topic:how to run license key activation without user accounts",
     "platform:keyword:wappkit license key",
     "reddit_toolbox:keyword:reddit monitoring keyword alerts",
-    "reddit_toolbox:keyword:research reddit"
+    "reddit_toolbox:keyword:research reddit",
+    "reddit_toolbox:keyword:reddit keyword tracking"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -153,7 +154,8 @@
     "how-to-run-license-key-activation-without-user-accounts",
     "wappkit-license-key-retrieval-workflow-retrieve-activate-and-manage-keys",
     "reddit-keyword-alerts-workflow-set-up-monitoring-that-cuts-noise-and-surfaces-re",
-    "how-to-research-reddit-in-2026-after-the-api-shutdown"
+    "how-to-research-reddit-in-2026-after-the-api-shutdown",
+    "reddit-keyword-tracking-workflow-2026-collection-triage-and-action-for-founders"
   ],
   "events": [
     {
@@ -687,6 +689,13 @@
       "source_type": "keyword",
       "slug": "how-to-research-reddit-in-2026-after-the-api-shutdown",
       "title": "How to Research Reddit in 2026 After the API Shutdown"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "reddit keyword tracking",
+      "source_type": "keyword",
+      "slug": "reddit-keyword-tracking-workflow-2026-collection-triage-and-action-for-founders",
+      "title": "Reddit Keyword Tracking Workflow 2026: Collection, Triage, and Action for Founders"
     }
   ]
 }
