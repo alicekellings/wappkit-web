@@ -79,7 +79,8 @@
     "reddit_toolbox:keyword:reddit keyword tracking",
     "reddit_toolbox:keyword:track reddit keywords",
     "reddit_toolbox:keyword:monitoring reddit",
-    "reddit_toolbox:keyword:reddit keyword monitoring digests"
+    "reddit_toolbox:keyword:reddit keyword monitoring digests",
+    "reddit_toolbox:keyword:reddit analysis tools"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -161,7 +162,8 @@
     "reddit-keyword-tracking-workflow-2026-collection-triage-and-action-for-founders",
     "track-reddit-keywords-a-practical-desktop-workflow-for-founders",
     "how-to-monitor-reddit-for-keywords-and-mentions-a-practical-2026-workflow",
-    "reddit-keyword-monitoring-digests-a-practical-workflow-that-actually-works"
+    "reddit-keyword-monitoring-digests-a-practical-workflow-that-actually-works",
+    "reddit-analysis-workflow-step-by-step-research-without-the-noise"
   ],
   "events": [
     {
@@ -723,6 +725,13 @@
       "source_type": "keyword",
       "slug": "reddit-keyword-monitoring-digests-a-practical-workflow-that-actually-works",
       "title": "Reddit Keyword Monitoring Digests: A Practical Workflow That Actually Works"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "reddit analysis tools",
+      "source_type": "keyword",
+      "slug": "reddit-analysis-workflow-step-by-step-research-without-the-noise",
+      "title": "Reddit Analysis Workflow: Step-by-Step Research Without the Noise"
     }
   ]
 }
