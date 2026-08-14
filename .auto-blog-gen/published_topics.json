@@ -77,7 +77,8 @@
     "reddit_toolbox:keyword:reddit monitoring keyword alerts",
     "reddit_toolbox:keyword:research reddit",
     "reddit_toolbox:keyword:reddit keyword tracking",
-    "reddit_toolbox:keyword:track reddit keywords"
+    "reddit_toolbox:keyword:track reddit keywords",
+    "reddit_toolbox:keyword:monitoring reddit"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -157,7 +158,8 @@
     "reddit-keyword-alerts-workflow-set-up-monitoring-that-cuts-noise-and-surfaces-re",
     "how-to-research-reddit-in-2026-after-the-api-shutdown",
     "reddit-keyword-tracking-workflow-2026-collection-triage-and-action-for-founders",
-    "track-reddit-keywords-a-practical-desktop-workflow-for-founders"
+    "track-reddit-keywords-a-practical-desktop-workflow-for-founders",
+    "how-to-monitor-reddit-for-keywords-and-mentions-a-practical-2026-workflow"
   ],
   "events": [
     {
@@ -705,6 +707,13 @@
       "source_type": "keyword",
       "slug": "track-reddit-keywords-a-practical-desktop-workflow-for-founders",
       "title": "Track Reddit Keywords: A Practical Desktop Workflow for Founders"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "monitoring reddit",
+      "source_type": "keyword",
+      "slug": "how-to-monitor-reddit-for-keywords-and-mentions-a-practical-2026-workflow",
+      "title": "How to Monitor Reddit for Keywords and Mentions: A Practical 2026 Workflow"
     }
   ]
 }
