@@ -82,7 +82,8 @@
     "reddit_toolbox:keyword:reddit keyword monitoring digests",
     "reddit_toolbox:keyword:reddit analysis tools",
     "platform:keyword:reddit analytics tools",
-    "reddit_toolbox:keyword:reddit research platform"
+    "reddit_toolbox:keyword:reddit research platform",
+    "reddit_toolbox:trend:how founders use reddit keyword monitoring to spot emerging opportunities"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -167,7 +168,8 @@
     "reddit-keyword-monitoring-digests-a-practical-workflow-that-actually-works",
     "reddit-analysis-workflow-step-by-step-research-without-the-noise",
     "reddit-analytics-workflow-step-by-step-guide-for-tracking-subreddit-data-in-2026",
-    "reddit-research-platforms-in-2026-patterns-from-recent-discussions"
+    "reddit-research-platforms-in-2026-patterns-from-recent-discussions",
+    "how-founders-use-reddit-keyword-monitoring-to-spot-emerging-opportunities"
   ],
   "events": [
     {
@@ -750,6 +752,13 @@
       "source_type": "keyword",
       "slug": "reddit-research-platforms-in-2026-patterns-from-recent-discussions",
       "title": "Reddit Research Platforms in 2026: Patterns from Recent Discussions"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "How Founders Use Reddit Keyword Monitoring to Spot Emerging Opportunities",
+      "source_type": "trend",
+      "slug": "how-founders-use-reddit-keyword-monitoring-to-spot-emerging-opportunities",
+      "title": "How Founders Use Reddit Keyword Monitoring to Spot Emerging Opportunities"
     }
   ]
 }
