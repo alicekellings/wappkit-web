@@ -81,7 +81,8 @@
     "reddit_toolbox:keyword:monitoring reddit",
     "reddit_toolbox:keyword:reddit keyword monitoring digests",
     "reddit_toolbox:keyword:reddit analysis tools",
-    "platform:keyword:reddit analytics tools"
+    "platform:keyword:reddit analytics tools",
+    "reddit_toolbox:keyword:reddit research platform"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -165,7 +166,8 @@
     "how-to-monitor-reddit-for-keywords-and-mentions-a-practical-2026-workflow",
     "reddit-keyword-monitoring-digests-a-practical-workflow-that-actually-works",
     "reddit-analysis-workflow-step-by-step-research-without-the-noise",
-    "reddit-analytics-workflow-step-by-step-guide-for-tracking-subreddit-data-in-2026"
+    "reddit-analytics-workflow-step-by-step-guide-for-tracking-subreddit-data-in-2026",
+    "reddit-research-platforms-in-2026-patterns-from-recent-discussions"
   ],
   "events": [
     {
@@ -741,6 +743,13 @@
       "source_type": "keyword",
       "slug": "reddit-analytics-workflow-step-by-step-guide-for-tracking-subreddit-data-in-2026",
       "title": "Reddit Analytics Workflow: Step-by-Step Guide for Tracking Subreddit Data in 2026"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "reddit research platform",
+      "source_type": "keyword",
+      "slug": "reddit-research-platforms-in-2026-patterns-from-recent-discussions",
+      "title": "Reddit Research Platforms in 2026: Patterns from Recent Discussions"
     }
   ]
 }
