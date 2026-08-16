@@ -85,7 +85,8 @@
     "reddit_toolbox:keyword:reddit research platform",
     "reddit_toolbox:trend:how founders use reddit keyword monitoring to spot emerging opportunities",
     "reddit_toolbox:trend:setting up keyword alerts on reddit to track trends before competitors",
-    "reddit_toolbox:keyword:reddit keyword monitoring tools"
+    "reddit_toolbox:keyword:reddit keyword monitoring tools",
+    "platform:keyword:download reddit toolbox"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -173,7 +174,8 @@
     "reddit-research-platforms-in-2026-patterns-from-recent-discussions",
     "how-founders-use-reddit-keyword-monitoring-to-spot-emerging-opportunities",
     "setting-up-reddit-keyword-alerts-in-2026-to-track-trends-before-competitors",
-    "reddit-keyword-monitoring-workflow-practical-steps-for-founders-in-2026"
+    "reddit-keyword-monitoring-workflow-practical-steps-for-founders-in-2026",
+    "download-reddit-toolbox-101-for-windows-wappkit-installer-workflow-guide"
   ],
   "events": [
     {
@@ -777,6 +779,13 @@
       "source_type": "keyword",
       "slug": "reddit-keyword-monitoring-workflow-practical-steps-for-founders-in-2026",
       "title": "Reddit Keyword Monitoring Workflow: Practical Steps for Founders in 2026"
+    },
+    {
+      "theme": "platform",
+      "topic": "download reddit toolbox",
+      "source_type": "keyword",
+      "slug": "download-reddit-toolbox-101-for-windows-wappkit-installer-workflow-guide",
+      "title": "Download Reddit Toolbox 1.0.1 for Windows: Wappkit Installer Workflow Guide"
     }
   ]
 }
