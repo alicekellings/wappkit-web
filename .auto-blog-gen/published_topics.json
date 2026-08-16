@@ -84,7 +84,8 @@
     "platform:keyword:reddit analytics tools",
     "reddit_toolbox:keyword:reddit research platform",
     "reddit_toolbox:trend:how founders use reddit keyword monitoring to spot emerging opportunities",
-    "reddit_toolbox:trend:setting up keyword alerts on reddit to track trends before competitors"
+    "reddit_toolbox:trend:setting up keyword alerts on reddit to track trends before competitors",
+    "reddit_toolbox:keyword:reddit keyword monitoring tools"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -171,7 +172,8 @@
     "reddit-analytics-workflow-step-by-step-guide-for-tracking-subreddit-data-in-2026",
     "reddit-research-platforms-in-2026-patterns-from-recent-discussions",
     "how-founders-use-reddit-keyword-monitoring-to-spot-emerging-opportunities",
-    "setting-up-reddit-keyword-alerts-in-2026-to-track-trends-before-competitors"
+    "setting-up-reddit-keyword-alerts-in-2026-to-track-trends-before-competitors",
+    "reddit-keyword-monitoring-workflow-practical-steps-for-founders-in-2026"
   ],
   "events": [
     {
@@ -768,6 +770,13 @@
       "source_type": "trend",
       "slug": "setting-up-reddit-keyword-alerts-in-2026-to-track-trends-before-competitors",
       "title": "Setting Up Reddit Keyword Alerts in 2026 to Track Trends Before Competitors"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "reddit keyword monitoring tools",
+      "source_type": "keyword",
+      "slug": "reddit-keyword-monitoring-workflow-practical-steps-for-founders-in-2026",
+      "title": "Reddit Keyword Monitoring Workflow: Practical Steps for Founders in 2026"
     }
   ]
 }
