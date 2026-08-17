@@ -88,7 +88,8 @@
     "reddit_toolbox:keyword:reddit keyword monitoring tools",
     "platform:keyword:download reddit toolbox",
     "reddit_toolbox:keyword:reddit topic research",
-    "reddit_toolbox:keyword:social media research reddit"
+    "reddit_toolbox:keyword:social media research reddit",
+    "reddit_toolbox:keyword:keyword tracking reddit"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -179,7 +180,8 @@
     "reddit-keyword-monitoring-workflow-practical-steps-for-founders-in-2026",
     "download-reddit-toolbox-101-for-windows-wappkit-installer-workflow-guide",
     "reddit-topic-research-patterns-and-practical-methods-for-finding-real-opportunit",
-    "social-media-research-on-reddit-patterns-from-2026-reports-and-community-data"
+    "social-media-research-on-reddit-patterns-from-2026-reports-and-community-data",
+    "reddit-keyword-tracking-workflow-practical-playbook-for-2026"
   ],
   "events": [
     {
@@ -804,6 +806,13 @@
       "source_type": "keyword",
       "slug": "social-media-research-on-reddit-patterns-from-2026-reports-and-community-data",
       "title": "Social Media Research on Reddit: Patterns from 2026 Reports and Community Data"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "keyword tracking reddit",
+      "source_type": "keyword",
+      "slug": "reddit-keyword-tracking-workflow-practical-playbook-for-2026",
+      "title": "Reddit Keyword Tracking Workflow: Practical Playbook for 2026"
     }
   ]
 }
