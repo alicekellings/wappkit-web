@@ -87,7 +87,8 @@
     "reddit_toolbox:trend:setting up keyword alerts on reddit to track trends before competitors",
     "reddit_toolbox:keyword:reddit keyword monitoring tools",
     "platform:keyword:download reddit toolbox",
-    "reddit_toolbox:keyword:reddit topic research"
+    "reddit_toolbox:keyword:reddit topic research",
+    "reddit_toolbox:keyword:social media research reddit"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -177,7 +178,8 @@
     "setting-up-reddit-keyword-alerts-in-2026-to-track-trends-before-competitors",
     "reddit-keyword-monitoring-workflow-practical-steps-for-founders-in-2026",
     "download-reddit-toolbox-101-for-windows-wappkit-installer-workflow-guide",
-    "reddit-topic-research-patterns-and-practical-methods-for-finding-real-opportunit"
+    "reddit-topic-research-patterns-and-practical-methods-for-finding-real-opportunit",
+    "social-media-research-on-reddit-patterns-from-2026-reports-and-community-data"
   ],
   "events": [
     {
@@ -795,6 +797,13 @@
       "source_type": "keyword",
       "slug": "reddit-topic-research-patterns-and-practical-methods-for-finding-real-opportunit",
       "title": "Reddit Topic Research: Patterns and Practical Methods for Finding Real Opportunities"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "social media research reddit",
+      "source_type": "keyword",
+      "slug": "social-media-research-on-reddit-patterns-from-2026-reports-and-community-data",
+      "title": "Social Media Research on Reddit: Patterns from 2026 Reports and Community Data"
     }
   ]
 }
