@@ -91,7 +91,8 @@
     "reddit_toolbox:keyword:social media research reddit",
     "reddit_toolbox:keyword:keyword tracking reddit",
     "reddit_toolbox:keyword:best reddit monitoring tools",
-    "reddit_toolbox:keyword:reddit keyword tracker"
+    "reddit_toolbox:keyword:reddit keyword tracker",
+    "reddit_toolbox:keyword:reddit tools directory"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -185,7 +186,8 @@
     "social-media-research-on-reddit-patterns-from-2026-reports-and-community-data",
     "reddit-keyword-tracking-workflow-practical-playbook-for-2026",
     "best-reddit-monitoring-tools-2026-workflow-playbook-for-tracking-opportunities",
-    "reddit-keyword-tracker-workflow-track-phrases-and-buying-signals-step-by-step"
+    "reddit-keyword-tracker-workflow-track-phrases-and-buying-signals-step-by-step",
+    "reddit-tools-directory-workflow-how-to-evaluate-and-use-monitoring-tools-in-2026"
   ],
   "events": [
     {
@@ -831,6 +833,13 @@
       "source_type": "keyword",
       "slug": "reddit-keyword-tracker-workflow-track-phrases-and-buying-signals-step-by-step",
       "title": "Reddit Keyword Tracker Workflow: Track Phrases and Buying Signals Step by Step"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "reddit tools directory",
+      "source_type": "keyword",
+      "slug": "reddit-tools-directory-workflow-how-to-evaluate-and-use-monitoring-tools-in-2026",
+      "title": "Reddit Tools Directory Workflow: How to Evaluate and Use Monitoring Tools in 2026"
     }
   ]
 }
