@@ -90,7 +90,8 @@
     "reddit_toolbox:keyword:reddit topic research",
     "reddit_toolbox:keyword:social media research reddit",
     "reddit_toolbox:keyword:keyword tracking reddit",
-    "reddit_toolbox:keyword:best reddit monitoring tools"
+    "reddit_toolbox:keyword:best reddit monitoring tools",
+    "reddit_toolbox:keyword:reddit keyword tracker"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -183,7 +184,8 @@
     "reddit-topic-research-patterns-and-practical-methods-for-finding-real-opportunit",
     "social-media-research-on-reddit-patterns-from-2026-reports-and-community-data",
     "reddit-keyword-tracking-workflow-practical-playbook-for-2026",
-    "best-reddit-monitoring-tools-2026-workflow-playbook-for-tracking-opportunities"
+    "best-reddit-monitoring-tools-2026-workflow-playbook-for-tracking-opportunities",
+    "reddit-keyword-tracker-workflow-track-phrases-and-buying-signals-step-by-step"
   ],
   "events": [
     {
@@ -822,6 +824,13 @@
       "source_type": "keyword",
       "slug": "best-reddit-monitoring-tools-2026-workflow-playbook-for-tracking-opportunities",
       "title": "Best Reddit Monitoring Tools 2026: Workflow Playbook for Tracking Opportunities"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "reddit keyword tracker",
+      "source_type": "keyword",
+      "slug": "reddit-keyword-tracker-workflow-track-phrases-and-buying-signals-step-by-step",
+      "title": "Reddit Keyword Tracker Workflow: Track Phrases and Buying Signals Step by Step"
     }
   ]
 }
