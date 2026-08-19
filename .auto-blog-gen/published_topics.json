@@ -94,7 +94,8 @@
     "reddit_toolbox:keyword:reddit keyword tracker",
     "reddit_toolbox:keyword:reddit tools directory",
     "reddit_toolbox:keyword:best reddit research",
-    "reddit_toolbox:trend:reddit competitor research techniques for growth operators"
+    "reddit_toolbox:trend:reddit competitor research techniques for growth operators",
+    "reddit_toolbox:keyword:reddit tracking"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -191,7 +192,8 @@
     "reddit-keyword-tracker-workflow-track-phrases-and-buying-signals-step-by-step",
     "reddit-tools-directory-workflow-how-to-evaluate-and-use-monitoring-tools-in-2026",
     "best-reddit-research-tools-2026-patterns-from-founder-reviews-after-gummysearch",
-    "reddit-competitor-research-techniques-for-growth-operators"
+    "reddit-competitor-research-techniques-for-growth-operators",
+    "reddit-tracking-workflow-monitor-keywords-and-mentions-with-a-simple-desktop-pro"
   ],
   "events": [
     {
@@ -858,6 +860,13 @@
       "source_type": "trend",
       "slug": "reddit-competitor-research-techniques-for-growth-operators",
       "title": "Reddit Competitor Research Techniques for Growth Operators"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "reddit tracking",
+      "source_type": "keyword",
+      "slug": "reddit-tracking-workflow-monitor-keywords-and-mentions-with-a-simple-desktop-pro",
+      "title": "Reddit Tracking Workflow: Monitor Keywords and Mentions with a Simple Desktop Process"
     }
   ]
 }
