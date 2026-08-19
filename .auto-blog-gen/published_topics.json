@@ -92,7 +92,8 @@
     "reddit_toolbox:keyword:keyword tracking reddit",
     "reddit_toolbox:keyword:best reddit monitoring tools",
     "reddit_toolbox:keyword:reddit keyword tracker",
-    "reddit_toolbox:keyword:reddit tools directory"
+    "reddit_toolbox:keyword:reddit tools directory",
+    "reddit_toolbox:keyword:best reddit research"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -187,7 +188,8 @@
     "reddit-keyword-tracking-workflow-practical-playbook-for-2026",
     "best-reddit-monitoring-tools-2026-workflow-playbook-for-tracking-opportunities",
     "reddit-keyword-tracker-workflow-track-phrases-and-buying-signals-step-by-step",
-    "reddit-tools-directory-workflow-how-to-evaluate-and-use-monitoring-tools-in-2026"
+    "reddit-tools-directory-workflow-how-to-evaluate-and-use-monitoring-tools-in-2026",
+    "best-reddit-research-tools-2026-patterns-from-founder-reviews-after-gummysearch"
   ],
   "events": [
     {
@@ -840,6 +842,13 @@
       "source_type": "keyword",
       "slug": "reddit-tools-directory-workflow-how-to-evaluate-and-use-monitoring-tools-in-2026",
       "title": "Reddit Tools Directory Workflow: How to Evaluate and Use Monitoring Tools in 2026"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "best reddit research",
+      "source_type": "keyword",
+      "slug": "best-reddit-research-tools-2026-patterns-from-founder-reviews-after-gummysearch",
+      "title": "Best Reddit Research Tools 2026: Patterns from Founder Reviews After GummySearch"
     }
   ]
 }
