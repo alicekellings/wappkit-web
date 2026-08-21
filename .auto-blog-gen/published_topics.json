@@ -98,7 +98,8 @@
     "reddit_toolbox:keyword:reddit tracking",
     "reddit_toolbox:keyword:reddit scraper desktop app",
     "reddit_toolbox:keyword:reddit keyword analyzer",
-    "reddit_toolbox:trend:practical reddit research workflows for creators and operators tracking trends in real time"
+    "reddit_toolbox:trend:practical reddit research workflows for creators and operators tracking trends in real time",
+    "reddit_toolbox:keyword:reddit toolbox"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -199,7 +200,8 @@
     "reddit-tracking-workflow-monitor-keywords-and-mentions-with-a-simple-desktop-pro",
     "reddit-scraper-desktop-app-workflow-extract-posts-comments-and-community-data-in",
     "reddit-keyword-analyzer-workflow-step-by-step-guide-using-live-subreddit-data-in",
-    "practical-reddit-research-workflows-for-tracking-trends-in-real-time"
+    "practical-reddit-research-workflows-for-tracking-trends-in-real-time",
+    "reddit-toolbox-workflow-practical-steps-for-research-and-data-extraction"
   ],
   "events": [
     {
@@ -894,6 +896,13 @@
       "source_type": "trend",
       "slug": "practical-reddit-research-workflows-for-tracking-trends-in-real-time",
       "title": "Practical Reddit Research Workflows for Tracking Trends in Real Time"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "Reddit Toolbox",
+      "source_type": "keyword",
+      "slug": "reddit-toolbox-workflow-practical-steps-for-research-and-data-extraction",
+      "title": "Reddit Toolbox Workflow: Practical Steps for Research and Data Extraction"
     }
   ]
 }
