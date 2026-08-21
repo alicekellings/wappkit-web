@@ -99,7 +99,8 @@
     "reddit_toolbox:keyword:reddit scraper desktop app",
     "reddit_toolbox:keyword:reddit keyword analyzer",
     "reddit_toolbox:trend:practical reddit research workflows for creators and operators tracking trends in real time",
-    "reddit_toolbox:keyword:reddit toolbox"
+    "reddit_toolbox:keyword:reddit toolbox",
+    "reddit_toolbox:keyword:reddit keywords automation"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -201,7 +202,8 @@
     "reddit-scraper-desktop-app-workflow-extract-posts-comments-and-community-data-in",
     "reddit-keyword-analyzer-workflow-step-by-step-guide-using-live-subreddit-data-in",
     "practical-reddit-research-workflows-for-tracking-trends-in-real-time",
-    "reddit-toolbox-workflow-practical-steps-for-research-and-data-extraction"
+    "reddit-toolbox-workflow-practical-steps-for-research-and-data-extraction",
+    "reddit-keywords-automation-workflow-monitor-mentions-and-generate-leads"
   ],
   "events": [
     {
@@ -903,6 +905,13 @@
       "source_type": "keyword",
       "slug": "reddit-toolbox-workflow-practical-steps-for-research-and-data-extraction",
       "title": "Reddit Toolbox Workflow: Practical Steps for Research and Data Extraction"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "reddit keywords automation",
+      "source_type": "keyword",
+      "slug": "reddit-keywords-automation-workflow-monitor-mentions-and-generate-leads",
+      "title": "Reddit Keywords Automation Workflow: Monitor Mentions and Generate Leads"
     }
   ]
 }
