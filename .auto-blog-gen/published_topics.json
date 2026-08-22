@@ -101,7 +101,8 @@
     "reddit_toolbox:trend:practical reddit research workflows for creators and operators tracking trends in real time",
     "reddit_toolbox:keyword:reddit toolbox",
     "reddit_toolbox:keyword:reddit keywords automation",
-    "reddit_toolbox:trend:practical subreddit research techniques for audience insights and product validation"
+    "reddit_toolbox:trend:practical subreddit research techniques for audience insights and product validation",
+    "reddit_toolbox:keyword:relevant subreddits"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -205,7 +206,8 @@
     "practical-reddit-research-workflows-for-tracking-trends-in-real-time",
     "reddit-toolbox-workflow-practical-steps-for-research-and-data-extraction",
     "reddit-keywords-automation-workflow-monitor-mentions-and-generate-leads",
-    "practical-subreddit-research-techniques-for-audience-insights-and-product-valida"
+    "practical-subreddit-research-techniques-for-audience-insights-and-product-valida",
+    "how-to-find-and-rank-relevant-subreddits-by-activity-level-in-2026"
   ],
   "events": [
     {
@@ -921,6 +923,13 @@
       "source_type": "trend",
       "slug": "practical-subreddit-research-techniques-for-audience-insights-and-product-valida",
       "title": "Practical Subreddit Research Techniques for Audience Insights and Product Validation"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "relevant subreddits",
+      "source_type": "keyword",
+      "slug": "how-to-find-and-rank-relevant-subreddits-by-activity-level-in-2026",
+      "title": "How to Find and Rank Relevant Subreddits by Activity Level in 2026"
     }
   ]
 }
