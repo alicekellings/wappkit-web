@@ -102,7 +102,8 @@
     "reddit_toolbox:keyword:reddit toolbox",
     "reddit_toolbox:keyword:reddit keywords automation",
     "reddit_toolbox:trend:practical subreddit research techniques for audience insights and product validation",
-    "reddit_toolbox:keyword:relevant subreddits"
+    "reddit_toolbox:keyword:relevant subreddits",
+    "reddit_toolbox:keyword:reddit mentions"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -207,7 +208,8 @@
     "reddit-toolbox-workflow-practical-steps-for-research-and-data-extraction",
     "reddit-keywords-automation-workflow-monitor-mentions-and-generate-leads",
     "practical-subreddit-research-techniques-for-audience-insights-and-product-valida",
-    "how-to-find-and-rank-relevant-subreddits-by-activity-level-in-2026"
+    "how-to-find-and-rank-relevant-subreddits-by-activity-level-in-2026",
+    "how-to-track-reddit-mentions-a-practical-workflow-for-2026"
   ],
   "events": [
     {
@@ -930,6 +932,13 @@
       "source_type": "keyword",
       "slug": "how-to-find-and-rank-relevant-subreddits-by-activity-level-in-2026",
       "title": "How to Find and Rank Relevant Subreddits by Activity Level in 2026"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "reddit mentions",
+      "source_type": "keyword",
+      "slug": "how-to-track-reddit-mentions-a-practical-workflow-for-2026",
+      "title": "How to Track Reddit Mentions: A Practical Workflow for 2026"
     }
   ]
 }
