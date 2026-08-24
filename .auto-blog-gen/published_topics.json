@@ -104,7 +104,8 @@
     "reddit_toolbox:trend:practical subreddit research techniques for audience insights and product validation",
     "reddit_toolbox:keyword:relevant subreddits",
     "reddit_toolbox:keyword:reddit mentions",
-    "reddit_toolbox:keyword:monitoring reddit keywords"
+    "reddit_toolbox:keyword:monitoring reddit keywords",
+    "reddit_toolbox:trend:practical reddit audience research techniques for product and content ideas"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -211,7 +212,8 @@
     "practical-subreddit-research-techniques-for-audience-insights-and-product-valida",
     "how-to-find-and-rank-relevant-subreddits-by-activity-level-in-2026",
     "how-to-track-reddit-mentions-a-practical-workflow-for-2026",
-    "monitoring-reddit-keywords-a-practical-workflow-for-growth-operators-in-2026"
+    "monitoring-reddit-keywords-a-practical-workflow-for-growth-operators-in-2026",
+    "practical-reddit-audience-research-techniques-for-product-and-content-ideas"
   ],
   "events": [
     {
@@ -948,6 +950,13 @@
       "source_type": "keyword",
       "slug": "monitoring-reddit-keywords-a-practical-workflow-for-growth-operators-in-2026",
       "title": "Monitoring Reddit Keywords: A Practical Workflow for Growth Operators in 2026"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "Practical Reddit Audience Research Techniques for Product and Content Ideas",
+      "source_type": "trend",
+      "slug": "practical-reddit-audience-research-techniques-for-product-and-content-ideas",
+      "title": "Practical Reddit Audience Research Techniques for Product and Content Ideas"
     }
   ]
 }
