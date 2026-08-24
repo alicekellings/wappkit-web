@@ -106,7 +106,8 @@
     "reddit_toolbox:keyword:reddit mentions",
     "reddit_toolbox:keyword:monitoring reddit keywords",
     "reddit_toolbox:trend:practical reddit audience research techniques for product and content ideas",
-    "platform:keyword:best reddit tools list"
+    "platform:keyword:best reddit tools list",
+    "reddit_toolbox:keyword:reddit audience research tools"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -215,7 +216,8 @@
     "how-to-track-reddit-mentions-a-practical-workflow-for-2026",
     "monitoring-reddit-keywords-a-practical-workflow-for-growth-operators-in-2026",
     "practical-reddit-audience-research-techniques-for-product-and-content-ideas",
-    "best-reddit-tools-list-2026-workflow-for-evaluating-analysis-and-monitoring-util"
+    "best-reddit-tools-list-2026-workflow-for-evaluating-analysis-and-monitoring-util",
+    "reddit-audience-research-tools-in-2026-turning-community-signals-into-action"
   ],
   "events": [
     {
@@ -966,6 +968,13 @@
       "source_type": "keyword",
       "slug": "best-reddit-tools-list-2026-workflow-for-evaluating-analysis-and-monitoring-util",
       "title": "Best Reddit Tools List 2026: Workflow for Evaluating Analysis and Monitoring Utilities"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "reddit audience research tools",
+      "source_type": "keyword",
+      "slug": "reddit-audience-research-tools-in-2026-turning-community-signals-into-action",
+      "title": "Reddit Audience Research Tools in 2026: Turning Community Signals Into Action"
     }
   ]
 }
