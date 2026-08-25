@@ -109,7 +109,8 @@
     "platform:keyword:best reddit tools list",
     "reddit_toolbox:keyword:reddit audience research tools",
     "platform:keyword:best reddit scrapers",
-    "reddit_toolbox:trend:practical reddit research workflows for creators and growth teams"
+    "reddit_toolbox:trend:practical reddit research workflows for creators and growth teams",
+    "reddit_toolbox:trend:setting up reddit keyword alerts for faster audience and trend insights"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -221,7 +222,8 @@
     "best-reddit-tools-list-2026-workflow-for-evaluating-analysis-and-monitoring-util",
     "reddit-audience-research-tools-in-2026-turning-community-signals-into-action",
     "best-reddit-scrapers-in-2026-compared-practical-choices-for-reliable-data",
-    "practical-reddit-research-workflows-for-creators-and-growth-teams"
+    "practical-reddit-research-workflows-for-creators-and-growth-teams",
+    "setting-up-reddit-keyword-alerts-in-2026-workflow-for-brand-and-trend-monitoring"
   ],
   "events": [
     {
@@ -993,6 +995,13 @@
       "source_type": "trend",
       "slug": "practical-reddit-research-workflows-for-creators-and-growth-teams",
       "title": "Practical Reddit Research Workflows for Creators and Growth Teams"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "Setting Up Reddit Keyword Alerts for Faster Audience and Trend Insights",
+      "source_type": "trend",
+      "slug": "setting-up-reddit-keyword-alerts-in-2026-workflow-for-brand-and-trend-monitoring",
+      "title": "Setting Up Reddit Keyword Alerts in 2026: Workflow for Brand and Trend Monitoring"
     }
   ]
 }
