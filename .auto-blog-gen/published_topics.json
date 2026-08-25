@@ -108,7 +108,8 @@
     "reddit_toolbox:trend:practical reddit audience research techniques for product and content ideas",
     "platform:keyword:best reddit tools list",
     "reddit_toolbox:keyword:reddit audience research tools",
-    "platform:keyword:best reddit scrapers"
+    "platform:keyword:best reddit scrapers",
+    "reddit_toolbox:trend:practical reddit research workflows for creators and growth teams"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -219,7 +220,8 @@
     "practical-reddit-audience-research-techniques-for-product-and-content-ideas",
     "best-reddit-tools-list-2026-workflow-for-evaluating-analysis-and-monitoring-util",
     "reddit-audience-research-tools-in-2026-turning-community-signals-into-action",
-    "best-reddit-scrapers-in-2026-compared-practical-choices-for-reliable-data"
+    "best-reddit-scrapers-in-2026-compared-practical-choices-for-reliable-data",
+    "practical-reddit-research-workflows-for-creators-and-growth-teams"
   ],
   "events": [
     {
@@ -984,6 +986,13 @@
       "source_type": "keyword",
       "slug": "best-reddit-scrapers-in-2026-compared-practical-choices-for-reliable-data",
       "title": "Best Reddit Scrapers in 2026 Compared: Practical Choices for Reliable Data"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "Practical Reddit Research Workflows for Creators and Growth Teams",
+      "source_type": "trend",
+      "slug": "practical-reddit-research-workflows-for-creators-and-growth-teams",
+      "title": "Practical Reddit Research Workflows for Creators and Growth Teams"
     }
   ]
 }
