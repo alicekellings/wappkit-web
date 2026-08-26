@@ -110,7 +110,8 @@
     "reddit_toolbox:keyword:reddit audience research tools",
     "platform:keyword:best reddit scrapers",
     "reddit_toolbox:trend:practical reddit research workflows for creators and growth teams",
-    "reddit_toolbox:trend:setting up reddit keyword alerts for faster audience and trend insights"
+    "reddit_toolbox:trend:setting up reddit keyword alerts for faster audience and trend insights",
+    "reddit_toolbox:trend:how founders spot emerging opportunities with reddit data"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -223,7 +224,8 @@
     "reddit-audience-research-tools-in-2026-turning-community-signals-into-action",
     "best-reddit-scrapers-in-2026-compared-practical-choices-for-reliable-data",
     "practical-reddit-research-workflows-for-creators-and-growth-teams",
-    "setting-up-reddit-keyword-alerts-in-2026-workflow-for-brand-and-trend-monitoring"
+    "setting-up-reddit-keyword-alerts-in-2026-workflow-for-brand-and-trend-monitoring",
+    "how-founders-spot-emerging-opportunities-with-reddit-data"
   ],
   "events": [
     {
@@ -1002,6 +1004,13 @@
       "source_type": "trend",
       "slug": "setting-up-reddit-keyword-alerts-in-2026-workflow-for-brand-and-trend-monitoring",
       "title": "Setting Up Reddit Keyword Alerts in 2026: Workflow for Brand and Trend Monitoring"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "How Founders Spot Emerging Opportunities with Reddit Data",
+      "source_type": "trend",
+      "slug": "how-founders-spot-emerging-opportunities-with-reddit-data",
+      "title": "How Founders Spot Emerging Opportunities with Reddit Data"
     }
   ]
 }
