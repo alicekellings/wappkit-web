@@ -112,7 +112,8 @@
     "reddit_toolbox:trend:practical reddit research workflows for creators and growth teams",
     "reddit_toolbox:trend:setting up reddit keyword alerts for faster audience and trend insights",
     "reddit_toolbox:trend:how founders spot emerging opportunities with reddit data",
-    "reddit_toolbox:keyword:free reddit marketing tools"
+    "reddit_toolbox:keyword:free reddit marketing tools",
+    "reddit_toolbox:keyword:top reddit tools"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -227,7 +228,8 @@
     "practical-reddit-research-workflows-for-creators-and-growth-teams",
     "setting-up-reddit-keyword-alerts-in-2026-workflow-for-brand-and-trend-monitoring",
     "how-founders-spot-emerging-opportunities-with-reddit-data",
-    "free-reddit-marketing-tools-2026-workflow-playbook-for-research-without-signups"
+    "free-reddit-marketing-tools-2026-workflow-playbook-for-research-without-signups",
+    "top-reddit-tools-2026-workflow-playbook-for-monitoring-and-lead-generation"
   ],
   "events": [
     {
@@ -1020,6 +1022,13 @@
       "source_type": "keyword",
       "slug": "free-reddit-marketing-tools-2026-workflow-playbook-for-research-without-signups",
       "title": "Free Reddit Marketing Tools 2026: Workflow Playbook for Research Without Signups"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "top reddit tools",
+      "source_type": "keyword",
+      "slug": "top-reddit-tools-2026-workflow-playbook-for-monitoring-and-lead-generation",
+      "title": "Top Reddit Tools 2026: Workflow Playbook for Monitoring and Lead Generation"
     }
   ]
 }
