@@ -111,7 +111,8 @@
     "platform:keyword:best reddit scrapers",
     "reddit_toolbox:trend:practical reddit research workflows for creators and growth teams",
     "reddit_toolbox:trend:setting up reddit keyword alerts for faster audience and trend insights",
-    "reddit_toolbox:trend:how founders spot emerging opportunities with reddit data"
+    "reddit_toolbox:trend:how founders spot emerging opportunities with reddit data",
+    "reddit_toolbox:keyword:free reddit marketing tools"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -225,7 +226,8 @@
     "best-reddit-scrapers-in-2026-compared-practical-choices-for-reliable-data",
     "practical-reddit-research-workflows-for-creators-and-growth-teams",
     "setting-up-reddit-keyword-alerts-in-2026-workflow-for-brand-and-trend-monitoring",
-    "how-founders-spot-emerging-opportunities-with-reddit-data"
+    "how-founders-spot-emerging-opportunities-with-reddit-data",
+    "free-reddit-marketing-tools-2026-workflow-playbook-for-research-without-signups"
   ],
   "events": [
     {
@@ -1011,6 +1013,13 @@
       "source_type": "trend",
       "slug": "how-founders-spot-emerging-opportunities-with-reddit-data",
       "title": "How Founders Spot Emerging Opportunities with Reddit Data"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "free reddit marketing tools",
+      "source_type": "keyword",
+      "slug": "free-reddit-marketing-tools-2026-workflow-playbook-for-research-without-signups",
+      "title": "Free Reddit Marketing Tools 2026: Workflow Playbook for Research Without Signups"
     }
   ]
 }
