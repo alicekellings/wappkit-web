@@ -114,7 +114,8 @@
     "reddit_toolbox:trend:how founders spot emerging opportunities with reddit data",
     "reddit_toolbox:keyword:free reddit marketing tools",
     "reddit_toolbox:keyword:top reddit tools",
-    "reddit_toolbox:keyword:free reddit keyword research"
+    "reddit_toolbox:keyword:free reddit keyword research",
+    "reddit_toolbox:keyword:reddit tool"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -231,7 +232,8 @@
     "how-founders-spot-emerging-opportunities-with-reddit-data",
     "free-reddit-marketing-tools-2026-workflow-playbook-for-research-without-signups",
     "top-reddit-tools-2026-workflow-playbook-for-monitoring-and-lead-generation",
-    "free-reddit-keyword-research-in-2026-patterns-from-top-tools-and-methods"
+    "free-reddit-keyword-research-in-2026-patterns-from-top-tools-and-methods",
+    "reddit-research-workflow-how-to-monitor-scrape-and-extract-data-efficiently"
   ],
   "events": [
     {
@@ -1038,6 +1040,13 @@
       "source_type": "keyword",
       "slug": "free-reddit-keyword-research-in-2026-patterns-from-top-tools-and-methods",
       "title": "Free Reddit Keyword Research in 2026: Patterns from Top Tools and Methods"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "reddit tool",
+      "source_type": "keyword",
+      "slug": "reddit-research-workflow-how-to-monitor-scrape-and-extract-data-efficiently",
+      "title": "Reddit Research Workflow: How to Monitor, Scrape, and Extract Data Efficiently"
     }
   ]
 }
