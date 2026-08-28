@@ -117,7 +117,8 @@
     "reddit_toolbox:keyword:free reddit keyword research",
     "reddit_toolbox:keyword:reddit tool",
     "reddit_toolbox:trend:setting up reddit keyword alerts for real-time competitor and trend tracking",
-    "reddit_toolbox:trend:setting up reddit keyword alerts for real-time market and competitor insights"
+    "reddit_toolbox:trend:setting up reddit keyword alerts for real-time market and competitor insights",
+    "reddit_toolbox:keyword:reddit analytics tools"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -237,7 +238,8 @@
     "free-reddit-keyword-research-in-2026-patterns-from-top-tools-and-methods",
     "reddit-research-workflow-how-to-monitor-scrape-and-extract-data-efficiently",
     "how-to-set-up-reddit-keyword-alerts-for-real-time-competitor-and-trend-tracking",
-    "setting-up-reddit-keyword-alerts-for-real-time-market-and-competitor-insights"
+    "setting-up-reddit-keyword-alerts-for-real-time-market-and-competitor-insights",
+    "reddit-analytics-workflow-track-subreddits-and-surface-opportunities-in-2026"
   ],
   "events": [
     {
@@ -1065,6 +1067,13 @@
       "source_type": "trend",
       "slug": "setting-up-reddit-keyword-alerts-for-real-time-market-and-competitor-insights",
       "title": "Setting Up Reddit Keyword Alerts for Real-Time Market and Competitor Insights"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "reddit analytics tools",
+      "source_type": "keyword",
+      "slug": "reddit-analytics-workflow-track-subreddits-and-surface-opportunities-in-2026",
+      "title": "Reddit Analytics Workflow: Track Subreddits and Surface Opportunities in 2026"
     }
   ]
 }
