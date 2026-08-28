@@ -116,7 +116,8 @@
     "reddit_toolbox:keyword:top reddit tools",
     "reddit_toolbox:keyword:free reddit keyword research",
     "reddit_toolbox:keyword:reddit tool",
-    "reddit_toolbox:trend:setting up reddit keyword alerts for real-time competitor and trend tracking"
+    "reddit_toolbox:trend:setting up reddit keyword alerts for real-time competitor and trend tracking",
+    "reddit_toolbox:trend:setting up reddit keyword alerts for real-time market and competitor insights"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -235,7 +236,8 @@
     "top-reddit-tools-2026-workflow-playbook-for-monitoring-and-lead-generation",
     "free-reddit-keyword-research-in-2026-patterns-from-top-tools-and-methods",
     "reddit-research-workflow-how-to-monitor-scrape-and-extract-data-efficiently",
-    "how-to-set-up-reddit-keyword-alerts-for-real-time-competitor-and-trend-tracking"
+    "how-to-set-up-reddit-keyword-alerts-for-real-time-competitor-and-trend-tracking",
+    "setting-up-reddit-keyword-alerts-for-real-time-market-and-competitor-insights"
   ],
   "events": [
     {
@@ -1056,6 +1058,13 @@
       "source_type": "trend",
       "slug": "how-to-set-up-reddit-keyword-alerts-for-real-time-competitor-and-trend-tracking",
       "title": "How to Set Up Reddit Keyword Alerts for Real-Time Competitor and Trend Tracking"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "Setting Up Reddit Keyword Alerts for Real-Time Market and Competitor Insights",
+      "source_type": "trend",
+      "slug": "setting-up-reddit-keyword-alerts-for-real-time-market-and-competitor-insights",
+      "title": "Setting Up Reddit Keyword Alerts for Real-Time Market and Competitor Insights"
     }
   ]
 }
