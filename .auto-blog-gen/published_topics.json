@@ -121,7 +121,8 @@
     "reddit_toolbox:keyword:reddit analytics tools",
     "reddit_toolbox:keyword:reddit keyword tool",
     "platform:keyword:download reddit toolbox desktop",
-    "reddit_toolbox:trend:reddit monitoring strategies for growth operators to catch market shifts early"
+    "reddit_toolbox:trend:reddit monitoring strategies for growth operators to catch market shifts early",
+    "platform:keyword:toolbox for reddit"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -245,7 +246,8 @@
     "reddit-analytics-workflow-track-subreddits-and-surface-opportunities-in-2026",
     "reddit-keyword-tool-workflow-extract-keywords-from-subreddits-in-2026",
     "download-reddit-toolbox-desktop-from-wappkit-windows-installer-guide",
-    "reddit-monitoring-strategies-for-growth-operators-to-catch-market-shifts-early"
+    "reddit-monitoring-strategies-for-growth-operators-to-catch-market-shifts-early",
+    "moderator-toolbox-for-reddit-practical-workflow-for-community-management"
   ],
   "events": [
     {
@@ -1101,6 +1103,13 @@
       "source_type": "trend",
       "slug": "reddit-monitoring-strategies-for-growth-operators-to-catch-market-shifts-early",
       "title": "Reddit Monitoring Strategies for Growth Operators to Catch Market Shifts Early"
+    },
+    {
+      "theme": "platform",
+      "topic": "toolbox for reddit",
+      "source_type": "keyword",
+      "slug": "moderator-toolbox-for-reddit-practical-workflow-for-community-management",
+      "title": "Moderator Toolbox for Reddit: Practical Workflow for Community Management"
     }
   ]
 }
