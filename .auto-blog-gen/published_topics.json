@@ -119,7 +119,8 @@
     "reddit_toolbox:trend:setting up reddit keyword alerts for real-time competitor and trend tracking",
     "reddit_toolbox:trend:setting up reddit keyword alerts for real-time market and competitor insights",
     "reddit_toolbox:keyword:reddit analytics tools",
-    "reddit_toolbox:keyword:reddit keyword tool"
+    "reddit_toolbox:keyword:reddit keyword tool",
+    "platform:keyword:download reddit toolbox desktop"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -241,7 +242,8 @@
     "how-to-set-up-reddit-keyword-alerts-for-real-time-competitor-and-trend-tracking",
     "setting-up-reddit-keyword-alerts-for-real-time-market-and-competitor-insights",
     "reddit-analytics-workflow-track-subreddits-and-surface-opportunities-in-2026",
-    "reddit-keyword-tool-workflow-extract-keywords-from-subreddits-in-2026"
+    "reddit-keyword-tool-workflow-extract-keywords-from-subreddits-in-2026",
+    "download-reddit-toolbox-desktop-from-wappkit-windows-installer-guide"
   ],
   "events": [
     {
@@ -1083,6 +1085,13 @@
       "source_type": "keyword",
       "slug": "reddit-keyword-tool-workflow-extract-keywords-from-subreddits-in-2026",
       "title": "Reddit Keyword Tool Workflow: Extract Keywords from Subreddits in 2026"
+    },
+    {
+      "theme": "platform",
+      "topic": "download reddit toolbox desktop",
+      "source_type": "keyword",
+      "slug": "download-reddit-toolbox-desktop-from-wappkit-windows-installer-guide",
+      "title": "Download Reddit Toolbox Desktop from Wappkit: Windows Installer Guide"
     }
   ]
 }
