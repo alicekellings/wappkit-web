@@ -123,7 +123,8 @@
     "platform:keyword:download reddit toolbox desktop",
     "reddit_toolbox:trend:reddit monitoring strategies for growth operators to catch market shifts early",
     "platform:keyword:toolbox for reddit",
-    "platform:keyword:wappkit reddit toolbox"
+    "platform:keyword:wappkit reddit toolbox",
+    "reddit_toolbox:keyword:reddit keyword"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -249,7 +250,8 @@
     "download-reddit-toolbox-desktop-from-wappkit-windows-installer-guide",
     "reddit-monitoring-strategies-for-growth-operators-to-catch-market-shifts-early",
     "moderator-toolbox-for-reddit-practical-workflow-for-community-management",
-    "wappkit-reddit-toolbox-workflow-local-reddit-analysis-without-monthly-fees"
+    "wappkit-reddit-toolbox-workflow-local-reddit-analysis-without-monthly-fees",
+    "reddit-keyword-research-workflow-a-practical-playbook-for-2026"
   ],
   "events": [
     {
@@ -1119,6 +1121,13 @@
       "source_type": "keyword",
       "slug": "wappkit-reddit-toolbox-workflow-local-reddit-analysis-without-monthly-fees",
       "title": "Wappkit Reddit Toolbox Workflow: Local Reddit Analysis Without Monthly Fees"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "reddit keyword",
+      "source_type": "keyword",
+      "slug": "reddit-keyword-research-workflow-a-practical-playbook-for-2026",
+      "title": "Reddit Keyword Research Workflow: A Practical Playbook for 2026"
     }
   ]
 }
