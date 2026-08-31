@@ -125,7 +125,8 @@
     "platform:keyword:toolbox for reddit",
     "platform:keyword:wappkit reddit toolbox",
     "reddit_toolbox:keyword:reddit keyword",
-    "reddit_toolbox:trend:setting up keyword alerts and digests on reddit for daily insights"
+    "reddit_toolbox:trend:setting up keyword alerts and digests on reddit for daily insights",
+    "platform:topic:when to use license retrieval instead of a customer dashboard"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -253,7 +254,8 @@
     "moderator-toolbox-for-reddit-practical-workflow-for-community-management",
     "wappkit-reddit-toolbox-workflow-local-reddit-analysis-without-monthly-fees",
     "reddit-keyword-research-workflow-a-practical-playbook-for-2026",
-    "setting-up-reddit-keyword-alerts-and-daily-digests-a-practical-2026-workflow"
+    "setting-up-reddit-keyword-alerts-and-daily-digests-a-practical-2026-workflow",
+    "when-to-use-license-retrieval-instead-of-a-customer-dashboard"
   ],
   "events": [
     {
@@ -1137,6 +1139,13 @@
       "source_type": "trend",
       "slug": "setting-up-reddit-keyword-alerts-and-daily-digests-a-practical-2026-workflow",
       "title": "Setting Up Reddit Keyword Alerts and Daily Digests: A Practical 2026 Workflow"
+    },
+    {
+      "theme": "platform",
+      "topic": "when to use license retrieval instead of a customer dashboard",
+      "source_type": "topic",
+      "slug": "when-to-use-license-retrieval-instead-of-a-customer-dashboard",
+      "title": "When to Use License Retrieval Instead of a Customer Dashboard"
     }
   ]
 }
