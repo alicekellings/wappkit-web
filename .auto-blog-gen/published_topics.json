@@ -127,7 +127,8 @@
     "reddit_toolbox:keyword:reddit keyword",
     "reddit_toolbox:trend:setting up keyword alerts and digests on reddit for daily insights",
     "platform:topic:when to use license retrieval instead of a customer dashboard",
-    "platform:topic:how to make a simple checkout-to-download flow feel trustworthy"
+    "platform:topic:how to make a simple checkout-to-download flow feel trustworthy",
+    "reddit_toolbox:trend:how founders can use reddit monitoring to spot emerging market opportunities"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -257,7 +258,8 @@
     "reddit-keyword-research-workflow-a-practical-playbook-for-2026",
     "setting-up-reddit-keyword-alerts-and-daily-digests-a-practical-2026-workflow",
     "when-to-use-license-retrieval-instead-of-a-customer-dashboard",
-    "how-to-make-a-simple-checkout-to-download-flow-feel-trustworthy"
+    "how-to-make-a-simple-checkout-to-download-flow-feel-trustworthy",
+    "how-founders-use-reddit-monitoring-to-spot-emerging-market-opportunities-in-2026"
   ],
   "events": [
     {
@@ -1155,6 +1157,13 @@
       "source_type": "topic",
       "slug": "how-to-make-a-simple-checkout-to-download-flow-feel-trustworthy",
       "title": "How to Make a Simple Checkout-to-Download Flow Feel Trustworthy"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "How Founders Can Use Reddit Monitoring to Spot Emerging Market Opportunities",
+      "source_type": "trend",
+      "slug": "how-founders-use-reddit-monitoring-to-spot-emerging-market-opportunities-in-2026",
+      "title": "How Founders Use Reddit Monitoring to Spot Emerging Market Opportunities in 2026"
     }
   ]
 }
