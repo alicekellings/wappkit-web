@@ -128,7 +128,8 @@
     "reddit_toolbox:trend:setting up keyword alerts and digests on reddit for daily insights",
     "platform:topic:when to use license retrieval instead of a customer dashboard",
     "platform:topic:how to make a simple checkout-to-download flow feel trustworthy",
-    "reddit_toolbox:trend:how founders can use reddit monitoring to spot emerging market opportunities"
+    "reddit_toolbox:trend:how founders can use reddit monitoring to spot emerging market opportunities",
+    "reddit_toolbox:trend:practical ways growth operators turn reddit keyword tracking into content and product ideas"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -259,7 +260,8 @@
     "setting-up-reddit-keyword-alerts-and-daily-digests-a-practical-2026-workflow",
     "when-to-use-license-retrieval-instead-of-a-customer-dashboard",
     "how-to-make-a-simple-checkout-to-download-flow-feel-trustworthy",
-    "how-founders-use-reddit-monitoring-to-spot-emerging-market-opportunities-in-2026"
+    "how-founders-use-reddit-monitoring-to-spot-emerging-market-opportunities-in-2026",
+    "practical-ways-growth-operators-turn-reddit-keyword-tracking-into-content-and-pr"
   ],
   "events": [
     {
@@ -1164,6 +1166,13 @@
       "source_type": "trend",
       "slug": "how-founders-use-reddit-monitoring-to-spot-emerging-market-opportunities-in-2026",
       "title": "How Founders Use Reddit Monitoring to Spot Emerging Market Opportunities in 2026"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "Practical Ways Growth Operators Turn Reddit Keyword Tracking into Content and Product Ideas",
+      "source_type": "trend",
+      "slug": "practical-ways-growth-operators-turn-reddit-keyword-tracking-into-content-and-pr",
+      "title": "Practical Ways Growth Operators Turn Reddit Keyword Tracking into Content and Product Ideas"
     }
   ]
 }
