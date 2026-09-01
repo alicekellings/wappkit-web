@@ -129,7 +129,8 @@
     "platform:topic:when to use license retrieval instead of a customer dashboard",
     "platform:topic:how to make a simple checkout-to-download flow feel trustworthy",
     "reddit_toolbox:trend:how founders can use reddit monitoring to spot emerging market opportunities",
-    "reddit_toolbox:trend:practical ways growth operators turn reddit keyword tracking into content and product ideas"
+    "reddit_toolbox:trend:practical ways growth operators turn reddit keyword tracking into content and product ideas",
+    "reddit_toolbox:trend:how founders can use reddit monitoring to spot emerging customer needs early"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -261,7 +262,8 @@
     "when-to-use-license-retrieval-instead-of-a-customer-dashboard",
     "how-to-make-a-simple-checkout-to-download-flow-feel-trustworthy",
     "how-founders-use-reddit-monitoring-to-spot-emerging-market-opportunities-in-2026",
-    "practical-ways-growth-operators-turn-reddit-keyword-tracking-into-content-and-pr"
+    "practical-ways-growth-operators-turn-reddit-keyword-tracking-into-content-and-pr",
+    "how-founders-use-reddit-monitoring-to-spot-emerging-customer-needs-early"
   ],
   "events": [
     {
@@ -1173,6 +1175,13 @@
       "source_type": "trend",
       "slug": "practical-ways-growth-operators-turn-reddit-keyword-tracking-into-content-and-pr",
       "title": "Practical Ways Growth Operators Turn Reddit Keyword Tracking into Content and Product Ideas"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "How Founders Can Use Reddit Monitoring to Spot Emerging Customer Needs Early",
+      "source_type": "trend",
+      "slug": "how-founders-use-reddit-monitoring-to-spot-emerging-customer-needs-early",
+      "title": "How Founders Use Reddit Monitoring to Spot Emerging Customer Needs Early"
     }
   ]
 }
