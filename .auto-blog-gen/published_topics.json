@@ -130,7 +130,8 @@
     "platform:topic:how to make a simple checkout-to-download flow feel trustworthy",
     "reddit_toolbox:trend:how founders can use reddit monitoring to spot emerging market opportunities",
     "reddit_toolbox:trend:practical ways growth operators turn reddit keyword tracking into content and product ideas",
-    "reddit_toolbox:trend:how founders can use reddit monitoring to spot emerging customer needs early"
+    "reddit_toolbox:trend:how founders can use reddit monitoring to spot emerging customer needs early",
+    "reddit_toolbox:keyword:reddit marketing tools"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -263,7 +264,8 @@
     "how-to-make-a-simple-checkout-to-download-flow-feel-trustworthy",
     "how-founders-use-reddit-monitoring-to-spot-emerging-market-opportunities-in-2026",
     "practical-ways-growth-operators-turn-reddit-keyword-tracking-into-content-and-pr",
-    "how-founders-use-reddit-monitoring-to-spot-emerging-customer-needs-early"
+    "how-founders-use-reddit-monitoring-to-spot-emerging-customer-needs-early",
+    "reddit-marketing-tools-workflow-research-communities-before-engaging-in-2026"
   ],
   "events": [
     {
@@ -1182,6 +1184,13 @@
       "source_type": "trend",
       "slug": "how-founders-use-reddit-monitoring-to-spot-emerging-customer-needs-early",
       "title": "How Founders Use Reddit Monitoring to Spot Emerging Customer Needs Early"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "reddit marketing tools",
+      "source_type": "keyword",
+      "slug": "reddit-marketing-tools-workflow-research-communities-before-engaging-in-2026",
+      "title": "Reddit Marketing Tools Workflow: Research Communities Before Engaging in 2026"
     }
   ]
 }
