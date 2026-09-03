@@ -132,7 +132,8 @@
     "reddit_toolbox:trend:practical ways growth operators turn reddit keyword tracking into content and product ideas",
     "reddit_toolbox:trend:how founders can use reddit monitoring to spot emerging customer needs early",
     "reddit_toolbox:keyword:reddit marketing tools",
-    "reddit_toolbox:keyword:reddit monitor"
+    "reddit_toolbox:keyword:reddit monitor",
+    "reddit_toolbox:keyword:research subreddits"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -267,7 +268,8 @@
     "practical-ways-growth-operators-turn-reddit-keyword-tracking-into-content-and-pr",
     "how-founders-use-reddit-monitoring-to-spot-emerging-customer-needs-early",
     "reddit-marketing-tools-workflow-research-communities-before-engaging-in-2026",
-    "reddit-monitor-workflow-track-subreddits-and-keywords-without-the-noise"
+    "reddit-monitor-workflow-track-subreddits-and-keywords-without-the-noise",
+    "researching-subreddits-in-2026-turning-community-signals-into-clear-next-steps"
   ],
   "events": [
     {
@@ -1200,6 +1202,13 @@
       "source_type": "keyword",
       "slug": "reddit-monitor-workflow-track-subreddits-and-keywords-without-the-noise",
       "title": "Reddit Monitor Workflow: Track Subreddits and Keywords Without the Noise"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "research subreddits",
+      "source_type": "keyword",
+      "slug": "researching-subreddits-in-2026-turning-community-signals-into-clear-next-steps",
+      "title": "Researching Subreddits in 2026: Turning Community Signals into Clear Next Steps"
     }
   ]
 }
