@@ -134,7 +134,8 @@
     "reddit_toolbox:keyword:reddit marketing tools",
     "reddit_toolbox:keyword:reddit monitor",
     "reddit_toolbox:keyword:research subreddits",
-    "reddit_toolbox:trend:setting up reddit monitoring alerts for real-time market signals"
+    "reddit_toolbox:trend:setting up reddit monitoring alerts for real-time market signals",
+    "reddit_toolbox:keyword:reddit keyword research tool"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -271,7 +272,8 @@
     "reddit-marketing-tools-workflow-research-communities-before-engaging-in-2026",
     "reddit-monitor-workflow-track-subreddits-and-keywords-without-the-noise",
     "researching-subreddits-in-2026-turning-community-signals-into-clear-next-steps",
-    "setting-up-reddit-monitoring-alerts-for-real-time-market-signals-in-2026"
+    "setting-up-reddit-monitoring-alerts-for-real-time-market-signals-in-2026",
+    "reddit-keyword-research-tools-2026-patterns-from-keyworddit-reddily-and-practica"
   ],
   "events": [
     {
@@ -1218,6 +1220,13 @@
       "source_type": "trend",
       "slug": "setting-up-reddit-monitoring-alerts-for-real-time-market-signals-in-2026",
       "title": "Setting Up Reddit Monitoring Alerts for Real-Time Market Signals in 2026"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "reddit keyword research tool",
+      "source_type": "keyword",
+      "slug": "reddit-keyword-research-tools-2026-patterns-from-keyworddit-reddily-and-practica",
+      "title": "Reddit Keyword Research Tools 2026: Patterns from Keyworddit, Reddily, and Practical Alternatives"
     }
   ]
 }
