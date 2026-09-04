@@ -133,7 +133,8 @@
     "reddit_toolbox:trend:how founders can use reddit monitoring to spot emerging customer needs early",
     "reddit_toolbox:keyword:reddit marketing tools",
     "reddit_toolbox:keyword:reddit monitor",
-    "reddit_toolbox:keyword:research subreddits"
+    "reddit_toolbox:keyword:research subreddits",
+    "reddit_toolbox:trend:setting up reddit monitoring alerts for real-time market signals"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -269,7 +270,8 @@
     "how-founders-use-reddit-monitoring-to-spot-emerging-customer-needs-early",
     "reddit-marketing-tools-workflow-research-communities-before-engaging-in-2026",
     "reddit-monitor-workflow-track-subreddits-and-keywords-without-the-noise",
-    "researching-subreddits-in-2026-turning-community-signals-into-clear-next-steps"
+    "researching-subreddits-in-2026-turning-community-signals-into-clear-next-steps",
+    "setting-up-reddit-monitoring-alerts-for-real-time-market-signals-in-2026"
   ],
   "events": [
     {
@@ -1209,6 +1211,13 @@
       "source_type": "keyword",
       "slug": "researching-subreddits-in-2026-turning-community-signals-into-clear-next-steps",
       "title": "Researching Subreddits in 2026: Turning Community Signals into Clear Next Steps"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "Setting Up Reddit Monitoring Alerts for Real-Time Market Signals",
+      "source_type": "trend",
+      "slug": "setting-up-reddit-monitoring-alerts-for-real-time-market-signals-in-2026",
+      "title": "Setting Up Reddit Monitoring Alerts for Real-Time Market Signals in 2026"
     }
   ]
 }
