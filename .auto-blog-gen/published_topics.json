@@ -140,7 +140,8 @@
     "reddit_toolbox:keyword:free reddit research tool",
     "reddit_toolbox:trend:practical reddit keyword research strategies for creators and growth teams",
     "reddit_toolbox:trend:how founders use reddit monitoring to spot emerging trends and market gaps",
-    "reddit_toolbox:trend:reddit keyword tracking strategies for growth operators and creators"
+    "reddit_toolbox:trend:reddit keyword tracking strategies for growth operators and creators",
+    "platform:keyword:reddit analysis tools"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -283,7 +284,8 @@
     "free-reddit-research-tools-in-2026-what-still-works-for-audience-and-opportunity",
     "practical-reddit-keyword-research-strategies-for-creators-and-growth-teams",
     "how-founders-use-reddit-monitoring-to-spot-emerging-trends-and-market-gaps",
-    "reddit-keyword-tracking-workflow-for-growth-operators-and-creators"
+    "reddit-keyword-tracking-workflow-for-growth-operators-and-creators",
+    "reddit-analysis-workflow-extract-market-insights-from-subreddits-step-by-step"
   ],
   "events": [
     {
@@ -1272,6 +1274,13 @@
       "source_type": "trend",
       "slug": "reddit-keyword-tracking-workflow-for-growth-operators-and-creators",
       "title": "Reddit Keyword Tracking Workflow for Growth Operators and Creators"
+    },
+    {
+      "theme": "platform",
+      "topic": "reddit analysis tools",
+      "source_type": "keyword",
+      "slug": "reddit-analysis-workflow-extract-market-insights-from-subreddits-step-by-step",
+      "title": "Reddit Analysis Workflow: Extract Market Insights from Subreddits Step by Step"
     }
   ]
 }
