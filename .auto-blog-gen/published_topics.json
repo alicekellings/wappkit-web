@@ -139,7 +139,8 @@
     "reddit_toolbox:keyword:reddit keyword research",
     "reddit_toolbox:keyword:free reddit research tool",
     "reddit_toolbox:trend:practical reddit keyword research strategies for creators and growth teams",
-    "reddit_toolbox:trend:how founders use reddit monitoring to spot emerging trends and market gaps"
+    "reddit_toolbox:trend:how founders use reddit monitoring to spot emerging trends and market gaps",
+    "reddit_toolbox:trend:reddit keyword tracking strategies for growth operators and creators"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -281,7 +282,8 @@
     "reddit-keyword-research-2026-extracting-long-tail-keywords-from-subreddits",
     "free-reddit-research-tools-in-2026-what-still-works-for-audience-and-opportunity",
     "practical-reddit-keyword-research-strategies-for-creators-and-growth-teams",
-    "how-founders-use-reddit-monitoring-to-spot-emerging-trends-and-market-gaps"
+    "how-founders-use-reddit-monitoring-to-spot-emerging-trends-and-market-gaps",
+    "reddit-keyword-tracking-workflow-for-growth-operators-and-creators"
   ],
   "events": [
     {
@@ -1263,6 +1265,13 @@
       "source_type": "trend",
       "slug": "how-founders-use-reddit-monitoring-to-spot-emerging-trends-and-market-gaps",
       "title": "How Founders Use Reddit Monitoring to Spot Emerging Trends and Market Gaps"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "Reddit Keyword Tracking Strategies for Growth Operators and Creators",
+      "source_type": "trend",
+      "slug": "reddit-keyword-tracking-workflow-for-growth-operators-and-creators",
+      "title": "Reddit Keyword Tracking Workflow for Growth Operators and Creators"
     }
   ]
 }
