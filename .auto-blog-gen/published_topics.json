@@ -143,7 +143,8 @@
     "reddit_toolbox:trend:reddit keyword tracking strategies for growth operators and creators",
     "platform:keyword:reddit analysis tools",
     "platform:keyword:reddit toolbox workflow",
-    "reddit_toolbox:trend:practical reddit audience research techniques for creators and growth teams"
+    "reddit_toolbox:trend:practical reddit audience research techniques for creators and growth teams",
+    "reddit_toolbox:trend:setting up effective reddit monitoring alerts for competitive tracking"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -289,7 +290,8 @@
     "reddit-keyword-tracking-workflow-for-growth-operators-and-creators",
     "reddit-analysis-workflow-extract-market-insights-from-subreddits-step-by-step",
     "reddit-toolbox-workflow-for-founders-building-a-2026-monitoring-system",
-    "practical-reddit-audience-research-techniques-for-creators-and-growth-teams"
+    "practical-reddit-audience-research-techniques-for-creators-and-growth-teams",
+    "setting-up-effective-reddit-monitoring-alerts-for-competitive-tracking-in-2026"
   ],
   "events": [
     {
@@ -1299,6 +1301,13 @@
       "source_type": "trend",
       "slug": "practical-reddit-audience-research-techniques-for-creators-and-growth-teams",
       "title": "Practical Reddit Audience Research Techniques for Creators and Growth Teams"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "Setting Up Effective Reddit Monitoring Alerts for Competitive Tracking",
+      "source_type": "trend",
+      "slug": "setting-up-effective-reddit-monitoring-alerts-for-competitive-tracking-in-2026",
+      "title": "Setting Up Effective Reddit Monitoring Alerts for Competitive Tracking in 2026"
     }
   ]
 }
