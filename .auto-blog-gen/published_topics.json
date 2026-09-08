@@ -144,7 +144,8 @@
     "platform:keyword:reddit analysis tools",
     "platform:keyword:reddit toolbox workflow",
     "reddit_toolbox:trend:practical reddit audience research techniques for creators and growth teams",
-    "reddit_toolbox:trend:setting up effective reddit monitoring alerts for competitive tracking"
+    "reddit_toolbox:trend:setting up effective reddit monitoring alerts for competitive tracking",
+    "reddit_toolbox:keyword:reddit research tools platforms"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -291,7 +292,8 @@
     "reddit-analysis-workflow-extract-market-insights-from-subreddits-step-by-step",
     "reddit-toolbox-workflow-for-founders-building-a-2026-monitoring-system",
     "practical-reddit-audience-research-techniques-for-creators-and-growth-teams",
-    "setting-up-effective-reddit-monitoring-alerts-for-competitive-tracking-in-2026"
+    "setting-up-effective-reddit-monitoring-alerts-for-competitive-tracking-in-2026",
+    "reddit-research-tools-platforms-in-2026-gummysearch-alternatives-compared"
   ],
   "events": [
     {
@@ -1308,6 +1310,13 @@
       "source_type": "trend",
       "slug": "setting-up-effective-reddit-monitoring-alerts-for-competitive-tracking-in-2026",
       "title": "Setting Up Effective Reddit Monitoring Alerts for Competitive Tracking in 2026"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "reddit research tools platforms",
+      "source_type": "keyword",
+      "slug": "reddit-research-tools-platforms-in-2026-gummysearch-alternatives-compared",
+      "title": "Reddit Research Tools Platforms in 2026: GummySearch Alternatives Compared"
     }
   ]
 }
