@@ -146,7 +146,8 @@
     "reddit_toolbox:trend:practical reddit audience research techniques for creators and growth teams",
     "reddit_toolbox:trend:setting up effective reddit monitoring alerts for competitive tracking",
     "reddit_toolbox:keyword:reddit research tools platforms",
-    "reddit_toolbox:trend:how to use reddit keyword monitoring to spot emerging market opportunities"
+    "reddit_toolbox:trend:how to use reddit keyword monitoring to spot emerging market opportunities",
+    "platform:keyword:reddit toolbox"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -295,7 +296,8 @@
     "practical-reddit-audience-research-techniques-for-creators-and-growth-teams",
     "setting-up-effective-reddit-monitoring-alerts-for-competitive-tracking-in-2026",
     "reddit-research-tools-platforms-in-2026-gummysearch-alternatives-compared",
-    "reddit-keyword-monitoring-workflow-spot-emerging-market-opportunities-early"
+    "reddit-keyword-monitoring-workflow-spot-emerging-market-opportunities-early",
+    "reddit-toolbox-workflow-step-by-step-guide-to-local-research-and-monitoring"
   ],
   "events": [
     {
@@ -1326,6 +1328,13 @@
       "source_type": "trend",
       "slug": "reddit-keyword-monitoring-workflow-spot-emerging-market-opportunities-early",
       "title": "Reddit Keyword Monitoring Workflow: Spot Emerging Market Opportunities Early"
+    },
+    {
+      "theme": "platform",
+      "topic": "reddit toolbox",
+      "source_type": "keyword",
+      "slug": "reddit-toolbox-workflow-step-by-step-guide-to-local-research-and-monitoring",
+      "title": "Reddit Toolbox Workflow: Step-by-Step Guide to Local Research and Monitoring"
     }
   ]
 }
