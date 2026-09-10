@@ -150,7 +150,8 @@
     "platform:keyword:reddit toolbox",
     "reddit_toolbox:trend:how founders use reddit to spot emerging market opportunities before competitors",
     "platform:keyword:reddit marketing tools",
-    "reddit_toolbox:trend:setting up keyword alerts on reddit for real-time market intelligence"
+    "reddit_toolbox:trend:setting up keyword alerts on reddit for real-time market intelligence",
+    "reddit_toolbox:trend:practical reddit research workflows for growth operators and creators"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -303,7 +304,8 @@
     "reddit-toolbox-workflow-step-by-step-guide-to-local-research-and-monitoring",
     "how-founders-use-reddit-to-spot-emerging-market-opportunities-before-competitors",
     "reddit-marketing-tools-workflow-practical-steps-for-lead-generation-in-2026",
-    "how-to-set-up-reddit-keyword-alerts-for-real-time-market-intelligence"
+    "how-to-set-up-reddit-keyword-alerts-for-real-time-market-intelligence",
+    "practical-reddit-research-workflows-for-growth-operators-and-creators"
   ],
   "events": [
     {
@@ -1362,6 +1364,13 @@
       "source_type": "trend",
       "slug": "how-to-set-up-reddit-keyword-alerts-for-real-time-market-intelligence",
       "title": "How to Set Up Reddit Keyword Alerts for Real-Time Market Intelligence"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "Practical Reddit Research Workflows for Growth Operators and Creators",
+      "source_type": "trend",
+      "slug": "practical-reddit-research-workflows-for-growth-operators-and-creators",
+      "title": "Practical Reddit Research Workflows for Growth Operators and Creators"
     }
   ]
 }
