@@ -149,7 +149,8 @@
     "reddit_toolbox:trend:how to use reddit keyword monitoring to spot emerging market opportunities",
     "platform:keyword:reddit toolbox",
     "reddit_toolbox:trend:how founders use reddit to spot emerging market opportunities before competitors",
-    "platform:keyword:reddit marketing tools"
+    "platform:keyword:reddit marketing tools",
+    "reddit_toolbox:trend:setting up keyword alerts on reddit for real-time market intelligence"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -301,7 +302,8 @@
     "reddit-keyword-monitoring-workflow-spot-emerging-market-opportunities-early",
     "reddit-toolbox-workflow-step-by-step-guide-to-local-research-and-monitoring",
     "how-founders-use-reddit-to-spot-emerging-market-opportunities-before-competitors",
-    "reddit-marketing-tools-workflow-practical-steps-for-lead-generation-in-2026"
+    "reddit-marketing-tools-workflow-practical-steps-for-lead-generation-in-2026",
+    "how-to-set-up-reddit-keyword-alerts-for-real-time-market-intelligence"
   ],
   "events": [
     {
@@ -1353,6 +1355,13 @@
       "source_type": "keyword",
       "slug": "reddit-marketing-tools-workflow-practical-steps-for-lead-generation-in-2026",
       "title": "Reddit Marketing Tools Workflow: Practical Steps for Lead Generation in 2026"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "Setting Up Keyword Alerts on Reddit for Real-Time Market Intelligence",
+      "source_type": "trend",
+      "slug": "how-to-set-up-reddit-keyword-alerts-for-real-time-market-intelligence",
+      "title": "How to Set Up Reddit Keyword Alerts for Real-Time Market Intelligence"
     }
   ]
 }
