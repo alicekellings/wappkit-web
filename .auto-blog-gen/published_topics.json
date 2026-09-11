@@ -151,7 +151,8 @@
     "reddit_toolbox:trend:how founders use reddit to spot emerging market opportunities before competitors",
     "platform:keyword:reddit marketing tools",
     "reddit_toolbox:trend:setting up keyword alerts on reddit for real-time market intelligence",
-    "reddit_toolbox:trend:practical reddit research workflows for growth operators and creators"
+    "reddit_toolbox:trend:practical reddit research workflows for growth operators and creators",
+    "reddit_toolbox:keyword:reddit search tools"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -305,7 +306,8 @@
     "how-founders-use-reddit-to-spot-emerging-market-opportunities-before-competitors",
     "reddit-marketing-tools-workflow-practical-steps-for-lead-generation-in-2026",
     "how-to-set-up-reddit-keyword-alerts-for-real-time-market-intelligence",
-    "practical-reddit-research-workflows-for-growth-operators-and-creators"
+    "practical-reddit-research-workflows-for-growth-operators-and-creators",
+    "reddit-search-workflow-a-practical-guide-to-finding-opportunities-in-2026"
   ],
   "events": [
     {
@@ -1371,6 +1373,13 @@
       "source_type": "trend",
       "slug": "practical-reddit-research-workflows-for-growth-operators-and-creators",
       "title": "Practical Reddit Research Workflows for Growth Operators and Creators"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "reddit search tools",
+      "source_type": "keyword",
+      "slug": "reddit-search-workflow-a-practical-guide-to-finding-opportunities-in-2026",
+      "title": "Reddit Search Workflow: A Practical Guide to Finding Opportunities in 2026"
     }
   ]
 }
