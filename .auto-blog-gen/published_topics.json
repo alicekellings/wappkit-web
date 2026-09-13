@@ -313,7 +313,8 @@
     "reddit-search-workflow-a-practical-guide-to-finding-opportunities-in-2026",
     "must-have-reddit-tools-workflow-for-research-and-monitoring-in-2026",
     "how-founders-use-reddit-keyword-monitoring-to-spot-emerging-opportunities-early",
-    "setting-up-reddit-keyword-alerts-and-digests-for-real-time-market-insights"
+    "setting-up-reddit-keyword-alerts-and-digests-for-real-time-market-insights",
+    "subreddit-research-2026-how-reddit-toolbox-cuts-manual-search-time-for-validated"
   ],
   "events": [
     {
@@ -1407,6 +1408,13 @@
       "source_type": "trend",
       "slug": "setting-up-reddit-keyword-alerts-and-digests-for-real-time-market-insights",
       "title": "Setting Up Reddit Keyword Alerts and Digests for Real-Time Market Insights"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "subreddit research",
+      "source_type": "keyword",
+      "slug": "subreddit-research-2026-how-reddit-toolbox-cuts-manual-search-time-for-validated",
+      "title": "Subreddit Research 2026: How Reddit Toolbox Cuts Manual Search Time for Validated Problems"
     }
   ]
 }
