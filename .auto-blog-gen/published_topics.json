@@ -156,7 +156,8 @@
     "reddit_toolbox:keyword:must-have reddit tools",
     "reddit_toolbox:trend:how founders use reddit keyword monitoring to spot emerging opportunities early",
     "reddit_toolbox:trend:setting up reddit keyword alerts and digests for real-time market insights",
-    "reddit_toolbox:trend:how founders can spot emerging product opportunities on reddit before competitors"
+    "reddit_toolbox:trend:how founders can spot emerging product opportunities on reddit before competitors",
+    "reddit_toolbox:trend:setting up reddit keyword alerts to track customer pain points in real time"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -316,7 +317,8 @@
     "how-founders-use-reddit-keyword-monitoring-to-spot-emerging-opportunities-early",
     "setting-up-reddit-keyword-alerts-and-digests-for-real-time-market-insights",
     "subreddit-research-2026-how-reddit-toolbox-cuts-manual-search-time-for-validated",
-    "how-founders-can-spot-emerging-product-opportunities-on-reddit-before-competitor"
+    "how-founders-can-spot-emerging-product-opportunities-on-reddit-before-competitor",
+    "setting-up-reddit-keyword-alerts-to-track-customer-pain-points-in-real-time"
   ],
   "events": [
     {
@@ -1424,6 +1426,13 @@
       "source_type": "trend",
       "slug": "how-founders-can-spot-emerging-product-opportunities-on-reddit-before-competitor",
       "title": "How Founders Can Spot Emerging Product Opportunities on Reddit Before Competitors"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "Setting Up Reddit Keyword Alerts to Track Customer Pain Points in Real Time",
+      "source_type": "trend",
+      "slug": "setting-up-reddit-keyword-alerts-to-track-customer-pain-points-in-real-time",
+      "title": "Setting Up Reddit Keyword Alerts to Track Customer Pain Points in Real Time"
     }
   ]
 }
