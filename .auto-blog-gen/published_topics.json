@@ -159,7 +159,8 @@
     "reddit_toolbox:trend:how founders can spot emerging product opportunities on reddit before competitors",
     "reddit_toolbox:trend:setting up reddit keyword alerts to track customer pain points in real time",
     "reddit_toolbox:keyword:free reddit research",
-    "reddit_toolbox:trend:setting up reddit keyword alerts for real-time trend tracking"
+    "reddit_toolbox:trend:setting up reddit keyword alerts for real-time trend tracking",
+    "reddit_toolbox:trend:reddit research workflows that help creators and growth teams move faster"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -322,7 +323,8 @@
     "how-founders-can-spot-emerging-product-opportunities-on-reddit-before-competitor",
     "setting-up-reddit-keyword-alerts-to-track-customer-pain-points-in-real-time",
     "free-reddit-research-in-2026-patterns-from-tools-programs-and-large-datasets",
-    "setting-up-reddit-keyword-alerts-for-real-time-trend-tracking"
+    "setting-up-reddit-keyword-alerts-for-real-time-trend-tracking",
+    "reddit-research-workflows-that-help-creators-and-growth-teams-move-faster-in-202"
   ],
   "events": [
     {
@@ -1451,6 +1453,13 @@
       "source_type": "trend",
       "slug": "setting-up-reddit-keyword-alerts-for-real-time-trend-tracking",
       "title": "Setting Up Reddit Keyword Alerts for Real-Time Trend Tracking"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "Reddit Research Workflows That Help Creators and Growth Teams Move Faster",
+      "source_type": "trend",
+      "slug": "reddit-research-workflows-that-help-creators-and-growth-teams-move-faster-in-202",
+      "title": "Reddit Research Workflows That Help Creators and Growth Teams Move Faster in 2026"
     }
   ]
 }
