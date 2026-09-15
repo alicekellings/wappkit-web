@@ -160,7 +160,8 @@
     "reddit_toolbox:trend:setting up reddit keyword alerts to track customer pain points in real time",
     "reddit_toolbox:keyword:free reddit research",
     "reddit_toolbox:trend:setting up reddit keyword alerts for real-time trend tracking",
-    "reddit_toolbox:trend:reddit research workflows that help creators and growth teams move faster"
+    "reddit_toolbox:trend:reddit research workflows that help creators and growth teams move faster",
+    "reddit_toolbox:keyword:reddit marketing"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -324,7 +325,8 @@
     "setting-up-reddit-keyword-alerts-to-track-customer-pain-points-in-real-time",
     "free-reddit-research-in-2026-patterns-from-tools-programs-and-large-datasets",
     "setting-up-reddit-keyword-alerts-for-real-time-trend-tracking",
-    "reddit-research-workflows-that-help-creators-and-growth-teams-move-faster-in-202"
+    "reddit-research-workflows-that-help-creators-and-growth-teams-move-faster-in-202",
+    "reddit-marketing-workflow-playbook-2026-research-subreddits-and-convert-threads"
   ],
   "events": [
     {
@@ -1460,6 +1462,13 @@
       "source_type": "trend",
       "slug": "reddit-research-workflows-that-help-creators-and-growth-teams-move-faster-in-202",
       "title": "Reddit Research Workflows That Help Creators and Growth Teams Move Faster in 2026"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "reddit marketing",
+      "source_type": "keyword",
+      "slug": "reddit-marketing-workflow-playbook-2026-research-subreddits-and-convert-threads",
+      "title": "Reddit Marketing Workflow Playbook 2026: Research Subreddits and Convert Threads Without Bans"
     }
   ]
 }
