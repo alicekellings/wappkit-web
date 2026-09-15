@@ -158,7 +158,8 @@
     "reddit_toolbox:trend:setting up reddit keyword alerts and digests for real-time market insights",
     "reddit_toolbox:trend:how founders can spot emerging product opportunities on reddit before competitors",
     "reddit_toolbox:trend:setting up reddit keyword alerts to track customer pain points in real time",
-    "reddit_toolbox:keyword:free reddit research"
+    "reddit_toolbox:keyword:free reddit research",
+    "reddit_toolbox:trend:setting up reddit keyword alerts for real-time trend tracking"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -320,7 +321,8 @@
     "subreddit-research-2026-how-reddit-toolbox-cuts-manual-search-time-for-validated",
     "how-founders-can-spot-emerging-product-opportunities-on-reddit-before-competitor",
     "setting-up-reddit-keyword-alerts-to-track-customer-pain-points-in-real-time",
-    "free-reddit-research-in-2026-patterns-from-tools-programs-and-large-datasets"
+    "free-reddit-research-in-2026-patterns-from-tools-programs-and-large-datasets",
+    "setting-up-reddit-keyword-alerts-for-real-time-trend-tracking"
   ],
   "events": [
     {
@@ -1442,6 +1444,13 @@
       "source_type": "keyword",
       "slug": "free-reddit-research-in-2026-patterns-from-tools-programs-and-large-datasets",
       "title": "Free Reddit Research in 2026: Patterns from Tools, Programs, and Large Datasets"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "Setting Up Reddit Keyword Alerts for Real-Time Trend Tracking",
+      "source_type": "trend",
+      "slug": "setting-up-reddit-keyword-alerts-for-real-time-trend-tracking",
+      "title": "Setting Up Reddit Keyword Alerts for Real-Time Trend Tracking"
     }
   ]
 }
