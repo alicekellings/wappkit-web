@@ -163,7 +163,8 @@
     "reddit_toolbox:trend:reddit research workflows that help creators and growth teams move faster",
     "reddit_toolbox:keyword:reddit marketing",
     "reddit_toolbox:trend:practical reddit audience research tactics for creators and growth teams",
-    "reddit_toolbox:trend:setting up reddit keyword monitoring for competitor and trend tracking"
+    "reddit_toolbox:trend:setting up reddit keyword monitoring for competitor and trend tracking",
+    "reddit_toolbox:keyword:reddit keyword research tools"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -330,7 +331,8 @@
     "reddit-research-workflows-that-help-creators-and-growth-teams-move-faster-in-202",
     "reddit-marketing-workflow-playbook-2026-research-subreddits-and-convert-threads",
     "practical-reddit-audience-research-tactics-for-creators-and-growth-teams",
-    "how-to-set-up-reddit-keyword-monitoring-for-competitor-and-trend-tracking-in-202"
+    "how-to-set-up-reddit-keyword-monitoring-for-competitor-and-trend-tracking-in-202",
+    "reddit-keyword-research-tools-patterns-from-current-user-discussions"
   ],
   "events": [
     {
@@ -1487,6 +1489,13 @@
       "source_type": "trend",
       "slug": "how-to-set-up-reddit-keyword-monitoring-for-competitor-and-trend-tracking-in-202",
       "title": "How to Set Up Reddit Keyword Monitoring for Competitor and Trend Tracking in 2026"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "reddit keyword research tools",
+      "source_type": "keyword",
+      "slug": "reddit-keyword-research-tools-patterns-from-current-user-discussions",
+      "title": "Reddit Keyword Research Tools: Patterns from Current User Discussions"
     }
   ]
 }
