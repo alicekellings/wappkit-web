@@ -166,7 +166,8 @@
     "reddit_toolbox:trend:setting up reddit keyword monitoring for competitor and trend tracking",
     "reddit_toolbox:keyword:reddit keyword research tools",
     "reddit_toolbox:trend:how founders can use reddit data to identify emerging product opportunities",
-    "platform:keyword:reddit post scraper"
+    "platform:keyword:reddit post scraper",
+    "platform:keyword:reddit scraper desktop"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -336,7 +337,8 @@
     "how-to-set-up-reddit-keyword-monitoring-for-competitor-and-trend-tracking-in-202",
     "reddit-keyword-research-tools-patterns-from-current-user-discussions",
     "how-founders-can-use-reddit-data-to-identify-emerging-product-opportunities-in-2",
-    "reddit-post-scraper-workflow-practical-steps-for-reliable-extraction"
+    "reddit-post-scraper-workflow-practical-steps-for-reliable-extraction",
+    "reddit-scraper-desktop-workflow-practical-steps-for-local-data-extraction"
   ],
   "events": [
     {
@@ -1514,6 +1516,13 @@
       "source_type": "keyword",
       "slug": "reddit-post-scraper-workflow-practical-steps-for-reliable-extraction",
       "title": "Reddit Post Scraper Workflow: Practical Steps for Reliable Extraction"
+    },
+    {
+      "theme": "platform",
+      "topic": "reddit scraper desktop",
+      "source_type": "keyword",
+      "slug": "reddit-scraper-desktop-workflow-practical-steps-for-local-data-extraction",
+      "title": "Reddit Scraper Desktop Workflow: Practical Steps for Local Data Extraction"
     }
   ]
 }
