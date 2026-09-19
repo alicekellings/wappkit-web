@@ -172,7 +172,8 @@
     "reddit_toolbox:trend:setting up reddit keyword monitoring for real-time market and audience insights",
     "reddit_toolbox:trend:how founders use reddit data to spot emerging opportunities before competitors",
     "reddit_toolbox:trend:practical reddit research techniques for validating product ideas",
-    "reddit_toolbox:trend:how founders can spot emerging opportunities with reddit monitoring"
+    "reddit_toolbox:trend:how founders can spot emerging opportunities with reddit monitoring",
+    "reddit_toolbox:trend:using reddit data to understand audience needs and refine marketing"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -348,7 +349,8 @@
     "setting-up-reddit-keyword-monitoring-for-real-time-market-and-audience-insights",
     "how-founders-use-reddit-data-to-spot-emerging-opportunities-before-competitors",
     "practical-reddit-research-techniques-for-validating-product-ideas",
-    "reddit-monitoring-workflow-for-founders-in-2026-spot-emerging-opportunities-befo"
+    "reddit-monitoring-workflow-for-founders-in-2026-spot-emerging-opportunities-befo",
+    "workflow-using-reddit-data-to-understand-audience-needs-and-refine-marketing"
   ],
   "events": [
     {
@@ -1568,6 +1570,13 @@
       "source_type": "trend",
       "slug": "reddit-monitoring-workflow-for-founders-in-2026-spot-emerging-opportunities-befo",
       "title": "Reddit Monitoring Workflow for Founders in 2026: Spot Emerging Opportunities Before Search Engines"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "Using Reddit Data to Understand Audience Needs and Refine Marketing",
+      "source_type": "trend",
+      "slug": "workflow-using-reddit-data-to-understand-audience-needs-and-refine-marketing",
+      "title": "Workflow: Using Reddit Data to Understand Audience Needs and Refine Marketing"
     }
   ]
 }
