@@ -173,7 +173,8 @@
     "reddit_toolbox:trend:how founders use reddit data to spot emerging opportunities before competitors",
     "reddit_toolbox:trend:practical reddit research techniques for validating product ideas",
     "reddit_toolbox:trend:how founders can spot emerging opportunities with reddit monitoring",
-    "reddit_toolbox:trend:using reddit data to understand audience needs and refine marketing"
+    "reddit_toolbox:trend:using reddit data to understand audience needs and refine marketing",
+    "reddit_toolbox:keyword:reddit marketing tool"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -350,7 +351,8 @@
     "how-founders-use-reddit-data-to-spot-emerging-opportunities-before-competitors",
     "practical-reddit-research-techniques-for-validating-product-ideas",
     "reddit-monitoring-workflow-for-founders-in-2026-spot-emerging-opportunities-befo",
-    "workflow-using-reddit-data-to-understand-audience-needs-and-refine-marketing"
+    "workflow-using-reddit-data-to-understand-audience-needs-and-refine-marketing",
+    "reddit-marketing-tool-workflow-monitor-keywords-and-find-opportunities-without-e"
   ],
   "events": [
     {
@@ -1577,6 +1579,13 @@
       "source_type": "trend",
       "slug": "workflow-using-reddit-data-to-understand-audience-needs-and-refine-marketing",
       "title": "Workflow: Using Reddit Data to Understand Audience Needs and Refine Marketing"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "reddit marketing tool",
+      "source_type": "keyword",
+      "slug": "reddit-marketing-tool-workflow-monitor-keywords-and-find-opportunities-without-e",
+      "title": "Reddit Marketing Tool Workflow: Monitor Keywords and Find Opportunities Without Expensive Tools"
     }
   ]
 }
