@@ -14,6 +14,7 @@ This project includes:
 - remote license validation for the desktop app
 - device-bound license activation and deactivate flows
 - internal admin support page for license search and manual unbind
+- a `studio` subdomain hosting a services landing page and inquiry form
 - optional email resend support via Resend
 
 ## Stack
@@ -23,8 +24,9 @@ This project includes:
 - Tailwind CSS
 - Contentlayer
 - Creem
+- Brevo (transactional email)
 - Upstash Redis
-- Resend
+- Resend (reserved for the optional license-resend flow)
 - Vercel
 
 ## Local Setup
@@ -79,8 +81,11 @@ UPSTASH_REDIS_REST_URL=
 UPSTASH_REDIS_REST_TOKEN=
 CRON_SECRET=
 
+BREVO_API_KEY=
+EMAIL_FROM=Wappkit Studio <support@wappkit.com>
+STUDIO_INQUIRY_TO=
+
 RESEND_API_KEY=
-EMAIL_FROM=
 
 INTERNAL_ADMIN_TOKEN=
 ```
@@ -112,6 +117,32 @@ Current product-specific billing env keys:
 - Upstash is the first persistence layer, with room to migrate later
 - a Vercel cron keeps the Upstash database active with a daily keepalive write
 
+## Wappkit Studio
+
+`studio.wappkit.com` is a self-contained services page (diagnosis / repair / care plan)
+for custom automation work. It shares the Wappkit brand but has its own layout and
+no link back into the product directory except an outbound link to `/pricing`.
+
+Routing:
+
+- `next.config.js` rewrites `studio.wappkit.com/*` to the `/studio/*` namespace via a
+  `beforeFiles` rewrite keyed on the request host. `has.value` only accepts a string.
+- pages live in the `app/(studio)` route group: `app/(studio)/studio/page.tsx`
+- the form posts to `/api/inquiry`, which the rewrite maps to `/studio/api/inquiry`
+  (`app/(studio)/studio/api/inquiry/route.ts`). From the apex domain the same
+  endpoint is reachable directly at `/studio/api/inquiry`.
+- the client picks the endpoint from `window.location.hostname` so it works on both hosts.
+
+Inquiry delivery:
+
+- payload is validated with `lib/validations/inquiry.ts` (zod) and includes a
+  hidden honeypot field that silently discards bot submissions
+- `lib/inquiry-email.ts` posts to `https://api.brevo.com/v3/smtp/email` using
+  `BREVO_API_KEY`, with `EMAIL_FROM` parsed into Brevo's `{ name, email }` sender shape
+- the subject is kept ASCII-only; Brevo mangles non-ASCII subjects unless they are
+  RFC 2047 encoded
+- notifications go to `STUDIO_INQUIRY_TO`, falling back to `NEXT_PUBLIC_SUPPORT_EMAIL`
+
 ## Deployment Notes
 
 - deployment model: GitHub + Vercel
@@ -129,7 +160,7 @@ Current product-specific billing env keys:
 
 ## Current Vercel Env Snapshot
 
-As of `2026-04-24`, the Vercel project UI already shows these env variable names as present.
+As of `2026-09-22`, the Vercel project UI shows these env variable names as present.
 This is a deployment snapshot only; secret values are intentionally not stored in repo docs.
 
 Confirmed visible in Vercel:
@@ -145,6 +176,12 @@ Confirmed visible in Vercel:
 - `UPSTASH_REDIS_REST_URL`
 - `UPSTASH_REDIS_REST_TOKEN`
 - `CRON_SECRET`
+- `BREVO_API_KEY` (Studio inquiries)
+- `EMAIL_FROM` (Studio inquiries)
+- `STUDIO_INQUIRY_TO` (Studio inquiries)
+
+Note: `BREVO_API_KEY` should be stored as **Config**, not Secret. Secret values are
+write-only in the Vercel UI, so a typo cannot be inspected or corrected later.
 
 ## Upstash Keepalive
 
@@ -200,3 +237,14 @@ The following flow has already been verified end to end:
 4. retrieve the license from `https://www.wappkit.com/license/retrieve`
 5. activate the desktop app with the issued license
 6. confirm the device binding appears on the retrieval page
+
+The Studio inquiry flow has also been verified end to end:
+
+1. open `https://studio.wappkit.com/`
+2. submit the inquiry form
+3. receive `{"ok":true}` from `/studio/api/inquiry` (rewritten from `/api/inquiry`)
+4. receive the notification email at the `STUDIO_INQUIRY_TO` address
+
+Requires `studio.wappkit.com` to be added as a Vercel domain, with a CNAME pointing
+at the per-project `*.vercel-dns-017.com` target and Cloudflare proxy set to
+**DNS only** (grey cloud).
