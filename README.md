@@ -125,12 +125,16 @@ no link back into the product directory except an outbound link to `/pricing`.
 
 Routing:
 
-- `next.config.js` rewrites `studio.wappkit.com/*` to the `/studio/*` namespace via a
-  `beforeFiles` rewrite keyed on the request host. `has.value` only accepts a string.
+- `middleware.ts` rewrites `studio.wappkit.com/*` into the `/studio/*` namespace,
+  keyed on the request host.
+  It lives in middleware rather than `next.config.js` on purpose: a `beforeFiles`
+  rewrite in `next.config` also applies to `/_next/static/*`, which rewrote the CSS
+  and JS to `/studio/_next/...` and returned 404 — the page rendered as unstyled HTML.
+  Middleware's matcher already excludes `/_next`, so static assets pass through intact.
 - pages live in the `app/(studio)` route group: `app/(studio)/studio/page.tsx`
-- the form posts to `/api/inquiry`, which the rewrite maps to `/studio/api/inquiry`
-  (`app/(studio)/studio/api/inquiry/route.ts`). From the apex domain the same
-  endpoint is reachable directly at `/studio/api/inquiry`.
+- the form posts to `/api/inquiry`, which on the subdomain is rewritten to
+  `/studio/api/inquiry` (`app/(studio)/studio/api/inquiry/route.ts`).
+  From the apex domain the same endpoint is reachable directly at `/studio/api/inquiry`.
 - the client picks the endpoint from `window.location.hostname` so it works on both hosts.
 
 Inquiry delivery:
