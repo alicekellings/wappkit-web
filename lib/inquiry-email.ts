@@ -1,20 +1,20 @@
-import { Resend } from "resend";
-
 import { getTrimmedEnv } from "@/lib/env-utils";
 import { escapeHtml } from "@/lib/input-utils";
 import type { StudioInquiryInput } from "@/lib/validations/inquiry";
 
-function getResendClient() {
-  const apiKey = getTrimmedEnv("RESEND_API_KEY");
+const BREVO_ENDPOINT = "https://api.brevo.com/v3/smtp/email";
 
-  if (!apiKey) {
-    return null;
+/** 把 "Wappkit <support@wappkit.com>" 或 "support@wappkit.com" 解析成 Brevo 要的 {name, email} */
+function parseSender(raw: string) {
+  const match = raw.match(/^\s*(.*?)\s*<\s*([^>]+)\s*>\s*$/);
+
+  if (match) {
+    return { name: match[1] || undefined, email: match[2].trim() };
   }
 
-  return new Resend(apiKey);
+  return { name: undefined, email: raw.trim() };
 }
 
-/** 咨询邮件发到哪里；默认回落到站点的 support 邮箱 */
 function getInquiryRecipient() {
   return (
     getTrimmedEnv("STUDIO_INQUIRY_TO") ??
@@ -25,7 +25,7 @@ function getInquiryRecipient() {
 
 export function canSendStudioInquiry() {
   return Boolean(
-    getTrimmedEnv("RESEND_API_KEY") &&
+    getTrimmedEnv("BREVO_API_KEY") &&
       getTrimmedEnv("EMAIL_FROM") &&
       getInquiryRecipient(),
   );
@@ -34,11 +34,11 @@ export function canSendStudioInquiry() {
 type InquiryRow = { label: string; value?: string };
 
 export async function sendStudioInquiryEmail(inquiry: StudioInquiryInput) {
-  const resend = getResendClient();
+  const apiKey = getTrimmedEnv("BREVO_API_KEY");
   const emailFrom = getTrimmedEnv("EMAIL_FROM");
   const recipient = getInquiryRecipient();
 
-  if (!resend || !emailFrom || !recipient) {
+  if (!apiKey || !emailFrom || !recipient) {
     throw new Error("Inquiry email delivery is not configured yet.");
   }
 
@@ -51,8 +51,9 @@ export async function sendStudioInquiryEmail(inquiry: StudioInquiryInput) {
     { label: "Budget", value: inquiry.budget },
   ];
 
-  const htmlRows = rows
-    .filter((row) => row.value)
+  const present = rows.filter((row) => row.value);
+
+  const htmlRows = present
     .map(
       (row) =>
         `<tr><td style="padding:4px 12px 4px 0;color:#6b7280;">${escapeHtml(
@@ -63,26 +64,40 @@ export async function sendStudioInquiryEmail(inquiry: StudioInquiryInput) {
     )
     .join("");
 
-  const textRows = rows
-    .filter((row) => row.value)
-    .map((row) => `${row.label}: ${row.value}`)
-    .join("\n");
+  const textRows = present.map((row) => `${row.label}: ${row.value}`).join("\n");
 
-  return resend.emails.send({
-    from: emailFrom,
-    to: recipient,
-    reply_to: inquiry.email,
-    subject: `Studio inquiry — ${inquiry.platform} (${inquiry.tier})`,
-    html: `
-      <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #111827;">
-        <h1 style="font-size: 20px;">New studio inquiry</h1>
-        <table style="border-collapse: collapse; margin-bottom: 16px;">${htmlRows}</table>
-        <p style="margin-bottom: 4px;"><strong>Problem</strong></p>
-        <pre style="white-space: pre-wrap; font-family: inherit;">${escapeHtml(
-          inquiry.problem,
-        )}</pre>
-      </div>
-    `,
-    text: `New studio inquiry\n\n${textRows}\n\nProblem\n-------\n${inquiry.problem}`,
+  const response = await fetch(BREVO_ENDPOINT, {
+    method: "POST",
+    headers: {
+      "api-key": apiKey,
+      "Content-Type": "application/json",
+      accept: "application/json",
+    },
+    body: JSON.stringify({
+      sender: parseSender(emailFrom),
+      to: [{ email: recipient }],
+      replyTo: { email: inquiry.email, name: inquiry.name },
+      subject: `Studio inquiry — ${inquiry.platform} (${inquiry.tier})`,
+      htmlContent: `
+        <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #111827;">
+          <h1 style="font-size: 20px;">New studio inquiry</h1>
+          <table style="border-collapse: collapse; margin-bottom: 16px;">${htmlRows}</table>
+          <p style="margin-bottom: 4px;"><strong>Problem</strong></p>
+          <pre style="white-space: pre-wrap; font-family: inherit;">${escapeHtml(
+            inquiry.problem,
+          )}</pre>
+        </div>
+      `,
+      textContent: `New studio inquiry\n\n${textRows}\n\nProblem\n-------\n${inquiry.problem}`,
+    }),
   });
+
+  if (!response.ok) {
+    const detail = await response.text().catch(() => "");
+    throw new Error(
+      `Brevo rejected the message (${response.status}): ${detail.slice(0, 300)}`,
+    );
+  }
+
+  return response.json().catch(() => ({ ok: true }));
 }

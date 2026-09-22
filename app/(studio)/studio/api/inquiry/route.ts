@@ -29,7 +29,7 @@ export async function POST(request: NextRequest) {
 
     if (!canSendStudioInquiry()) {
       console.error("Studio inquiry email is not configured.", {
-        hasResendKey: Boolean(process.env.RESEND_API_KEY),
+        hasBrevoKey: Boolean(process.env.BREVO_API_KEY),
         hasEmailFrom: Boolean(process.env.EMAIL_FROM),
         hasRecipient: Boolean(
           process.env.STUDIO_INQUIRY_TO ?? process.env.NEXT_PUBLIC_SUPPORT_EMAIL,
