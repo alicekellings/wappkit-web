@@ -77,7 +77,8 @@ export async function sendStudioInquiryEmail(inquiry: StudioInquiryInput) {
       sender: parseSender(emailFrom),
       to: [{ email: recipient }],
       replyTo: { email: inquiry.email, name: inquiry.name },
-      subject: `Studio inquiry — ${inquiry.platform} (${inquiry.tier})`,
+      // 主题保持纯 ASCII：Brevo 对非 ASCII 主题需要 RFC 2047 编码，否则会乱码
+      subject: `Studio inquiry: ${inquiry.platform} (${inquiry.tier})`,
       htmlContent: `
         <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #111827;">
           <h1 style="font-size: 20px;">New studio inquiry</h1>
