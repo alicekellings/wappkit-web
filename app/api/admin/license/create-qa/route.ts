@@ -2,6 +2,8 @@ import crypto from "node:crypto";
 
 import { NextRequest, NextResponse } from "next/server";
 
+import { serializeError } from "@/lib/error-utils";
+
 import { isAdminRequestAuthenticated } from "@/lib/admin-auth";
 import {
   createLicenseRecordFromCreemCheckout,
@@ -117,9 +119,7 @@ export async function POST(request: NextRequest) {
       {
         success: false,
         message:
-          error instanceof Error
-            ? error.message
-            : "Failed to create the internal QA license.",
+          "Failed to create the internal QA license. Check the server logs for details.",
       },
       { status: 500 },
     );

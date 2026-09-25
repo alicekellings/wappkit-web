@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
+import { serializeError } from "@/lib/error-utils";
+
 import {
   getCreemWebhookSignature,
   isCreemInTestMode,
@@ -89,12 +91,16 @@ export async function POST(request: NextRequest) {
     const record = createLicenseRecordFromCreemCheckout(checkout);
     const store = getLicenseStore();
 
-    await store.save(record);
+    // 必须走 mergeAndSave：Creem 会重放同一个 checkout.completed 事件，
+    // 而这里推导出的是一条全新记录（设备绑定/换机冷却期都是空的）。
+    // 直接 save() 覆盖会把已激活设备的绑定、30 天换机冷却期、
+    // 以及管理员手工封禁的 disabled 状态一起冲掉。
+    const saved = await store.mergeAndSave(record);
 
     return NextResponse.json({
       received: true,
       saved: true,
-      orderId: record.orderId,
+      orderId: saved.orderId,
     });
   } catch (error) {
     if (
@@ -113,10 +119,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json(
       {
-        error:
-          error instanceof Error
-            ? error.message
-            : "Failed to process Creem webhook.",
+        error: "Failed to process Creem webhook.",
       },
       { status: 500 },
     );

@@ -1,10 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
 
 import { getRequestIpFromHeaders } from "@/lib/creem";
+import { serializeError } from "@/lib/error-utils";
 import {
   bindDeviceToLicenseKey,
   findLicenseKeyRecord,
+  getDeviceTransferEligibility,
   getLicenseStore,
+  isHardwareDeviceId,
+  isLegacyDeviceId,
   normalizeDeviceId,
 } from "@/lib/licenses";
 import { applyRateLimit, buildRateLimitKey } from "@/lib/rate-limit";
@@ -103,7 +107,24 @@ export async function POST(request: NextRequest) {
     const normalizedDeviceId = normalizeDeviceId(parsed.data.deviceId);
     const boundDevice = license.boundDevice;
 
-    if (boundDevice && normalizeDeviceId(boundDevice.deviceId) !== normalizedDeviceId) {
+    // 老客户端升级迁移（2026-09-25，配合桌面端 v1.0.2 的 P0-2 改造）
+    //
+    // v1.0.1 及更早上报的是随机 UUID（device_ + 32 位十六进制），用户删掉
+    // config.json 就能重置设备、同一个 key 无限换机；v1.0.2 起改为硬件指纹
+    // （hwid_ + 64 位十六进制）。老用户第一次用新版激活时绑定必然对不上，
+    // 这里允许一次性迁移到硬件指纹，并写入 lastDeviceTransferAt 启动冷却期，
+    // 之后仍受 30 天换机限制。
+    const migratingToHardwareId =
+      !!boundDevice &&
+      isLegacyDeviceId(boundDevice.deviceId) &&
+      isHardwareDeviceId(normalizedDeviceId) &&
+      getDeviceTransferEligibility(license).allowed;
+
+    if (
+      boundDevice &&
+      normalizeDeviceId(boundDevice.deviceId) !== normalizedDeviceId &&
+      !migratingToHardwareId
+    ) {
       return NextResponse.json(
         {
           valid: false,
@@ -146,6 +167,7 @@ export async function POST(request: NextRequest) {
     const updatedRecord = bindDeviceToLicenseKey(record, parsed.data.licenseKey, {
       deviceId: parsed.data.deviceId,
       deviceName: parsed.data.deviceName,
+      recordDeviceTransfer: migratingToHardwareId,
     });
 
     if (!updatedRecord) {
@@ -197,13 +219,17 @@ export async function POST(request: NextRequest) {
       },
     );
   } catch (error) {
+    // 不要把底层 error.message 回传给客户端 —— 里面可能带出 Upstash 主机名、
+    // 内部键名或上游响应片段等信息。细节只写服务端日志。
+    console.error("[license/validate] unexpected failure", {
+      error: serializeError(error),
+    });
+
     return NextResponse.json(
       {
         valid: false,
         message:
-          error instanceof Error
-            ? error.message
-            : "Failed to validate license.",
+          "We could not validate this license right now. Please try again in a moment.",
       },
       { status: 500 },
     );

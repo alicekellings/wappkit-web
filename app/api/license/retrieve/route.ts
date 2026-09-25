@@ -2,6 +2,8 @@ import crypto from "node:crypto";
 
 import { NextRequest, NextResponse } from "next/server";
 
+import { serializeError } from "@/lib/error-utils";
+
 import { getRequestIpFromHeaders } from "@/lib/creem";
 import { getTrimmedEnv } from "@/lib/env-utils";
 import { canSendLicenseEmail } from "@/lib/license-email";
@@ -159,9 +161,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       {
         error:
-          error instanceof Error
-            ? error.message
-            : "Failed to retrieve license.",
+          "We could not retrieve this license right now. Please try again in a moment.",
       },
       { status: 500 },
     );

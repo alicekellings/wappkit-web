@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
+import { serializeError } from "@/lib/error-utils";
+
 import { canSendLicenseEmail, sendLicenseEmail } from "@/lib/license-email";
 import { getLicenseStore } from "@/lib/licenses";
 import { licenseLookupSchema } from "@/lib/validations/license";
@@ -45,12 +47,14 @@ export async function POST(request: NextRequest) {
       message: `A copy has been sent to ${record.customerEmail}.`,
     });
   } catch (error) {
+    console.error("[license/email] failed to send license email", {
+      error: serializeError(error),
+    });
+
     return NextResponse.json(
       {
         error:
-          error instanceof Error
-            ? error.message
-            : "Failed to send license email.",
+          "We could not send this email right now. Please try again in a moment.",
       },
       { status: 500 },
     );

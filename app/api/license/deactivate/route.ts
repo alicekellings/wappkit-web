@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
+import { serializeError } from "@/lib/error-utils";
+
 import { getRequestIpFromHeaders } from "@/lib/creem";
 import {
   findLicenseKeyRecord,
@@ -140,13 +142,15 @@ export async function POST(request: NextRequest) {
       },
     });
   } catch (error) {
+    console.error("[license/deactivate] failed to remove device binding", {
+      error: serializeError(error),
+    });
+
     return NextResponse.json(
       {
         success: false,
         message:
-          error instanceof Error
-            ? error.message
-            : "Failed to remove the device binding.",
+          "We could not remove the device binding right now. Please try again in a moment.",
       },
       { status: 500 },
     );

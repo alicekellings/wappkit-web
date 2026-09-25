@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
+import { serializeError } from "@/lib/error-utils";
+
 import { isAdminRequestAuthenticated } from "@/lib/admin-auth";
 import { getLicenseStore, type LicenseRecord } from "@/lib/licenses";
 import { getDisplayProductName } from "@/lib/tools";
@@ -77,9 +79,7 @@ export async function POST(request: NextRequest) {
       {
         success: false,
         message:
-          error instanceof Error
-            ? error.message
-            : "Failed to load the license record.",
+          "Failed to load the license record. Check the server logs for details.",
       },
       { status: 500 },
     );

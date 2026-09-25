@@ -12,7 +12,11 @@ export async function GET() {
     changelog: redditToolboxDesktopRelease.changelog,
     release_date: redditToolboxDesktopRelease.releasedAt,
     file_size: redditToolboxDesktopRelease.fileSizeLabel,
+    file_size_bytes: redditToolboxDesktopRelease.fileSizeBytes,
     sha256: redditToolboxDesktopRelease.sha256,
+    // 指向 GitHub Release 上的 .sha256 文件。与上面的 sha256 分属不同域，
+    // 客户端会做双源比对：两者不一致即拒绝执行安装包，避免单点被篡改。
+    checksum_url: redditToolboxDesktopRelease.checksumUrl,
     update_required: false,
   });
 }

@@ -2,6 +2,8 @@ import crypto from "node:crypto";
 
 import { NextRequest, NextResponse } from "next/server";
 
+import { serializeError } from "@/lib/error-utils";
+
 import { createCreemCheckout, isCreemInTestMode } from "@/lib/creem";
 import { getTrimmedEnv } from "@/lib/env-utils";
 import { checkoutRequestSchema } from "@/lib/validations/license";
@@ -82,9 +84,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       {
         error:
-          error instanceof Error
-            ? error.message
-            : "Failed to create Creem checkout.",
+          "We could not start the checkout right now. Please try again in a moment.",
       },
       { status: 500 },
     );

@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
+import { serializeError } from "@/lib/error-utils";
+
 import {
   ADMIN_SESSION_COOKIE_NAME,
   getAdminSessionCookieOptions,
@@ -55,9 +57,7 @@ export async function POST(request: NextRequest) {
       {
         success: false,
         message:
-          error instanceof Error
-            ? error.message
-            : "Failed to start the admin session.",
+          "Failed to start the admin session. Check the server logs for details.",
       },
       { status: 500 },
     );

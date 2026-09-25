@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
+import { serializeError } from "@/lib/error-utils";
+
 import { isAdminRequestAuthenticated } from "@/lib/admin-auth";
 import {
   findLicenseKeyRecord,
@@ -85,9 +87,7 @@ export async function POST(request: NextRequest) {
       {
         success: false,
         message:
-          error instanceof Error
-            ? error.message
-            : "Failed to remove the device binding.",
+          "Failed to remove the device binding. Check the server logs for details.",
       },
       { status: 500 },
     );
