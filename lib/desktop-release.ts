@@ -1,21 +1,23 @@
 export const redditToolboxDesktopRelease = {
-  version: "1.0.1",
-  releasedAt: "2026-04-06",
+  version: "1.2.0",
+  releasedAt: "2026-10-25",
   minSupportedVersion: "1.0.0",
-  fileName: "RedditToolbox-Windows-v1.0.1.exe",
-  fileSizeBytes: 44_988_921,
-  fileSizeLabel: "42.9 MB",
+  fileName: "RedditToolbox-Windows-v1.2.0.exe",
+  fileSizeBytes: 48_013_990,
+  fileSizeLabel: "45.8 MB",
   sha256:
-    "3470c82cee8abe2b293aeb87883d8849e23387220606dc9a8d3748fd33328405",
+    "bea36a0311412f1f3633065d9bb12ceb28c45c1fa1fa7d182b1e097e7607a53d",
   releaseUrl:
-    "https://github.com/alicekellings/wappkit-web/releases/tag/reddit-toolbox-v1.0.1",
+    "https://github.com/alicekellings/wappkit-web/releases/tag/reddit-toolbox-v1.2.0",
   directDownloadUrl:
-    "https://github.com/alicekellings/wappkit-web/releases/download/reddit-toolbox-v1.0.1/RedditToolbox-Windows-v1.0.1.exe",
+    "https://github.com/alicekellings/wappkit-web/releases/download/reddit-toolbox-v1.2.0/RedditToolbox-Windows-v1.2.0.exe",
   checksumUrl:
-    "https://github.com/alicekellings/wappkit-web/releases/download/reddit-toolbox-v1.0.1/RedditToolbox-Windows-v1.0.1.exe.sha256",
+    "https://github.com/alicekellings/wappkit-web/releases/download/reddit-toolbox-v1.2.0/RedditToolbox-Windows-v1.2.0.exe.sha256",
   changelog: [
-    "Desktop update adds verified in-app downloads with SHA256 checking before install.",
-    "Users can manually run Check for Updates even when automatic checks are disabled.",
-    "Version metadata and app defaults are aligned for the 1.0.1 release.",
+    "First-run setup is rewritten in plain English, and step 2 now carries the full cookie guide.",
+    "Cookie import is one click: paste the whole cookie string and the app pulls out what it needs.",
+    "Connect your own AI provider with a Test button and a live model list loaded from the provider.",
+    "AI analysis is now part of the free plan, at 5 runs per day.",
+    "Fixed the search bar layout, the saved AI model not coming back after reopening Settings, and leftover Chinese text in the English UI.",
   ],
 } as const;
