@@ -42,6 +42,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { getToolBySlug, tools } from "@/lib/tools";
 
 type LicenseStatus = "active" | "inactive" | "disabled" | "unknown";
 type SortField =
@@ -257,6 +258,11 @@ function SortableHeader({
 export function LicenseAdminConsole() {
   const [items, setItems] = useState<AdminLicenseListItem[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
+  // QA license 的目标工具。这个站点是多工具的，早先按钮写死 ai-ecom-visual-studio，
+  // 导致给 Reddit Toolbox 建不出可用的测试 key（toolSlug 对不上直接 404）。
+  const [qaToolSlug, setQaToolSlug] = useState(
+    tools[0]?.slug ?? "ai-ecom-visual-studio",
+  );
   const [statusFilter, setStatusFilter] = useState("all");
   const [deviceFilter, setDeviceFilter] = useState<DeviceFilter>("all");
   const [selectedKeys, setSelectedKeys] = useState<string[]>([]);
@@ -395,8 +401,10 @@ export function LicenseAdminConsole() {
   }
 
   async function handleCreateQaLicense() {
+    const targetTool = getToolBySlug(qaToolSlug);
+    const targetName = targetTool?.name ?? qaToolSlug;
     const confirmed = window.confirm(
-      "Create an internal QA license for AI E-commerce Visual Studio? This writes a test record to the live license store.",
+      `Create an internal QA license for ${targetName}? This writes a test record to the live license store.`,
     );
 
     if (!confirmed) {
@@ -415,7 +423,7 @@ export function LicenseAdminConsole() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          toolSlug: "ai-ecom-visual-studio",
+          toolSlug: qaToolSlug,
         }),
       });
       const payload = (await response.json()) as {
@@ -668,6 +676,18 @@ export function LicenseAdminConsole() {
             </p>
           </div>
           <div className="flex flex-wrap gap-3">
+            <Select value={qaToolSlug} onValueChange={setQaToolSlug}>
+              <SelectTrigger className="w-[200px]" aria-label="QA license tool">
+                <SelectValue placeholder="Select tool" />
+              </SelectTrigger>
+              <SelectContent>
+                {tools.map((tool) => (
+                  <SelectItem key={tool.slug} value={tool.slug}>
+                    {tool.name}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
             <Button
               type="button"
               rounded="full"
