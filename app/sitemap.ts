@@ -40,6 +40,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      // 「reddit viewer」是 GSC 里展示量最大、排名最靠后的意图词（1752 展示 / 平均 24 位），
+      // 单独给它一个落地页，priority 低于 /tools 但高于通用营销页。
+      url: toAbsoluteUrl("/reddit-viewer"),
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
       url: toAbsoluteUrl("/pricing"),
       lastModified: now,
       changeFrequency: "weekly",
