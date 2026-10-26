@@ -56,6 +56,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
+      // 「redditsave alternative」意图簇：215 展示 0 点击。
+      // 页面明确只做文字存档、不做媒体下载，避免引来错误期待。
+      url: toAbsoluteUrl("/reddit-save"),
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.85,
+    },
+    {
       url: toAbsoluteUrl("/pricing"),
       lastModified: now,
       changeFrequency: "weekly",
