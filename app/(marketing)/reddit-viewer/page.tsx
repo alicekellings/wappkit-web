@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   ...constructMetadata({
     title: "Reddit Viewer: Browse Subreddits Without an Account | Wappkit",
     description:
-      "A Windows Reddit viewer that turns a subreddit into eight columns you can filter before reading. No account, no feed, no ads. Free version available.",
+      "A Windows Reddit viewer that turns a subreddit into eight columns you can sort by score or comments, then filter. No account, no feed, no ads. Free version available.",
     image: "/images/blog/reddit_viewer_header.png",
   }),
   alternates: { canonical: PAGE_PATH },
