@@ -1,23 +1,21 @@
 export const redditToolboxDesktopRelease = {
-  version: "1.2.0",
-  releasedAt: "2026-10-25",
-  minSupportedVersion: "1.0.0",
-  fileName: "RedditToolbox-Windows-v1.2.0.exe",
-  fileSizeBytes: 48_013_990,
+  version: "1.2.1",
+  releasedAt: "2026-10-26",
+  minSupportedVersion: "1.2.0",
+  fileName: "RedditToolbox-Windows-v1.2.1.exe",
+  fileSizeBytes: 48_014_648,
   fileSizeLabel: "45.8 MB",
   sha256:
-    "bea36a0311412f1f3633065d9bb12ceb28c45c1fa1fa7d182b1e097e7607a53d",
+    "ff89d5c9d929e07384d2dc89b0af1ca246d63bca5c5c68a6dbf6378c5bd2547e",
   releaseUrl:
-    "https://github.com/alicekellings/wappkit-web/releases/tag/reddit-toolbox-v1.2.0",
+    "https://github.com/alicekellings/wappkit-web/releases/tag/reddit-toolbox-v1.2.1",
   directDownloadUrl:
-    "https://github.com/alicekellings/wappkit-web/releases/download/reddit-toolbox-v1.2.0/RedditToolbox-Windows-v1.2.0.exe",
+    "https://github.com/alicekellings/wappkit-web/releases/download/reddit-toolbox-v1.2.1/RedditToolbox-Windows-v1.2.1.exe",
   checksumUrl:
-    "https://github.com/alicekellings/wappkit-web/releases/download/reddit-toolbox-v1.2.0/RedditToolbox-Windows-v1.2.0.exe.sha256",
+    "https://github.com/alicekellings/wappkit-web/releases/download/reddit-toolbox-v1.2.1/RedditToolbox-Windows-v1.2.1.exe.sha256",
   changelog: [
-    "First-run setup is rewritten in plain English, and step 2 now carries the full cookie guide.",
-    "Cookie import is one click: paste the whole cookie string and the app pulls out what it needs.",
-    "Connect your own AI provider with a Test button and a live model list loaded from the provider.",
-    "AI analysis is now part of the free plan, at 5 runs per day.",
-    "Fixed the search bar layout, the saved AI model not coming back after reopening Settings, and leftover Chinese text in the English UI.",
+    "Offline license checks now verify the server's signature, so a hand-edited configuration can no longer unlock Pro.",
+    "A license copied to another computer is now rejected instead of accepted.",
+    "If a license needs revalidation, the app checks once online and keeps working offline afterwards.",
   ],
 } as const;
