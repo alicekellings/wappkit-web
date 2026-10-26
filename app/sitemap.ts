@@ -48,6 +48,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
+      // 「reddit alerts / monitoring」405 展示 0 点击：有需求没有承接页，
+      // 1.3.0 的告警功能上线后配这个页面。
+      url: toAbsoluteUrl("/reddit-alerts"),
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
       url: toAbsoluteUrl("/pricing"),
       lastModified: now,
       changeFrequency: "weekly",
