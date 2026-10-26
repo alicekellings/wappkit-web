@@ -66,7 +66,7 @@ const capabilities = [
     icon: LayoutList,
     title: "Eight columns, one subreddit",
     description:
-      "Each post becomes a row with subreddit, title, author, score, comment count, date, permalink, and source. Everything you would otherwise scroll past three times.",
+      "Each post becomes a row with subreddit, title, author, score, comment count, date, permalink, and source. Click a column header to sort by score or comments; unknown values stay at the bottom instead of polluting the number column.",
   },
   {
     icon: Filter,
@@ -118,6 +118,12 @@ const comparison = [
     wappkit: "No",
     browser: "Yes",
     official: "Yes",
+  },
+  {
+    label: "Sort by score, comments, or date",
+    wappkit: "Yes",
+    browser: "No",
+    official: "No",
   },
   {
     label: "Filter by score, comments, keywords",
@@ -250,7 +256,7 @@ export default function RedditViewerPage() {
       <MarketingHero
         eyebrow="Reddit viewer"
         title="A Reddit viewer that treats a subreddit like a table"
-        description="Open a public subreddit and get its posts as eight columns you can filter before reading, without an account and without the feed. When you want the replies, the permalink is already on the row."
+        description="Open a public subreddit and get its posts as eight columns you can sort by score, comments, or date, then filter before reading. No account, no feed. When you want the replies, the permalink is already on the row."
         badges={[
           { label: "No account required", tone: "warm" },
           { label: "Free version", tone: "default" },
