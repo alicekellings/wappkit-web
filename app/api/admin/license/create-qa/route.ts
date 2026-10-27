@@ -70,15 +70,17 @@ export async function POST(request: NextRequest) {
     const now = new Date().toISOString();
     const suffix = crypto.randomUUID().replaceAll("-", "").slice(0, 16);
     const licenseKey = createQaLicenseKey(tool.slug);
+    const grantedEmail = parsed.data.customerEmail;
+    const recordTag = grantedEmail ? "admin_grant" : "internal_qa";
     const checkoutPayload: CreemCheckoutPayload = {
-      id: `ch_internal_qa_${suffix}`,
-      request_id: `req_internal_qa_${suffix}`,
+      id: `ch_${recordTag}_${suffix}`,
+      request_id: `req_${recordTag}_${suffix}`,
       order: {
-        id: `ord_internal_qa_${suffix}`,
+        id: `ord_${recordTag}_${suffix}`,
         customer: {
-          id: `cust_internal_qa_${suffix}`,
-          email: "internal-license-test@wappkit.com",
-          name: "Wappkit Internal QA",
+          id: `cust_${recordTag}_${suffix}`,
+          email: grantedEmail ?? "internal-license-test@wappkit.com",
+          name: parsed.data.customerName ?? "Wappkit Internal QA",
         },
       },
       product: {
@@ -87,7 +89,7 @@ export async function POST(request: NextRequest) {
       },
       metadata: {
         toolSlug: tool.slug,
-        source: "internal-qa-manual",
+        source: grantedEmail ? "internal-admin-grant" : "internal-qa-manual",
         createdAt: now,
       },
       license_keys: [

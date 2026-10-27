@@ -206,4 +206,18 @@ export const adminCreateQaLicenseSchema = z.object({
       .max(80)
       .refine(isSafeSlug, "Invalid tool slug."),
   ),
+  customerEmail: z.preprocess(
+    (value) => {
+      const trimmed = trimInput(value);
+      return trimmed === "" ? undefined : trimmed;
+    },
+    z.string().email("Invalid customer email.").max(200).optional(),
+  ),
+  customerName: z.preprocess(
+    (value) => {
+      const trimmed = trimInput(value);
+      return trimmed === "" ? undefined : trimmed;
+    },
+    z.string().max(120).optional(),
+  ),
 });
