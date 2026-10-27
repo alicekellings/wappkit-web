@@ -64,6 +64,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.85,
     },
     {
+      // GummySearch 2024 年底关停后留下的大量「找替代品」搜索。
+      // 这类词的意图是「正在选工具」，转化率远高于 viewer/save 类词。
+      url: toAbsoluteUrl("/gummysearch-alternative"),
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
       url: toAbsoluteUrl("/pricing"),
       lastModified: now,
       changeFrequency: "weekly",
