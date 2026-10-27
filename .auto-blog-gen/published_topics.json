@@ -174,7 +174,8 @@
     "reddit_toolbox:trend:practical reddit research techniques for validating product ideas",
     "reddit_toolbox:trend:how founders can spot emerging opportunities with reddit monitoring",
     "reddit_toolbox:trend:using reddit data to understand audience needs and refine marketing",
-    "reddit_toolbox:keyword:reddit marketing tool"
+    "reddit_toolbox:keyword:reddit marketing tool",
+    "reddit_toolbox:keyword:subreddit discovery"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -352,7 +353,8 @@
     "practical-reddit-research-techniques-for-validating-product-ideas",
     "reddit-monitoring-workflow-for-founders-in-2026-spot-emerging-opportunities-befo",
     "workflow-using-reddit-data-to-understand-audience-needs-and-refine-marketing",
-    "reddit-marketing-tool-workflow-monitor-keywords-and-find-opportunities-without-e"
+    "reddit-marketing-tool-workflow-monitor-keywords-and-find-opportunities-without-e",
+    "subreddit-discovery-how-to-read-community-signals-and-act-on-what-you-find"
   ],
   "events": [
     {
@@ -1586,6 +1588,13 @@
       "source_type": "keyword",
       "slug": "reddit-marketing-tool-workflow-monitor-keywords-and-find-opportunities-without-e",
       "title": "Reddit Marketing Tool Workflow: Monitor Keywords and Find Opportunities Without Expensive Tools"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "subreddit discovery",
+      "source_type": "keyword",
+      "slug": "subreddit-discovery-how-to-read-community-signals-and-act-on-what-you-find",
+      "title": "Subreddit Discovery: How to Read Community Signals and Act on What You Find"
     }
   ]
 }
