@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   ...constructMetadata({
     title: "Save Reddit Posts as Markdown, Full Text Included | Wappkit",
     description:
-      "Archive a subreddit's posts as a Markdown file with the complete post text, author, score, date, and permalink. Text only, no images or video. Free version available.",
+      "Archive a subreddit's posts as Markdown with the complete post text, plus images and galleries downloaded from Reddit's CDN. Video is not supported. Free version available.",
     image: "/images/blog/reddit_viewer_header.png",
   }),
   alternates: { canonical: PAGE_PATH },
@@ -43,6 +43,12 @@ const capabilities = [
     title: "The full post text",
     description:
       "Every post body is written out in full, not clipped at a preview length. If someone wrote 4,000 words, all 4,000 are in the file.",
+  },
+  {
+    icon: Download,
+    title: "Images and galleries",
+    description:
+      "Right-click a post to download its images into a folder. Galleries keep their original order as 01, 02, 03, and files already on disk are skipped instead of pulled twice.",
   },
   {
     icon: Layers,
@@ -78,9 +84,15 @@ const comparison = [
     cloudSaver: "Sometimes",
   },
   {
-    label: "Saves images and video",
-    wappkit: "No",
-    screenshot: "As an image",
+    label: "Saves post images",
+    wappkit: "Yes",
+    screenshot: "As a screenshot",
+    cloudSaver: "Often",
+  },
+  {
+    label: "Saves video with sound",
+    wappkit: "Not yet",
+    screenshot: "No",
     cloudSaver: "Often",
   },
   {
@@ -99,6 +111,7 @@ const comparison = [
 
 const freeVsPro = [
   { label: "Save as Markdown", free: "First 100 posts", pro: "Unlimited" },
+  { label: "Download post images", free: false, pro: true },
   { label: "Full post text", free: true, pro: true },
   { label: "Metadata per post", free: true, pro: true },
   { label: "Filter before saving", free: true, pro: true },
@@ -107,9 +120,14 @@ const freeVsPro = [
 
 const faqs = [
   {
-    question: "Can it download images or video?",
+    question: "Can it download images?",
     answer:
-      "No. This saves the text of a post plus its metadata as a Markdown file. Images and video files are not downloaded, and gallery posts keep only their text and link. If your goal is saving media, this is the wrong tool and we would rather say so before you install.",
+      "Yes, for posts that host their images on Reddit itself. Right-click a post and choose Download media; single images save as one file, galleries save as 01, 02, 03 with the original order. Links pointing outside Reddit (imgur and similar) are refused on purpose, and the app tells you why rather than silently doing nothing.",
+  },
+  {
+    question: "Can it download video?",
+    answer:
+      "Not yet. Reddit serves video and audio as two separate streams, so a naive download gives a silent MP4. Merging them is planned for the next feature version. Until then the menu says so instead of handing you a broken file.",
   },
   {
     question: "Why Markdown instead of PDF or HTML?",
@@ -162,7 +180,7 @@ function structuredData() {
         operatingSystem: "Windows 10, Windows 11",
         url: `${siteConfig.url}${PAGE_PATH}`,
         description:
-          "A Windows desktop app that saves a subreddit's posts as a Markdown archive with the complete post text and metadata. Text only, no media download.",
+          "A Windows desktop app that saves a subreddit's posts as a Markdown archive with the complete post text and metadata, and downloads post images and galleries. Video is not supported.",
         offers: {
           "@type": "Offer",
           price: "0",
@@ -194,9 +212,9 @@ export default function RedditSavePage() {
       <MarketingHero
         eyebrow="Reddit save"
         title="Save Reddit posts as Markdown, with the text intact"
-        description="Collect a subreddit's posts, filter them, and write the result to a Markdown file with the complete post text plus author, score, date, and permalink. Text only: no images, no video, and we say that up front."
+        description="Collect a subreddit's posts, filter them, and write the result to a Markdown file with the complete post text. Save the images and galleries alongside it. Video is not supported, and we say that up front."
         badges={[
-          { label: "Text only", tone: "warm" },
+          { label: "Images + text", tone: "warm" },
           { label: "Markdown, no lock-in", tone: "default" },
           { label: "Windows desktop", tone: "muted" },
         ]}
@@ -216,7 +234,7 @@ export default function RedditSavePage() {
         }
         stats={[
           { label: "Format", value: "Markdown (.md)" },
-          { label: "Media files", value: "Not supported" },
+          { label: "Images", value: "Yes, galleries too" },
           { label: "Account", value: "Not required" },
         ]}
       />
@@ -226,13 +244,14 @@ export default function RedditSavePage() {
           <Info className="mt-0.5 size-5 shrink-0 text-orange-700" />
           <div>
             <p className="font-heading text-lg text-foreground">
-              What this does not do
+              What this does and does not do
             </p>
             <p className="mt-2 text-sm leading-6 text-muted-foreground">
-              It does not download images or video files, and it does not save
-              comment threads. If that is what you came for, a media saver is the
-              right tool. This one is an archive of post text and numbers, which
-              is what most research actually needs to keep.
+              It saves the post text as Markdown, and it downloads images and
+              galleries from Reddit&apos;s own CDN. It does not download video:
+              Reddit stores video and audio as two separate streams, and shipping a
+              silent MP4 would be worse than saying no. It also does not save
+              comment threads.
             </p>
           </div>
         </div>
