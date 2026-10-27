@@ -311,12 +311,12 @@ function getToolMarketingContent(
         {
           question: "What does the free version include?",
           answer:
-            "The free version keeps starter packs, supported app search, install queues, and basic WinGet install or repair help available before any upgrade.",
+            "Subreddit search is unlimited. The free tier also covers 20 post scrapes per day, two subreddits and 100 posts per run, 5 author lookups, 5 AI analyses with your own key, and CSV or Markdown exports capped at 100 rows.",
         },
         {
           question: "What unlocks after purchase?",
           answer:
-            "The paid license unlocks saved profiles, command export, diagnostics, source reset, and app upgrade workflows inside the desktop app.",
+            "Pro removes the scrape, export, and analysis limits, and adds post image downloads, video download, post and subreddit analysis, and up to 5 keyword alerts checked as often as every 5 minutes while the app is open.",
         },
         {
           question: "What if the customer loses the license key?",
