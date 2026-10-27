@@ -233,7 +233,7 @@ function getToolMarketingContent(
         },
         {
           label: "Paid unlock",
-          value: "Full toolbox",
+          value: "$9 one-time",
         },
         {
           label: "Activation model",
@@ -264,7 +264,7 @@ function getToolMarketingContent(
         "Stay inside the desktop app without creating a web account",
       ],
       proFeatures: [
-        "Unlock the rest of the desktop toolbox with one paid key",
+        "Unlock the rest of the desktop toolbox with one $9 license key, no subscription",
         "Validate the license remotely and activate inside the app",
         "Recover a lost key on Wappkit with order details and purchase email",
       ],

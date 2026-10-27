@@ -123,6 +123,9 @@ export const tools: Tool[] = [
     availabilityNote:
       "Reddit Toolbox is live on Wappkit with checkout, license retrieval, and in-app activation connected.",
     checkoutEnabled: true,
+    priceLabel: "$9 one-time",
+    priceNote:
+      "One-time payment, no subscription. The free tier stays free; a single license unlocks the full desktop toolkit.",
   },
   {
     slug: "keyword-radar",
