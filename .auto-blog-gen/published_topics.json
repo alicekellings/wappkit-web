@@ -356,7 +356,8 @@
     "reddit-marketing-tool-workflow-monitor-keywords-and-find-opportunities-without-e",
     "subreddit-discovery-how-to-read-community-signals-and-act-on-what-you-find",
     "the-founders-guide-to-reddit-audience-research-finding-pain-points-that-actually",
-    "how-to-monitor-reddit-keywords-a-practical-workflow-for-founders-and-growth-oper"
+    "how-to-monitor-reddit-keywords-a-practical-workflow-for-founders-and-growth-oper",
+    "how-to-use-a-reddit-search-tool-a-practical-workflow-for-founders-and-researcher"
   ],
   "events": [
     {
@@ -1611,6 +1612,13 @@
       "source_type": "keyword",
       "slug": "how-to-monitor-reddit-keywords-a-practical-workflow-for-founders-and-growth-oper",
       "title": "How to Monitor Reddit Keywords: A Practical Workflow for Founders and Growth Operators"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "reddit search tool",
+      "source_type": "keyword",
+      "slug": "how-to-use-a-reddit-search-tool-a-practical-workflow-for-founders-and-researcher",
+      "title": "How to Use a Reddit Search Tool: A Practical Workflow for Founders and Researchers"
     }
   ]
 }
