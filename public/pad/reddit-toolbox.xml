@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  PAD 4.0 descriptor for Reddit Toolbox (Windows).
+  Canonical location: https://www.wappkit.com/pad/reddit-toolbox.xml
+  Do not change this URL between releases; update the file in place so PAD
+  consumers pick up new versions automatically.
+-->
+<XML_DIZ_INFO>
+  <MASTER_PAD_VERSION_INFO>
+    <MASTER_PAD_EDITOR>Wappkit PAD writer 1.0</MASTER_PAD_EDITOR>
+    <MASTER_PAD_INFO>Portable Application Description, or PAD for short, is a data set used by software authors to disseminate information to anyone interested in their software products. To find out more go to http://www.asp-shareware.org/pad</MASTER_PAD_INFO>
+    <MASTER_PAD_VERSION>4.0</MASTER_PAD_VERSION>
+  </MASTER_PAD_VERSION_INFO>
+  <Program_Info>
+    <Program_Name>Reddit Toolbox</Program_Name>
+    <Program_Version>1.4.0</Program_Version>
+    <Program_Type>Shareware</Program_Type>
+    <Program_Release_Status>New Release</Program_Release_Status>
+    <Program_Category_Class>Business::Other</Program_Category_Class>
+    <Program_Specific_Category>Business</Program_Specific_Category>
+    <Program_Release_Year>2026</Program_Release_Year>
+    <Program_Release_Month>10</Program_Release_Month>
+    <Program_Release_Day>27</Program_Release_Day>
+    <Program_Cost_Dollars>9.00</Program_Cost_Dollars>
+    <Program_OS_Support>WinOther</Program_OS_Support>
+    <Program_Language>English</Program_Language>
+    <Program_Install_Support>No Install Support</Program_Install_Support>
+    <Program_System_Requirements>Windows 10 or Windows 11, 64-bit. 2 GB RAM, 300 MB free disk space, internet connection. Single portable executable, no installer required.</Program_System_Requirements>
+    <Program_Change_Info>1.4.0 adds video download: Reddit video and audio streams are fetched separately and merged into one MP4 when ffmpeg is available on PATH. Failed requests now report the actual cause, for example rate limiting versus no network, instead of a generic error.</Program_Change_Info>
+    <File_Info>
+      <File_Size_Bytes>48074280</File_Size_Bytes>
+      <File_Size_K>46947</File_Size_K>
+      <File_Size_MB>45.85</File_Size_MB>
+    </File_Info>
+    <Expire_Info>
+      <Has_Expire_Info>N</Has_Expire_Info>
+      <Expire_Based_On>Days</Expire_Based_On>
+      <Expire_Count/>
+      <Expire_Other_Info/>
+      <Expire_Year/>
+      <Expire_Month/>
+      <Expire_Day/>
+    </Expire_Info>
+  </Program_Info>
+  <Company_Info>
+    <Company_Name>Wappkit</Company_Name>
+    <Address_1/>
+    <Address_2/>
+    <Zip_Postal_Code/>
+    <City_Town>N/A</City_Town>
+    <Country>China</Country>
+    <State_Province/>
+    <Company_WebSite_URL>https://www.wappkit.com/</Company_WebSite_URL>
+    <Contact_Info>
+      <Author_First_Name>Alice</Author_First_Name>
+      <Author_Last_Name>Wappkit</Author_Last_Name>
+      <Author_Email>support@wappkit.com</Author_Email>
+      <Contact_First_Name>Alice</Contact_First_Name>
+      <Contact_Last_Name>Wappkit</Contact_Last_Name>
+      <Contact_Email>support@wappkit.com</Contact_Email>
+    </Contact_Info>
+    <Support_Info>
+      <General_Email>support@wappkit.com</General_Email>
+      <Support_Email>support@wappkit.com</Support_Email>
+      <Sales_Email>support@wappkit.com</Sales_Email>
+      <General_Phone/>
+      <Support_Phone/>
+      <Sales_Phone/>
+      <Fax_Phone/>
+    </Support_Info>
+    <PublisherID/>
+  </Company_Info>
+  <ASP>
+    <ASP_Member>N</ASP_Member>
+    <ASP_Member_Number/>
+  </ASP>
+  <Web_Info>
+    <Application_URLs>
+      <Application_Info_URL>https://www.wappkit.com/tools/reddit-toolbox</Application_Info_URL>
+      <Application_Order_URL>https://www.wappkit.com/license</Application_Order_URL>
+      <Application_Screenshot_URL/>
+      <Application_Icon_URL>https://www.wappkit.com/pad/reddit-toolbox-icon-512.png</Application_Icon_URL>
+      <Application_XML_File_URL>https://www.wappkit.com/pad/reddit-toolbox.xml</Application_XML_File_URL>
+    </Application_URLs>
+    <Download_URLs>
+      <Primary_Download_URL>https://github.com/alicekellings/wappkit-web/releases/download/reddit-toolbox-v1.4.0/RedditToolbox-Windows-v1.4.0.exe</Primary_Download_URL>
+      <Secondary_Download_URL>https://www.wappkit.com/download</Secondary_Download_URL>
+      <Additional_Download_URL_1/>
+      <Additional_Download_URL_2/>
+    </Download_URLs>
+  </Web_Info>
+  <Program_Descriptions>
+    <English>
+      <Keywords>reddit, reddit tool, reddit research, subreddit search, reddit scraper, reddit export, csv export, markdown export, reddit alerts, social listening, community research, desktop app, windows</Keywords>
+      <Char_Desc_45>Search, filter and export Reddit on Windows</Char_Desc_45>
+      <Char_Desc_80>Search subreddits, scrape posts and export to CSV or Markdown on Windows</Char_Desc_80>
+      <Char_Desc_250>Reddit Toolbox is a Windows desktop app for reading Reddit without account friction. Search subreddits, scrape up to two communities per run into a sortable table, analyse posts and authors, watch keywords, and export to CSV or Markdown.</Char_Desc_250>
+      <Char_Desc_450>Reddit Toolbox reads public Reddit data on your machine: no web dashboard, no account to connect. Search subreddits, pull up to 100 posts per run from two communities, then sort, filter and export to CSV or Markdown. Post and author analysis covers a single post comment thread. Keyword alerts run while the app is open. The free tier never expires: 20 scrapes, 5 author lookups and 5 AI analyses per day. A one-time 9 USD licence unlocks the rest.</Char_Desc_450>
+      <Char_Desc_2000>Reddit Toolbox is a Windows desktop application for people who research Reddit communities and want the data in a spreadsheet rather than in a browser tab. It runs locally, keeps your session on your own machine, and never asks you to connect a Reddit account to a third-party service.
+
+What it does. Search subreddits by keyword to find where a topic is discussed. Scrape posts from up to two subreddits per run, 100 posts each, into a table you can filter by keyword, score or date. Export what you filtered to CSV or Markdown, with post bodies kept in full in the Markdown export. Download post images, including galleries, and in 1.4.0 Reddit videos: video and audio streams are fetched separately and merged into one MP4 when ffmpeg is available on PATH. Open a single post to read its comment thread, and open an author to see what else they have posted. Save keyword rules and let alerts check for new matching posts on a timer while the app is open.
+
+How it reads Reddit. Without setup the app pulls Reddit public RSS feeds: titles, bodies, authors, timestamps and permalinks, up to 25 items per request. If you paste a browser cookie in settings, it switches to Reddit public JSON, which adds score and comment counts and allows paging deeper than 25 items. The cookie stays on your machine. Both paths are read-only: the app does not post, vote, comment or message.
+
+Free and paid. The free tier does not expire: unlimited subreddit search, 20 post scrapes per day, 5 author lookups per day, 5 AI analyses per day with your own model key, two subreddits and 100 posts per run, and CSV or Markdown export capped at 100 rows. A one-time 9 USD licence removes the daily and row limits and adds the analysis views, media download and up to five keyword alerts. Licences are device-bound and validated offline with a signed token, so the app works offline.
+
+Requirements: Windows 10 or Windows 11, 64-bit. Single executable, no installer. Support: support@wappkit.com.</Char_Desc_2000>
+    </English>
+  </Program_Descriptions>
+  <Permissions>
+    <Distribution_Permissions>Distribution of the unmodified installer is allowed without further permission. Reverse engineering, rebranding and resale of licence keys are not permitted.</Distribution_Permissions>
+    <EULA>https://www.wappkit.com/terms</EULA>
+  </Permissions>
+</XML_DIZ_INFO>
