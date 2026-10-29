@@ -38,9 +38,11 @@ This is a five-step sequence for reading and extracting Reddit content without l
 
 Replace `reddit.com/r/subredditname` with `old.reddit.com/r/subredditname` in your address bar. The old interface loads faster, shows more posts per page, and triggers login prompts far less frequently than the redesigned site. It also surfaces post metadata  -  score, comment count, flair  -  more cleanly in a single view. This is not a fragile workaround. Old Reddit has remained accessible for years and Reddit has made no confirmed plans to sunset it.
 
-**Step 2: Use the .json endpoint to read raw post data**
+**Step 2: Try the .json endpoint, and expect a refusal**
 
-Append `.json` to any subreddit URL. For example, `old.reddit.com/r/startups.json` returns a structured JSON response with post titles, scores, authors, URLs, and timestamps. You can read it directly in a browser with a JSON formatter extension, or paste it into any text editor. It works without an account because it hits the same public API path the webpage uses. By default you get 25 posts per request; add `?limit=100` to the URL to raise that to the maximum of 100.
+Append `.json` to a subreddit URL, for example `old.reddit.com/r/startups.json`. When a response does come back as data, you get post titles, scores, authors, URLs and timestamps, and `?limit=100` raises the default 25 posts to 100. That output is far easier to work with than HTML.
+
+The catch is that Reddit began closing this door to logged-out callers back in 2023, and by 2026 most anonymous `.json` requests come back as HTTP 403 or redirect to a login page. Which subreddits still answer varies by request origin and changes without notice, so test it before you build anything on top of it. If you get a 403, the JSON route is closed for your network, and the fallbacks that still hold are the browser views and RSS feeds described below.
 
 **Step 3: Use Google to search within a subreddit**
 
@@ -48,7 +50,7 @@ Type `site:reddit.com/r/subredditname your keyword` into Google. This surfaces i
 
 **Step 4: Access RSS feeds for new posts**
 
-Add `.rss` to a subreddit URL  -  for example, `old.reddit.com/r/entrepreneur.rss`  -  and paste the result into any RSS reader. The feed updates as new posts appear and shows titles, authors, scores at the time of indexing, and a short content snippet. It does not include comment threads, and scores are a snapshot rather than live figures, but for lightweight monitoring it is genuinely useful.
+Add `.rss` to a subreddit URL  -  for example, `old.reddit.com/r/entrepreneur.rss`  -  and paste the result into any RSS reader. The feed updates as new posts appear and shows titles, authors, timestamps and a short content snippet. It carries no score and no comment count, and no comment threads, but for lightweight monitoring it is genuinely useful.
 
 **Step 5: Save what you find as you go**
 
@@ -88,7 +90,7 @@ Manual anonymous browsing fits one-off lookups, quick gut checks, or reading a s
 
 That is the gap [Reddit Toolbox](/tools/reddit-toolbox) is built for. It is a Windows desktop application that fetches up to 100 posts per subreddit from up to two subreddits per run into a sortable, filterable table. You can export results to CSV or Markdown, download post images, and run author lookups. The free tier covers 20 scrapes per day, 5 author lookups per day, and 5 AI calls per day  -  enough for regular research without committing to a paid plan.
 
-![a computer screen with the word html on it](/images/blog/how-to-browse-reddit-without-an-account-in-2026-methods-that-still-work-detail.jpg)
+![Reddit Toolbox showing a subreddit as a sortable table](/images/blog/how-to-browse-reddit-without-an-account-in-2026-methods-that-still-work-detail.jpg)
 
 Keyword alerts and new-post monitoring require the Pro plan and only work while the application is open, so it is not a background service. For founders and operators who check Reddit as part of a regular research session rather than needing round-the-clock monitoring, that limitation rarely matters in practice.
 
@@ -98,7 +100,7 @@ Keyword alerts and new-post monitoring require the Pro plan and only work while 
 
 ### Can Reddit still be browsed without an account in 2026, or has it fully locked down?
 
-It has not fully locked down. Public subreddits are still accessible without logging in through old.reddit.com, the .json endpoint, and RSS feeds. The change is that the new reddit.com interface prompts for login more aggressively than it used to, particularly on mobile and after several page loads in a session. Switching to old.reddit.com is the simplest fix.
+It has not fully locked down. Public subreddits are still accessible without logging in through old.reddit.com, RSS feeds and Google site search. The anonymous .json endpoint is the one that has aged badly, refusing most requests with a 403. The change is that the new reddit.com interface prompts for login more aggressively than it used to, particularly on mobile and after several page loads in a session. Switching to old.reddit.com is the simplest fix.
 
 ### Does incognito or private browsing mode give you more access to Reddit content?
 
@@ -116,7 +118,6 @@ Once you are monitoring more than two subreddits regularly, comparing post perfo
 
 ## Sources
 
-- [HowToUseRedditAnonymousBrowserOn Desktop And Mobile...](https://storage.googleapis.com/bxsqjaaqhmslosvyatblog/how-to-use-reddit-anonymous-browser-on-desktop-and-mobile.html)
 - [Browse Reddit Without an Account in 2026: Practical Guide](https://byteivo.com/reddit-without-account-2026/)
 - [What is Anonymous Browsing and how does it work? - Reddit Help](https://support.reddithelp.com/hc/en-us/articles/360045622611-What-is-Anonymous-Browsing-and-how-does-it-work)
 - [How to Use Reddit Without Account (Full Guide)](https://sciencespot.blog/how-to-use-reddit-without-account)
@@ -127,4 +128,4 @@ Once you are monitoring more than two subreddits regularly, comparing post perfo
 
 ## Conclusion
 
-Anonymous Reddit access in 2026 is narrower than it was, but the core methods still hold. Old.reddit.com, the .json endpoint, RSS feeds, and Google site search cover most legitimate research needs for occasional use. The workflow breaks when you need scale, structure, or consistency across multiple subreddits. If you hit that ceiling regularly, [download Reddit Toolbox](/download) and let the application handle the repetitive parts so you can focus on the analysis that actually moves things forward.
+Anonymous Reddit access in 2026 is narrower than it was, but the core methods still hold. Old.reddit.com, RSS feeds and Google site search cover most legitimate research needs for occasional use. The workflow breaks when you need scale, structure, or consistency across multiple subreddits. If you hit that ceiling regularly, [download Reddit Toolbox](/download) and let the application handle the repetitive parts so you can focus on the analysis that actually moves things forward.
