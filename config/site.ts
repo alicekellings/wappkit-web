@@ -32,6 +32,7 @@ export const footerLinks: SidebarNavItem[] = [
       { title: "License Center", href: "/license" },
       { title: "Retrieve License", href: "/license/retrieve" },
       { title: "Contact", href: "/contact" },
+      { title: "EULA", href: "/eula" },
       { title: "Terms", href: "/terms" },
       { title: "Privacy", href: "/privacy" },
     ],
