@@ -176,7 +176,8 @@
     "reddit_toolbox:trend:using reddit data to understand audience needs and refine marketing",
     "reddit_toolbox:keyword:reddit marketing tool",
     "reddit_toolbox:keyword:subreddit discovery",
-    "reddit_toolbox:manual:how to browse reddit without an account in 2026"
+    "reddit_toolbox:manual:how to browse reddit without an account in 2026",
+    "reddit_toolbox:keyword:anonymous reddit viewer"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -359,7 +360,8 @@
     "the-founders-guide-to-reddit-audience-research-finding-pain-points-that-actually",
     "how-to-monitor-reddit-keywords-a-practical-workflow-for-founders-and-growth-oper",
     "how-to-use-a-reddit-search-tool-a-practical-workflow-for-founders-and-researcher",
-    "how-to-browse-reddit-without-an-account-in-2026-methods-that-still-work"
+    "how-to-browse-reddit-without-an-account-in-2026-methods-that-still-work",
+    "anonymous-reddit-viewer-a-practical-workflow-for-private-subreddit-research"
   ],
   "events": [
     {
@@ -1628,6 +1630,13 @@
       "source_type": "manual",
       "slug": "how-to-browse-reddit-without-an-account-in-2026-methods-that-still-work",
       "title": "How to Browse Reddit Without an Account in 2026 (Methods That Still Work)"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "anonymous reddit viewer",
+      "source_type": "keyword",
+      "slug": "anonymous-reddit-viewer-a-practical-workflow-for-private-subreddit-research",
+      "title": "Anonymous Reddit Viewer: A Practical Workflow for Private Subreddit Research"
     }
   ]
 }
