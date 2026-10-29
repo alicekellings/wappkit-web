@@ -8,7 +8,6 @@ import { getTableOfContents } from "@/lib/toc";
 import {
   constructMetadata,
   formatDate,
-  getBlurDataURL,
   placeholderBlurhash,
 } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -80,15 +79,13 @@ export default async function PostPage({
   const toc = await getTableOfContents(post.body.raw);
   const hasToc = Boolean(toc.items?.length);
 
-  const [thumbnailBlurhash, images] = await Promise.all([
-    getBlurDataURL(post.image),
-    await Promise.all(
-      post.images.map(async (src: string) => ({
-        src,
-        blurDataURL: await getBlurDataURL(src),
-      })),
-    ),
-  ]);
+  // 构建期不再逐篇请求外部图床生成模糊占位图：
+  // 240+ 篇文章会让静态生成耗时逼近构建超时，改用常量占位图。
+  const thumbnailBlurhash = placeholderBlurhash;
+  const images = post.images.map((src: string) => ({
+    src,
+    blurDataURL: placeholderBlurhash,
+  }));
 
   return (
     <MarketingPageShell>

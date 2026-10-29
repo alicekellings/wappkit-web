@@ -1,6 +1,6 @@
 import { allPosts } from "contentlayer/generated";
 
-import { constructMetadata, getBlurDataURL } from "@/lib/utils";
+import { constructMetadata, placeholderBlurhash } from "@/lib/utils";
 import { BlogPosts } from "@/components/content/blog-posts";
 import {
   MarketingCard,
@@ -15,15 +15,14 @@ export const metadata = constructMetadata({
 });
 
 export default async function BlogPage() {
-  const posts = await Promise.all(
-    allPosts
-      .filter((post) => post.published)
-      .sort((a, b) => b.date.localeCompare(a.date))
-      .map(async (post) => ({
-        ...post,
-        blurDataURL: await getBlurDataURL(post.image),
-      })),
-  );
+  // 首页列出全部文章，不再逐篇请求远程模糊占位图（200+ 次外部请求会让构建超时）。
+  const posts = allPosts
+    .filter((post) => post.published)
+    .sort((a, b) => b.date.localeCompare(a.date))
+    .map((post) => ({
+      ...post,
+      blurDataURL: placeholderBlurhash,
+    }));
 
   return (
     <MarketingPageShell>

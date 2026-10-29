@@ -150,25 +150,41 @@ export const truncate = (str: string, length: number) => {
   return `${str.slice(0, length)}...`;
 };
 
+const BLUR_FALLBACK =
+  "data:image/webp;base64,AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
+
+// 构建期同一个 URL 会被反复请求（例如每篇文章的作者头像）。
+// 用模块级缓存保证每个 URL 只抓一次，避免静态生成被重复外部请求拖垮。
+const blurCache = new Map<string, string>();
+
 export const getBlurDataURL = async (url: string | null) => {
   if (!url) {
-    return "data:image/webp;base64,AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
+    return BLUR_FALLBACK;
   }
 
   if (url.startsWith("/_static/")) {
     url = `${siteConfig.url}${url}`;
   }
 
+  const cached = blurCache.get(url);
+  if (cached) {
+    return cached;
+  }
+
   try {
-    const response = await fetch(
-      `https://wsrv.nl/?url=${url}&w=50&h=50&blur=5`,
-    );
+    const response = await fetch(`https://wsrv.nl/?url=${url}&w=50&h=50&blur=5`, {
+      // 外部图床可能限流；给个上限，慢就直接用占位图，别拖住构建
+      signal: AbortSignal.timeout(5000),
+    });
     const buffer = await response.arrayBuffer();
     const base64 = Buffer.from(buffer).toString("base64");
+    const result = `data:image/png;base64,${base64}`;
 
-    return `data:image/png;base64,${base64}`;
+    blurCache.set(url, result);
+    return result;
   } catch (error) {
-    return "data:image/webp;base64,AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
+    blurCache.set(url, BLUR_FALLBACK);
+    return BLUR_FALLBACK;
   }
 };
 

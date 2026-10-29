@@ -6,6 +6,8 @@ import("./env.mjs");
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  // 文章数已到 240+，单页静态生成在慢机器上可能超过默认 60 秒。
+  staticPageGenerationTimeout: 180,
   images: {
     remotePatterns: [
       {

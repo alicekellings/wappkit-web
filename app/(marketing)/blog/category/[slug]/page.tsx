@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { allPosts } from "contentlayer/generated";
 
 import { BLOG_CATEGORIES } from "@/config/blog";
-import { constructMetadata, getBlurDataURL } from "@/lib/utils";
+import { constructMetadata, placeholderBlurhash } from "@/lib/utils";
 import { BlogCard } from "@/components/content/blog-card";
 import {
   MarketingCard,
@@ -46,15 +46,16 @@ export default async function BlogCategory({
     notFound();
   }
 
-  const articles = await Promise.all(
-    allPosts
-      .filter((post) => post.categories.includes(category.slug))
-      .sort((a, b) => b.date.localeCompare(a.date))
-      .map(async (post) => ({
-        ...post,
-        blurDataURL: await getBlurDataURL(post.image),
-      })),
-  );
+  // 列表页不再逐篇抓取远程模糊占位图：
+  // 分类下可能有 200+ 篇文章，每篇一次外部请求会让静态生成超时。
+  // 这里统一用常量占位图，视觉差异极小，构建时间从分钟级降到秒级。
+  const articles = allPosts
+    .filter((post) => post.categories.includes(category.slug))
+    .sort((a, b) => b.date.localeCompare(a.date))
+    .map((post) => ({
+      ...post,
+      blurDataURL: placeholderBlurhash,
+    }));
 
   return (
     <MarketingPageShell>
