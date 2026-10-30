@@ -178,7 +178,8 @@
     "reddit_toolbox:keyword:subreddit discovery",
     "reddit_toolbox:manual:how to browse reddit without an account in 2026",
     "reddit_toolbox:keyword:anonymous reddit viewer",
-    "reddit_toolbox:topic:how to browse reddit without an account in 2026"
+    "reddit_toolbox:topic:how to browse reddit without an account in 2026",
+    "reddit_toolbox:topic:how to read a subreddit as a plain list instead of a feed"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -363,7 +364,8 @@
     "how-to-use-a-reddit-search-tool-a-practical-workflow-for-founders-and-researcher",
     "how-to-browse-reddit-without-an-account-in-2026-methods-that-still-work",
     "anonymous-reddit-viewer-a-practical-workflow-for-private-subreddit-research",
-    "how-to-browse-reddit-without-an-account-in-2026-workflow-playbook"
+    "how-to-browse-reddit-without-an-account-in-2026-workflow-playbook",
+    "how-to-read-a-subreddit-as-a-plain-list-instead-of-a-feed"
   ],
   "events": [
     {
@@ -1646,6 +1648,13 @@
       "source_type": "topic",
       "slug": "how-to-browse-reddit-without-an-account-in-2026-workflow-playbook",
       "title": "How to Browse Reddit Without an Account in 2026 (Workflow Playbook)"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "how to read a subreddit as a plain list instead of a feed",
+      "source_type": "topic",
+      "slug": "how-to-read-a-subreddit-as-a-plain-list-instead-of-a-feed",
+      "title": "How to Read a Subreddit as a Plain List Instead of a Feed"
     }
   ]
 }
