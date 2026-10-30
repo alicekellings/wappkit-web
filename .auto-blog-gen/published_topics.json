@@ -177,7 +177,8 @@
     "reddit_toolbox:keyword:reddit marketing tool",
     "reddit_toolbox:keyword:subreddit discovery",
     "reddit_toolbox:manual:how to browse reddit without an account in 2026",
-    "reddit_toolbox:keyword:anonymous reddit viewer"
+    "reddit_toolbox:keyword:anonymous reddit viewer",
+    "reddit_toolbox:topic:how to browse reddit without an account in 2026"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -361,7 +362,8 @@
     "how-to-monitor-reddit-keywords-a-practical-workflow-for-founders-and-growth-oper",
     "how-to-use-a-reddit-search-tool-a-practical-workflow-for-founders-and-researcher",
     "how-to-browse-reddit-without-an-account-in-2026-methods-that-still-work",
-    "anonymous-reddit-viewer-a-practical-workflow-for-private-subreddit-research"
+    "anonymous-reddit-viewer-a-practical-workflow-for-private-subreddit-research",
+    "how-to-browse-reddit-without-an-account-in-2026-workflow-playbook"
   ],
   "events": [
     {
@@ -1637,6 +1639,13 @@
       "source_type": "keyword",
       "slug": "anonymous-reddit-viewer-a-practical-workflow-for-private-subreddit-research",
       "title": "Anonymous Reddit Viewer: A Practical Workflow for Private Subreddit Research"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "how to browse reddit without an account in 2026",
+      "source_type": "topic",
+      "slug": "how-to-browse-reddit-without-an-account-in-2026-workflow-playbook",
+      "title": "How to Browse Reddit Without an Account in 2026 (Workflow Playbook)"
     }
   ]
 }
