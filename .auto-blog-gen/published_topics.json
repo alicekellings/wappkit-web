@@ -179,7 +179,8 @@
     "reddit_toolbox:manual:how to browse reddit without an account in 2026",
     "reddit_toolbox:keyword:anonymous reddit viewer",
     "reddit_toolbox:topic:how to browse reddit without an account in 2026",
-    "reddit_toolbox:topic:how to read a subreddit as a plain list instead of a feed"
+    "reddit_toolbox:topic:how to read a subreddit as a plain list instead of a feed",
+    "reddit_toolbox:topic:how to sort a subreddit by score or comments without logging in"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -365,7 +366,8 @@
     "how-to-browse-reddit-without-an-account-in-2026-methods-that-still-work",
     "anonymous-reddit-viewer-a-practical-workflow-for-private-subreddit-research",
     "how-to-browse-reddit-without-an-account-in-2026-workflow-playbook",
-    "how-to-read-a-subreddit-as-a-plain-list-instead-of-a-feed"
+    "how-to-read-a-subreddit-as-a-plain-list-instead-of-a-feed",
+    "how-to-sort-a-subreddit-by-score-or-comments-without-logging-in-2026-workflow"
   ],
   "events": [
     {
@@ -1655,6 +1657,13 @@
       "source_type": "topic",
       "slug": "how-to-read-a-subreddit-as-a-plain-list-instead-of-a-feed",
       "title": "How to Read a Subreddit as a Plain List Instead of a Feed"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "how to sort a subreddit by score or comments without logging in",
+      "source_type": "topic",
+      "slug": "how-to-sort-a-subreddit-by-score-or-comments-without-logging-in-2026-workflow",
+      "title": "How to Sort a Subreddit by Score or Comments Without Logging In (2026 Workflow)"
     }
   ]
 }
