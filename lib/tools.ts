@@ -185,6 +185,44 @@ export const tools: Tool[] = [
     availabilityNote:
       "Placeholder launch slot for future tools that need the same landing page and support structure.",
   },
+  {
+    slug: "firestore-gui",
+    name: "Firestore GUI",
+    category: "Developer Tools",
+    status: "live",
+    tagline:
+      "Inspect Cloud Firestore data without leaving your JetBrains IDE. Read-only by design.",
+    shortDescription:
+      "Browse collections, documents and nested subcollections, read every document as type-converted JSON, and compare documents in a table — inside IntelliJ IDEA, Android Studio, WebStorm, PyCharm or GoLand.",
+    longDescription:
+      "Firestore GUI is a free JetBrains plugin that puts a read-only Firestore browser inside the IDE. Connect with a service account JSON file or point at the local Firestore emulator, walk from root collections down through documents and nested subcollections, and read each document as JSON where timestamps, references, geo points, maps and arrays already appear as values instead of opaque wrapper objects. A built-in table view turns a collection into rows and columns so you can compare documents side by side, a filter box narrows the tree while you type, and any document can be copied as JSON or opened directly in the Firebase console. There are no write buttons anywhere: the plugin can only read, so opening production data in the IDE cannot change it.",
+    features: [
+      "Tree browsing across root collections, documents and nested subcollections",
+      "Readable JSON with timestamps, references, geo points, maps and arrays resolved",
+      "Table view that compares a collection document by document",
+      "Filter box that narrows the tree while you type",
+      "Copy document JSON or document path in one click",
+      "Open the selected document straight in the Firebase console",
+      "Service account JSON or local Firestore emulator",
+      "Error messages that name the thing to check instead of dumping a raw response",
+    ],
+    audience: [
+      "Backend and full-stack developers debugging Firestore-backed apps",
+      "Android and Flutter developers working against Cloud Firestore",
+      "Teams that want to look at production data without write access",
+      "Anyone already paying for a Firestore browser that fails to connect",
+    ],
+    platform: "JetBrains IDEs",
+    downloadLabel: "Get it on JetBrains Marketplace",
+    buyLabel: "Free plugin",
+    downloadHref: "https://plugins.jetbrains.com/plugin/35569-firestore-gui",
+    buyHref: "https://plugins.jetbrains.com/plugin/35569-firestore-gui",
+    docsHref: "https://plugins.jetbrains.com/plugin/35569-firestore-gui",
+    availabilityNote:
+      "Free and read-only. Requires IntelliJ IDEA 2024.3 or newer, or any IntelliJ Platform IDE such as Android Studio, WebStorm, PyCharm or GoLand.",
+    checkoutEnabled: false,
+    priceLabel: "Free",
+  },
 ];
 
 export function getFeaturedTools() {
