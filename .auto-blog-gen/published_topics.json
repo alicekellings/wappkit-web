@@ -183,7 +183,8 @@
     "reddit_toolbox:topic:how to sort a subreddit by score or comments without logging in",
     "reddit_toolbox:topic:why reddit asks you to log in and how to read without it",
     "reddit_toolbox:keyword:reddit viewer",
-    "reddit_toolbox:keyword:read reddit without account"
+    "reddit_toolbox:keyword:read reddit without account",
+    "reddit_toolbox:keyword:view reddit without login"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -373,7 +374,8 @@
     "how-to-sort-a-subreddit-by-score-or-comments-without-logging-in-2026-workflow",
     "why-reddit-asks-you-to-log-in-and-how-to-read-it-without-an-account",
     "reddit-viewer-workflow-how-to-monitor-subreddits-and-extract-opportunity-signals",
-    "how-to-read-reddit-without-an-account-in-2026-privacy-first-workflow"
+    "how-to-read-reddit-without-an-account-in-2026-privacy-first-workflow",
+    "how-to-view-reddit-without-login-in-2026-what-still-works-and-what-doesnt"
   ],
   "events": [
     {
@@ -1691,6 +1693,13 @@
       "source_type": "keyword",
       "slug": "how-to-read-reddit-without-an-account-in-2026-privacy-first-workflow",
       "title": "How to Read Reddit Without an Account in 2026 (Privacy-First Workflow)"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "view reddit without login",
+      "source_type": "keyword",
+      "slug": "how-to-view-reddit-without-login-in-2026-what-still-works-and-what-doesnt",
+      "title": "How to View Reddit Without Login in 2026 (What Still Works and What Doesn't)"
     }
   ]
 }
