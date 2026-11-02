@@ -182,7 +182,8 @@
     "reddit_toolbox:topic:how to read a subreddit as a plain list instead of a feed",
     "reddit_toolbox:topic:how to sort a subreddit by score or comments without logging in",
     "reddit_toolbox:topic:why reddit asks you to log in and how to read without it",
-    "reddit_toolbox:keyword:reddit viewer"
+    "reddit_toolbox:keyword:reddit viewer",
+    "reddit_toolbox:keyword:read reddit without account"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -371,7 +372,8 @@
     "how-to-read-a-subreddit-as-a-plain-list-instead-of-a-feed",
     "how-to-sort-a-subreddit-by-score-or-comments-without-logging-in-2026-workflow",
     "why-reddit-asks-you-to-log-in-and-how-to-read-it-without-an-account",
-    "reddit-viewer-workflow-how-to-monitor-subreddits-and-extract-opportunity-signals"
+    "reddit-viewer-workflow-how-to-monitor-subreddits-and-extract-opportunity-signals",
+    "how-to-read-reddit-without-an-account-in-2026-privacy-first-workflow"
   ],
   "events": [
     {
@@ -1682,6 +1684,13 @@
       "source_type": "keyword",
       "slug": "reddit-viewer-workflow-how-to-monitor-subreddits-and-extract-opportunity-signals",
       "title": "Reddit Viewer Workflow: How to Monitor Subreddits and Extract Opportunity Signals Without an Account"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "read reddit without account",
+      "source_type": "keyword",
+      "slug": "how-to-read-reddit-without-an-account-in-2026-privacy-first-workflow",
+      "title": "How to Read Reddit Without an Account in 2026 (Privacy-First Workflow)"
     }
   ]
 }
