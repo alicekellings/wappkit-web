@@ -9,6 +9,9 @@ export type Tool = {
   shortDescription: string;
   longDescription: string;
   features: string[];
+  // 可选：给页面右侧展示卡的每条特性配一句说明。缺省时整块沿用 availabilityNote，
+  // 会出现五张卡文字相同的情况，所以新上产品尽量补齐。
+  featureNotes?: string[];
   audience: string[];
   platform: string;
   downloadLabel: string;
@@ -146,6 +149,14 @@ export const tools: Tool[] = [
       "Lives in the system tray; closing the window keeps it running",
       "Remembers two window positions for free, with no time limit",
     ],
+    featureNotes: [
+      "Each shape is bound to its own hotkey, so the same eight layouts are one keystroke away.",
+      "Windows are assigned in on-screen stacking order, which means the active window takes the first slot.",
+      "The hotkeys are registered globally, so you never leave the application you are working in.",
+      "There are no zones to draw and nothing to drag — the layout is applied to whatever is already open.",
+      "Clicking the X hides it to the tray instead of quitting, so the hotkeys keep working.",
+      "Save where a window belongs, then put it back with one click from the tray or the layout list.",
+    ],
     audience: [
       "People who keep too many windows open and live in Alt-Tab",
       "Laptop users working on one screen with no room for overlapping windows",
@@ -181,6 +192,13 @@ export const tools: Tool[] = [
       "Deletes to the Recycle Bin by default and can be undone",
       "Scanning runs off the UI thread; Stop keeps what was already found",
       "Pro: unlimited CSV export, saved exclusion rules, command-line use",
+    ],
+    featureNotes: [
+      "Two files with the same name and the same size but different content can never land in the same group.",
+      "A hard link is a second name for the same data, so removing it frees nothing. Those entries are left alone.",
+      "Removal goes through the Windows shell, which means anything deleted can be restored from the Recycle Bin.",
+      "The window stays responsive while a drive is being read, and Stop keeps every group found so far.",
+      "The free version exports 20 groups and remembers 2 rules; the licence lifts both caps and adds scheduled runs.",
     ],
     audience: [
       "People with years of photos and documents copied across drives",

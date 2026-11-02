@@ -491,9 +491,9 @@ function getToolMarketingContent(
         value: tool.platform,
       },
     ],
-    showcaseItems: tool.features.map((feature) => ({
+    showcaseItems: tool.features.map((feature, index) => ({
       label: feature,
-      description: tool.availabilityNote,
+      description: tool.featureNotes?.[index] ?? tool.availabilityNote,
     })),
     freeFeatures: tool.features,
     proFeatures: [
