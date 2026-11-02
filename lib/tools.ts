@@ -128,6 +128,80 @@ export const tools: Tool[] = [
       "One-time payment, no subscription. The free tier stays free; a single license unlocks the full desktop toolkit.",
   },
   {
+    slug: "snapgrid",
+    name: "SnapTiles",
+    category: "Window Management",
+    status: "live",
+    tagline:
+      "Arrange every open window with one click — pick a shape and the screen tidies itself.",
+    shortDescription:
+      "Eight layouts, global hotkeys and two remembered window positions, free with no time limit. Snaps every open window into place without dragging or zone setup.",
+    longDescription:
+      "SnapTiles arranges the windows you already have open. You do not drag anything and you do not draw zones first: pick a shape — two columns, a 2x2 grid, main plus side — and every window on the screen moves into it. Eight layouts are available, each bound to a global hotkey (Ctrl+Alt+1 to Ctrl+Alt+8) that works from any application. It lives in the system tray, so closing the window keeps it running, and launching it twice brings the existing window forward instead of starting a second copy. Windows are assigned in on-screen stacking order, which means the active window always gets the first slot. The free version also remembers two window positions and puts them back on demand, permanently.",
+    features: [
+      "Eight layouts: single, two columns, two rows, three columns, main + two, two + main, 2x2, 3x2",
+      "One click arranges every open window on the screen",
+      "Global hotkeys Ctrl+Alt+1 to Ctrl+Alt+8 work from any application",
+      "No dragging and no zone setup — pick a shape and it is done",
+      "Lives in the system tray; closing the window keeps it running",
+      "Remembers two window positions for free, with no time limit",
+    ],
+    audience: [
+      "People who keep too many windows open and live in Alt-Tab",
+      "Laptop users working on one screen with no room for overlapping windows",
+      "Anyone who wants a fixed layout without learning a tiling window manager",
+    ],
+    platform: "Windows Desktop",
+    downloadLabel: "Get it from Microsoft Store",
+    buyLabel: "Pro (coming soon)",
+    downloadHref: "https://apps.microsoft.com/detail/9PMN9C65S9DZ",
+    buyHref: "/contact",
+    docsHref: "/docs/checkout-and-activation",
+    availabilityNote:
+      "SnapTiles is live in the Microsoft Store. The free version is complete; a Pro licence is not on sale yet.",
+    checkoutEnabled: false,
+    priceLabel: "Free",
+    priceNote:
+      "All eight layouts, the global hotkeys and two remembered window positions are free and never expire.",
+  },
+  {
+    slug: "filededupe",
+    name: "FileDedupe",
+    category: "File Management",
+    status: "live",
+    tagline:
+      "Find the files that are actually identical, then get rid of the extras without fear.",
+    shortDescription:
+      "Scan any folder, see every group of identical files, and delete to the Recycle Bin with undo. Pro lifts the export, rule and command-line limits.",
+    longDescription:
+      "FileDedupe compares whole files with SHA-256 instead of a cheap checksum, so a match is a real match. Two files with the same name and size but different content are never grouped together. The scan runs in three stages — exact size, then the first 4 KB, then the full file — so it stays fast without guessing. Hard links are detected and skipped, which is why a cleanup here frees the space it claims to free. Deleting goes to the Recycle Bin through the Windows shell and can always be undone. The free version is a complete tool: Pro only removes the CSV export limit, saves unlimited exclusion rules, and adds command-line use.",
+    features: [
+      "SHA-256 verification instead of a checksum that can collide",
+      "Hard links skipped, so removed files actually free space",
+      "Deletes to the Recycle Bin by default and can be undone",
+      "Scanning runs off the UI thread; Stop keeps what was already found",
+      "Pro: unlimited CSV export, saved exclusion rules, command-line use",
+    ],
+    audience: [
+      "People with years of photos and documents copied across drives",
+      "Teams cleaning backup folders before archiving",
+      "Anyone who wants to see exactly which copy will be kept",
+    ],
+    platform: "Windows Desktop",
+    downloadLabel: "Get it from Microsoft Store",
+    buyLabel: "Unlock Pro",
+    downloadHref: "https://apps.microsoft.com/detail/9MTB41HP52QG",
+    buyHref: "/license",
+    docsHref: "/docs/checkout-and-activation",
+    availabilityNote:
+      "FileDedupe is in Microsoft Store certification. Pro checkout runs through Wappkit with in-app activation.",
+    checkoutEnabled: true,
+    priceLabel: "$6 launch special",
+    regularPriceLabel: "$9 regular price",
+    priceNote:
+      "One-time Pro license, not a subscription. One key works on one PC at a time.",
+  },
+  {
     slug: "keyword-radar",
     name: "Keyword Radar",
     category: "Discovery",

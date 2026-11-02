@@ -14,6 +14,7 @@ const TOOL_PRODUCT_ENV_MAP: Record<string, string> = {
   "ai-ecom-visual-studio": "CREEM_PRODUCT_AI_ECOM_VISUAL_STUDIO_ID",
   "wappkit-app-setup": "CREEM_PRODUCT_WAPPKIT_APP_SETUP_ID",
   "reddit-toolbox": "CREEM_PRODUCT_REDDIT_TOOLBOX_ID",
+  "filededupe": "CREEM_PRODUCT_FILEDEDUPE_ID",
 };
 
 export async function POST(request: NextRequest) {

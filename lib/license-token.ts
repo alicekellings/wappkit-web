@@ -36,6 +36,13 @@ const TOOL_FEATURES: Record<string, string[]> = {
     "enhance",
     "smart_optimize",
   ],
+  // FileDedupe：这三个键必须与桌面端 core/license.py 的 PRO_FEATURES 完全一致，
+  // 客户端只认自己认识的键，写错等于付费解不开。
+  "filededupe": [
+    "csv_unlimited",
+    "saved_rules",
+    "cli",
+  ],
 };
 
 // 与 lib/validations/license.ts 里 toolSlug 的默认值保持一致（空值时落这里）
