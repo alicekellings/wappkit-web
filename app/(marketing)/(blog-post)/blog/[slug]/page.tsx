@@ -170,13 +170,21 @@ export default async function PostPage({
                 <DashboardTableOfContents toc={toc} />
               </MarketingCard>
             ) : null}
-            <BlogProductPromo seed={post.slugAsParams} />
+            <BlogProductPromo
+              seed={post.slugAsParams}
+              title={post.title}
+              categories={post.categories}
+            />
           </div>
         </div>
       </section>
 
       <div className="mt-6 xl:hidden">
-        <BlogProductPromo seed={post.slugAsParams} />
+        <BlogProductPromo
+          seed={post.slugAsParams}
+          title={post.title}
+          categories={post.categories}
+        />
       </div>
 
       {relatedArticles.length > 0 && (

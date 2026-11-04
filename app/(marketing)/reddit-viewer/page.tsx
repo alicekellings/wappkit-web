@@ -32,9 +32,9 @@ const PAGE_PATH = "/reddit-viewer";
 
 export const metadata: Metadata = {
   ...constructMetadata({
-    title: "Reddit Viewer: Browse Subreddits Without an Account | Wappkit",
+    title: "Reddit Viewer for Windows: Browse Subreddits Without an Account",
     description:
-      "A Windows Reddit viewer that turns a subreddit into eight columns you can sort by score or comments, then filter. No account, no feed, no ads. Free version available.",
+      "A Reddit viewer for Windows 10 and 11 that turns a subreddit into eight sortable columns. Sort by score, filter by keyword, export to CSV. No account, no feed, no ads.",
     image: "/images/blog/reddit_viewer_header.png",
   }),
   alternates: { canonical: PAGE_PATH },
@@ -145,6 +145,37 @@ const comparison = [
   },
 ];
 
+const viewerAlternatives = [
+  {
+    kind: "Web mirrors",
+    detail: "redlib instances, old.reddit.com",
+    bestFor: "You are on a phone and only need to read a thread.",
+    tradeoff:
+      "Instances go offline without warning, there is no sorting, and nothing can be exported.",
+  },
+  {
+    kind: "Browser extensions",
+    detail: "add-ons that restyle reddit.com",
+    bestFor: "You want the site you already use to look and behave differently.",
+    tradeoff:
+      "They break whenever Reddit changes its markup, and they only work inside a desktop browser.",
+  },
+  {
+    kind: "The official app",
+    detail: "Reddit for iOS and Android",
+    bestFor: "You need comments, voting, and posting.",
+    tradeoff:
+      "Requires an account, shows ads, and decides the feed order for you.",
+  },
+  {
+    kind: "A desktop viewer",
+    detail: "the option on this page",
+    bestFor: "You need to sort, filter, and export what a subreddit has posted.",
+    tradeoff:
+      "Windows only, no comment threads, and post bodies sit behind the licence.",
+  },
+];
+
 const freeVsPro = [
   { label: "Browse a subreddit's post list", free: true, pro: true },
   { label: "Subreddit search", free: "Unlimited", pro: "Unlimited" },
@@ -160,6 +191,11 @@ const freeVsPro = [
 ];
 
 const faqs = [
+  {
+    question: "What is a Reddit viewer?",
+    answer:
+      "Any tool that shows Reddit posts outside the normal feed. That covers web mirrors such as redlib, browser add-ons that restyle reddit.com, the official mobile app, and desktop programs like this one. The practical difference is whether you can sort, filter, and export what you find.",
+  },
   {
     question: "Is this a website or a desktop app?",
     answer:
@@ -224,7 +260,7 @@ function structuredData() {
         operatingSystem: "Windows 10, Windows 11",
         url: `${siteConfig.url}${PAGE_PATH}`,
         description:
-          "A Windows desktop viewer that turns a subreddit's posts into eight filterable columns, without creating an account.",
+          "A Reddit viewer for Windows that turns a subreddit's posts into eight sortable, filterable columns, without creating an account.",
         offers: {
           "@type": "Offer",
           price: "0",
@@ -254,8 +290,8 @@ export default function RedditViewerPage() {
       />
 
       <MarketingHero
-        eyebrow="Reddit viewer"
-        title="A Reddit viewer that treats a subreddit like a table"
+        eyebrow="Reddit viewer for Windows"
+        title="A Reddit viewer that turns a subreddit into a sortable table"
         description="Open a public subreddit and get its posts as eight columns you can sort by score, comments, or date, then filter before reading. No account, no feed. When you want the replies, the permalink is already on the row."
         badges={[
           { label: "No account required", tone: "warm" },
@@ -388,6 +424,39 @@ export default function RedditViewerPage() {
               ))}
             </tbody>
           </table>
+        </div>
+      </section>
+
+      <section className="mt-16">
+        <MarketingSectionIntro
+          eyebrow="Other ways to read Reddit"
+          title="If a desktop viewer is not what you need"
+          description={
+            "Search results for a reddit viewer mix four different things. Here is when each one is the better answer, including when the answer is not us."
+          }
+        />
+        <div className="mt-8 grid gap-5 md:grid-cols-2">
+          {viewerAlternatives.map((item) => (
+            <div
+              key={item.kind}
+              className="rounded-[1.6rem] border border-border/70 bg-card p-6"
+            >
+              <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                <h3 className="font-heading text-lg text-foreground">
+                  {item.kind}
+                </h3>
+                <span className="text-xs uppercase tracking-[0.14em] text-muted-foreground">
+                  {item.detail}
+                </span>
+              </div>
+              <p className="mt-3 text-sm leading-6 text-foreground">
+                {item.bestFor}
+              </p>
+              <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                {item.tradeoff}
+              </p>
+            </div>
+          ))}
         </div>
       </section>
 

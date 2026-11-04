@@ -327,18 +327,82 @@ export function getPromotableTools() {
   return liveTools.length > 0 ? liveTools : getFeaturedTools();
 }
 
-export function getPromotedTool(seed: string) {
+/**
+ * 博客文章到产品的主题映射。
+ *
+ * 旧实现按 slug 字符码哈希取模分配，等于随机。实测结果是 Reddit 文章底部
+ * 推销截图工具、数据库工具、去重工具，301 次点击被推给完全不相关的产品。
+ * 现在改成按关键词匹配：先看 slug，再看标题和分类，都匹配不上时回退到
+ * 站上流量主体对应的产品（宁可推同一个对的，也不要随机推错的）。
+ */
+const PROMOTED_TOOL_TOPIC_RULES: ReadonlyArray<{
+  slug: string;
+  pattern: RegExp;
+}> = [
+  {
+    slug: "reddit-toolbox",
+    pattern:
+      /reddit|subreddit|gummysearch|karma|upvote|moderator|r\/[a-z0-9_]+/i,
+  },
+  {
+    slug: "filededupe",
+    pattern:
+      /duplicate|dedupe|disk[- ]?space|storage[- ]?sense|large[- ]?files?|hard[- ]?drive|free[- ]?up[- ]?space|rename|photo[- ]?library/i,
+  },
+  {
+    slug: "snapgrid",
+    pattern:
+      /screenshot|window[- ]?(snap|manager|layout|tile)|tile[- ]?windows?|multi[- ]?monitor|split[- ]?screen|always[- ]?on[- ]?top/i,
+  },
+  {
+    slug: "ai-ecom-visual-studio",
+    pattern:
+      /e-?com(merce)?|product[- ]?(photo|image|picture|listing)|background[- ]?remov|amazon[- ]?listing|shopify/i,
+  },
+  {
+    slug: "wappkit-app-setup",
+    pattern: /license[- ]?key|activation|installer|checkout[- ]?flow/i,
+  },
+];
+
+const DEFAULT_PROMOTED_TOOL_SLUG = "reddit-toolbox";
+
+export type PromotedToolMatch = {
+  slug: string;
+  title?: string | null;
+  categories?: ReadonlyArray<string> | null;
+};
+
+export function getPromotedTool(match: string | PromotedToolMatch) {
   const promotableTools = getPromotableTools();
 
   if (promotableTools.length === 0) {
     return null;
   }
 
-  const hash = seed
-    .split("")
-    .reduce((total, char) => total + char.charCodeAt(0), 0);
+  const haystack =
+    typeof match === "string"
+      ? match
+      : [match.slug, match.title ?? "", ...(match.categories ?? [])].join(" ");
 
-  return promotableTools[hash % promotableTools.length];
+  for (const rule of PROMOTED_TOOL_TOPIC_RULES) {
+    if (!rule.pattern.test(haystack)) {
+      continue;
+    }
+
+    const tool = promotableTools.find(
+      (candidate) => candidate.slug === rule.slug,
+    );
+
+    if (tool) {
+      return tool;
+    }
+  }
+
+  return (
+    promotableTools.find((tool) => tool.slug === DEFAULT_PROMOTED_TOOL_SLUG) ??
+    promotableTools[0]
+  );
 }
 
 export function getToolBySlug(slug: string) {

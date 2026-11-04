@@ -7,12 +7,16 @@ import { cn } from "@/lib/utils";
 
 export function BlogProductPromo({
   seed,
+  title,
+  categories,
   className,
 }: {
   seed: string;
+  title?: string | null;
+  categories?: ReadonlyArray<string> | null;
   className?: string;
 }) {
-  const tool = getPromotedTool(seed);
+  const tool = getPromotedTool({ slug: seed, title, categories });
 
   if (!tool) {
     return null;
