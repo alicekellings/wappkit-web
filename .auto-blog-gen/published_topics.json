@@ -188,7 +188,8 @@
     "reddit_toolbox:keyword:browse reddit without account",
     "reddit_toolbox:keyword:reddit without account",
     "reddit_toolbox:keyword:browse reddit without an account",
-    "reddit_toolbox:keyword:reddit account required"
+    "reddit_toolbox:keyword:reddit account required",
+    "reddit_toolbox:topic:how to open a reddit permalink without the app prompt"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -383,7 +384,8 @@
     "how-to-browse-reddit-without-an-account-in-2026-and-what-to-do-when-it-stops-wor",
     "how-to-browse-reddit-without-an-account-a-practical-workflow-for-researchers-and",
     "how-to-browse-reddit-without-an-account-in-2026-and-when-to-stop-relying-on-it",
-    "reddit-account-required-what-it-means-for-researchers-and-how-to-keep-your-workf"
+    "reddit-account-required-what-it-means-for-researchers-and-how-to-keep-your-workf",
+    "how-to-open-a-reddit-permalink-without-the-app-prompt-browser-desktop-workaround"
   ],
   "events": [
     {
@@ -1736,6 +1738,13 @@
       "source_type": "keyword",
       "slug": "reddit-account-required-what-it-means-for-researchers-and-how-to-keep-your-workf",
       "title": "Reddit Account Required: What It Means for Researchers and How to Keep Your Workflow Running"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "how to open a reddit permalink without the app prompt",
+      "source_type": "topic",
+      "slug": "how-to-open-a-reddit-permalink-without-the-app-prompt-browser-desktop-workaround",
+      "title": "How to Open a Reddit Permalink Without the App Prompt (Browser & Desktop Workarounds)"
     }
   ]
 }
