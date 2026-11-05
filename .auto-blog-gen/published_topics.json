@@ -187,7 +187,8 @@
     "reddit_toolbox:keyword:view reddit without login",
     "reddit_toolbox:keyword:browse reddit without account",
     "reddit_toolbox:keyword:reddit without account",
-    "reddit_toolbox:keyword:browse reddit without an account"
+    "reddit_toolbox:keyword:browse reddit without an account",
+    "reddit_toolbox:keyword:reddit account required"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -381,7 +382,8 @@
     "how-to-view-reddit-without-login-in-2026-what-still-works-and-what-doesnt",
     "how-to-browse-reddit-without-an-account-in-2026-and-what-to-do-when-it-stops-wor",
     "how-to-browse-reddit-without-an-account-a-practical-workflow-for-researchers-and",
-    "how-to-browse-reddit-without-an-account-in-2026-and-when-to-stop-relying-on-it"
+    "how-to-browse-reddit-without-an-account-in-2026-and-when-to-stop-relying-on-it",
+    "reddit-account-required-what-it-means-for-researchers-and-how-to-keep-your-workf"
   ],
   "events": [
     {
@@ -1727,6 +1729,13 @@
       "source_type": "keyword",
       "slug": "how-to-browse-reddit-without-an-account-in-2026-and-when-to-stop-relying-on-it",
       "title": "How to Browse Reddit Without an Account in 2026 (And When to Stop Relying on It)"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "reddit account required",
+      "source_type": "keyword",
+      "slug": "reddit-account-required-what-it-means-for-researchers-and-how-to-keep-your-workf",
+      "title": "Reddit Account Required: What It Means for Researchers and How to Keep Your Workflow Running"
     }
   ]
 }
