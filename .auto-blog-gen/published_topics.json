@@ -190,7 +190,8 @@
     "reddit_toolbox:keyword:browse reddit without an account",
     "reddit_toolbox:keyword:reddit account required",
     "reddit_toolbox:topic:how to open a reddit permalink without the app prompt",
-    "reddit_toolbox:keyword:free reddit viewer"
+    "reddit_toolbox:keyword:free reddit viewer",
+    "reddit_toolbox:keyword:reddit viewer without account"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -387,7 +388,8 @@
     "how-to-browse-reddit-without-an-account-in-2026-and-when-to-stop-relying-on-it",
     "reddit-account-required-what-it-means-for-researchers-and-how-to-keep-your-workf",
     "how-to-open-a-reddit-permalink-without-the-app-prompt-browser-desktop-workaround",
-    "free-reddit-viewer-a-practical-workflow-for-founders-and-researchers-in-2026"
+    "free-reddit-viewer-a-practical-workflow-for-founders-and-researchers-in-2026",
+    "how-to-browse-reddit-without-an-account-and-when-a-viewer-is-not-enough"
   ],
   "events": [
     {
@@ -1754,6 +1756,13 @@
       "source_type": "keyword",
       "slug": "free-reddit-viewer-a-practical-workflow-for-founders-and-researchers-in-2026",
       "title": "Free Reddit Viewer: A Practical Workflow for Founders and Researchers in 2026"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "reddit viewer without account",
+      "source_type": "keyword",
+      "slug": "how-to-browse-reddit-without-an-account-and-when-a-viewer-is-not-enough",
+      "title": "How to Browse Reddit Without an Account (And When a Viewer Is Not Enough)"
     }
   ]
 }
