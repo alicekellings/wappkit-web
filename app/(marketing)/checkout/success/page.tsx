@@ -37,6 +37,15 @@ export default async function CheckoutSuccessPage({
     allowPattern: /^[a-z0-9-]+$/,
     maxLength: 80,
   });
+  const toolNames: Record<string, string> = {
+    "reddit-toolbox": "Reddit Toolbox",
+    "reddit-viewer-extension": "Reddit Reader",
+    "ai-ecom-visual-studio": "AI E-commerce Visual Studio",
+    "wappkit-app-setup": "Wappkit App Setup",
+    filededupe: "FileDedupe",
+  };
+  const productName =
+    (toolSlug ? toolNames[toolSlug] : undefined) ?? "your Wappkit app";
   const orderId = getTrimmedSearchParam(searchParams.order_id, {
     allowPattern: /^[A-Za-z0-9_-]+$/,
     maxLength: 120,
@@ -188,8 +197,8 @@ export default async function CheckoutSuccessPage({
           </div>
 
           <p className="mt-4 text-sm leading-6 text-muted-foreground">
-            Save this key. Open AI E-commerce Visual Studio, click Enter Key,
-            paste the license key, and activate Pro on this computer.
+            Save this key. Open {productName} and paste the license key in the
+            activation dialog to unlock Pro on this computer.
           </p>
         </MarketingCard>
       ) : null}

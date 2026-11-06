@@ -645,7 +645,20 @@ export default function ToolDetailPage({
                     </Button>
                   </Link>
                 )}
-                {tool.slug === "ai-ecom-visual-studio" ? (
+                {tool.slug === "reddit-toolbox" ? (
+                  <Link href="/api/desktop/reddit-toolbox/download?source=product-page">
+                    <Button
+                      rounded="full"
+                      size="lg"
+                      variant="outline"
+                      data-umami-event="download_clicked"
+                      data-umami-event-tool={tool.slug}
+                    >
+                      <Download className="mr-2 size-4" />
+                      {tool.downloadLabel}
+                    </Button>
+                  </Link>
+                ) : tool.slug === "ai-ecom-visual-studio" ? (
                   <TrackedDownloadLink
                     href={tool.downloadHref}
                     toolSlug={tool.slug}

@@ -131,6 +131,49 @@ export const tools: Tool[] = [
       "One-time payment, no subscription. The free tier stays free; a single license unlocks the full desktop toolkit.",
   },
   {
+    slug: "reddit-viewer-extension",
+    name: "Reddit Reader",
+    category: "Reddit Tools",
+    status: "live",
+    tagline:
+      "Read Reddit without login walls — a clean reader mode that lives in your browser.",
+    shortDescription:
+      "A Chrome and Edge extension that hides login prompts and clutter, highlights keywords, and exports a thread to Markdown. Free with a 3-export trial; Pro is a one-time $4.99 license.",
+    longDescription:
+      "Reddit Reader is a browser extension for people who read Reddit without an account. It removes login prompts, sidebars, app banners and promoted posts, highlights the keywords you care about, and can export the post plus its comments to a clean Markdown file. The free version includes reader mode, one keyword and three Markdown exports. Pro unlocks unlimited keywords and exports. It runs in Chrome and Edge on Windows, macOS and Linux, so there is no installer and no separate account.",
+    features: [
+      "Clean reader mode that hides login walls, sidebars, app banners and promoted posts",
+      "Keyword highlighting across the post and comments",
+      "One-click export of the post and comments to Markdown",
+      "Works on reddit.com, including direct thread URLs",
+      "No installer and no Wappkit account required",
+    ],
+    featureNotes: [
+      "The reader mode is a toggle: turn it off when you want the normal Reddit layout back.",
+      "Free includes one keyword; Pro removes the keyword limit.",
+      "Free includes three Markdown exports; Pro removes the export limit.",
+      "Useful when a thread is easier to keep as a file than as a browser tab.",
+      "Install from the extension store, then activate Pro inside the extension.",
+    ],
+    audience: [
+      "People who read Reddit without logging in",
+      "Researchers collecting threads for notes or analysis",
+      "Privacy-conscious readers who want less clutter and no app prompts",
+    ],
+    platform: "Chrome / Edge",
+    downloadLabel: "Install free extension",
+    buyLabel: "Get Pro — $4.99",
+    downloadHref: "https://chromewebstore.google.com/",
+    buyHref: "/license",
+    docsHref: "/docs/checkout-and-activation",
+    availabilityNote:
+      "Reddit Reader is a free browser extension with a 3-export trial. Pro activates inside the extension with a Wappkit license key.",
+    checkoutEnabled: true,
+    priceLabel: "$4.99 one-time",
+    priceNote:
+      "One-time Pro license. Free mode includes reader mode, one keyword and three Markdown exports.",
+  },
+  {
     slug: "snapgrid",
     name: "SnapTiles",
     category: "Window Management",
@@ -339,6 +382,11 @@ const PROMOTED_TOOL_TOPIC_RULES: ReadonlyArray<{
   slug: string;
   pattern: RegExp;
 }> = [
+  {
+    slug: "reddit-viewer-extension",
+    pattern:
+      /reddit[- ]?viewer|browse[- ]?reddit|without[- ]?account|anonymous|lurker|old[- ]?reddit|read[- ]?reddit/i,
+  },
   {
     slug: "reddit-toolbox",
     pattern:

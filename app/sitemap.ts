@@ -72,6 +72,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
+      url: toAbsoluteUrl("/toolkit"),
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
+      url: toAbsoluteUrl("/privacy/reddit-reader"),
+      lastModified: now,
+      changeFrequency: "yearly",
+      priority: 0.4,
+    },
+    {
       url: toAbsoluteUrl("/pricing"),
       lastModified: now,
       changeFrequency: "weekly",

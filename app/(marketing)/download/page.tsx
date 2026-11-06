@@ -43,9 +43,14 @@ export default function DownloadPage() {
         ]}
         actions={
           <>
-            <Link href={redditToolboxDesktopRelease.directDownloadUrl}>
-              <Button rounded="full" size="lg">
-                Download `.exe`
+            <Link href="/api/desktop/reddit-toolbox/download?source=download-hero">
+              <Button
+                rounded="full"
+                size="lg"
+                data-umami-event="download_clicked"
+                data-umami-event-tool="reddit-toolbox"
+              >
+                Download for Windows
               </Button>
             </Link>
             <Link href={redditToolboxDesktopRelease.releaseUrl}>
@@ -124,8 +129,14 @@ export default function DownloadPage() {
               published SHA256 checksum.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
-              <Link href={redditToolboxDesktopRelease.directDownloadUrl}>
-                <Button rounded="full">Download</Button>
+              <Link href="/api/desktop/reddit-toolbox/download?source=download-card">
+                <Button
+                  rounded="full"
+                  data-umami-event="download_clicked"
+                  data-umami-event-tool="reddit-toolbox"
+                >
+                  Download for Windows
+                </Button>
               </Link>
               <Link href="/tools/reddit-toolbox">
                 <Button rounded="full" variant="outline">
