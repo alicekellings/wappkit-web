@@ -24,6 +24,15 @@ const nextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: "/reddit-toolbox",
+        destination: "/tools/reddit-toolbox",
+        permanent: true,
+      },
+    ];
+  },
   // studio.wappkit.com -> /studio/* 的改写放在 middleware.ts。
   // 不用 next.config 的 rewrites()，因为它会连 /_next/static 一起改写，
   // 导致子域名上的 CSS/JS 404。

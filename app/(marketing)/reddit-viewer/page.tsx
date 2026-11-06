@@ -148,7 +148,7 @@ const comparison = [
 const viewerAlternatives = [
   {
     kind: "Web mirrors",
-    detail: "redlib instances, old.reddit.com",
+    detail: "Redlib instances, Reddit RSS feeds",
     bestFor: "You are on a phone and only need to read a thread.",
     tradeoff:
       "Instances go offline without warning, there is no sorting, and nothing can be exported.",

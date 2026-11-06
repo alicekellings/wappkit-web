@@ -6,6 +6,7 @@ import { serializeError } from "@/lib/error-utils";
 
 import { createCreemCheckout, isCreemInTestMode } from "@/lib/creem";
 import { getTrimmedEnv } from "@/lib/env-utils";
+import { recordCheckoutAttempt } from "@/lib/funnel";
 import { checkoutRequestSchema } from "@/lib/validations/license";
 import { absoluteUrl } from "@/lib/utils";
 import { getToolBySlug } from "@/lib/tools";
@@ -14,6 +15,7 @@ const TOOL_PRODUCT_ENV_MAP: Record<string, string> = {
   "ai-ecom-visual-studio": "CREEM_PRODUCT_AI_ECOM_VISUAL_STUDIO_ID",
   "wappkit-app-setup": "CREEM_PRODUCT_WAPPKIT_APP_SETUP_ID",
   "reddit-toolbox": "CREEM_PRODUCT_REDDIT_TOOLBOX_ID",
+  "reddit-viewer-extension": "CREEM_PRODUCT_REDDIT_VIEWER_EXTENSION_ID",
   "filededupe": "CREEM_PRODUCT_FILEDEDUPE_ID",
 };
 
@@ -52,6 +54,13 @@ export async function POST(request: NextRequest) {
         { status: 500 },
       );
     }
+
+    await recordCheckoutAttempt({
+      toolSlug: tool.slug,
+      referer: request.headers.get("referer"),
+      userAgent: request.headers.get("user-agent"),
+      country: request.headers.get("x-vercel-ip-country"),
+    });
 
     const requestId = crypto.randomUUID();
     const successUrl = absoluteUrl(
