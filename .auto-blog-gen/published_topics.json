@@ -192,7 +192,8 @@
     "reddit_toolbox:topic:how to open a reddit permalink without the app prompt",
     "reddit_toolbox:keyword:free reddit viewer",
     "reddit_toolbox:keyword:reddit viewer without account",
-    "reddit_toolbox:keyword:reddit viewer desktop"
+    "reddit_toolbox:keyword:reddit viewer desktop",
+    "reddit_toolbox:topic:reddit viewer vs reddit app which one to read with"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -391,7 +392,8 @@
     "how-to-open-a-reddit-permalink-without-the-app-prompt-browser-desktop-workaround",
     "free-reddit-viewer-a-practical-workflow-for-founders-and-researchers-in-2026",
     "how-to-browse-reddit-without-an-account-and-when-a-viewer-is-not-enough",
-    "reddit-viewer-desktop-a-practical-workflow-for-founders-and-researchers-who-need"
+    "reddit-viewer-desktop-a-practical-workflow-for-founders-and-researchers-who-need",
+    "reddit-viewer-vs-reddit-app-which-one-should-you-actually-use"
   ],
   "events": [
     {
@@ -1772,6 +1774,13 @@
       "source_type": "keyword",
       "slug": "reddit-viewer-desktop-a-practical-workflow-for-founders-and-researchers-who-need",
       "title": "Reddit Viewer Desktop: A Practical Workflow for Founders and Researchers Who Need Signal Fast"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "reddit viewer vs reddit app which one to read with",
+      "source_type": "topic",
+      "slug": "reddit-viewer-vs-reddit-app-which-one-should-you-actually-use",
+      "title": "Reddit Viewer vs Reddit App: Which One Should You Actually Use?"
     }
   ]
 }
