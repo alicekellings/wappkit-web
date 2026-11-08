@@ -200,6 +200,84 @@ export async function getToolDownloadStats(
   };
 }
 
+export type CheckoutEvent = {
+  at: string;
+  toolSlug: string;
+  country: string | null;
+  referer: string | null;
+};
+
+export type CheckoutStats = {
+  total: number;
+  last30: number;
+  days: Array<{ date: string; count: number }>;
+  tools: Array<{ toolSlug: string; count: number }>;
+  events: CheckoutEvent[];
+  configured: boolean;
+};
+
+/**
+ * 结账漏斗的读取端。
+ *
+ * 写入是 recordCheckoutAttempt（用户点购买、我们向 Creem 建单时触发），
+ * 这里把三个计数器和明细列表读回来给 /ops/checkout 用。
+ * toolSlugs 由调用方传入（页面从 lib/tools 拿），避免这里 import 出环。
+ */
+export async function getCheckoutStats(
+  toolSlugs: string[],
+  days = 30,
+): Promise<CheckoutStats> {
+  const keys = getRecentDayKeys(days);
+  const [totalRaw, dailyRaw, toolRaw, eventsRaw] = await Promise.all([
+    runUpstashResult(["GET", "wappkit:funnel:checkout_attempts:total"]),
+    runUpstashResult([
+      "MGET",
+      ...keys.map((date) => `wappkit:funnel:checkout_attempts:day:${date}`),
+    ]),
+    runUpstashResult([
+      "MGET",
+      ...toolSlugs.map((slug) => `wappkit:funnel:checkout_attempts:tool:${slug}`),
+    ]),
+    runUpstashResult(["LRANGE", "wappkit:funnel:checkout_events", 0, 49]),
+  ]);
+
+  const dailyValues = Array.isArray(dailyRaw) ? dailyRaw : [];
+  const toolValues = Array.isArray(toolRaw) ? toolRaw : [];
+  const rows = keys.map((date, index) => ({
+    date,
+    count: toCount(dailyValues[index]),
+  }));
+
+  const events: CheckoutEvent[] = [];
+  if (Array.isArray(eventsRaw)) {
+    for (const raw of eventsRaw) {
+      try {
+        const parsed = JSON.parse(String(raw)) as Record<string, unknown>;
+        events.push({
+          at: String(parsed.at ?? ""),
+          toolSlug: String(parsed.toolSlug ?? "unknown"),
+          country: parsed.country ? String(parsed.country) : null,
+          referer: parsed.referer ? String(parsed.referer) : null,
+        });
+      } catch {
+        // 坏掉的一行不影响整页
+      }
+    }
+  }
+
+  return {
+    total: toCount(totalRaw),
+    last30: rows.reduce((sum, row) => sum + row.count, 0),
+    days: rows,
+    tools: toolSlugs
+      .map((slug, index) => ({ toolSlug: slug, count: toCount(toolValues[index]) }))
+      .filter((row) => row.count > 0)
+      .sort((a, b) => b.count - a.count),
+    events,
+    configured: totalRaw !== null,
+  };
+}
+
 export async function recordCheckoutAttempt(attempt: CheckoutAttempt) {
   const day = getDayKey();
   const event = {
