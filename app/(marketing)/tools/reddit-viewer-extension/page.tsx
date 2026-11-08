@@ -206,6 +206,31 @@ export default function RedditReaderExtensionPage() {
         })}
       </section>
 
+      <section className="mt-10">
+        <MarketingCard tone="warm" className="p-8 md:p-10">
+          <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+            <div className="max-w-2xl">
+              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-orange-700">
+                Android
+              </p>
+              <h2 className="mt-3 font-heading text-3xl text-foreground">
+                Reading on your phone?
+              </h2>
+              <p className="mt-3 text-base leading-7 text-muted-foreground">
+                The same reader is available as a free 89 KB Android app. It
+                opens Reddit from your phone&apos;s own connection, with no
+                account and no Wappkit server.
+              </p>
+            </div>
+            <Link href="/tools/reddit-reader-android">
+              <Button rounded="full" size="lg">
+                Get the Android app
+              </Button>
+            </Link>
+          </div>
+        </MarketingCard>
+      </section>
+
       <section className="mt-10 rounded-[1.8rem] border bg-card p-8 md:p-10">
         <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
           <div className="max-w-2xl">

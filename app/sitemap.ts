@@ -28,6 +28,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
+      // Android APK 下载页：移动端占 GSC 点击 62%，扩展装不了，给手机一个本地工具入口。
+      url: toAbsoluteUrl("/tools/reddit-reader-android"),
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
       url: toAbsoluteUrl("/blog"),
       lastModified: now,
       changeFrequency: "daily",
