@@ -92,7 +92,7 @@ const faqs = [
   {
     question: "What does the app collect?",
     answer:
-      "Nothing. The Android app has no analytics and no Wappkit account. The only data point we record is a download count when the button on this page is tapped; that count is not tied to a user.",
+      "The Android app has no analytics and no Wappkit account. This page uses the site's normal analytics and records a download count when the button is tapped; neither is tied to a named user.",
   },
 ];
 
