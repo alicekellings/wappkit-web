@@ -193,7 +193,8 @@
     "reddit_toolbox:keyword:free reddit viewer",
     "reddit_toolbox:keyword:reddit viewer without account",
     "reddit_toolbox:keyword:reddit viewer desktop",
-    "reddit_toolbox:topic:reddit viewer vs reddit app which one to read with"
+    "reddit_toolbox:topic:reddit viewer vs reddit app which one to read with",
+    "reddit_toolbox:keyword:reddit login wall"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -393,7 +394,8 @@
     "free-reddit-viewer-a-practical-workflow-for-founders-and-researchers-in-2026",
     "how-to-browse-reddit-without-an-account-and-when-a-viewer-is-not-enough",
     "reddit-viewer-desktop-a-practical-workflow-for-founders-and-researchers-who-need",
-    "reddit-viewer-vs-reddit-app-which-one-should-you-actually-use"
+    "reddit-viewer-vs-reddit-app-which-one-should-you-actually-use",
+    "reddit-login-wall-2026-a-practical-workflow-for-founders-and-researchers-who-sti"
   ],
   "events": [
     {
@@ -1781,6 +1783,13 @@
       "source_type": "topic",
       "slug": "reddit-viewer-vs-reddit-app-which-one-should-you-actually-use",
       "title": "Reddit Viewer vs Reddit App: Which One Should You Actually Use?"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "reddit login wall",
+      "source_type": "keyword",
+      "slug": "reddit-login-wall-2026-a-practical-workflow-for-founders-and-researchers-who-sti",
+      "title": "Reddit Login Wall 2026: A Practical Workflow for Founders and Researchers Who Still Need Reddit Data"
     }
   ]
 }
