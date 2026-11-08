@@ -43,6 +43,14 @@ const TOOL_FEATURES: Record<string, string[]> = {
     "saved_rules",
     "cli",
   ],
+  // Bulk File Renamer：同样必须与桌面端 renamer/core/license.py 的
+  // FEATURE_RULES / FEATURE_REGEX / FEATURE_DATE / FEATURE_CLI 取值逐字一致。
+  "renamer": [
+    "saved_rules",
+    "regex",
+    "date_tokens",
+    "cli",
+  ],
 };
 
 // 与 lib/validations/license.ts 里 toolSlug 的默认值保持一致（空值时落这里）

@@ -17,6 +17,7 @@ const TOOL_PRODUCT_ENV_MAP: Record<string, string> = {
   "reddit-toolbox": "CREEM_PRODUCT_REDDIT_TOOLBOX_ID",
   "reddit-viewer-extension": "CREEM_PRODUCT_REDDIT_VIEWER_EXTENSION_ID",
   "filededupe": "CREEM_PRODUCT_FILEDEDUPE_ID",
+  "renamer": "CREEM_PRODUCT_RENAMER_ID",
 };
 
 export async function POST(request: NextRequest) {

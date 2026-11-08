@@ -255,7 +255,51 @@ export const tools: Tool[] = [
     buyHref: "/license",
     docsHref: "/docs/checkout-and-activation",
     availabilityNote:
-      "FileDedupe is in Microsoft Store certification. Pro checkout runs through Wappkit with in-app activation.",
+      "FileDedupe is live in the Microsoft Store. Pro checkout runs through Wappkit with in-app activation.",
+    checkoutEnabled: true,
+    priceLabel: "$6 launch special",
+    regularPriceLabel: "$9 regular price",
+    priceNote:
+      "One-time Pro license, not a subscription. One key works on one PC at a time.",
+  },
+  {
+    slug: "renamer",
+    name: "Bulk File Renamer Studio",
+    category: "File Management",
+    status: "live",
+    tagline:
+      "Rename thousands of files by rule, see every new name before anything moves, and undo the whole batch.",
+    shortDescription:
+      "Stack rules — find and replace, renumber, change case, fix extensions — and watch the preview rewrite itself. Clashes and illegal names are flagged before you run. Pro lifts the saved rule sets, regular expressions, date naming and command-line limits.",
+    longDescription:
+      "Bulk File Renamer Studio turns a folder of files into a list you can rewrite by rule instead of by hand. Rules run top to bottom like a sentence: replace \"DSC_\" with a trip name, add a three-digit number, lower-case the result. The preview column updates as you type, and nothing is applied until you press the button. Two files landing on the same name are marked in red, names Windows will not accept are marked before you run, and a name that already exists on disk is marked as a clash. Renames go out in two passes — every file first moves to a temporary name, then to its final one — so chains and swaps come out correct instead of silently overwriting each other. The undo record is written to disk, so Ctrl+Z still works after the app is closed and reopened. The free version is a complete renamer; Pro removes the saved-rule-set cap and adds regular expressions, date-based naming and command-line runs.",
+    features: [
+      "Live preview of every new name before a single file moves",
+      "Clashes, illegal characters, reserved names and over-long names flagged in the list",
+      "Two-pass rename, so chains and swaps never overwrite each other",
+      "Undo written to disk — it survives closing the app",
+      "Pro: unlimited saved rule sets, regular expressions, date naming, command-line runs",
+    ],
+    featureNotes: [
+      "The right-hand column shows the result of the whole rule chain, updated while you type, so you can judge the batch before touching the disk.",
+      "A name Windows refuses — a reserved word like CON, a trailing dot, an illegal character, more than 255 characters — is caught in the preview instead of failing halfway through the run.",
+      "Renaming a.txt to b.txt while b.txt becomes c.txt is a chain; swapping two names is the same problem. Both are applied through temporary names, which one-pass renamers get wrong.",
+      "The journal lives next to the settings, so a rename done yesterday can still be reversed today, even after a restart.",
+      "The free version saves one rule set; the licence lifts that cap and unlocks the rules that need a parser or a clock.",
+    ],
+    audience: [
+      "People organising years of camera files, screenshots and downloads",
+      "Anyone who has renamed two hundred files by hand and does not intend to again",
+      "Teams standardising file names before handing a folder to someone else",
+    ],
+    platform: "Windows Desktop",
+    downloadLabel: "Get it from Microsoft Store",
+    buyLabel: "Unlock Pro",
+    downloadHref: "https://apps.microsoft.com/detail/9MW101RGQNN1",
+    buyHref: "/license",
+    docsHref: "/docs/checkout-and-activation",
+    availabilityNote:
+      "Bulk File Renamer Studio is live in the Microsoft Store. Pro checkout runs through Wappkit with in-app activation.",
     checkoutEnabled: true,
     priceLabel: "$6 launch special",
     regularPriceLabel: "$9 regular price",
@@ -393,9 +437,14 @@ const PROMOTED_TOOL_TOPIC_RULES: ReadonlyArray<{
       /reddit|subreddit|gummysearch|karma|upvote|moderator|r\/[a-z0-9_]+/i,
   },
   {
+    slug: "renamer",
+    pattern:
+      /renam|file[- ]?names?|naming[- ]?convention|organi[sz]e[- ]?(your[- ]?)?(files?|photos?|folder)/i,
+  },
+  {
     slug: "filededupe",
     pattern:
-      /duplicate|dedupe|disk[- ]?space|storage[- ]?sense|large[- ]?files?|hard[- ]?drive|free[- ]?up[- ]?space|rename|photo[- ]?library/i,
+      /duplicate|dedupe|disk[- ]?space|storage[- ]?sense|large[- ]?files?|hard[- ]?drive|free[- ]?up[- ]?space|photo[- ]?library/i,
   },
   {
     slug: "snapgrid",
