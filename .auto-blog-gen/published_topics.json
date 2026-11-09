@@ -194,7 +194,8 @@
     "reddit_toolbox:keyword:reddit viewer without account",
     "reddit_toolbox:keyword:reddit viewer desktop",
     "reddit_toolbox:topic:reddit viewer vs reddit app which one to read with",
-    "reddit_toolbox:keyword:reddit login wall"
+    "reddit_toolbox:keyword:reddit login wall",
+    "reddit_toolbox:topic:browsing reddit on desktop without the mobile app nag"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -395,7 +396,8 @@
     "how-to-browse-reddit-without-an-account-and-when-a-viewer-is-not-enough",
     "reddit-viewer-desktop-a-practical-workflow-for-founders-and-researchers-who-need",
     "reddit-viewer-vs-reddit-app-which-one-should-you-actually-use",
-    "reddit-login-wall-2026-a-practical-workflow-for-founders-and-researchers-who-sti"
+    "reddit-login-wall-2026-a-practical-workflow-for-founders-and-researchers-who-sti",
+    "how-to-browse-reddit-on-desktop-without-app-nags-workflow-guide-for-researchers"
   ],
   "events": [
     {
@@ -1790,6 +1792,13 @@
       "source_type": "keyword",
       "slug": "reddit-login-wall-2026-a-practical-workflow-for-founders-and-researchers-who-sti",
       "title": "Reddit Login Wall 2026: A Practical Workflow for Founders and Researchers Who Still Need Reddit Data"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "browsing reddit on desktop without the mobile app nag",
+      "source_type": "topic",
+      "slug": "how-to-browse-reddit-on-desktop-without-app-nags-workflow-guide-for-researchers",
+      "title": "How to Browse Reddit on Desktop Without App Nags (Workflow Guide for Researchers)"
     }
   ]
 }
