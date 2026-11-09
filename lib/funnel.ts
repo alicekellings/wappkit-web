@@ -200,11 +200,63 @@ export async function getToolDownloadStats(
   };
 }
 
+/**
+ * 记录一笔真正付成的订单。
+ *
+ * 幂等很重要：Creem 会重放同一个 checkout.completed，license 那边靠 mergeAndSave 去重，
+ * 计数器没有 merge 语义，所以先用 SADD 看这单是不是第一次见，只有返回 1 才 INCR。
+ */
+export async function recordPaidOrder(input: {
+  orderId: string;
+  toolSlug: string;
+}) {
+  const day = getDayKey();
+  const event = {
+    event: "paid_order",
+    orderId: input.orderId,
+    toolSlug: input.toolSlug,
+    at: new Date().toISOString(),
+  };
+
+  const firstSeen = await runUpstashResult([
+    "SADD",
+    "wappkit:funnel:paid_orders:seen",
+    input.orderId,
+  ]);
+
+  if (Number(firstSeen) !== 1) {
+    // 未配置 Upstash（null）或这一单已经记过（0）
+    if (firstSeen === null) {
+      console.log("funnel.paid_order", event);
+    }
+    return false;
+  }
+
+  await Promise.all([
+    runUpstash(["INCR", "wappkit:funnel:paid_orders:total"]),
+    runUpstash(["INCR", `wappkit:funnel:paid_orders:day:${day}`]),
+    runUpstash(["INCR", `wappkit:funnel:paid_orders:tool:${input.toolSlug}`]),
+  ]);
+  await runUpstash([
+    "LPUSH",
+    "wappkit:funnel:paid_events",
+    JSON.stringify(event),
+  ]);
+  await runUpstash(["LTRIM", "wappkit:funnel:paid_events", 0, 499]);
+  return true;
+}
+
 export type CheckoutEvent = {
   at: string;
   toolSlug: string;
   country: string | null;
   referer: string | null;
+};
+
+export type PaidOrderEvent = {
+  at: string;
+  orderId: string;
+  toolSlug: string;
 };
 
 export type CheckoutStats = {
@@ -213,6 +265,10 @@ export type CheckoutStats = {
   days: Array<{ date: string; count: number }>;
   tools: Array<{ toolSlug: string; count: number }>;
   events: CheckoutEvent[];
+  paidTotal: number;
+  paidLast30: number;
+  paidDays: Array<{ date: string; count: number }>;
+  paidOrders: PaidOrderEvent[];
   configured: boolean;
 };
 
@@ -228,18 +284,25 @@ export async function getCheckoutStats(
   days = 30,
 ): Promise<CheckoutStats> {
   const keys = getRecentDayKeys(days);
-  const [totalRaw, dailyRaw, toolRaw, eventsRaw] = await Promise.all([
-    runUpstashResult(["GET", "wappkit:funnel:checkout_attempts:total"]),
-    runUpstashResult([
-      "MGET",
-      ...keys.map((date) => `wappkit:funnel:checkout_attempts:day:${date}`),
-    ]),
-    runUpstashResult([
-      "MGET",
-      ...toolSlugs.map((slug) => `wappkit:funnel:checkout_attempts:tool:${slug}`),
-    ]),
-    runUpstashResult(["LRANGE", "wappkit:funnel:checkout_events", 0, 49]),
-  ]);
+  const [totalRaw, dailyRaw, toolRaw, eventsRaw, paidTotalRaw, paidDailyRaw, paidEventsRaw] =
+    await Promise.all([
+      runUpstashResult(["GET", "wappkit:funnel:checkout_attempts:total"]),
+      runUpstashResult([
+        "MGET",
+        ...keys.map((date) => `wappkit:funnel:checkout_attempts:day:${date}`),
+      ]),
+      runUpstashResult([
+        "MGET",
+        ...toolSlugs.map((slug) => `wappkit:funnel:checkout_attempts:tool:${slug}`),
+      ]),
+      runUpstashResult(["LRANGE", "wappkit:funnel:checkout_events", 0, 49]),
+      runUpstashResult(["GET", "wappkit:funnel:paid_orders:total"]),
+      runUpstashResult([
+        "MGET",
+        ...keys.map((date) => `wappkit:funnel:paid_orders:day:${date}`),
+      ]),
+      runUpstashResult(["LRANGE", "wappkit:funnel:paid_events", 0, 49]),
+    ]);
 
   const dailyValues = Array.isArray(dailyRaw) ? dailyRaw : [];
   const toolValues = Array.isArray(toolRaw) ? toolRaw : [];
@@ -265,6 +328,28 @@ export async function getCheckoutStats(
     }
   }
 
+  const paidValues = Array.isArray(paidDailyRaw) ? paidDailyRaw : [];
+  const paidRows = keys.map((date, index) => ({
+    date,
+    count: toCount(paidValues[index]),
+  }));
+
+  const paidOrders: PaidOrderEvent[] = [];
+  if (Array.isArray(paidEventsRaw)) {
+    for (const raw of paidEventsRaw) {
+      try {
+        const parsed = JSON.parse(String(raw)) as Record<string, unknown>;
+        paidOrders.push({
+          at: String(parsed.at ?? ""),
+          orderId: String(parsed.orderId ?? ""),
+          toolSlug: String(parsed.toolSlug ?? "unknown"),
+        });
+      } catch {
+        // 同上，坏行跳过
+      }
+    }
+  }
+
   return {
     total: toCount(totalRaw),
     last30: rows.reduce((sum, row) => sum + row.count, 0),
@@ -274,6 +359,10 @@ export async function getCheckoutStats(
       .filter((row) => row.count > 0)
       .sort((a, b) => b.count - a.count),
     events,
+    paidTotal: toCount(paidTotalRaw),
+    paidLast30: paidRows.reduce((sum, row) => sum + row.count, 0),
+    paidDays: paidRows,
+    paidOrders,
     configured: totalRaw !== null,
   };
 }

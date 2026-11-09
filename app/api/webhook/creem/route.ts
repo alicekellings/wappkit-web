@@ -10,6 +10,7 @@ import {
   verifyCreemWebhookSignature,
 } from "@/lib/creem";
 import { getTrimmedEnv } from "@/lib/env-utils";
+import { recordPaidOrder } from "@/lib/funnel";
 import {
   createLicenseRecordFromCreemCheckout,
   getLicenseStore,
@@ -96,6 +97,17 @@ export async function POST(request: NextRequest) {
     // 直接 save() 覆盖会把已激活设备的绑定、30 天换机冷却期、
     // 以及管理员手工封禁的 disabled 状态一起冲掉。
     const saved = await store.mergeAndSave(record);
+
+    // 漏斗计数：mergeAndSave 去重的是 license 记录，计数器没有 merge 语义，
+    // 幂等在 recordPaidOrder 里用 SADD 处理。计数失败不能影响发码结果。
+    try {
+      await recordPaidOrder({
+        orderId: saved.orderId,
+        toolSlug: saved.toolSlug,
+      });
+    } catch (error) {
+      console.error("funnel.paid_order_failed", serializeError(error));
+    }
 
     return NextResponse.json({
       received: true,

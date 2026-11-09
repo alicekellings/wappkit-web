@@ -80,6 +80,8 @@ export default async function CheckoutStatsPage() {
   const today = stats.days[stats.days.length - 1];
   // 日历上没量到的日子不占表格，只留真的有数字的
   const rows = [...stats.days].reverse().filter((day) => day.count > 0);
+  const conversion =
+    stats.total > 0 ? `${Math.round((stats.paidTotal / stats.total) * 100)}%` : "—";
 
   return (
     <div className="container max-w-[980px] py-16 md:py-20">
@@ -90,16 +92,18 @@ export default async function CheckoutStatsPage() {
         Checkout attempts
       </h1>
       <p className="mt-4 max-w-2xl text-muted-foreground">
-        A count is recorded the moment a buyer presses Buy and we ask Creem for
-        a checkout session — so this counts intent, not money. Completed
-        payments still need the Creem dashboard.
+        An attempt is counted the moment a buyer presses Buy and we ask Creem
+        for a checkout session. A paid order is counted when Creem confirms the
+        payment through the webhook — so the gap between the two numbers is the
+        checkout page losing people.
       </p>
 
-      <div className="mt-8 grid gap-4 sm:grid-cols-3">
+      <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {[
-          { label: "Total attempts", value: stats.total },
-          { label: "Last 30 days", value: stats.last30 },
-          { label: "Today", value: today?.count ?? 0 },
+          { label: "Attempts · total", value: stats.total },
+          { label: "Paid orders", value: stats.paidTotal },
+          { label: "Conversion", value: conversion },
+          { label: "Today (attempts)", value: today?.count ?? 0 },
         ].map((item) => (
           <div key={item.label} className="rounded-[1.5rem] border bg-card p-6">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
@@ -215,10 +219,54 @@ export default async function CheckoutStatsPage() {
         </table>
       </div>
 
+      <div className="mt-8 overflow-hidden rounded-[1.5rem] border bg-card">
+        <div className="border-b bg-muted/30 px-5 py-3">
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+            Paid orders ({stats.paidOrders.length})
+          </p>
+        </div>
+        <table className="w-full text-left text-sm">
+          <thead className="bg-muted/50 text-xs uppercase tracking-[0.16em] text-muted-foreground">
+            <tr>
+              <th className="px-5 py-3 font-semibold">When (Shanghai)</th>
+              <th className="px-5 py-3 font-semibold">Tool</th>
+              <th className="hidden px-5 py-3 font-semibold sm:table-cell">
+                Order
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {stats.paidOrders.length > 0 ? (
+              stats.paidOrders.map((order, index) => (
+                <tr key={`${order.orderId}-${index}`} className="border-t">
+                  <td className="px-5 py-3 font-mono text-xs">
+                    {timeOf(order.at)}
+                  </td>
+                  <td className="px-5 py-3 font-mono text-xs">
+                    {order.toolSlug}
+                  </td>
+                  <td className="hidden px-5 py-3 font-mono text-xs text-muted-foreground sm:table-cell">
+                    {order.orderId || "—"}
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr className="border-t">
+                <td className="px-5 py-6 text-muted-foreground" colSpan={3}>
+                  No paid order yet.
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
+
       <p className="mt-4 text-xs leading-6 text-muted-foreground">
         Counts live in Upstash under{" "}
-        <code>wappkit:funnel:checkout_attempts:*</code>, details in the list{" "}
-        <code>wappkit:funnel:checkout_events</code> (last 500). If every number
+        <code>wappkit:funnel:checkout_attempts:*</code> and{" "}
+        <code>wappkit:funnel:paid_orders:*</code>; details in{" "}
+        <code>wappkit:funnel:checkout_events</code> and{" "}
+        <code>wappkit:funnel:paid_events</code> (last 500 each). If every number
         stays at zero, check that <code>UPSTASH_REDIS_REST_URL</code> and{" "}
         <code>UPSTASH_REDIS_REST_TOKEN</code> are set in Vercel.{" "}
         <Link className="underline" href="/ops/downloads">
