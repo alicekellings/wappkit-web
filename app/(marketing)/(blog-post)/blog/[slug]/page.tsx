@@ -47,6 +47,7 @@ export async function generateMetadata({
     title: `${title} | Wappkit Blog`,
     description,
     image,
+    canonical: post.slug,
   });
 }
 

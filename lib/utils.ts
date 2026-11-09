@@ -16,16 +16,23 @@ export function constructMetadata({
   image = siteConfig.ogImage,
   icons = "/favicon.ico",
   noIndex = false,
+  canonical,
 }: {
   title?: string;
   description?: string;
   image?: string;
   icons?: string;
   noIndex?: boolean;
+  canonical?: string;
 } = {}): Metadata {
+  const pageUrl = canonical
+    ? new URL(canonical, siteConfig.url).toString()
+    : siteConfig.url;
+
   return {
     title,
     description,
+    ...(canonical && { alternates: { canonical } }),
     keywords: [
       "Wappkit",
       "software tools",
@@ -45,10 +52,11 @@ export function constructMetadata({
     openGraph: {
       type: "website",
       locale: "en_US",
-      url: siteConfig.url,
+      url: pageUrl,
       title,
       description,
       siteName: title,
+      images: [{ url: image }],
     },
     twitter: {
       card: "summary_large_image",

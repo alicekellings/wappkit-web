@@ -31,8 +31,9 @@ const APK_SHA256 =
 export const metadata = constructMetadata({
   title: "Reddit Reader for Android — Free APK, No Account | Wappkit",
   description:
-    "A free Android app that browses subreddits through Reddit's public RSS, opens threads in a clean reader, highlights keywords, and exports them to Markdown. No account and no Wappkit server. 105 KB APK.",
+    "Free 105 KB Android app: browse subreddits via Reddit RSS, read threads without the app or an account, highlight keywords, and export Markdown.",
   image: "/images/reddit-reader-android/reader-panel.png",
+  canonical: PAGE_PATH,
 });
 
 const features = [
