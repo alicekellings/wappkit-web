@@ -116,7 +116,7 @@ function structuredData() {
         "@type": "SoftwareApplication",
         name: "Wappkit Reddit Reader",
         applicationCategory: "UtilitiesApplication",
-        operatingSystem: "Android 8.0 and newer",
+        operatingSystem: "Android 7.0 and newer",
         softwareVersion: "0.2",
         fileSize: "107366",
         url: `${siteConfig.url}${PAGE_PATH}`,
@@ -159,7 +159,7 @@ export default function RedditReaderAndroidPage() {
         badges={[
           { label: "Free", tone: "warm" },
           { label: "No account", tone: "default" },
-          { label: "Android 8.0+", tone: "muted" },
+          { label: "Android 7.0+", tone: "muted" },
         ]}
         actions={
           <>

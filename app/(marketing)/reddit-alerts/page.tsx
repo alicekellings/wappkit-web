@@ -163,20 +163,20 @@ const faqs = [
 
 const relatedReading = [
   {
-    title: "Reddit keyword monitoring, explained",
-    href: "/blog/a-practical-guide-to-reddit-keyword-monitoring-for-founders-and-growth-operators",
+    title: "Reddit alerts in 2026: the complete guide",
+    href: "/blog/reddit-alerts-guide-2026",
     description:
-      "What to watch, how to write terms that do not drown you in noise.",
-  },
-  {
-    title: "Creating effective keyword alerts",
-    href: "/blog/a-step-by-step-guide-to-creating-effective-reddit-keyword-alerts",
-    description: "A step by step setup, from term selection to follow-up.",
+      "The three alert models compared, plus a setup that stays quiet enough to keep using.",
   },
   {
     title: "The desktop viewer these alerts run in",
     href: "/reddit-viewer",
     description: "Where the hits open, and what the app does with posts.",
+  },
+  {
+    title: "Browse Reddit without an account",
+    href: "/blog/browse-reddit-without-account-2025",
+    description: "The reading side, when an alert sends you to a thread.",
   },
 ];
 

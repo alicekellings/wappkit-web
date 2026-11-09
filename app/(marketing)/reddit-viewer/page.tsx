@@ -11,6 +11,7 @@ import {
   KeyRound,
   LayoutList,
   ShieldCheck,
+  Smartphone,
   Sparkles,
   Table2,
   UserSearch,
@@ -240,6 +241,12 @@ const relatedReading = [
     href: "/blog/browse-reddit-without-account-2025",
     description:
       "Five anonymous viewing methods, from quick tricks to a desktop reader.",
+  },
+  {
+    title: "Reddit Reader for Android",
+    href: "/tools/reddit-reader-android",
+    description:
+      "Free APK that browses subreddits and reads threads without the app or an account.",
   },
   {
     title: "Reddit Toolbox full feature list",
@@ -629,6 +636,12 @@ export default function RedditViewerPage() {
             <Button rounded="full" size="lg" variant="outline">
               <ShieldCheck className="mr-2 size-4" />
               Compare licence options
+            </Button>
+          </Link>
+          <Link href="/tools/reddit-reader-android">
+            <Button rounded="full" size="lg" variant="outline">
+              <Smartphone className="mr-2 size-4" />
+              Android app
             </Button>
           </Link>
         </div>
