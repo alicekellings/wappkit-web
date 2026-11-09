@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 import { recordToolDownload } from "@/lib/funnel";
 
-const APK_PATH = "/downloads/reddit-reader/Wappkit-Reddit-Reader-0.1.apk";
+const APK_PATH = "/downloads/reddit-reader/Wappkit-Reddit-Reader-0.2.apk";
 
 export async function GET(request: NextRequest) {
   const source = request.nextUrl.searchParams.get("source") ?? "direct";

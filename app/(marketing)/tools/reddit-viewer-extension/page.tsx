@@ -217,7 +217,7 @@ export default function RedditReaderExtensionPage() {
                 Reading on your phone?
               </h2>
               <p className="mt-3 text-base leading-7 text-muted-foreground">
-                The same reader is available as a free 89 KB Android app. It
+                The same reader is available as a free 105 KB Android app. It
                 opens Reddit from your phone&apos;s own connection, with no
                 account and no Wappkit server.
               </p>

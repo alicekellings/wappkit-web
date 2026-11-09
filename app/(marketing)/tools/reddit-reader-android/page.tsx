@@ -6,6 +6,7 @@ import {
   Download,
   FileText,
   Highlighter,
+  Rss,
   ShieldCheck,
   Smartphone,
 } from "lucide-react";
@@ -25,12 +26,12 @@ const PAGE_PATH = "/tools/reddit-reader-android";
 const DOWNLOAD_HREF =
   "/api/downloads/reddit-reader-android?source=android_page";
 const APK_SHA256 =
-  "19a52456edf9b024949090b5a1856709b15ceced04a8b02f0463cb6e1f5522aa";
+  "fceb8b7f719adf653d30fe5683cc45a0ba1b843594b6d07d0aefd5a17543fd70";
 
 export const metadata = constructMetadata({
   title: "Reddit Reader for Android — Free APK, No Account | Wappkit",
   description:
-    "A free Android app that opens Reddit in a clean reader, hides login prompts, highlights keywords, and exports threads to Markdown. No account and no Wappkit server. 89 KB APK.",
+    "A free Android app that browses subreddits through Reddit's public RSS, opens threads in a clean reader, highlights keywords, and exports them to Markdown. No account and no Wappkit server. 105 KB APK.",
   image: "/images/reddit-reader-android/reader-panel.png",
 });
 
@@ -40,6 +41,12 @@ const features = [
     title: "No account, no Wappkit server",
     description:
       "The app requests reddit.com directly from your phone. Nothing is proxied through us, so there is no shared IP to get blocked and no account to create.",
+  },
+  {
+    icon: Rss,
+    title: "Browse without Reddit's page",
+    description:
+      "Hot, New, and Top load as a plain post list from Reddit's public RSS, then open in the same reader. No account, no app banner, no Reddit HTML.",
   },
   {
     icon: Highlighter,
@@ -59,7 +66,7 @@ const installSteps = [
   {
     title: "Download the APK",
     description:
-      "Tap the download button. The file is 89 KB and arrives as Wappkit-Reddit-Reader-0.1.apk.",
+      "Tap the download button. The file is 105 KB and arrives as Wappkit-Reddit-Reader-0.2.apk.",
   },
   {
     title: "Allow installs from this source",
@@ -69,7 +76,7 @@ const installSteps = [
   {
     title: "Open the app and read",
     description:
-      "Tap Demo first to see the reader on a sample thread. Then paste a Reddit link and tap Open, or share a Reddit link from another app.",
+      "Tap Demo to see the reader on a sample thread, or tap Browse to load a subreddit's Hot, New, or Top feed. You can also paste a Reddit link and tap Open, or share one from another app.",
   },
 ];
 
@@ -78,6 +85,11 @@ const faqs = [
     question: "Why is this an APK instead of a Play Store app?",
     answer:
       "The app is new and free. Direct APK delivery lets us ship fixes without waiting for store review. If it gets enough use, it will be submitted to Google Play.",
+  },
+  {
+    question: "What is Browse?",
+    answer:
+      "Browse loads Hot, New, or Top posts from a subreddit's public RSS feed as a plain list. Open a post to read it in the same clean view. It needs no account and does not load Reddit's HTML page.",
   },
   {
     question: "Why does Android warn about the file?",
@@ -105,8 +117,8 @@ function structuredData() {
         name: "Wappkit Reddit Reader",
         applicationCategory: "UtilitiesApplication",
         operatingSystem: "Android 8.0 and newer",
-        softwareVersion: "0.1",
-        fileSize: "90845",
+        softwareVersion: "0.2",
+        fileSize: "107366",
         url: `${siteConfig.url}${PAGE_PATH}`,
         downloadUrl: `${siteConfig.url}${DOWNLOAD_HREF}`,
         description:
@@ -143,7 +155,7 @@ export default function RedditReaderAndroidPage() {
       <MarketingHero
         eyebrow="Android app · Free APK"
         title="Read Reddit on your phone without the login wall."
-        description="A 89 KB Android app that opens a Reddit thread in a clean reader, hides the app-install and sign-in prompts, highlights the words you care about, and saves the post plus comments as Markdown. No account, no Wappkit server."
+        description="A 105 KB Android app that browses subreddits through Reddit's public RSS, opens any thread in a clean reader, hides the app-install and sign-in prompts, and saves the post plus comments as Markdown. No account, no Wappkit server."
         badges={[
           { label: "Free", tone: "warm" },
           { label: "No account", tone: "default" },
@@ -158,7 +170,7 @@ export default function RedditReaderAndroidPage() {
             >
               <Button rounded="full" size="lg">
                 <Download className="mr-2 size-4" />
-                Download APK (89 KB)
+                Download APK (105 KB)
               </Button>
             </a>
             <Link href="#install">
@@ -170,8 +182,8 @@ export default function RedditReaderAndroidPage() {
           </>
         }
         stats={[
-          { label: "Version", value: "0.1" },
-          { label: "Download size", value: "89 KB" },
+          { label: "Version", value: "0.2" },
+          { label: "Download size", value: "105 KB" },
           { label: "Price", value: "Free" },
         ]}
         rightContent={
@@ -188,7 +200,7 @@ export default function RedditReaderAndroidPage() {
         }
       />
 
-      <section className="mt-10 grid gap-6 md:grid-cols-3">
+      <section className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
         {features.map((feature) => (
           <MarketingCard key={feature.title} tone="soft" className="p-7">
             <span className="inline-flex rounded-full bg-orange-100 p-2 text-orange-700">
@@ -238,6 +250,7 @@ export default function RedditReaderAndroidPage() {
           <ul className="mt-4 space-y-3 text-sm leading-6 text-muted-foreground">
             {[
               "Reddit loads from your own IP address, not ours.",
+              "Browse uses Reddit's public RSS, not Reddit's page scripts.",
               "The app only requests the internet permission.",
               "No analytics, no account, no background service.",
               "Markdown goes to Downloads/RedditReader and stays on the device.",
@@ -325,7 +338,7 @@ export default function RedditReaderAndroidPage() {
           >
             <Button rounded="full" size="lg">
               <Download className="mr-2 size-4" />
-              Download APK (89 KB)
+              Download APK (105 KB)
             </Button>
           </a>
           <Link href="/tools/reddit-viewer-extension">
