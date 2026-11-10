@@ -5,7 +5,7 @@ import {
   hasAdminPageSession,
   isAdminTokenConfigured,
 } from "@/lib/admin-auth";
-import { getToolDownloadStats } from "@/lib/funnel";
+import { getToolDownloadEvents, getToolDownloadStats } from "@/lib/funnel";
 import { constructMetadata } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
@@ -46,10 +46,28 @@ export default async function DownloadStatsPage() {
     );
   }
 
-  const stats = await getToolDownloadStats(TOOL_SLUG, 30);
+  const [stats, events] = await Promise.all([
+    getToolDownloadStats(TOOL_SLUG, 30),
+    getToolDownloadEvents(TOOL_SLUG, 50),
+  ]);
   const max = Math.max(1, ...stats.days.map((day) => day.count));
   const today = stats.days[stats.days.length - 1];
   const rows = [...stats.days].reverse();
+  const sourceRows = Object.entries(
+    events.reduce<Record<string, number>>((acc, event) => {
+      acc[event.source] = (acc[event.source] ?? 0) + 1;
+      return acc;
+    }, {}),
+  ).sort((a, b) => b[1] - a[1]);
+  const timeFormatter = new Intl.DateTimeFormat("en-GB", {
+    timeZone: "Asia/Shanghai",
+    month: "short",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: false,
+  });
 
   return (
     <div className="container max-w-[980px] py-16 md:py-20">
@@ -84,6 +102,38 @@ export default async function DownloadStatsPage() {
         ))}
       </div>
 
+      <div className="mt-8 rounded-[1.5rem] border bg-card p-6">
+        <div className="flex flex-wrap items-baseline justify-between gap-3">
+          <h2 className="font-heading text-2xl text-foreground">
+            Where downloads came from
+          </h2>
+          <p className="text-xs text-muted-foreground">
+            Last {events.length} recorded requests
+          </p>
+        </div>
+        {sourceRows.length > 0 ? (
+          <div className="mt-4 flex flex-wrap gap-2">
+            {sourceRows.map(([source, count]) => (
+              <span
+                key={source}
+                className="rounded-full border bg-muted/40 px-3 py-1 text-xs font-semibold text-foreground"
+              >
+                {source} · {count}
+              </span>
+            ))}
+          </div>
+        ) : (
+          <p className="mt-4 text-sm text-muted-foreground">
+            No events recorded yet.
+          </p>
+        )}
+        <p className="mt-4 text-xs leading-6 text-muted-foreground">
+          <code>android_page</code> is the button on the download page.{" "}
+          <code>direct</code> is a request without a source tag, which can be a
+          bot, a direct link, or a cached URL.
+        </p>
+      </div>
+
       <div className="mt-8 overflow-hidden rounded-[1.5rem] border bg-card">
         <table className="w-full text-left text-sm">
           <thead className="bg-muted/50 text-xs uppercase tracking-[0.16em] text-muted-foreground">
@@ -113,6 +163,31 @@ export default async function DownloadStatsPage() {
           </tbody>
         </table>
       </div>
+
+      {events.length > 0 && (
+        <div className="mt-8 overflow-hidden rounded-[1.5rem] border bg-card">
+          <table className="w-full text-left text-sm">
+            <thead className="bg-muted/50 text-xs uppercase tracking-[0.16em] text-muted-foreground">
+              <tr>
+                <th className="px-5 py-3 font-semibold">
+                  Recent request (Asia/Shanghai)
+                </th>
+                <th className="px-5 py-3 font-semibold">Source</th>
+              </tr>
+            </thead>
+            <tbody>
+              {events.slice(0, 20).map((event, index) => (
+                <tr key={`${event.at}-${index}`} className="border-t">
+                  <td className="px-5 py-3 font-mono text-xs">
+                    {timeFormatter.format(new Date(event.at))}
+                  </td>
+                  <td className="px-5 py-3 font-semibold">{event.source}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
 
       <p className="mt-4 text-xs leading-6 text-muted-foreground">
         Dates use Asia/Shanghai. Counts are stored in Upstash under{" "}

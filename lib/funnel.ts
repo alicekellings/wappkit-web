@@ -200,6 +200,56 @@ export async function getToolDownloadStats(
   };
 }
 
+export type ToolDownloadEvent = {
+  at: string;
+  source: string;
+  toolSlug: string;
+};
+
+export async function getToolDownloadEvents(
+  toolSlug: string,
+  limit = 30,
+): Promise<ToolDownloadEvent[]> {
+  const raw = await runUpstashResult([
+    "LRANGE",
+    `wappkit:downloads:${toolSlug}:events`,
+    0,
+    Math.max(0, limit - 1),
+  ]);
+
+  if (!Array.isArray(raw)) {
+    return [];
+  }
+
+  return raw.flatMap((item) => {
+    if (typeof item !== "string") {
+      return [];
+    }
+
+    try {
+      const parsed = JSON.parse(item) as {
+        at?: string;
+        source?: string | null;
+        toolSlug?: string;
+      };
+
+      if (!parsed.at) {
+        return [];
+      }
+
+      return [
+        {
+          at: parsed.at,
+          source: parsed.source?.trim() || "direct",
+          toolSlug: parsed.toolSlug ?? toolSlug,
+        },
+      ];
+    } catch {
+      return [];
+    }
+  });
+}
+
 /**
  * 记录一笔真正付成的订单。
  *
