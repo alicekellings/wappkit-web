@@ -1,0 +1,11 @@
+# 内容文件强制 LF。
+#
+# 仓库里的 blob 本来就是 LF，Vercel 在 Linux 上构建也一直是好的。问题只出在
+# Windows 本地：core.autocrlf=true 会把 mdx 检出成 CRLF，而 contentlayer 的
+# YAML 解析器把 CRLF 当成值的一部分——
+#   categories:
+#     - guides        -> 解析成 "guides\r"，分类匹配不到，整页崩
+#   categories: ["guides"]  -> 直接抛 YAMLParseError，这篇博客构建失败
+# 两种写法都会让本地构建挂掉，但线上没事，很容易误判成代码 bug。
+# 钉死 LF 之后，本地和线上看到的内容就一致了。
+*.mdx text eol=lf

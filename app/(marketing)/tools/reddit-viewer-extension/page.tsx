@@ -252,7 +252,7 @@ export default function RedditReaderExtensionPage() {
               rules.
             </p>
           </div>
-          <Link href="/toolkit">
+          <Link href="/toolkit" data-umami-event="toolkit_clicked">
             <Button rounded="full" size="lg" variant="outline">
               Get the $5 Reddit toolkit
             </Button>
