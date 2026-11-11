@@ -19,6 +19,10 @@ export type Tool = {
   downloadHref: string;
   buyHref: string;
   docsHref: string;
+  // 可选：手机端落地页。填了以后博客推广卡会多出一条移动端入口，
+  // 因为浏览器扩展在手机上是装不了的（站内 62% 的访问来自手机）。
+  mobileHref?: string;
+  mobileLabel?: string;
   availabilityNote: string;
   checkoutEnabled?: boolean;
   priceLabel?: string;
@@ -161,13 +165,16 @@ export const tools: Tool[] = [
       "Privacy-conscious readers who want less clutter and no app prompts",
     ],
     platform: "Chrome / Edge",
-    downloadLabel: "Install free extension",
+    downloadLabel: "Get it from Edge Add-ons",
     buyLabel: "Get Pro — $4.99",
-    downloadHref: "https://chromewebstore.google.com/",
+    downloadHref:
+      "https://microsoftedge.microsoft.com/addons/detail/jfanggdobljmlaohcldjoafnigmhfogh",
     buyHref: "/license",
     docsHref: "/docs/checkout-and-activation",
+    mobileHref: "/tools/reddit-reader-android",
+    mobileLabel: "On a phone? Get the Android reader",
     availabilityNote:
-      "Reddit Reader is a free browser extension with a 3-export trial. Pro activates inside the extension with a Wappkit license key.",
+      "Reddit Reader is live on Microsoft Edge Add-ons (the Chrome Web Store listing is still pending). Free to install with a 3-export trial; Pro activates inside the extension with a Wappkit license key.",
     checkoutEnabled: true,
     priceLabel: "$4.99 one-time",
     priceNote:

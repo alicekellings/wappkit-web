@@ -16,8 +16,13 @@ import {
 } from "@/components/marketing/page-shell";
 import { constructMetadata } from "@/lib/utils";
 
-// Set this to the published listing URL before enabling the install and Pro buttons.
-const STORE_URL = "";
+// Published Edge Add-ons listing. The Chrome Web Store listing is still pending.
+const STORE_URL =
+  "https://microsoftedge.microsoft.com/addons/detail/jfanggdobljmlaohcldjoafnigmhfogh";
+
+// Pro checkout stays off until CREEM_PRODUCT_REDDIT_VIEWER_EXTENSION_ID is set in
+// Vercel. Turning it on before that sends visitors to a checkout that has no product.
+const PRO_CHECKOUT_ENABLED = false;
 
 export const metadata = constructMetadata({
   title: "Reddit Reader — Clean Reading Without Login Walls | Wappkit",
@@ -73,7 +78,7 @@ export default function RedditReaderExtensionPage() {
                 Install link coming at launch
               </Button>
             )}
-            {STORE_URL ? (
+            {STORE_URL && PRO_CHECKOUT_ENABLED ? (
               <CheckoutButton
                 toolSlug="reddit-viewer-extension"
                 label="Get Pro — $4.99"

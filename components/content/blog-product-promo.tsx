@@ -77,6 +77,14 @@ export function BlogProductPromo({
               {tool.downloadLabel}
             </Button>
           </Link>
+          {tool.mobileHref ? (
+            <Link
+              href={tool.mobileHref}
+              className="text-center text-sm font-medium text-orange-700 underline-offset-4 hover:underline"
+            >
+              {tool.mobileLabel ?? "On a phone? Get the mobile version"}
+            </Link>
+          ) : null}
         </div>
       </div>
     </MarketingCard>
