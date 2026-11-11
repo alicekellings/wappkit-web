@@ -402,7 +402,8 @@
     "how-to-browse-reddit-on-desktop-without-app-nags-workflow-guide-for-researchers",
     "reddit-viewer-no-login-a-practical-workflow-for-browsing-searching-and-exporting",
     "what-a-reddit-viewer-actually-does-and-when-it-beats-the-official-app",
-    "reddit-toolbox-alternatives-in-2026-which-tool-actually-fits-your-research-stack"
+    "reddit-toolbox-alternatives-in-2026-which-tool-actually-fits-your-research-stack",
+    "reddit-as-a-research-tool-why-founders-are-replacing-survey-forms-with-reddit-li"
   ],
   "events": [
     {
@@ -1825,6 +1826,13 @@
       "source_type": "keyword",
       "slug": "reddit-toolbox-alternatives-in-2026-which-tool-actually-fits-your-research-stack",
       "title": "Reddit Toolbox Alternatives in 2026: Which Tool Actually Fits Your Research Stack?"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "Reddit as a Research Tool: Why Founders Are Replacing Survey Forms With Reddit Listening",
+      "source_type": "trend",
+      "slug": "reddit-as-a-research-tool-why-founders-are-replacing-survey-forms-with-reddit-li",
+      "title": "Reddit as a Research Tool: Why Founders Are Replacing Survey Forms With Reddit Listening"
     }
   ]
 }
