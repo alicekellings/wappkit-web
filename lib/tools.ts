@@ -25,6 +25,9 @@ export type Tool = {
   mobileLabel?: string;
   availabilityNote: string;
   checkoutEnabled?: boolean;
+  // 免费分发类工具（BHW / 网盘直发，不走 Creem/Payhip 结算）。
+  // 授权后台与 license API 依据它区分免费渠道，不会把它混进付费产品。
+  freeTool?: boolean;
   priceLabel?: string;
   regularPriceLabel?: string;
   priceNote?: string;
@@ -409,6 +412,41 @@ export const tools: Tool[] = [
     checkoutEnabled: false,
     priceLabel: "Free",
   },
+  {
+    slug: "leadharvester",
+    name: "Wappkit LeadHarvester (Free)",
+    category: "Local Leads",
+    status: "coming-soon",
+    tagline:
+      "Free desktop app that turns Google Maps search results into clean, de-duplicated lead lists.",
+    shortDescription:
+      "Bulk queries across niches and cities, 30+ columns per listing, optional email discovery, merge with duplicate removal. Free forever, no account.",
+    longDescription:
+      "Wappkit LeadHarvester is a free Windows desktop app for local lead generation. Type a niche and a city, or build a niche x city matrix, and it collects Google Maps listings into a clean CSV: business name, category, full address, phone, website, rating, review count and coordinates. Optional email discovery pulls contact addresses from each business website. Finished jobs can be merged into one de-duplicated list, and a run can be stopped early while keeping everything found so far.",
+    features: [
+      "Bulk queries: one per line or niche x city builder",
+      "30+ columns per listing, including lat/long and review counts",
+      "Optional email discovery from business websites",
+      "Merge finished jobs into one de-duplicated CSV",
+      "Stop a run early and keep the results found so far",
+    ],
+    audience: [
+      "B2B outreach teams building local prospect lists",
+      "Local SEO agencies prospecting for new clients",
+      "Marketers researching competitors by city and niche",
+    ],
+    platform: "Windows Desktop",
+    downloadLabel: "Download LeadHarvester",
+    buyLabel: "Free forever",
+    downloadHref: "/tools/leadharvester",
+    buyHref: "/tools/leadharvester",
+    docsHref: "/tools/leadharvester",
+    availabilityNote:
+      "Free forever: no account, no credits, no API key. Everything runs locally and results stay on your disk.",
+    checkoutEnabled: false,
+    priceLabel: "Free",
+    freeTool: true,
+  },
 ];
 
 export function getFeaturedTools() {
@@ -511,6 +549,14 @@ export function getPromotedTool(match: string | PromotedToolMatch) {
 
 export function getToolBySlug(slug: string) {
   return tools.find((tool) => tool.slug === slug);
+}
+
+// 免费分发渠道的工具（不走结算）。
+// license 后台据此打免费标识，避免和 Creem/Payhip 的付费授权混在一起。
+export function isFreeTool(slug: string) {
+  const tool = getToolBySlug(slug);
+
+  return tool?.freeTool === true;
 }
 
 export function getDisplayProductName(

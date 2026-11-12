@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
+import { isFreeTool } from "@/lib/tools";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -1032,7 +1033,17 @@ export function LicenseAdminConsole() {
                     </TableCell>
                     <TableCell className="py-3">
                       <div className="space-y-1">
-                        <p className="font-medium text-foreground">{item.productName}</p>
+                        <p className="font-medium text-foreground">
+                          {item.productName}
+                          {isFreeTool(item.toolSlug) && (
+                            <Badge
+                              variant="outline"
+                              className="ml-2 border-emerald-300 bg-emerald-50 text-emerald-700"
+                            >
+                              FREE
+                            </Badge>
+                          )}
+                        </p>
                         <code
                           className="block text-xs text-muted-foreground"
                           title={item.key}

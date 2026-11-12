@@ -1,0 +1,25 @@
+name: Cleanup old deployments
+
+# 每周自动清理 Vercel 历史部署：只保留最新 3 个生产部署。
+# 博客每天自动发文会部署 2-3 次，不清的话一个月就会堆满 10GB 的
+# Deployment Storage。也可以在 Actions 页面手动触发。
+
+on:
+  schedule:
+    - cron: "17 3 * * 1" # 每周一 03:17 UTC（北京 11:17）
+  workflow_dispatch: {}
+
+permissions: {}
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out scripts
+        uses: actions/checkout@v4
+
+      - name: Delete old deployments
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+        run: python3 scripts/cleanup-deployments.py

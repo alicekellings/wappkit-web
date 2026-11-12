@@ -10,7 +10,7 @@ import {
   getLicenseStore,
   type CreemCheckoutPayload,
 } from "@/lib/licenses";
-import { getToolBySlug } from "@/lib/tools";
+import { getToolBySlug, isFreeTool } from "@/lib/tools";
 import { adminCreateQaLicenseSchema } from "@/lib/validations/license";
 
 const PRODUCT_ID_BY_TOOL: Record<string, string> = {
@@ -90,6 +90,8 @@ export async function POST(request: NextRequest) {
       metadata: {
         toolSlug: tool.slug,
         source: grantedEmail ? "internal-admin-grant" : "internal-qa-manual",
+        // 免费分发工具的标识：后台与检索都能据此把免费 key 和付费购买分开。
+        plan: isFreeTool(tool.slug) ? "free" : "paid",
         createdAt: now,
       },
       license_keys: [
