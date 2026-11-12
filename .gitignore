@@ -46,6 +46,12 @@ next-env.d.ts
 .contentlayer
 
 # local-only internal notes
+# NOTE: this repo is public. Strategy / promotion notes must not be committed.
+# Keep them in E:\Wappkit_Store\internal-docs\ instead.
 /internal-docs/desktop-tool-creem-wappkit-release-flow.md
+/internal-docs/*.md
+!/internal-docs/wappkit-tool-launch-sop.md
+!/internal-docs/wappkit-web-architecture-plan.md
+!/internal-docs/ai-ecom-visual-studio-launch-plan.md
 /start*.log
 /澶囦唤/
