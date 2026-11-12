@@ -14,9 +14,15 @@ import { getRequestCountry, shouldBlockCountry } from "@/lib/geo-block";
 const STUDIO_HOST = "studio.wappkit.com";
 
 export function middleware(request: NextRequest) {
+  // /api/license/* 不做地区拦截：
+  // 1) 授权本身受 key + 硬件绑定 + 限流保护，地区封锁挡不住滥用，只会挡住
+  //    正常激活（作者本机就在 CN，测试时被 403 卡住过）；
+  // 2) 免费 key 无商业损失，付费 key 走 Creem 结算，CN 用户本来就买不了。
+  const isLicenseApi = request.nextUrl.pathname.startsWith("/api/license/");
+
   const country = getRequestCountry(request.headers);
 
-  if (shouldBlockCountry(country)) {
+  if (!isLicenseApi && shouldBlockCountry(country)) {
     return new NextResponse("Access unavailable from this region.", {
       status: 403,
       headers: {
