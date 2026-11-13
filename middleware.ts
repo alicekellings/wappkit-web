@@ -18,7 +18,11 @@ export function middleware(request: NextRequest) {
   // 1) 授权本身受 key + 硬件绑定 + 限流保护，地区封锁挡不住滥用，只会挡住
   //    正常激活（作者本机就在 CN，测试时被 403 卡住过）；
   // 2) 免费 key 无商业损失，付费 key 走 Creem 结算，CN 用户本来就买不了。
-  const isLicenseApi = request.nextUrl.pathname.startsWith("/api/license/");
+  // 授权与结账接口都豁免地区拦截：它们是交易链路，不是内容浏览。
+  // 结账最终跳 Creem 收银台，真正的风控在支付侧。
+  const isLicenseApi =
+    request.nextUrl.pathname.startsWith("/api/license/") ||
+    request.nextUrl.pathname.startsWith("/api/checkout");
 
   const country = getRequestCountry(request.headers);
 
