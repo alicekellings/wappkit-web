@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from "next/server";
 
 import { serializeError } from "@/lib/error-utils";
 import { canSendLicenseEmail, sendLicenseEmail } from "@/lib/license-email";
-import { hasLicenseKeys } from "@/lib/licenses";
 
 import {
   getCreemWebhookSignature,
