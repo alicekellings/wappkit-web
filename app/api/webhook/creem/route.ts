@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 import { serializeError } from "@/lib/error-utils";
 import { canSendLicenseEmail, sendLicenseEmail } from "@/lib/license-email";
+import { hasLicenseKeys } from "@/lib/licenses";
 
 import {
   getCreemWebhookSignature,
@@ -108,8 +109,10 @@ export async function POST(request: NextRequest) {
     // 以及管理员手工封禁的 disabled 状态一起冲掉。
     const saved = await store.mergeAndSave(record);
 
-    // 首单才发 key 邮件：重放事件不再骚扰客户；发信失败不影响发码结果。
-    if (!existing && canSendLicenseEmail()) {
+    // 只有当 Creem 自己没有发 key 时才补发邮件：
+    // 商品开了 Creem 的 License key 交付时，客户已收到 Creem 的邮件，
+    // 这里再发一遍就是重复骚扰。免费工具若走我们自己的发码路径则照常补发。
+    if (!existing && !hasLicenseKeys(checkout) && canSendLicenseEmail()) {
       try {
         await sendLicenseEmail(saved);
       } catch (error) {
