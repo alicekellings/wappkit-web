@@ -74,7 +74,7 @@ export function BlogCard({
           )}
         </div>
       </div>
-      <Link href={data.slug} className="absolute inset-0">
+      <Link href={data.slug} prefetch={false} className="absolute inset-0">
         <span className="sr-only">View Article</span>
       </Link>
     </article>

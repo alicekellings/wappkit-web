@@ -11,6 +11,8 @@ import {
   MarketingPageShell,
 } from "@/components/marketing/page-shell";
 
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   return BLOG_CATEGORIES.map((category) => ({
     slug: category.slug,

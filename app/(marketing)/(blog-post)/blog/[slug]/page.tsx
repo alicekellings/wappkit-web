@@ -26,6 +26,8 @@ import "@/styles/mdx.css";
 
 import { Mdx } from "@/components/content/mdx-components";
 
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   return allPosts.map((post) => ({
     slug: post.slugAsParams,

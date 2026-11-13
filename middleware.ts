@@ -64,7 +64,9 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    // 排除整个 /_next（static / image / data），否则子域名改写会打碎静态资源
-    "/((?!_next|\\.well-known|favicon.ico|opengraph-image.jpg|robots.txt|sitemap.xml|site.webmanifest).*)",
+    // 排除 /_next（static / image / data）与一切带扩展名的静态文件。
+    // 图片、字体、xml 不需要地区拦截，也没必要走边缘函数，否则每个图片请求
+    // 都会白白消耗一次边缘调用。
+    "/((?!_next|\\.well-known|.*\\..*).*)",
   ],
 };

@@ -12,6 +12,8 @@ import {
 
 import "@/styles/mdx.css";
 
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   return allPages.map((page) => ({
     slug: page.slugAsParams,

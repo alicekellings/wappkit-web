@@ -19,6 +19,8 @@ import { Button } from "@/components/ui/button";
 import { TrackedDownloadLink } from "@/components/analytics/tracked-download-link";
 import { CheckoutButton } from "@/components/forms/checkout-button";
 
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   return tools.map((tool) => ({ slug: tool.slug }));
 }

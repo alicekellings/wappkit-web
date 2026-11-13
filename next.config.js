@@ -9,6 +9,8 @@ const nextConfig = {
   // 文章数已到 240+，单页静态生成在慢机器上可能超过默认 60 秒。
   staticPageGenerationTimeout: 180,
   images: {
+    // 图片一个月内不会变；默认 60 秒会让优化器反复回源，白白消耗 CPU 与回源流量。
+    minimumCacheTTL: 31536000,
     remotePatterns: [
       {
         protocol: "https",
