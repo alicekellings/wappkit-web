@@ -426,7 +426,7 @@ export const tools: Tool[] = [
     shortDescription:
       "Bulk queries across niches and cities, 30+ columns per listing, optional email discovery, merge with duplicate removal. Free forever, no account.",
     longDescription:
-      "Wappkit LeadHarvester is a free Windows desktop app for local lead generation. Type a niche and a city, or build a niche x city matrix, and it collects Google Maps listings into a clean CSV: business name, category, full address, phone, website, rating, review count and coordinates. Optional email discovery pulls contact addresses from each business website. Finished jobs can be merged into one de-duplicated list, and a run can be stopped early while keeping everything found so far.",
+      "Wappkit LeadHarvester is a free Google Maps scraper for Windows, built for local lead generation. Type a niche and a city, or build a niche x city matrix, and it collects Google Maps listings into a clean CSV: business name, category, full address, phone, website, rating, review count and coordinates. Optional email discovery pulls contact addresses from each business website. Finished jobs can be merged into one de-duplicated list, and a run can be stopped early while keeping everything found so far.",
     features: [
       "Bulk queries: one per line or niche x city builder",
       "30+ columns per listing, including lat/long and review counts",
@@ -442,7 +442,7 @@ export const tools: Tool[] = [
     platform: "Windows Desktop",
     downloadLabel: "Download LeadHarvester",
     buyLabel: "Unlock Pro filters - $9",
-    downloadHref: "https://github.com/alicekellings/wappkit-web/releases/download/leadharvester-v1.2/Wappkit-LeadHarvester-1.2.zip",
+    downloadHref: "https://github.com/alicekellings/wappkit-web/releases/download/leadharvester-v1.31/Wappkit-LeadHarvester-1.31.zip",
     buyHref: "/tools/leadharvester",
     docsHref: "/tools/leadharvester",
     availabilityNote:
