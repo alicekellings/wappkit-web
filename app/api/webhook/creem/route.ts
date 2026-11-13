@@ -89,6 +89,12 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // 免费工具（leadharvester）的 Pro 版通过 Creem 购买，付款即付费计划；
+    // 自动发放的免费 key 走另一条接口，不会影响这里的判断。
+    if (checkout.metadata?.toolSlug === "leadharvester" && !checkout.metadata?.plan) {
+      checkout.metadata = { ...checkout.metadata, plan: "paid" };
+    }
+
     const record = createLicenseRecordFromCreemCheckout(checkout);
     const store = getLicenseStore();
 
