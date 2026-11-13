@@ -416,7 +416,7 @@ export const tools: Tool[] = [
     slug: "leadharvester",
     name: "Wappkit LeadHarvester (Free)",
     category: "Local Leads",
-    status: "coming-soon",
+    status: "live",
     tagline:
       "Free desktop app that turns Google Maps search results into clean, de-duplicated lead lists.",
     shortDescription:
@@ -438,7 +438,7 @@ export const tools: Tool[] = [
     platform: "Windows Desktop",
     downloadLabel: "Download LeadHarvester",
     buyLabel: "Free forever",
-    downloadHref: "/tools/leadharvester",
+    downloadHref: "https://github.com/alicekellings/wappkit-web/releases/download/leadharvester-v1.2/Wappkit-LeadHarvester-1.2.zip",
     buyHref: "/tools/leadharvester",
     docsHref: "/tools/leadharvester",
     availabilityNote:

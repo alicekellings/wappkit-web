@@ -466,6 +466,131 @@ function getToolMarketingContent(
     };
   }
 
+  if (tool.slug === "leadharvester") {
+    return {
+      eyebrow: "Free local lead generation",
+      heroTitle:
+        "Turn Google Maps search results into clean, de-duplicated lead lists on your own desktop.",
+      heroDescription:
+        "Wappkit LeadHarvester collects business name, category, address, phone, website, rating, review count and coordinates for every listing under a Maps search - then optionally pulls contact emails from each business website. Bulk niche x city queries, one CSV per job, merge with duplicate removal. Free forever, no account.",
+      trustPoints: [
+        "Free edition is fully functional and never expires",
+        "Auto license on first launch raises the per-job limit to 2,000 queries",
+        "Everything runs locally - results never leave your disk",
+      ],
+      stats: [
+        {
+          label: "Core task",
+          value: "Maps to CSV",
+        },
+        {
+          label: "Columns",
+          value: "30+ per listing",
+        },
+        {
+          label: "Price",
+          value: "Free forever",
+        },
+      ],
+      showcaseItems: [
+        {
+          label: "Bulk queries",
+          description:
+            "Paste a list of niche + city searches, or use the built-in niche x city builder.",
+        },
+        {
+          label: "Email discovery",
+          description:
+            "Optionally visit each business website and pull contact addresses into the same row.",
+        },
+        {
+          label: "Merge and de-duplicate",
+          description:
+            "Combine several finished jobs into one list; repeats are removed automatically.",
+        },
+      ],
+      freeFeatures: [
+        "Up to 200 queries per job (2,000 with the free auto license)",
+        "30+ columns per listing including coordinates and review counts",
+        "Optional email discovery from business websites",
+        "Merge finished jobs into one de-duplicated CSV",
+        "Stop a run early and keep everything found so far",
+      ],
+      proFeatures: [
+        "No paid tier exists - the free edition never expires",
+        "License keys exist for capacity and abuse control, not payment",
+        "Full MIT attribution for the scraping engine inside the package",
+      ],
+      workflow: [
+        {
+          title: "Type your niche and city",
+          description:
+            "One query per line, or build a niche x city matrix with two clicks.",
+        },
+        {
+          title: "Run and watch it fill",
+          description:
+            "Results stream into the jobs table with a live count; stop anytime and keep partial results.",
+        },
+        {
+          title: "Download your CSV",
+          description:
+            "Open in Excel, feed your outreach tool, or merge several jobs into one list.",
+        },
+      ],
+      assurances: [
+        {
+          title: "No signup, no credits",
+          description:
+            "The free edition is fully functional with no account or trial clock.",
+        },
+        {
+          title: "Privacy first",
+          description:
+            "No telemetry. The only network traffic is Google Maps itself, the license server, and the one-time browser engine download.",
+        },
+        {
+          title: "Runs locally",
+          description:
+            "Nothing is a cloud service - your lead lists stay on your disk.",
+        },
+      ],
+      faq: [
+        {
+          question: "Is it really free?",
+          answer:
+            "Yes. The free edition is fully functional and never expires. A free license key (fetched automatically on first launch) raises the per-job query limit from 200 to 2,000.",
+        },
+        {
+          question: "Do I need an account?",
+          answer:
+            "No. No signup, no email, no credits. The app requests one free license key per device on first launch.",
+        },
+        {
+          question: "Why do the first results take about a minute?",
+          answer:
+            "The map loads and scrolls before the first listings parse. After that the count climbs steadily - you can stop anytime and keep what was found.",
+        },
+        {
+          question: "What if every query fails?",
+          answer:
+            "You are rate limited by Google. Wait ten minutes or add a proxy in the Advanced tab - residential or mobile works better than datacenter.",
+        },
+      ],
+      workspacePrimaryLabel: "Queries tab",
+      workspacePrimaryDescription:
+        "Type searches or build a niche x city matrix, then press Start - the jobs table shows a live count.",
+      workspaceSecondaryLabel: "License tab",
+      workspaceSecondaryDescription:
+        "Shows your device key and status; the free key is fetched automatically on first launch.",
+      freeSectionTitle: "What you get in the free edition",
+      proSectionTitle: "About the license",
+      finalCtaTitle: "Build your first local lead list in the next five minutes.",
+      finalCtaDescription:
+        "Download the desktop app, type one niche and one city, and watch the list fill itself.",
+    };
+  }
+
   return {
     eyebrow: `${tool.category} tool`,
     heroTitle: tool.name,
