@@ -517,9 +517,10 @@ function getToolMarketingContent(
         "Stop a run early and keep everything found so far",
       ],
       proFeatures: [
-        "No paid tier exists - the free edition never expires",
-        "License keys exist for capacity and abuse control, not payment",
-        "Full MIT attribution for the scraping engine inside the package",
+        "Quality filters: minimum rating, minimum review count, website / phone required",
+        "Skip businesses already captured in earlier jobs (cross-job de-duplication)",
+        "The CSV is cleaned automatically when the job finishes",
+        "Pro is optional - the free edition stays fully functional and never expires",
       ],
       workflow: [
         {
@@ -559,7 +560,7 @@ function getToolMarketingContent(
         {
           question: "Is it really free?",
           answer:
-            "Yes. The free edition is fully functional and never expires. A free license key (fetched automatically on first launch) raises the per-job query limit from 200 to 2,000.",
+            "Yes. The free edition is fully functional and never expires. A free license key (fetched automatically on first launch) raises the per-job query limit from 200 to 2,000. Pro filters (quality thresholds and cross-job de-duplication) are an optional $9 one-time upgrade for heavy users.",
         },
         {
           question: "Do I need an account?",
@@ -584,7 +585,7 @@ function getToolMarketingContent(
       workspaceSecondaryDescription:
         "Shows your device key and status; the free key is fetched automatically on first launch.",
       freeSectionTitle: "What you get in the free edition",
-      proSectionTitle: "About the license",
+      proSectionTitle: "Pro filters - $9 one-time (launch price)",
       finalCtaTitle: "Build your first local lead list in the next five minutes.",
       finalCtaDescription:
         "Download the desktop app, type one niche and one city, and watch the list fill itself.",

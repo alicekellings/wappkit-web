@@ -261,6 +261,7 @@ export function LicenseAdminConsole() {
   const [searchQuery, setSearchQuery] = useState("");
   // QA license 的目标工具。这个站点是多工具的，早先按钮写死 ai-ecom-visual-studio，
   // 导致给 Reddit Toolbox 建不出可用的测试 key（toolSlug 对不上直接 404）。
+  const [qaPlan, setQaPlan] = useState<"free" | "paid">("free");
   const [qaToolSlug, setQaToolSlug] = useState(
     tools[0]?.slug ?? "ai-ecom-visual-studio",
   );
@@ -425,6 +426,7 @@ export function LicenseAdminConsole() {
         },
         body: JSON.stringify({
           toolSlug: qaToolSlug,
+          plan: qaPlan,
         }),
       });
       const payload = (await response.json()) as {
@@ -687,6 +689,15 @@ export function LicenseAdminConsole() {
                     {tool.name}
                   </SelectItem>
                 ))}
+              </SelectContent>
+            </Select>
+            <Select value={qaPlan} onValueChange={(v) => setQaPlan(v as "free" | "paid")}>
+              <SelectTrigger className="w-[130px]" aria-label="QA license plan">
+                <SelectValue placeholder="Plan" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="free">Free</SelectItem>
+                <SelectItem value="paid">Paid (Pro)</SelectItem>
               </SelectContent>
             </Select>
             <Button

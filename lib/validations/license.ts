@@ -195,6 +195,8 @@ export const adminLicenseStatusSchema = z.object({
 });
 
 export const adminCreateQaLicenseSchema = z.object({
+  // 免费工具需要区分免费 key 与 Pro key：plan=paid 才会在 token 里发 "pro"。
+  plan: z.enum(["free", "paid"]).optional(),
   toolSlug: z.preprocess(
     (value) => {
       const trimmed = trimInput(value);

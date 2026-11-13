@@ -90,8 +90,10 @@ export async function POST(request: NextRequest) {
       metadata: {
         toolSlug: tool.slug,
         source: grantedEmail ? "internal-admin-grant" : "internal-qa-manual",
-        // 免费分发工具的标识：后台与检索都能据此把免费 key 和付费购买分开。
-        plan: isFreeTool(tool.slug) ? "free" : "paid",
+        // 免费分发工具默认 free；后台显式选 paid 时按付费处理（Pro）。
+        plan:
+          parsed.data.plan ??
+          (isFreeTool(tool.slug) ? "free" : "paid"),
         createdAt: now,
       },
       license_keys: [
