@@ -51,12 +51,20 @@ const TOOL_FEATURES: Record<string, string[]> = {
     "date_tokens",
     "cli",
   ],
+  // LeadHarvester：免费自动 key 不带任何 feature；付费计划由 plan 决定，
+  // 见 featuresForTool 的第二个参数。桌面端 HasPro() 只认 "pro"。
+  "leadharvester": [],
 };
 
 // 与 lib/validations/license.ts 里 toolSlug 的默认值保持一致（空值时落这里）
 const DEFAULT_TOOL_SLUG = "ai-ecom-visual-studio";
 
-function featuresForTool(toolSlug: string): string[] {
+function featuresForTool(toolSlug: string, plan?: string): string[] {
+  // 免费工具（leadharvester）用 plan 区分：paid -> ["pro"]，其余为空。
+  if (toolSlug === "leadharvester") {
+    return plan === "paid" ? ["pro"] : [];
+  }
+
   return TOOL_FEATURES[toolSlug] ?? TOOL_FEATURES[DEFAULT_TOOL_SLUG];
 }
 
@@ -104,6 +112,8 @@ export function createLicenseToken(input: {
   orderId: string;
   productName: string;
   deviceId: string;
+  // 免费工具用 plan 决定是否发 pro；付费工具忽略此字段。
+  plan?: string;
 }) {
   const rawPrivateKey = getPrivateKey();
 
@@ -120,7 +130,7 @@ export function createLicenseToken(input: {
     tier: "premium",
     // 按 toolSlug 取该工具的功能清单；查不到时回落到默认工具，
     // 绝不把 A 工具的功能名发给 B 工具。
-    features: featuresForTool(input.toolSlug),
+    features: featuresForTool(input.toolSlug, input.plan),
     licenseKeySha256: hashLicenseKey(input.licenseKey),
     orderId: input.orderId,
     productName: input.productName,

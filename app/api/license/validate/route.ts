@@ -150,6 +150,7 @@ export async function POST(request: NextRequest) {
       orderId: record.orderId,
       productName,
       deviceId: parsed.data.deviceId,
+      plan: record.metadata?.plan,
     });
 
     if (!signedLicense) {

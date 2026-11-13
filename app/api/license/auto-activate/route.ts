@@ -74,6 +74,7 @@ function respondWithKey(
     orderId: record.orderId,
     productName,
     deviceId: license.boundDevice?.deviceId ?? "",
+    plan: "free",
   });
 
   return NextResponse.json({
