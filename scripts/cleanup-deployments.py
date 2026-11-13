@@ -66,17 +66,23 @@ def main():
     ok = fail = 0
     for i, d in enumerate(to_delete, 1):
         when = datetime.fromtimestamp(d["created"] / 1000, tz=timezone.utc).strftime("%m-%d")
-        r = api(f"/v13/deployments/{d['uid']}", method="DELETE")
-        if "__error__" in r:
-            fail += 1
-            print(f"  [{i}/{len(to_delete)}] FAILED {r['__error__']} {d['uid']}")
-        else:
+        # api() 遇到 HTTP 错误会 raise SystemExit(1)。这里要接住：
+        # 单条删不掉（被锁、已在别处删掉、权限不够）不该让整轮清理中止，
+        # 否则排在前面的删完、后面的全留着，Actions 还报红灯。
+        try:
+            api(f"/v13/deployments/{d['uid']}", method="DELETE")
             ok += 1
             if i % 15 == 0 or i == len(to_delete):
                 print(f"  [{i}/{len(to_delete)}] deleted, oldest {when}")
+        except SystemExit:
+            fail += 1
+            print(f"  [{i}/{len(to_delete)}] FAILED {d['uid']}")
         time.sleep(0.2)
 
     print(f"done: deleted {ok}, failed {fail}, kept {len(keep)}")
+    # 全部失败才算真失败；部分失败只报告，不让 workflow 变红
+    if fail and not ok:
+        raise SystemExit(1)
 
 
 if __name__ == "__main__":
