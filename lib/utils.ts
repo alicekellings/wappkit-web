@@ -17,6 +17,8 @@ export function constructMetadata({
   icons = "/favicon.ico",
   noIndex = false,
   canonical,
+  keywords,
+  article,
 }: {
   title?: string;
   description?: string;
@@ -24,16 +26,49 @@ export function constructMetadata({
   icons?: string;
   noIndex?: boolean;
   canonical?: string;
+  keywords?: string[];
+  article?: {
+    publishedTime?: string;
+    modifiedTime?: string;
+    authors?: string[];
+    section?: string;
+    tags?: string[];
+  };
 } = {}): Metadata {
   const pageUrl = canonical
     ? new URL(canonical, siteConfig.url).toString()
     : siteConfig.url;
 
+  const openGraph = article
+    ? {
+        type: "article" as const,
+        locale: "en_US",
+        url: pageUrl,
+        title,
+        description,
+        siteName: siteConfig.name,
+        images: [{ url: image }],
+        publishedTime: article.publishedTime,
+        modifiedTime: article.modifiedTime,
+        authors: article.authors,
+        section: article.section,
+        tags: article.tags,
+      }
+    : {
+        type: "website" as const,
+        locale: "en_US",
+        url: pageUrl,
+        title,
+        description,
+        siteName: siteConfig.name,
+        images: [{ url: image }],
+      };
+
   return {
     title,
     description,
     ...(canonical && { alternates: { canonical } }),
-    keywords: [
+    keywords: keywords ?? [
       "Wappkit",
       "software tools",
       "desktop utilities",
@@ -43,21 +78,14 @@ export function constructMetadata({
       "Resend",
       "Creem",
     ],
-    authors: [
-      {
-        name: "Wappkit Team",
-      },
-    ],
+    authors:
+      article?.authors?.map((name) => ({ name })) ?? [
+        {
+          name: "Wappkit Team",
+        },
+      ],
     creator: "Wappkit",
-    openGraph: {
-      type: "website",
-      locale: "en_US",
-      url: pageUrl,
-      title,
-      description,
-      siteName: title,
-      images: [{ url: image }],
-    },
+    openGraph,
     twitter: {
       card: "summary_large_image",
       title,
@@ -89,6 +117,17 @@ export function formatDate(input: string | number): string {
     day: "numeric",
     year: "numeric",
   });
+}
+
+export function getReadingTime(raw: string): number {
+  const words = raw
+    .replace(/```[\s\S]*?```/g, " ")
+    .replace(/<[^>]+>/g, " ")
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean).length;
+
+  return Math.max(1, Math.round(words / 200));
 }
 
 export function absoluteUrl(path: string) {

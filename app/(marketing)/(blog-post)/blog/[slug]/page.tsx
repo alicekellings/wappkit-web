@@ -3,15 +3,16 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { allPosts } from "contentlayer/generated";
 
-import { BLOG_CATEGORIES } from "@/config/blog";
+import { BLOG_AUTHORS, BLOG_CATEGORIES } from "@/config/blog";
 import { getTableOfContents } from "@/lib/toc";
 import {
   constructMetadata,
   formatDate,
+  getReadingTime,
   placeholderBlurhash,
 } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import Author from "@/components/content/author";
+import { ArticleSchema } from "@/components/content/article-schema";
 import {
   MarketingCard,
   MarketingHero,
@@ -41,13 +42,27 @@ export async function generateMetadata({
     return;
   }
 
-  const { title, description, image } = post;
+  const { title, description, image, date, updated, authors, categories } =
+    post;
+  const category = BLOG_CATEGORIES.find(
+    (item) => item.slug === categories[0],
+  );
 
   return constructMetadata({
     title: `${title} | Wappkit Blog`,
     description,
     image,
     canonical: post.slug,
+    keywords: [category?.title ?? "Guides", "Wappkit"],
+    article: {
+      publishedTime: date,
+      modifiedTime: updated ?? date,
+      authors: authors.map(
+        (username) => BLOG_AUTHORS[username]?.name ?? username,
+      ),
+      section: category?.title,
+      tags: categories,
+    },
   });
 }
 
@@ -79,6 +94,10 @@ export default async function PostPage({
 
   const toc = await getTableOfContents(post.body.raw);
   const hasToc = Boolean(toc.items?.length);
+  const readingMinutes = getReadingTime(post.body.raw);
+  const authorNames = post.authors
+    .map((username) => BLOG_AUTHORS[username]?.name ?? username)
+    .join(", ");
 
   // 构建期不再逐篇请求外部图床生成模糊占位图：
   // 240+ 篇文章会让静态生成耗时逼近构建超时，改用常量占位图。
@@ -90,6 +109,7 @@ export default async function PostPage({
 
   return (
     <MarketingPageShell>
+      <ArticleSchema post={post} category={category} />
       <MarketingHero
         eyebrow="Wappkit Blog"
         title={post.title}
@@ -97,7 +117,15 @@ export default async function PostPage({
         badges={[
           { label: category.title, tone: "warm" },
           { label: formatDate(post.date), tone: "muted" },
-          { label: "Long-form guide" },
+          { label: `${readingMinutes} min read` },
+          ...(post.updated
+            ? [
+                {
+                  label: `Updated ${formatDate(post.updated)}`,
+                  tone: "muted" as const,
+                },
+              ]
+            : []),
         ]}
         actions={
           <>
@@ -115,31 +143,51 @@ export default async function PostPage({
         }
         rightContent={
           <MarketingCard tone="dark" className="space-y-5">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-400">
-                Article context
-              </p>
-              <h2 className="mt-3 font-heading text-2xl text-white">
-                Read the guide inside the same Wappkit surface as the product.
-              </h2>
-            </div>
-
-            <div className="rounded-[1.4rem] border border-white/10 bg-white/5 p-4">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
-                Authors
-              </p>
-              <div className="mt-4 space-y-4">
-                {post.authors.map((author) => (
-                  <Author username={author} key={post._id + author} />
-                ))}
+            <div className="flex items-center gap-3">
+              <BlurImage
+                src={BLOG_AUTHORS.wappkit.image}
+                alt=""
+                width={44}
+                height={44}
+                className="size-11 rounded-2xl border border-white/10"
+              />
+              <div>
+                <p className="font-semibold text-white">{authorNames}</p>
+                <p className="text-sm text-slate-400">Publisher</p>
               </div>
             </div>
 
+            <dl className="space-y-3 rounded-[1.4rem] border border-white/10 bg-white/5 p-4 text-sm">
+              <div className="flex items-center justify-between gap-4">
+                <dt className="text-slate-400">Published</dt>
+                <dd className="text-slate-200">
+                  <time dateTime={post.date}>{formatDate(post.date)}</time>
+                </dd>
+              </div>
+              {post.updated ? (
+                <div className="flex items-center justify-between gap-4">
+                  <dt className="text-slate-400">Updated</dt>
+                  <dd className="text-slate-200">
+                    <time dateTime={post.updated}>
+                      {formatDate(post.updated)}
+                    </time>
+                  </dd>
+                </div>
+              ) : null}
+              <div className="flex items-center justify-between gap-4">
+                <dt className="text-slate-400">Reading time</dt>
+                <dd className="text-slate-200">{readingMinutes} min</dd>
+              </div>
+              <div className="flex items-center justify-between gap-4">
+                <dt className="text-slate-400">Category</dt>
+                <dd className="text-slate-200">{category.title}</dd>
+              </div>
+            </dl>
+
             <div className="rounded-[1.4rem] border border-white/10 bg-white/5 p-4">
               <p className="text-sm leading-6 text-slate-300">
-                Practical content, product pages, activation docs, and downloads
-                should feel like one connected trust path instead of scattered
-                templates.
+                Part of the Wappkit practical guide series for Reddit workflows
+                and Wappkit tools.
               </p>
             </div>
           </MarketingCard>
