@@ -5,7 +5,7 @@ import {
   hasAdminPageSession,
   isAdminTokenConfigured,
 } from "@/lib/admin-auth";
-import { getCheckoutStats } from "@/lib/funnel";
+import { getCheckoutStats, getProductEventStats } from "@/lib/funnel";
 import { tools } from "@/lib/tools";
 import { constructMetadata } from "@/lib/utils";
 
@@ -76,6 +76,16 @@ export default async function CheckoutStatsPage() {
   }
 
   const stats = await getCheckoutStats(tools.map((tool) => tool.slug), 30);
+  const productEvents = await getProductEventStats(
+    tools.map((tool) => tool.slug),
+    30,
+  );
+  const licenseViews =
+    productEvents.find((row) => row.event === "license_view")?.total ?? 0;
+  const proClicks =
+    productEvents.find((row) => row.event === "pro_interest")?.total ?? 0;
+  const proInterestRate =
+    licenseViews > 0 ? `${Math.round((proClicks / licenseViews) * 100)}%` : "—";
   const max = Math.max(1, ...stats.days.map((day) => day.count));
   const today = stats.days[stats.days.length - 1];
   // 日历上没量到的日子不占表格，只留真的有数字的
@@ -143,6 +153,36 @@ export default async function CheckoutStatsPage() {
         <strong>{stats.paidLast30}</strong> paid, conversion{" "}
         <strong>{conversionLast30}</strong>.
       </p>
+
+      <div className="mt-8 overflow-hidden rounded-[1.5rem] border bg-card">
+        <div className="border-b bg-muted/30 px-5 py-3">
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+            In-app interest (before anyone reaches checkout)
+          </p>
+        </div>
+        <div className="grid gap-4 p-5 sm:grid-cols-3">
+          {[
+            { label: "License tab opens", value: licenseViews },
+            { label: '"How do I get one?" clicks', value: proClicks },
+            { label: "Clicks per open", value: proInterestRate },
+          ].map((item) => (
+            <div key={item.label}>
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                {item.label}
+              </p>
+              <p className="mt-2 font-heading text-3xl text-foreground">
+                {item.value}
+              </p>
+            </div>
+          ))}
+        </div>
+        <p className="px-5 pb-5 text-xs leading-6 text-muted-foreground">
+          Sent by the desktop app when someone opens the License tab or presses
+          the Pro hint. No queries, results or emails are included. A rising
+          click rate with zero checkouts means people want Pro but cannot find
+          the purchase path, which is exactly the signal worth acting on.
+        </p>
+      </div>
 
       {stats.tools.length > 0 ? (
         <div className="mt-8 overflow-hidden rounded-[1.5rem] border bg-card">

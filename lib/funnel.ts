@@ -7,9 +7,13 @@ type CheckoutAttempt = {
   country: string | null;
 };
 
-function getDayKey(now = new Date()) {
-  return now.toISOString().slice(0, 10);
-}
+/**
+ * 写入用的日键必须和读取端一致。
+ *
+ * 读取端（getRecentDayKeys）一直按上海时区算，写入端原来用 UTC，
+ * 结果每天 00:00–08:00 这八小时的数据被记到前一天的键上，
+ * 看板上的"今天"永远是错的。统一走 getReportDayKey。
+ */
 
 async function runUpstash(command: Array<string | number>) {
   const url = getTrimmedEnv("UPSTASH_REDIS_REST_URL");
@@ -41,7 +45,7 @@ async function runUpstash(command: Array<string | number>) {
 }
 
 export async function recordDownloadClick(source: string | null) {
-  const day = getDayKey();
+  const day = getReportDayKey(new Date());
   const event = {
     event: "download_click",
     toolSlug: "reddit-toolbox",
@@ -260,7 +264,7 @@ export async function recordPaidOrder(input: {
   orderId: string;
   toolSlug: string;
 }) {
-  const day = getDayKey();
+  const day = getReportDayKey(new Date());
   const event = {
     event: "paid_order",
     orderId: input.orderId,
@@ -454,7 +458,7 @@ export async function getCheckoutStats(
 }
 
 export async function recordCheckoutAttempt(attempt: CheckoutAttempt) {
-  const day = getDayKey();
+  const day = getReportDayKey(new Date());
   const event = {
     event: "checkout_attempt",
     toolSlug: attempt.toolSlug,
@@ -486,4 +490,74 @@ export async function recordCheckoutAttempt(attempt: CheckoutAttempt) {
   }
 
   console.log("funnel.checkout_attempt", event);
+}
+
+/**
+ * 产品兴趣计数。
+ *
+ * 和 checkout 漏斗分开记：这两件事发生在用户还没决定买之前，
+ * 回答的是"免费用户里有多少人在认真考虑 Pro"，而不是"多少人点了购买"。
+ * 工具端在打开 License 页、点击"How do I get one?"时各报一次。
+ */
+export const PRODUCT_EVENTS = ["license_view", "pro_interest"] as const;
+
+export type ProductEventName = (typeof PRODUCT_EVENTS)[number];
+
+export async function recordProductEvent(input: {
+  event: ProductEventName;
+  toolSlug: string;
+}) {
+  const day = getReportDayKey(new Date());
+  const base = `wappkit:events:${input.event}`;
+
+  await Promise.all([
+    runUpstash(["INCR", `${base}:total`]),
+    runUpstash(["INCR", `${base}:day:${day}`]),
+    runUpstash(["INCR", `${base}:tool:${input.toolSlug}`]),
+  ]);
+}
+
+export type ProductEventRow = {
+  event: ProductEventName;
+  total: number;
+  last30: number;
+  byTool: Array<{ toolSlug: string; count: number }>;
+};
+
+export async function getProductEventStats(
+  toolSlugs: string[],
+  days = 30,
+): Promise<ProductEventRow[]> {
+  const keys = getRecentDayKeys(days);
+
+  return Promise.all(
+    PRODUCT_EVENTS.map(async (event) => {
+      const [totalRaw, dailyRaw, toolRaw] = await Promise.all([
+        runUpstashResult(["GET", `wappkit:events:${event}:total`]),
+        runUpstashResult([
+          "MGET",
+          ...keys.map((date) => `wappkit:events:${event}:day:${date}`),
+        ]),
+        runUpstashResult([
+          "MGET",
+          ...toolSlugs.map((slug) => `wappkit:events:${event}:tool:${slug}`),
+        ]),
+      ]);
+
+      const daily = Array.isArray(dailyRaw) ? dailyRaw : [];
+      const toolValues = Array.isArray(toolRaw) ? toolRaw : [];
+
+      return {
+        event,
+        total: toCount(totalRaw),
+        last30: daily.reduce<number>((sum, value) => sum + toCount(value), 0),
+        byTool: toolSlugs
+          .map((slug, index) => ({
+            toolSlug: slug,
+            count: toCount(toolValues[index]),
+          }))
+          .filter((row) => row.count > 0),
+      };
+    }),
+  );
 }
