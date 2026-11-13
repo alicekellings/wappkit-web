@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 import { serializeError } from "@/lib/error-utils";
+import { canSendLicenseEmail, sendLicenseEmail } from "@/lib/license-email";
 
 import {
   getCreemWebhookSignature,
@@ -98,11 +99,23 @@ export async function POST(request: NextRequest) {
     const record = createLicenseRecordFromCreemCheckout(checkout);
     const store = getLicenseStore();
 
+    // Creem 会重放同一个事件；先看这条记录是否已存在，用于决定要不要发信。
+    const existing = await store.getByOrderId(record.orderId).catch(() => null);
+
     // 必须走 mergeAndSave：Creem 会重放同一个 checkout.completed 事件，
     // 而这里推导出的是一条全新记录（设备绑定/换机冷却期都是空的）。
     // 直接 save() 覆盖会把已激活设备的绑定、30 天换机冷却期、
     // 以及管理员手工封禁的 disabled 状态一起冲掉。
     const saved = await store.mergeAndSave(record);
+
+    // 首单才发 key 邮件：重放事件不再骚扰客户；发信失败不影响发码结果。
+    if (!existing && canSendLicenseEmail()) {
+      try {
+        await sendLicenseEmail(saved);
+      } catch (error) {
+        console.error("license_email.failed", serializeError(error));
+      }
+    }
 
     // 漏斗计数：mergeAndSave 去重的是 license 记录，计数器没有 merge 语义，
     // 幂等在 recordPaidOrder 里用 SADD 处理。计数失败不能影响发码结果。
