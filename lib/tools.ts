@@ -3,6 +3,9 @@ export type ToolStatus = "live" | "coming-soon";
 export type Tool = {
   slug: string;
   name: string;
+  // 可选：SEO 标题。展示名为了好看往往不含品类词（"LeadHarvester"），
+  // 但用户搜的是品类词（"google maps scraper"），两者分开写才不会互相拖累。
+  seoTitle?: string;
   category: string;
   status: ToolStatus;
   tagline: string;
@@ -415,6 +418,7 @@ export const tools: Tool[] = [
   {
     slug: "leadharvester",
     name: "Wappkit LeadHarvester (Free)",
+    seoTitle: "Wappkit LeadHarvester: free Google Maps scraper for Windows",
     category: "Local Leads",
     status: "live",
     tagline:

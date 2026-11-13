@@ -35,7 +35,7 @@ export async function generateMetadata({
   }
 
   return constructMetadata({
-    title: `${tool.name} | Wappkit`,
+    title: `${tool.seoTitle ?? tool.name} | Wappkit`,
     description: tool.shortDescription,
   });
 }
