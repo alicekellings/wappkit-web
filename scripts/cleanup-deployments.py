@@ -52,16 +52,29 @@ def main():
             break
         until = int(batch[-1]["created"]) - 1
 
+    # 失败的构建（ERROR / CANCELED）永远不会是 READY，上面那轮查不到，
+    # 但它们同样占着源码快照。全部清掉——失败产物没有任何回滚价值。
+    dead, until = [], None
+    while True:
+        params = {"projectId": project, "limit": "100", "state": "ERROR"}
+        if until:
+            params["until"] = str(until)
+        batch = api("/v6/deployments", params).get("deployments", [])
+        dead.extend(batch)
+        if len(batch) < 100:
+            break
+        until = int(batch[-1]["created"]) - 1
+
     prod_sorted = sorted(
         (d for d in deps if d.get("target") == "production"),
         key=lambda d: d["created"],
         reverse=True,
     )
     keep = {d["uid"] for d in prod_sorted[:KEEP_PROD]}
-    to_delete = [d for d in deps if d["uid"] not in keep]
+    to_delete = [d for d in deps if d["uid"] not in keep] + dead
 
-    print(f"deployments: {len(deps)} total, keeping newest {KEEP_PROD} production, "
-          f"deleting {len(to_delete)}")
+    print(f"deployments: {len(deps)} ready + {len(dead)} failed, "
+          f"keeping newest {KEEP_PROD} production, deleting {len(to_delete)}")
 
     ok = fail = 0
     for i, d in enumerate(to_delete, 1):
