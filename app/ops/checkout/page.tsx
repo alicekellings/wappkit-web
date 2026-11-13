@@ -81,7 +81,13 @@ export default async function CheckoutStatsPage() {
   // 日历上没量到的日子不占表格，只留真的有数字的
   const rows = [...stats.days].reverse().filter((day) => day.count > 0);
   const conversion =
-    stats.total > 0 ? `${Math.round((stats.paidTotal / stats.total) * 100)}%` : "—";
+    stats.total > 0
+      ? `${Math.round((stats.paidTotal / stats.total) * 100)}%`
+      : "—";
+  const conversionLast30 =
+    stats.last30 > 0
+      ? `${Math.round((stats.paidLast30 / stats.last30) * 100)}%`
+      : "—";
 
   return (
     <div className="container max-w-[980px] py-16 md:py-20">
@@ -97,6 +103,22 @@ export default async function CheckoutStatsPage() {
         payment through the webhook — so the gap between the two numbers is the
         checkout page losing people.
       </p>
+
+      {stats.alert ? (
+        <div className="mt-6 rounded-[1.25rem] border border-amber-300 bg-amber-50 p-5 text-sm text-amber-900">
+          <p className="font-semibold">
+            {stats.last30} checkout opens in the last 30 days, 0 paid orders.
+          </p>
+          <p className="mt-2 leading-6">
+            That is the pattern worth investigating. Check, in this order: (1)
+            the Creem webhook is still pointed at{" "}
+            <code>/api/webhook/creem</code> and signing with the current
+            secret — if the webhook is dead, orders are paid but never counted;
+            (2) the Creem product is live and not in test mode; (3) the price
+            and currency shown on the Creem page match the site.
+          </p>
+        </div>
+      ) : null}
 
       <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {[
@@ -116,20 +138,39 @@ export default async function CheckoutStatsPage() {
         ))}
       </div>
 
+      <p className="mt-4 text-sm text-muted-foreground">
+        Last 30 days: <strong>{stats.last30}</strong> attempts,{" "}
+        <strong>{stats.paidLast30}</strong> paid, conversion{" "}
+        <strong>{conversionLast30}</strong>.
+      </p>
+
       {stats.tools.length > 0 ? (
         <div className="mt-8 overflow-hidden rounded-[1.5rem] border bg-card">
+          <div className="border-b bg-muted/30 px-5 py-3">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+              Per tool (all time)
+            </p>
+          </div>
           <table className="w-full text-left text-sm">
             <thead className="bg-muted/50 text-xs uppercase tracking-[0.16em] text-muted-foreground">
               <tr>
                 <th className="px-5 py-3 font-semibold">Tool</th>
-                <th className="px-5 py-3 font-semibold">Attempts</th>
+                <th className="px-5 py-3 font-semibold">Opened</th>
+                <th className="px-5 py-3 font-semibold">Paid</th>
+                <th className="px-5 py-3 font-semibold">Conv.</th>
               </tr>
             </thead>
             <tbody>
               {stats.tools.map((row) => (
                 <tr key={row.toolSlug} className="border-t">
                   <td className="px-5 py-3 font-mono text-xs">{row.toolSlug}</td>
-                  <td className="px-5 py-3 font-semibold">{row.count}</td>
+                  <td className="px-5 py-3 font-semibold">{row.attempts}</td>
+                  <td className="px-5 py-3 font-semibold">{row.paid}</td>
+                  <td className="px-5 py-3">
+                    {row.conversion === null
+                      ? "—"
+                      : `${Math.round(row.conversion * 100)}%`}
+                  </td>
                 </tr>
               ))}
             </tbody>

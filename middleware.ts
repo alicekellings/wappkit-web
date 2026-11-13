@@ -24,9 +24,17 @@ export function middleware(request: NextRequest) {
     request.nextUrl.pathname.startsWith("/api/license/") ||
     request.nextUrl.pathname.startsWith("/api/checkout");
 
+  // /ops 后台与 /api/admin/* 同样豁免：
+  // 它们本来就要求 INTERNAL_ADMIN_TOKEN 登录态，安全性来自鉴权而不是地区封锁；
+  // 而作者人在 CN，封锁等于让看板自己打不开——漏斗数据和激活列表正是要天天看的。
+  const isAdminArea =
+    request.nextUrl.pathname === "/ops" ||
+    request.nextUrl.pathname.startsWith("/ops/") ||
+    request.nextUrl.pathname.startsWith("/api/admin/");
+
   const country = getRequestCountry(request.headers);
 
-  if (!isLicenseApi && shouldBlockCountry(country)) {
+  if (!isLicenseApi && !isAdminArea && shouldBlockCountry(country)) {
     return new NextResponse("Access unavailable from this region.", {
       status: 403,
       headers: {

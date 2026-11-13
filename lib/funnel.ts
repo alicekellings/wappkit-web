@@ -313,13 +313,20 @@ export type CheckoutStats = {
   total: number;
   last30: number;
   days: Array<{ date: string; count: number }>;
-  tools: Array<{ toolSlug: string; count: number }>;
+  tools: Array<{
+    toolSlug: string;
+    attempts: number;
+    paid: number;
+    conversion: number | null;
+  }>;
   events: CheckoutEvent[];
   paidTotal: number;
   paidLast30: number;
   paidDays: Array<{ date: string; count: number }>;
   paidOrders: PaidOrderEvent[];
   configured: boolean;
+  /** 打开过收银台却没成交，且量已经足够说明「收银台在丢人」 */
+  alert: boolean;
 };
 
 /**
@@ -334,28 +341,41 @@ export async function getCheckoutStats(
   days = 30,
 ): Promise<CheckoutStats> {
   const keys = getRecentDayKeys(days);
-  const [totalRaw, dailyRaw, toolRaw, eventsRaw, paidTotalRaw, paidDailyRaw, paidEventsRaw] =
-    await Promise.all([
-      runUpstashResult(["GET", "wappkit:funnel:checkout_attempts:total"]),
-      runUpstashResult([
-        "MGET",
-        ...keys.map((date) => `wappkit:funnel:checkout_attempts:day:${date}`),
-      ]),
-      runUpstashResult([
-        "MGET",
-        ...toolSlugs.map((slug) => `wappkit:funnel:checkout_attempts:tool:${slug}`),
-      ]),
-      runUpstashResult(["LRANGE", "wappkit:funnel:checkout_events", 0, 49]),
-      runUpstashResult(["GET", "wappkit:funnel:paid_orders:total"]),
-      runUpstashResult([
-        "MGET",
-        ...keys.map((date) => `wappkit:funnel:paid_orders:day:${date}`),
-      ]),
-      runUpstashResult(["LRANGE", "wappkit:funnel:paid_events", 0, 49]),
-    ]);
+  const [
+    totalRaw,
+    dailyRaw,
+    toolRaw,
+    eventsRaw,
+    paidTotalRaw,
+    paidDailyRaw,
+    paidEventsRaw,
+    paidToolRaw,
+  ] = await Promise.all([
+    runUpstashResult(["GET", "wappkit:funnel:checkout_attempts:total"]),
+    runUpstashResult([
+      "MGET",
+      ...keys.map((date) => `wappkit:funnel:checkout_attempts:day:${date}`),
+    ]),
+    runUpstashResult([
+      "MGET",
+      ...toolSlugs.map((slug) => `wappkit:funnel:checkout_attempts:tool:${slug}`),
+    ]),
+    runUpstashResult(["LRANGE", "wappkit:funnel:checkout_events", 0, 49]),
+    runUpstashResult(["GET", "wappkit:funnel:paid_orders:total"]),
+    runUpstashResult([
+      "MGET",
+      ...keys.map((date) => `wappkit:funnel:paid_orders:day:${date}`),
+    ]),
+    runUpstashResult(["LRANGE", "wappkit:funnel:paid_events", 0, 49]),
+    runUpstashResult([
+      "MGET",
+      ...toolSlugs.map((slug) => `wappkit:funnel:paid_orders:tool:${slug}`),
+    ]),
+  ]);
 
   const dailyValues = Array.isArray(dailyRaw) ? dailyRaw : [];
   const toolValues = Array.isArray(toolRaw) ? toolRaw : [];
+  const paidToolValues = Array.isArray(paidToolRaw) ? paidToolRaw : [];
   const rows = keys.map((date, index) => ({
     date,
     count: toCount(dailyValues[index]),
@@ -400,20 +420,36 @@ export async function getCheckoutStats(
     }
   }
 
+  const tools = toolSlugs
+    .map((slug, index) => {
+      const attempts = toCount(toolValues[index]);
+      const paid = toCount(paidToolValues[index]);
+      return {
+        toolSlug: slug,
+        attempts,
+        paid,
+        conversion: attempts > 0 ? paid / attempts : null,
+      };
+    })
+    .filter((row) => row.attempts > 0 || row.paid > 0)
+    .sort((a, b) => b.attempts - a.attempts);
+
+  const last30 = rows.reduce((sum, row) => sum + row.count, 0);
+  const paidLast30 = paidRows.reduce((sum, row) => sum + row.count, 0);
+
   return {
     total: toCount(totalRaw),
-    last30: rows.reduce((sum, row) => sum + row.count, 0),
+    last30,
     days: rows,
-    tools: toolSlugs
-      .map((slug, index) => ({ toolSlug: slug, count: toCount(toolValues[index]) }))
-      .filter((row) => row.count > 0)
-      .sort((a, b) => b.count - a.count),
+    tools,
     events,
     paidTotal: toCount(paidTotalRaw),
-    paidLast30: paidRows.reduce((sum, row) => sum + row.count, 0),
+    paidLast30,
     paidDays: paidRows,
     paidOrders,
     configured: totalRaw !== null,
+    // 阈值取 5：真人手滑一两次正常，连续 5 次开收银台都不成交就该查了。
+    alert: last30 >= 5 && paidLast30 === 0,
   };
 }
 
