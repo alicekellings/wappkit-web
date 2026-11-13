@@ -437,14 +437,15 @@ export const tools: Tool[] = [
     ],
     platform: "Windows Desktop",
     downloadLabel: "Download LeadHarvester",
-    buyLabel: "Free forever",
+    buyLabel: "Unlock Pro filters - $9",
     downloadHref: "https://github.com/alicekellings/wappkit-web/releases/download/leadharvester-v1.2/Wappkit-LeadHarvester-1.2.zip",
     buyHref: "/tools/leadharvester",
     docsHref: "/tools/leadharvester",
     availabilityNote:
       "Free forever: no account, no credits, no API key. Everything runs locally and results stay on your disk.",
-    checkoutEnabled: false,
+    checkoutEnabled: true,
     priceLabel: "Free",
+    priceNote: "The app is free. Pro filters are a one-time $9 upgrade.",
     freeTool: true,
   },
 ];
