@@ -199,7 +199,8 @@
     "reddit_toolbox:keyword:reddit viewer no login",
     "reddit_toolbox:topic:what a reddit viewer actually does and when it beats the app",
     "reddit_toolbox:topic:reading subreddit rules and wiki without an account",
-    "reddit_toolbox:topic:following a reddit user posts without an account"
+    "reddit_toolbox:topic:following a reddit user posts without an account",
+    "reddit_toolbox:topic:exporting reddit threads to markdown notes"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -407,7 +408,8 @@
     "reddit-toolbox-alternatives-in-2026-which-tool-actually-fits-your-research-stack",
     "reddit-as-a-research-tool-why-founders-are-replacing-survey-forms-with-reddit-li",
     "how-to-read-subreddit-rules-and-wiki-pages-without-a-reddit-account",
-    "how-to-follow-a-reddit-users-posts-without-an-account-in-2026"
+    "how-to-follow-a-reddit-users-posts-without-an-account-in-2026",
+    "exporting-reddit-threads-to-markdown-what-actually-works-in-2026"
   ],
   "events": [
     {
@@ -1851,6 +1853,13 @@
       "source_type": "topic",
       "slug": "how-to-follow-a-reddit-users-posts-without-an-account-in-2026",
       "title": "How to Follow a Reddit User's Posts Without an Account in 2026"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "exporting reddit threads to markdown notes",
+      "source_type": "topic",
+      "slug": "exporting-reddit-threads-to-markdown-what-actually-works-in-2026",
+      "title": "Exporting Reddit Threads to Markdown: What Actually Works in 2026"
     }
   ]
 }
