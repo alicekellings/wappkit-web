@@ -1,0 +1,120 @@
+---
+title: "I scraped 506 roofing companies in Texas. 88.3% were rated 4.5 or higher."
+description: "A data study of 506 roofing businesses across Dallas, Houston and Austin: how ratings, review counts and website coverage actually distribute, and why the standard rating filter removes almost nobody."
+date: "2026-11-14"
+published: true
+image: "/images/blog/506-roofing-companies-texas-data-study-cover.jpg"
+authors: ["wappkit"]
+categories: ["guides"]
+---
+
+Every lead generation guide opens with the same instruction: filter by rating, drop anything below 3.5 or 4.0.
+
+I wanted to know whether that instruction does anything at all. So I pulled every roofing business Google Maps would hand over in Dallas, Houston and Austin, and counted what came back.
+
+506 businesses. 12 searches. About seven minutes.
+
+The rating filter turned out to be close to decorative. What actually separates a usable list from a useless one is review count, and almost nobody writes about it.
+
+## How the data was collected
+
+- Three cities: Dallas, Houston, Austin.
+- Four keyword variants per city: `roofing contractor in <city>, TX`, `roofing company <city> TX`, `roofer <city> TX`, `commercial roofing <city> TX`.
+- Search centre set to each city's coordinates, depth 10, English results.
+- Deduplicated on `place_id`. 506 rows, 506 unique IDs, zero duplicates.
+- Collected on 14 November 2026.
+
+The four variants matter more than they look. They overlap far less than you would expect, and a single keyword would have returned roughly a quarter of what four returned.
+
+## Finding 1: the rating distribution is a wall at 4.5
+
+| Rating | Businesses | Share |
+|---|---|---|
+| 4.5 - 5.0 | 447 | 88.3% |
+| 4.0 - 4.4 | 23 | 4.5% |
+| 3.5 - 3.9 | 5 | 1.0% |
+| below 3.5 | 31 | 6.1% |
+
+Filter at 3.5 and you remove 31 businesses out of 506. That is 6.1%. You have not improved the list, you have trimmed it.
+
+Filter at 4.5 and you remove 13.6%, including plenty of companies that did good work and had one bad job.
+
+The cause is structural. Google asks for the review at the single happiest moment in the relationship, usually just after the invoice is settled and the leak is gone. Ratings inflate and converge. In this set the mean is 4.66, and the densest band sits between 4.7 and 5.0.
+
+## Finding 2: review count is where the signal is
+
+| Reviews | Businesses | Share |
+|---|---|---|
+| under 50 | 272 | 53.8% |
+| 50 - 99 | 86 | 17.0% |
+| 100 - 399 | 112 | 22.1% |
+| 400+ | 36 | 7.1% |
+
+Median 39. Mean 123. 90th percentile 293.
+
+More than half of this market has under 50 reviews. Those are the businesses where the owner still answers the phone, reads their own inbox, and can approve a purchase on the spot.
+
+The 7.1% sitting above 400 reviews are running a marketing operation. In practice that means an agency retainer, a marketing hire, or both. They are also the ones getting four pitches a week, which is roughly why they stopped replying.
+
+Sort descending by review count, which is the default in most tutorials, and you are sorting by "already well served".
+
+## Finding 3: "no website" is not the problem
+
+I expected small operators to have no web presence. They do.
+
+| Reviews | n | Has website | Has phone |
+|---|---|---|---|
+| under 50 | 272 | 87.1% | 97.8% |
+| 50 - 99 | 86 | 96.5% | 98.8% |
+| 100 - 399 | 112 | 97.3% | 99.1% |
+| 400+ | 36 | 100% | 100% |
+
+Even the smallest bucket sits at 87.1%. Phone coverage is 98.4% overall.
+
+So the usual explanation for low reply rates, "these businesses aren't even online", does not hold in this market. They are online. They just do not answer cold email.
+
+## Finding 4: email addresses are much rarer than the guides suggest
+
+I re-ran a 52-business sample with email extraction switched on. 48 had a website. Only 14 returned an address, which is 29.2% of the ones with a site.
+
+The rest used contact forms, JavaScript-rendered footers, or a "free estimate" button that leads to a form. Two had the address baked into an image.
+
+Plan around 30%, not 90%.
+
+## Finding 5: about 3% of the list is not what it appears
+
+Seven street addresses appeared under 17 different company names. All of them are virtual office suites in the three downtowns. Some are lead generation shells. Some are one-person operations renting a prestige address.
+
+Separately, 17 brand names appeared at multiple locations, 36 listings in total. Those are real branches.
+
+That gives you two ways to break a list:
+
+- Dedupe by name and you delete legitimate branches.
+- Dedupe by `place_id` and you email the same head office four times.
+
+You need both passes.
+
+## What I do now
+
+1. Pull four or five keyword variants per city, never one.
+2. Dedupe on `place_id` first, then look for repeated street addresses.
+3. Cut at 50 reviews. Ignore rating unless it is under 3.5, and check why when it is.
+4. Sort by review count ascending, not descending.
+5. Assume 30% email reachability. Phone is the real channel for the rest.
+6. Flag multi-location brands before anything gets sent.
+
+## Caveats
+
+One vertical, one state, one afternoon. Texas roofing in November is not dental practices in Berlin, and the numbers will move between categories.
+
+The results came from Google Maps served to a non-US IP pointed at US coordinates. A residential US IP will return a slightly different set, and review counts change week to week.
+
+The rating finding, though, is not an artefact of scraping. It comes from how the review prompt works, so it should look the same in any local service category.
+
+## The short version
+
+If your reply rate is sitting at 2%, the rating filter is not the problem. You are mailing the same three businesses as everyone else, and they know it.
+
+---
+
+*Method notes: 12 searches total (4 per city), results deduplicated on `place_id`, 506 rows retained. Email sample: 52 businesses, single query, extraction enabled. Numbers above are from that one run on 14 November 2026.*
