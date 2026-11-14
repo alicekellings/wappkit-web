@@ -20,9 +20,7 @@ import { constructMetadata } from "@/lib/utils";
 const STORE_URL =
   "https://microsoftedge.microsoft.com/addons/detail/jfanggdobljmlaohcldjoafnigmhfogh";
 
-// Pro checkout stays off until CREEM_PRODUCT_REDDIT_VIEWER_EXTENSION_ID is set in
-// Vercel. Turning it on before that sends visitors to a checkout that has no product.
-const PRO_CHECKOUT_ENABLED = false;
+const PRO_CHECKOUT_ENABLED = true;
 
 export const metadata = constructMetadata({
   title: "Reddit Reader — Clean Reading Without Login Walls | Wappkit",
