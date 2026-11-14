@@ -198,7 +198,8 @@
     "reddit_toolbox:topic:browsing reddit on desktop without the mobile app nag",
     "reddit_toolbox:keyword:reddit viewer no login",
     "reddit_toolbox:topic:what a reddit viewer actually does and when it beats the app",
-    "reddit_toolbox:topic:reading subreddit rules and wiki without an account"
+    "reddit_toolbox:topic:reading subreddit rules and wiki without an account",
+    "reddit_toolbox:topic:following a reddit user posts without an account"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -405,7 +406,8 @@
     "what-a-reddit-viewer-actually-does-and-when-it-beats-the-official-app",
     "reddit-toolbox-alternatives-in-2026-which-tool-actually-fits-your-research-stack",
     "reddit-as-a-research-tool-why-founders-are-replacing-survey-forms-with-reddit-li",
-    "how-to-read-subreddit-rules-and-wiki-pages-without-a-reddit-account"
+    "how-to-read-subreddit-rules-and-wiki-pages-without-a-reddit-account",
+    "how-to-follow-a-reddit-users-posts-without-an-account-in-2026"
   ],
   "events": [
     {
@@ -1842,6 +1844,13 @@
       "source_type": "topic",
       "slug": "how-to-read-subreddit-rules-and-wiki-pages-without-a-reddit-account",
       "title": "How to Read Subreddit Rules and Wiki Pages Without a Reddit Account"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "following a reddit user posts without an account",
+      "source_type": "topic",
+      "slug": "how-to-follow-a-reddit-users-posts-without-an-account-in-2026",
+      "title": "How to Follow a Reddit User's Posts Without an Account in 2026"
     }
   ]
 }
