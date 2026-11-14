@@ -67,19 +67,29 @@ export function BlogProductPromo({
         </p>
 
         <div className="flex flex-col gap-3">
-          <Link href={`/tools/${tool.slug}`}>
+          <Link
+            href={tool.downloadHref}
+            data-umami-event="blog_promo_download_clicked"
+            data-umami-event-tool={tool.slug}
+          >
             <Button rounded="full" className="w-full">
-              View Product
+              {tool.downloadLabel}
             </Button>
           </Link>
-          <Link href={tool.downloadHref}>
+          <Link
+            href={`/tools/${tool.slug}`}
+            data-umami-event="blog_promo_product_clicked"
+            data-umami-event-tool={tool.slug}
+          >
             <Button rounded="full" variant="outline" className="w-full">
-              {tool.downloadLabel}
+              View Product
             </Button>
           </Link>
           {tool.mobileHref ? (
             <Link
               href={tool.mobileHref}
+              data-umami-event="blog_promo_mobile_clicked"
+              data-umami-event-tool={tool.slug}
               className="text-center text-sm font-medium text-orange-700 underline-offset-4 hover:underline"
             >
               {tool.mobileLabel ?? "On a phone? Get the mobile version"}
