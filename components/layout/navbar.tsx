@@ -41,7 +41,7 @@ export function NavBar({ scroll = false }: NavBarProps) {
         large={documentation}
       >
         <div className="flex gap-6 md:gap-10">
-          <Link href="/" className="flex items-center space-x-1.5">
+          <Link href="/" prefetch={false} className="flex items-center space-x-1.5">
             <Icons.logo />
             <span className="font-urban text-xl font-bold">
               {siteConfig.name}
@@ -56,7 +56,7 @@ export function NavBar({ scroll = false }: NavBarProps) {
                   href={item.disabled ? "#" : item.href}
                   target={item.external ? "_blank" : undefined}
                   rel={item.external ? "noreferrer" : undefined}
-                  prefetch={true}
+                  prefetch={false}
                   className={cn(
                     "flex items-center text-lg font-medium transition-colors hover:text-foreground/80 sm:text-sm",
                     !item.external && item.href.startsWith(`/${selectedLayout}`)
@@ -108,7 +108,7 @@ export function NavBar({ scroll = false }: NavBarProps) {
             </Link>
           )}
 
-          <Link href="/tools" className="hidden md:block">
+          <Link href="/tools" prefetch={false} className="hidden md:block">
             <Button
               className="hidden gap-2 px-5 md:flex"
               variant="default"

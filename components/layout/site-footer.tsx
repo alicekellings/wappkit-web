@@ -20,6 +20,7 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
                 <li key={link.title}>
                   <Link
                     href={link.href}
+                    prefetch={false}
                     className="text-sm text-muted-foreground hover:text-primary"
                   >
                     {link.title}

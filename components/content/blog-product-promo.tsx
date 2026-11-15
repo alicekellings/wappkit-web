@@ -69,6 +69,7 @@ export function BlogProductPromo({
         <div className="flex flex-col gap-3">
           <Link
             href={tool.downloadHref}
+            prefetch={false}
             data-umami-event="blog_promo_download_clicked"
             data-umami-event-tool={tool.slug}
           >
@@ -78,6 +79,7 @@ export function BlogProductPromo({
           </Link>
           <Link
             href={`/tools/${tool.slug}`}
+            prefetch={false}
             data-umami-event="blog_promo_product_clicked"
             data-umami-event-tool={tool.slug}
           >
@@ -88,6 +90,7 @@ export function BlogProductPromo({
           {tool.mobileHref ? (
             <Link
               href={tool.mobileHref}
+              prefetch={false}
               data-umami-event="blog_promo_mobile_clicked"
               data-umami-event-tool={tool.slug}
               className="text-center text-sm font-medium text-orange-700 underline-offset-4 hover:underline"
