@@ -200,7 +200,8 @@
     "reddit_toolbox:topic:what a reddit viewer actually does and when it beats the app",
     "reddit_toolbox:topic:reading subreddit rules and wiki without an account",
     "reddit_toolbox:topic:following a reddit user posts without an account",
-    "reddit_toolbox:topic:exporting reddit threads to markdown notes"
+    "reddit_toolbox:topic:exporting reddit threads to markdown notes",
+    "reddit_toolbox:topic:monitoring a niche subreddit for launch feedback"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -409,7 +410,8 @@
     "reddit-as-a-research-tool-why-founders-are-replacing-survey-forms-with-reddit-li",
     "how-to-read-subreddit-rules-and-wiki-pages-without-a-reddit-account",
     "how-to-follow-a-reddit-users-posts-without-an-account-in-2026",
-    "exporting-reddit-threads-to-markdown-what-actually-works-in-2026"
+    "exporting-reddit-threads-to-markdown-what-actually-works-in-2026",
+    "how-to-monitor-a-niche-subreddit-for-product-launch-feedback-workflow-playbook"
   ],
   "events": [
     {
@@ -1860,6 +1862,13 @@
       "source_type": "topic",
       "slug": "exporting-reddit-threads-to-markdown-what-actually-works-in-2026",
       "title": "Exporting Reddit Threads to Markdown: What Actually Works in 2026"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "monitoring a niche subreddit for launch feedback",
+      "source_type": "topic",
+      "slug": "how-to-monitor-a-niche-subreddit-for-product-launch-feedback-workflow-playbook",
+      "title": "How to Monitor a Niche Subreddit for Product Launch Feedback (Workflow Playbook)"
     }
   ]
 }
