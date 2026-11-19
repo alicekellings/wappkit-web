@@ -4,5 +4,432 @@
       "path": "/api/internal/upstash-keepalive",
       "schedule": "17 3 * * *"
     }
+  ],
+  "redirects": [
+    {
+      "source": "/blog/how-founders-use-reddit-keyword-monitoring-to-spot-emerging-opportunities",
+      "destination": "/blog/reddit-keyword-monitoring-workflow-practical-steps-for-founders-in-2026",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/how-founders-use-reddit-keyword-monitoring-to-spot-emerging-opportunities-early",
+      "destination": "/blog/reddit-keyword-monitoring-workflow-practical-steps-for-founders-in-2026",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/how-founders-use-reddit-monitoring-to-spot-emerging-customer-needs-early",
+      "destination": "/blog/reddit-keyword-monitoring-workflow-practical-steps-for-founders-in-2026",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/how-founders-use-reddit-monitoring-to-spot-emerging-market-opportunities-in-2026",
+      "destination": "/blog/reddit-keyword-monitoring-workflow-practical-steps-for-founders-in-2026",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/reddit-keyword-monitoring-workflow-spot-emerging-market-opportunities-early",
+      "destination": "/blog/reddit-keyword-monitoring-workflow-practical-steps-for-founders-in-2026",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/reddit-monitoring-workflow-for-founders-in-2026-spot-emerging-opportunities-befo",
+      "destination": "/blog/reddit-keyword-monitoring-workflow-practical-steps-for-founders-in-2026",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/reddit-monitoring-workflow-for-founders-in-2026-spot-opportunities-with-the-simp",
+      "destination": "/blog/reddit-keyword-monitoring-workflow-practical-steps-for-founders-in-2026",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/how-to-browse-reddit-without-an-account-a-practical-workflow-for-researchers-and",
+      "destination": "/blog/browse-reddit-without-account-2025",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/how-to-browse-reddit-without-an-account-and-when-a-viewer-is-not-enough",
+      "destination": "/blog/browse-reddit-without-account-2025",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/how-to-browse-reddit-without-an-account-in-2026-and-what-to-do-when-it-stops-wor",
+      "destination": "/blog/browse-reddit-without-account-2025",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/how-to-browse-reddit-without-an-account-in-2026-and-when-to-stop-relying-on-it",
+      "destination": "/blog/browse-reddit-without-account-2025",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/how-to-browse-reddit-without-an-account-in-2026-workflow-playbook",
+      "destination": "/blog/browse-reddit-without-account-2025",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/how-founders-can-spot-emerging-product-opportunities-on-reddit-before-competitor",
+      "destination": "/blog/how-founders-spot-emerging-opportunities-with-reddit-data",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/how-founders-can-use-reddit-data-to-identify-emerging-product-opportunities-in-2",
+      "destination": "/blog/how-founders-spot-emerging-opportunities-with-reddit-data",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/how-founders-use-reddit-data-to-spot-emerging-opportunities-before-competitors",
+      "destination": "/blog/how-founders-spot-emerging-opportunities-with-reddit-data",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/how-founders-use-reddit-to-spot-emerging-market-opportunities-before-competitors",
+      "destination": "/blog/how-founders-spot-emerging-opportunities-with-reddit-data",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/how-to-set-up-reddit-keyword-alerts-for-real-time-competitor-and-trend-tracking",
+      "destination": "/blog/setting-up-reddit-keyword-alerts-for-real-time-trend-tracking",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/how-to-set-up-reddit-keyword-alerts-for-real-time-market-intelligence",
+      "destination": "/blog/setting-up-reddit-keyword-alerts-for-real-time-trend-tracking",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/how-to-set-up-reddit-keyword-monitoring-for-competitor-and-trend-tracking-in-202",
+      "destination": "/blog/setting-up-reddit-keyword-alerts-for-real-time-trend-tracking",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/setting-up-reddit-keyword-alerts-for-real-time-market-and-competitor-insights",
+      "destination": "/blog/setting-up-reddit-keyword-alerts-for-real-time-trend-tracking",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/reddit-affiliate-marketing-guide-2025",
+      "destination": "/blog/reddit-marketing-guide-2025",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/reddit-marketing-predictions-2025",
+      "destination": "/blog/reddit-marketing-guide-2025",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/reddit-marketing-strategies-2026",
+      "destination": "/blog/reddit-marketing-guide-2025",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/reddit-marketing-strategy-2025",
+      "destination": "/blog/reddit-marketing-guide-2025",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/practical-reddit-audience-research-tactics-for-creators-and-growth-teams",
+      "destination": "/blog/practical-reddit-research-workflows-for-creators-and-growth-teams",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/practical-reddit-audience-research-techniques-for-creators-and-growth-teams",
+      "destination": "/blog/practical-reddit-research-workflows-for-creators-and-growth-teams",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/practical-reddit-keyword-research-strategies-for-creators-and-growth-teams",
+      "destination": "/blog/practical-reddit-research-workflows-for-creators-and-growth-teams",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/reddit-research-tools-in-2026-what-growth-teams-and-creators-actually-need",
+      "destination": "/blog/practical-reddit-research-workflows-for-creators-and-growth-teams",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/5-essential-reddit-toolbox-alternatives-for-founders-and-growth-operators",
+      "destination": "/blog/unlocking-reddit-insights-for-founders-and-growth-operators",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/7-essential-free-reddit-tools-for-founders-and-growth-operators",
+      "destination": "/blog/unlocking-reddit-insights-for-founders-and-growth-operators",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/top-reddit-toolbox-alternatives-for-founders-and-growth-operators-in-2026",
+      "destination": "/blog/unlocking-reddit-insights-for-founders-and-growth-operators",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/find-customers-on-reddit-guide-2025",
+      "destination": "/blog/find-customers-on-reddit-2025",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/find-customers-reddit-without-ads-2025",
+      "destination": "/blog/find-customers-on-reddit-2025",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/how-to-find-100-customers-on-reddit-2025",
+      "destination": "/blog/find-customers-on-reddit-2025",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/find-low-competition-reddit-threads-guide-2025",
+      "destination": "/blog/find-low-competition-reddit-threads-2025",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/finding-low-competition-reddit-threads-a-step-by-step-guide",
+      "destination": "/blog/find-low-competition-reddit-threads-2025",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/reddit-low-competition-threads-guide-2025",
+      "destination": "/blog/find-low-competition-reddit-threads-2025",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/reddit-ios-karma-guide-2025",
+      "destination": "/blog/reddit-no-karma-subreddits-2025",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/reddit-karma-fast-guide-2026",
+      "destination": "/blog/reddit-no-karma-subreddits-2025",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/reddit-karma-guide-2025",
+      "destination": "/blog/reddit-no-karma-subreddits-2025",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/setting-up-effective-reddit-keyword-monitoring-and-alerts-in-2026-workflow-playb",
+      "destination": "/blog/setting-up-effective-reddit-monitoring-alerts-for-competitive-tracking-in-2026",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/setting-up-reddit-keyword-alerts-and-daily-digests-a-practical-2026-workflow",
+      "destination": "/blog/setting-up-effective-reddit-monitoring-alerts-for-competitive-tracking-in-2026",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/setting-up-reddit-keyword-alerts-in-2026-workflow-for-brand-and-trend-monitoring",
+      "destination": "/blog/setting-up-effective-reddit-monitoring-alerts-for-competitive-tracking-in-2026",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/a-step-by-step-guide-to-effective-reddit-monitoring-for-businesses",
+      "destination": "/blog/a-founders-guide-to-effective-reddit-monitoring-tools-in-2026",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/the-ultimate-reddit-monitoring-workflow-for-founders-and-creators",
+      "destination": "/blog/a-founders-guide-to-effective-reddit-monitoring-tools-in-2026",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/best-reddit-research-tools-2026-patterns-from-founder-reviews-after-gummysearch",
+      "destination": "/blog/reddit-research-tools-in-2026-three-patterns-after-the-gummysearch-shutdown",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/best-reddit-research-tools-in-2026-practical-alternatives-after-gummysearch-shut",
+      "destination": "/blog/reddit-research-tools-in-2026-three-patterns-after-the-gummysearch-shutdown",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/reddit-marketing-tools-workflow-practical-steps-for-lead-generation-in-2026",
+      "destination": "/blog/reddit-lead-generation-complete-guide-2026",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/top-reddit-tools-2026-workflow-playbook-for-monitoring-and-lead-generation",
+      "destination": "/blog/reddit-lead-generation-complete-guide-2026",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/best-reddit-video-downloaders-2025",
+      "destination": "/blog/reddit-video-downloader-comparison-2025",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/reddit-video-downloader-desktop-vs-online-2026",
+      "destination": "/blog/reddit-video-downloader-comparison-2025",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/a-step-by-step-guide-to-reddit-keyword-alerts-for-founders-and-growth-operators",
+      "destination": "/blog/setting-up-reddit-keyword-alerts-for-founders-and-growth-operators",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/maximizing-reddit-keyword-research-for-founders-and-growth-operators",
+      "destination": "/blog/setting-up-reddit-keyword-alerts-for-founders-and-growth-operators",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/a-practical-guide-to-reddit-scraping-tools-techniques-and-best-practices",
+      "destination": "/blog/the-ultimate-guide-to-reddit-scraping-best-practices-and-tools-for-2026",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/monitoring-reddit-keywords-a-practical-workflow-for-growth-operators-in-2026",
+      "destination": "/blog/a-step-by-step-guide-to-monitoring-reddit-keywords-for-business-growth",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/best-reddit-scraper-2025-free-trial",
+      "destination": "/blog/reddit-scraper-comparison-2025",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/download-reddit-toolbox-101-for-windows-wappkit-installer-workflow-guide",
+      "destination": "/blog/download-reddit-toolbox-desktop-from-wappkit-windows-installer-guide",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/find-reddit-user-guide-2025",
+      "destination": "/blog/how-to-find-reddit-users-2025",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/find-viral-reddit-stories-content-creation-2025",
+      "destination": "/blog/reddit-for-content-creators-viral-stories-2025",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/gummysearch-alternative-reddit-toolbox-2025",
+      "destination": "/blog/best-reddit-alternatives-2025",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/a-practical-guide-to-reddit-keyword-monitoring-for-founders-and-growth-operators",
+      "destination": "/blog/how-growth-operators-use-reddit-keyword-monitoring-to-boost-content-calendar",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/how-to-conduct-effective-reddit-audience-research-in-2026",
+      "destination": "/blog/how-to-conduct-competitor-research-on-reddit-a-practical-guide",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/how-to-read-reddit-without-an-account-in-2026-privacy-first-workflow",
+      "destination": "/blog/why-reddit-asks-you-to-log-in-and-how-to-read-it-without-an-account",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/how-to-monitor-reddit-keywords-a-practical-workflow-for-founders-and-growth-oper",
+      "destination": "/blog/how-to-set-up-a-keyword-monitoring-system-on-reddit-for-founders-and-growth-oper",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/how-to-use-reddit-toolbox-to-analyze-the-ranalytics-subreddit-in-2026",
+      "destination": "/blog/how-to-use-reddit-toolbox-to-analyze-the-rsaas-subreddit-in-2026",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/practical-reddit-audience-research-techniques-for-product-and-content-ideas",
+      "destination": "/blog/practical-reddit-research-techniques-for-validating-product-ideas",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/practical-ways-growth-operators-turn-reddit-keyword-tracking-into-content-and-pr",
+      "destination": "/blog/reddit-keyword-tracking-workflow-for-growth-operators-and-creators",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/reddit-as-a-research-tool-why-founders-are-replacing-survey-forms-with-reddit-li",
+      "destination": "/blog/why-reddit-listening-is-replacing-survey-forms-for-startup-research",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/practical-reddit-research-workflows-for-growth-operators-and-creators",
+      "destination": "/blog/reddit-competitor-research-techniques-for-growth-operators",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/reddit-keyword-research-tools-2026-patterns-from-keyworddit-reddily-and-practica",
+      "destination": "/blog/free-reddit-keyword-research-in-2026-patterns-from-top-tools-and-methods",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/reddit-keyword-research-workflow-a-practical-playbook-for-2026",
+      "destination": "/blog/reddit-keyword-tracking-workflow-practical-playbook-for-2026",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/how-to-monitor-reddit-for-keywords-and-mentions-a-practical-2026-workflow",
+      "destination": "/blog/reddit-keywords-automation-workflow-monitor-mentions-and-generate-leads",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/best-reddit-scrapers-for-2026-a-comparison-of-top-tools",
+      "destination": "/blog/reddit-marketing-tools-honest-comparison-2026",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/reddit-pro-tools-guide-2025",
+      "destination": "/blog/best-free-reddit-tools-2025",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/reddit-stock-sentiment-guide-2025",
+      "destination": "/blog/reddit-stock-sentiment-wallstreetbets-2025",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/reddit-toolbox-workflow-for-founders-building-a-2026-monitoring-system",
+      "destination": "/blog/building-a-reddit-keyword-monitoring-workflow-for-founders",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/reddit-viewer-desktop-a-practical-workflow-for-founders-and-researchers-who-need",
+      "destination": "/blog/free-reddit-viewer-a-practical-workflow-for-founders-and-researchers-in-2026",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/scrape-reddit-data-python-vs-tools-2026",
+      "destination": "/blog/how-to-scrape-reddit-data-2025",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/setting-up-reddit-keyword-alerts-to-track-customer-pain-points-in-real-time",
+      "destination": "/blog/setting-up-reddit-keyword-alerts-and-digests-for-real-time-market-insights",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/setting-up-reddit-keyword-monitoring-for-real-time-market-and-audience-insights",
+      "destination": "/blog/setting-up-reddit-monitoring-alerts-for-real-time-market-signals-in-2026",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/simplifying-reddit-competitor-analysis-for-small-teams-a-step-by-step-workflow",
+      "destination": "/blog/reddit-competitor-analysis-guide-2025",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/the-founders-guide-to-reddit-audience-research-finding-pain-points-that-actually",
+      "destination": "/blog/unlocking-reddit-a-founders-guide-to-audience-research-and-pain-point-discovery",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/the-ultimate-reddit-scraping-workflow-for-marketers-in-2026",
+      "destination": "/blog/the-ultimate-reddit-scraping-workflow-a-step-by-step-guide",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/unlocking-reddit-insights-how-ai-powered-research-tools-can-transform-your-workf",
+      "destination": "/blog/unlocking-reddits-potential-a-guide-to-ai-powered-research-tools",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/what-a-reddit-viewer-actually-does-and-when-it-beats-the-official-app",
+      "destination": "/blog/reddit-viewer-vs-reddit-app-which-one-should-you-actually-use",
+      "statusCode": 301
+    }
   ]
 }
