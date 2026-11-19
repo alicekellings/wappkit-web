@@ -249,6 +249,12 @@ const relatedReading = [
       "Free APK that browses subreddits and reads threads without the app or an account.",
   },
   {
+    title: "Reddit Reader browser extension",
+    href: "/tools/reddit-viewer-extension",
+    description:
+      "Free Chrome and Edge extension: clean reader, keyword highlight, Markdown export. No installer, no account.",
+  },
+  {
     title: "Reddit Toolbox full feature list",
     href: "/tools/reddit-toolbox",
     description:
