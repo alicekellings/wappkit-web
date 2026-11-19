@@ -204,7 +204,8 @@
     "reddit_toolbox:topic:monitoring a niche subreddit for launch feedback",
     "reddit_toolbox:topic:how to read reddit on a chromebook without the app",
     "reddit_toolbox:topic:keyboard only reddit browsing",
-    "reddit_toolbox:topic:reading reddit threads on an android tablet"
+    "reddit_toolbox:topic:reading reddit threads on an android tablet",
+    "reddit_toolbox:topic:what reddit data is public versus login only"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -417,7 +418,8 @@
     "how-to-monitor-a-niche-subreddit-for-product-launch-feedback-workflow-playbook",
     "how-to-read-reddit-on-a-chromebook-without-the-app-browser-based-methods-that-wo",
     "how-to-browse-reddit-using-only-your-keyboard-a-workflow-playbook-for-researcher",
-    "reading-reddit-threads-on-an-android-tablet-what-actually-works-for-research-in"
+    "reading-reddit-threads-on-an-android-tablet-what-actually-works-for-research-in",
+    "reddit-public-vs-login-only-data-what-you-can-still-access-in-2026"
   ],
   "events": [
     {
@@ -1896,6 +1898,25 @@
       "source_type": "topic",
       "slug": "reading-reddit-threads-on-an-android-tablet-what-actually-works-for-research-in",
       "title": "Reading Reddit Threads on an Android Tablet: What Actually Works for Research in 2026"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "reading locked or archived reddit threads",
+      "source_type": "topic",
+      "slug": "",
+      "title": "",
+      "status": "skipped",
+      "reason": "Duplicate topic risk: 'reading locked or archived reddit threads' overlaps existing posts: Reading Reddit Threads on an Android Tablet: What Actually Works for Research in 2026 (0.60); Exporting Reddit Threads to Markdown: What Actually Works in 2026 (0.40); How to Find Low-Competition Reddit Threads for Marketing (0.40)."
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "what reddit data is public versus login only",
+      "source_type": "topic",
+      "slug": "reddit-public-vs-login-only-data-what-you-can-still-access-in-2026",
+      "title": "Reddit Public vs. Login-Only Data: What You Can Still Access in 2026"
     }
+  ],
+  "skipped_topics": [
+    "reddit_toolbox:topic:reading locked or archived reddit threads"
   ]
 }
