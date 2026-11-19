@@ -16,8 +16,10 @@ import {
 } from "@/components/marketing/page-shell";
 import { constructMetadata } from "@/lib/utils";
 
-// Published Edge Add-ons listing. The Chrome Web Store listing is still pending.
+// Published store listings. Chrome is the primary install surface; Edge stays available.
 const STORE_URL =
+  "https://chromewebstore.google.com/detail/akgmihlphnhaejbhpmcjckpdogbplcng";
+const EDGE_URL =
   "https://microsoftedge.microsoft.com/addons/detail/jfanggdobljmlaohcldjoafnigmhfogh";
 
 const PRO_CHECKOUT_ENABLED = true;
@@ -88,6 +90,14 @@ export default function RedditReaderExtensionPage() {
                 Pro opens at launch
               </Button>
             )}
+            <a
+              href={EDGE_URL}
+              target="_blank"
+              rel="noopener"
+              className="self-center text-sm font-medium text-muted-foreground underline underline-offset-4 hover:text-foreground"
+            >
+              Also on Microsoft Edge
+            </a>
           </>
         }
         stats={[

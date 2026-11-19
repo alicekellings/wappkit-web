@@ -171,16 +171,16 @@ export const tools: Tool[] = [
       "Privacy-conscious readers who want less clutter and no app prompts",
     ],
     platform: "Chrome / Edge",
-    downloadLabel: "Get it from Edge Add-ons",
+    downloadLabel: "Get it from the Chrome Web Store",
     buyLabel: "Get Pro — $4.99",
     downloadHref:
-      "https://microsoftedge.microsoft.com/addons/detail/jfanggdobljmlaohcldjoafnigmhfogh",
+      "https://chromewebstore.google.com/detail/akgmihlphnhaejbhpmcjckpdogbplcng",
     buyHref: "/license",
     docsHref: "/docs/checkout-and-activation",
     mobileHref: "/tools/reddit-reader-android",
     mobileLabel: "On a phone? Get the Android reader",
     availabilityNote:
-      "Reddit Reader is live on Microsoft Edge Add-ons (the Chrome Web Store listing is still pending). Free to install with a 3-export trial; Pro activates inside the extension with a Wappkit license key.",
+      "Reddit Reader is live on the Chrome Web Store and Microsoft Edge Add-ons. Free to install with a 3-export trial; Pro activates inside the extension with a Wappkit license key.",
     checkoutEnabled: true,
     priceLabel: "$4.99 one-time",
     priceNote:
