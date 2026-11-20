@@ -27,4 +27,18 @@ export const BLOG_AUTHORS: Record<string, BlogAuthor> = {
     image: "/_static/favicons/android-chrome-512x512.png",
     twitter: "wappkit",
   },
+  // Desk bylines: accountable editorial identities, not fabricated individuals.
+  // Each desk owns a content type, so readers can tell research from walkthroughs.
+  "wappkit-research": {
+    name: "Wappkit Research Desk",
+    image: "/_static/favicons/android-chrome-512x512.png",
+  },
+  "wappkit-product": {
+    name: "Wappkit Product Notes",
+    image: "/_static/favicons/android-chrome-512x512.png",
+  },
+  "wappkit-editorial": {
+    name: "Wappkit Editorial",
+    image: "/_static/favicons/android-chrome-512x512.png",
+  },
 };

@@ -100,6 +100,8 @@ export default async function PostPage({
   const authorNames = post.authors
     .map((username) => BLOG_AUTHORS[username]?.name ?? username)
     .join(", ");
+  const primaryAuthor =
+    BLOG_AUTHORS[post.authors?.[0] ?? "wappkit"] ?? BLOG_AUTHORS.wappkit;
 
   // 构建期不再逐篇请求外部图床生成模糊占位图：
   // 240+ 篇文章会让静态生成耗时逼近构建超时，改用常量占位图。
@@ -147,7 +149,7 @@ export default async function PostPage({
           <MarketingCard tone="dark" className="space-y-5">
             <div className="flex items-center gap-3">
               <BlurImage
-                src={BLOG_AUTHORS.wappkit.image}
+                src={primaryAuthor.image}
                 alt=""
                 width={44}
                 height={44}
