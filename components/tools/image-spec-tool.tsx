@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useMemo, useRef, useState } from "react";
+import { track } from "@vercel/analytics/react";
 import {
   AlertTriangle,
   CheckCircle2,
@@ -231,12 +232,23 @@ export function ImageSpecTool({ spec }: { spec: ImageSpec }) {
                 { backgroundAvailable: false },
               );
 
+          const findings = [...metadata, ...pixelFindings, ...manualFindings(spec)];
+          const verdict = summarize(findings);
+
           patch(entry.id, {
             width: input.width,
             height: input.height,
-            findings: [...metadata, ...pixelFindings, ...manualFindings(spec)],
+            findings,
             analysis,
             scanning: false,
+          });
+
+          // Only the slot and the outcome — never the file name or the pixels.
+          track("image_audit_completed", {
+            slot: spec.slug,
+            verdict: verdict.verdict,
+            fails: String(verdict.fail),
+            warns: String(verdict.warn),
           });
         } catch (error) {
           patch(entry.id, {
@@ -262,6 +274,13 @@ export function ImageSpecTool({ spec }: { spec: ImageSpec }) {
           exportedUrl: result.url,
           exportedBytes: result.bytes,
           exportedFormat: result.format,
+        });
+        // An export is the strongest free-tool signal: the report was convincing enough
+        // that the user took the file back to the marketplace.
+        track("image_export_completed", {
+          slot: spec.slug,
+          format: result.format,
+          kb: String(Math.max(1, Math.round(result.bytes / 1024))),
         });
       } catch (error) {
         patch(entry.id, {

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight, Check, Info, ShieldAlert, Sparkles } from "lucide-react";
 
 import { ImageSpecTool } from "@/components/tools/image-spec-tool";
+import { TrackedToolLink } from "@/components/tools/tracked-tool-link";
 import { formatBytes } from "@/lib/image-audit";
 import {
   BACKGROUND_LABEL,
@@ -229,20 +230,24 @@ export function SpecPage({ spec }: { spec: ImageSpec }) {
               </p>
             </div>
             <div className="flex flex-col gap-3">
-              <Link
+              <TrackedToolLink
                 href="/tools/ai-ecom-visual-studio"
+                event="image_checker_to_desktop_app"
+                data={{ slot: spec.slug, platform: spec.platform }}
                 className="flex items-center justify-between rounded-2xl border bg-background px-4 py-3 text-sm font-medium text-foreground transition hover:border-orange-300"
               >
                 <span>Open the desktop image studio</span>
                 <ArrowRight className="size-4" />
-              </Link>
-              <Link
+              </TrackedToolLink>
+              <TrackedToolLink
                 href="/tools"
+                event="image_checker_to_index"
+                data={{ slot: spec.slug }}
                 className="flex items-center justify-between rounded-2xl border bg-background px-4 py-3 text-sm font-medium text-foreground transition hover:border-orange-300"
               >
                 <span>Browse all checkers</span>
                 <ArrowRight className="size-4" />
-              </Link>
+              </TrackedToolLink>
             </div>
           </div>
         </section>
