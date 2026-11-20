@@ -267,6 +267,42 @@ test("a nearly empty frame on grey is reported as undersized, not as 100% fill",
   assert.equal(fill?.status, "fail");
 });
 
+test("Etsy's 1MB figure is guidance, so going over it warns instead of failing", () => {
+  const spec = getImageSpec("etsy-listing-image");
+  assert.ok(spec);
+
+  const over = auditMetadata(
+    { name: "big.jpg", width: 2000, height: 2000, bytes: 2 * 1024 * 1024, type: "image/jpeg" },
+    spec!,
+  );
+  const overFinding = over.find((finding) => finding.id === "bytes");
+  assert.equal(overFinding?.status, "warn");
+  assert.equal(summarize(over).verdict, "fixable", "an advisory must not block the upload");
+
+  const under = auditMetadata(
+    { name: "ok.jpg", width: 2000, height: 2000, bytes: 800 * 1024, type: "image/jpeg" },
+    spec!,
+  );
+  assert.equal(under.find((finding) => finding.id === "bytes")?.status, "pass");
+});
+
+test("a published hard cap still fails, unlike an advisory", () => {
+  const spec = getImageSpec("amazon-main-image");
+  assert.ok(spec);
+
+  const findings = auditMetadata(
+    {
+      name: "huge.jpg",
+      width: 2000,
+      height: 2000,
+      bytes: 11 * 1024 * 1024,
+      type: "image/jpeg",
+    },
+    spec!,
+  );
+  assert.equal(findings.find((finding) => finding.id === "bytes")?.status, "fail");
+});
+
 test("every spec is internally consistent", () => {
   assert.ok(IMAGE_SPECS.length >= 8, "expect at least eight marketplace pages");
   const slugs = new Set<string>();

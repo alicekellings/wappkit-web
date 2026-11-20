@@ -127,7 +127,8 @@ export default function ToolsPage() {
                 {spec.surface}
               </p>
               <p className="mt-3 text-sm text-muted-foreground">
-                {spec.recommendedWidth} × {spec.recommendedHeight} px · up to{" "}
+                {spec.recommendedWidth} × {spec.recommendedHeight} px ·{" "}
+                {spec.bytesAdvisory ? "≈" : "up to "}
                 {formatBytes(spec.maxBytes)}
               </p>
               <span className="mt-4 inline-flex items-center gap-1 text-xs font-medium text-orange-700">

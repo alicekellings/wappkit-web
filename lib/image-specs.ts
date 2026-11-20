@@ -30,6 +30,12 @@ export type ImageSpec = {
   recommendedWidth: number;
   recommendedHeight: number;
   maxBytes: number;
+  /**
+   * True when the platform publishes the number as a caution rather than a rejection
+   * rule. Etsy says images "larger than 1MB may not finish uploading" — advising, not
+   * blocking — so exceeding it must warn, never fail.
+   */
+  bytesAdvisory?: boolean;
   acceptedFormats: string[];
   background: BackgroundRule;
   /** Only present when the platform publishes a fill rule (Amazon: 85%) */
@@ -142,7 +148,8 @@ export const IMAGE_SPECS: ImageSpec[] = [
     recommendedWidth: 2000,
     recommendedHeight: 2000,
     maxBytes: 1024 * 1024,
-    acceptedFormats: ["JPEG", "PNG (no transparency)"],
+    bytesAdvisory: true,
+    acceptedFormats: ["JPEG", "PNG (no transparency)", "GIF", "HEIC"],
     background: "any",
     requirements: [
       "First photo at least 635 × 635 px — smaller images are shown less often.",

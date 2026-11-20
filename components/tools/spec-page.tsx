@@ -14,7 +14,11 @@ function specFaq(spec: ImageSpec): Array<{ question: string; answer: string }> {
   return [
     {
       question: `What size should a ${spec.platform} ${spec.surface.toLowerCase()} be?`,
-      answer: `${spec.platform} accepts ${spec.minLongEdge > 0 ? `a longest edge of ${spec.minLongEdge} px or more, up to ${spec.maxLongEdge} px` : `up to ${spec.maxLongEdge} px`}. ${spec.recommendedWidth} × ${spec.recommendedHeight} px is the working size this page exports, and the file must stay under ${formatBytes(spec.maxBytes)}.`,
+      answer: `${spec.platform} accepts ${spec.minLongEdge > 0 ? `a longest edge of ${spec.minLongEdge} px or more, up to ${spec.maxLongEdge} px` : `up to ${spec.maxLongEdge} px`}. ${spec.recommendedWidth} × ${spec.recommendedHeight} px is the working size this page exports, and ${
+        spec.bytesAdvisory
+          ? `the platform advises staying near ${formatBytes(spec.maxBytes)} per file, though it publishes no hard cap`
+          : `the file must stay under ${formatBytes(spec.maxBytes)}`
+      }.`,
     },
     {
       question: `Does the background have to be pure white?`,
@@ -122,7 +126,16 @@ export function SpecPage({ spec }: { spec: ImageSpec }) {
               <div className="flex items-start justify-between gap-4 py-3">
                 <dt className="text-muted-foreground">File size</dt>
                 <dd className="text-right font-medium text-foreground">
-                  up to {formatBytes(spec.maxBytes)}
+                  {spec.bytesAdvisory ? (
+                    <>
+                      {formatBytes(spec.maxBytes)} guidance
+                      <span className="block text-xs font-normal text-muted-foreground">
+                        no published hard cap — larger files may stall mid-upload
+                      </span>
+                    </>
+                  ) : (
+                    <>up to {formatBytes(spec.maxBytes)}</>
+                  )}
                 </dd>
               </div>
               <div className="flex items-start justify-between gap-4 py-3">

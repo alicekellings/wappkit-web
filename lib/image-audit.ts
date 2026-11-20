@@ -295,14 +295,26 @@ export function auditMetadata(input: AuditInput, spec: ImageSpec): Finding[] {
       : `${format} is not in the accepted list; export as ${spec.acceptedFormats[0]}.`,
   });
 
+  const overBytes = input.bytes > spec.maxBytes;
+  // Etsy's 1MB is advice, not a gate — reporting it as a failure would tell sellers to
+  // recompress an image the platform accepts. Only published hard caps fail.
+  const bytesStatus: AuditStatus = overBytes
+    ? spec.bytesAdvisory
+      ? "warn"
+      : "fail"
+    : "pass";
   findings.push({
     id: "bytes",
-    label: `File size at most ${formatBytes(spec.maxBytes)}`,
-    status: input.bytes <= spec.maxBytes ? "pass" : "fail",
+    label: spec.bytesAdvisory
+      ? `File size near the ${formatBytes(spec.maxBytes)} guidance`
+      : `File size at most ${formatBytes(spec.maxBytes)}`,
+    status: bytesStatus,
     detail:
-      input.bytes <= spec.maxBytes
-        ? `${formatBytes(input.bytes)}, under the limit.`
-        : `${formatBytes(input.bytes)} exceeds ${formatBytes(spec.maxBytes)}; compress before upload.`,
+      bytesStatus === "pass"
+        ? `${formatBytes(input.bytes)}, ${spec.bytesAdvisory ? "at or under" : "under"} the ${formatBytes(spec.maxBytes)} ${spec.bytesAdvisory ? "guidance" : "limit"}.`
+        : bytesStatus === "warn"
+          ? `${formatBytes(input.bytes)} is over the ${formatBytes(spec.maxBytes)} guidance. ${spec.platform} still accepts it, but the upload may stall on a slow connection.`
+          : `${formatBytes(input.bytes)} exceeds ${formatBytes(spec.maxBytes)}; compress before upload.`,
   });
 
   // Aspect ratio is a recommendation everywhere except where the platform publishes 1:1.
