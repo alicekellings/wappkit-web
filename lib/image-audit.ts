@@ -38,8 +38,14 @@ export type PixelAnalysis = {
 
 /** A pixel counts as white when every channel is at or above this. */
 const WHITE_CHANNEL_THRESHOLD = 250;
-/** A pixel counts as subject when any channel drops below this. */
-const SUBJECT_CHANNEL_THRESHOLD = 240;
+/**
+ * How far a pixel must sit from the sampled backdrop before it counts as product.
+ *
+ * The earlier rule ("any channel below 240 is product") only worked on a pure white
+ * backdrop. On a 238 grey studio background every pixel qualified, so the bounding box
+ * became the whole frame and a near-empty photo was reported as "subject fills 100%".
+ */
+const SUBJECT_DELTA = 12;
 /** Target number of sampled pixels; keeps a 20MP photo under ~50ms. */
 const SAMPLE_BUDGET = 400_000;
 
@@ -77,11 +83,18 @@ function isWhite(rgb: RGB): boolean {
   );
 }
 
-function isSubject(rgb: RGB): boolean {
+/** Median resists a product that clips one edge, which a mean would drag toward. */
+function median(values: number[]): number {
+  if (values.length === 0) return 255;
+  values.sort((a, b) => a - b);
+  return values[Math.floor(values.length / 2)];
+}
+
+function isSubjectAgainst(rgb: RGB, backdrop: RGB): boolean {
   return (
-    rgb[0] < SUBJECT_CHANNEL_THRESHOLD ||
-    rgb[1] < SUBJECT_CHANNEL_THRESHOLD ||
-    rgb[2] < SUBJECT_CHANNEL_THRESHOLD
+    Math.abs(rgb[0] - backdrop[0]) > SUBJECT_DELTA ||
+    Math.abs(rgb[1] - backdrop[1]) > SUBJECT_DELTA ||
+    Math.abs(rgb[2] - backdrop[2]) > SUBJECT_DELTA
   );
 }
 
@@ -91,6 +104,9 @@ function isSubject(rgb: RGB): boolean {
  * The border band is what marketplaces actually look at: a product can sit on white
  * paper with grey vignetting in the corners and still be rejected. Sampling the band
  * instead of the whole frame avoids letting the product itself count as "not white".
+ *
+ * That same band supplies the backdrop colour used to separate product from background,
+ * which is why the fill estimate survives a grey or coloured backdrop.
  */
 export function analyzePixels(
   data: Uint8ClampedArray,
@@ -101,9 +117,34 @@ export function analyzePixels(
   const bandX = Math.max(1, Math.floor(width * 0.02));
   const bandY = Math.max(1, Math.floor(height * 0.02));
 
+  // Pass 1 — the border band only. It answers two questions: is the background white,
+  // and what colour is it actually? The second answer is what keeps a grey backdrop
+  // from being read as one giant subject.
+  const bandR: number[] = [];
+  const bandG: number[] = [];
+  const bandB: number[] = [];
   let borderSamples = 0;
   let borderNonWhite = 0;
 
+  for (let y = 0; y < height; y += stride) {
+    for (let x = 0; x < width; x += stride) {
+      const inBand =
+        x < bandX || y < bandY || x >= width - bandX || y >= height - bandY;
+      if (!inBand) continue;
+
+      const rgb = readPixel(data, width, x, y);
+      bandR.push(rgb[0]);
+      bandG.push(rgb[1]);
+      bandB.push(rgb[2]);
+      borderSamples += 1;
+      if (!isWhite(rgb)) borderNonWhite += 1;
+    }
+  }
+
+  const backdrop: RGB = [median(bandR), median(bandG), median(bandB)];
+
+  // Pass 2 — subject bounds measured against that backdrop, so the same thresholds
+  // work on white, grey and coloured backgrounds alike.
   let minX = width;
   let minY = height;
   let maxX = -1;
@@ -112,22 +153,13 @@ export function analyzePixels(
 
   for (let y = 0; y < height; y += stride) {
     for (let x = 0; x < width; x += stride) {
-      const rgb = readPixel(data, width, x, y);
       sampled += 1;
+      if (!isSubjectAgainst(readPixel(data, width, x, y), backdrop)) continue;
 
-      const inBand =
-        x < bandX || y < bandY || x >= width - bandX || y >= height - bandY;
-      if (inBand) {
-        borderSamples += 1;
-        if (!isWhite(rgb)) borderNonWhite += 1;
-      }
-
-      if (isSubject(rgb)) {
-        if (x < minX) minX = x;
-        if (y < minY) minY = y;
-        if (x > maxX) maxX = x;
-        if (y > maxY) maxY = y;
-      }
+      if (x < minX) minX = x;
+      if (y < minY) minY = y;
+      if (x > maxX) maxX = x;
+      if (y > maxY) maxY = y;
     }
   }
 

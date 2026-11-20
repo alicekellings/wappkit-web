@@ -222,6 +222,51 @@ test("formatBytes uses readable units", () => {
   assert.equal(formatBytes(3 * 1024 * 1024), "3.00 MB");
 });
 
+test("a grey backdrop is not mistaken for one huge subject", () => {
+  // Regression: the old rule treated every pixel below 240 as product, so a 238 grey
+  // studio backdrop became a full-frame subject and fill was reported as 100%.
+  const spec = getImageSpec("amazon-main-image");
+  assert.ok(spec);
+
+  const start = 15;
+  const end = 184;
+  const data = makeImage(200, 200, (x, y) =>
+    x >= start && x <= end && y >= start && y <= end ? [196, 74, 52] : [238, 238, 238],
+  );
+  const analysis = analyzePixels(data, 200, 200);
+
+  assert.ok(analysis.subjectBox);
+  assert.equal(analysis.subjectBox!.left, 15);
+  assert.equal(analysis.subjectBox!.right, 184);
+  assert.ok(
+    Math.abs(analysis.fillRatio - (170 * 170) / (200 * 200)) < 0.001,
+    `fill ratio ${analysis.fillRatio} should measure the product, not the frame`,
+  );
+
+  const findings = auditPixels(analysis, spec!, { backgroundAvailable: true });
+  // The backdrop is still wrong for Amazon, and the fill verdict still works.
+  assert.equal(findings.find((finding) => finding.id === "background")?.status, "fail");
+  assert.equal(findings.find((finding) => finding.id === "fill")?.status, "pass");
+});
+
+test("a nearly empty frame on grey is reported as undersized, not as 100% fill", () => {
+  const spec = getImageSpec("amazon-main-image");
+  assert.ok(spec);
+
+  const start = 80;
+  const end = 119;
+  const data = makeImage(200, 200, (x, y) =>
+    x >= start && x <= end && y >= start && y <= end ? [20, 20, 20] : [248, 248, 248],
+  );
+  const analysis = analyzePixels(data, 200, 200);
+
+  assert.ok(analysis.fillRatio < 0.1, `fill ${analysis.fillRatio} should be small`);
+  const fill = auditPixels(analysis, spec!, { backgroundAvailable: true }).find(
+    (finding) => finding.id === "fill",
+  );
+  assert.equal(fill?.status, "fail");
+});
+
 test("every spec is internally consistent", () => {
   assert.ok(IMAGE_SPECS.length >= 8, "expect at least eight marketplace pages");
   const slugs = new Set<string>();

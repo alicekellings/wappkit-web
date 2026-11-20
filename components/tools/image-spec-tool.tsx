@@ -489,8 +489,9 @@ export function ImageSpecTool({ spec }: { spec: ImageSpec }) {
           wash out light-coloured products.
         </p>
         <p className="mt-1">
-          Fill is an estimate from the subject&apos;s bounding box, which includes drop
-          shadows. Marketplaces judge by eye, so use the number as a guide, not a guarantee.
+          Fill is an estimate from the subject&apos;s bounding box, measured against the
+          background colour sampled from the frame edge, and it includes drop shadows.
+          Marketplaces judge by eye, so use the number as a guide, not a guarantee.
         </p>
       </div>
     </div>
