@@ -205,7 +205,8 @@
     "reddit_toolbox:topic:how to read reddit on a chromebook without the app",
     "reddit_toolbox:topic:keyboard only reddit browsing",
     "reddit_toolbox:topic:reading reddit threads on an android tablet",
-    "reddit_toolbox:topic:what reddit data is public versus login only"
+    "reddit_toolbox:topic:what reddit data is public versus login only",
+    "reddit_toolbox:forged:reddit api rate limits cost 60 requests per minute"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -419,7 +420,8 @@
     "how-to-read-reddit-on-a-chromebook-without-the-app-browser-based-methods-that-wo",
     "how-to-browse-reddit-using-only-your-keyboard-a-workflow-playbook-for-researcher",
     "reading-reddit-threads-on-an-android-tablet-what-actually-works-for-research-in",
-    "reddit-public-vs-login-only-data-what-you-can-still-access-in-2026"
+    "reddit-public-vs-login-only-data-what-you-can-still-access-in-2026",
+    "60-rpm-managing-reddit-api-rate-limits-in-practice"
   ],
   "events": [
     {
@@ -1914,9 +1916,36 @@
       "source_type": "topic",
       "slug": "reddit-public-vs-login-only-data-what-you-can-still-access-in-2026",
       "title": "Reddit Public vs. Login-Only Data: What You Can Still Access in 2026"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "saving reddit posts to csv for excel analysis",
+      "source_type": "topic",
+      "slug": "",
+      "title": "",
+      "status": "skipped",
+      "reason": "Intent already covered (0.50 >= 0.50): 'A Step-by-Step Guide to Exporting Reddit Posts for Offline Analysis' [a-step-by-step-guide-to-exporting-reddit-posts-for-offline-analysis]. Candidate: 'saving reddit posts to csv for excel analysis'"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "reddit search operators you can use logged out",
+      "source_type": "topic",
+      "slug": "",
+      "title": "",
+      "status": "skipped",
+      "reason": "Intent already covered (0.60 >= 0.50): 'Mastering Reddit Search: The Ultimate Guide to Advanced Search Operators (2025)' [mastering-reddit-advanced-search-2025]. Candidate: 'reddit search operators you can use logged out'"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "Reddit API rate limits cost 60 requests per minute",
+      "source_type": "forged",
+      "slug": "60-rpm-managing-reddit-api-rate-limits-in-practice",
+      "title": "60 RPM: Managing Reddit API Rate Limits in Practice"
     }
   ],
   "skipped_topics": [
-    "reddit_toolbox:topic:reading locked or archived reddit threads"
+    "reddit_toolbox:topic:reading locked or archived reddit threads",
+    "reddit_toolbox:topic:saving reddit posts to csv for excel analysis",
+    "reddit_toolbox:topic:reddit search operators you can use logged out"
   ]
 }

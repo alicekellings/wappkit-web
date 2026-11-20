@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "slug": "60-rpm-managing-reddit-api-rate-limits-in-practice",
+      "title": "60 RPM: Managing Reddit API Rate Limits in Practice",
+      "type": "data_study",
+      "template": "measurement_report",
+      "date": "2026-11-20"
+    }
+  ]
+}

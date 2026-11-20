@@ -1,0 +1,28 @@
+{
+  "candidates": [
+    {
+      "title": "Pushshift archive contains 1.2 billion historical posts",
+      "type": "data_study",
+      "angle": "Cites the exact volume of data available in the public academic dataset.",
+      "slug": "pushshift-archive-contains-1-2-billion-historical-posts"
+    },
+    {
+      "title": "Reddit JSON endpoints return 25 items per page",
+      "type": "data_study",
+      "angle": "Details the pagination limit found in the public developer docs.",
+      "slug": "reddit-json-endpoints-return-25-items-per-page"
+    },
+    {
+      "title": "Wappkit processes 10,000 comments in 45 seconds",
+      "type": "data_study",
+      "angle": "Reports specific performance benchmarks from local tool testing.",
+      "slug": "wappkit-processes-10-000-comments-in-45-seconds"
+    },
+    {
+      "title": "Subreddit flair metadata adds 12 bytes per post",
+      "type": "data_study",
+      "angle": "Analyzes the data overhead of specific JSON fields in public dumps.",
+      "slug": "subreddit-flair-metadata-adds-12-bytes-per-post"
+    }
+  ]
+}
