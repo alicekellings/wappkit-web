@@ -121,6 +121,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.6,
     },
     {
+      url: toAbsoluteUrl("/about"),
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.6,
+    },
+    {
       url: toAbsoluteUrl("/privacy"),
       lastModified: now,
       changeFrequency: "yearly",
