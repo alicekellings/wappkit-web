@@ -1,7 +1,6 @@
 "use client";
 
 import { useCallback, useMemo, useRef, useState } from "react";
-import { track } from "@vercel/analytics/react";
 import {
   AlertTriangle,
   CheckCircle2,
@@ -15,6 +14,7 @@ import {
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { trackEvent } from "@/lib/analytics";
 import {
   analyzePixels,
   auditMetadata,
@@ -244,7 +244,7 @@ export function ImageSpecTool({ spec }: { spec: ImageSpec }) {
           });
 
           // Only the slot and the outcome — never the file name or the pixels.
-          track("image_audit_completed", {
+          trackEvent("image_audit_completed", {
             slot: spec.slug,
             verdict: verdict.verdict,
             fails: String(verdict.fail),
@@ -277,7 +277,7 @@ export function ImageSpecTool({ spec }: { spec: ImageSpec }) {
         });
         // An export is the strongest free-tool signal: the report was convincing enough
         // that the user took the file back to the marketplace.
-        track("image_export_completed", {
+        trackEvent("image_export_completed", {
           slot: spec.slug,
           format: result.format,
           kb: String(Math.max(1, Math.round(result.bytes / 1024))),
