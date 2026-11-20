@@ -3,6 +3,7 @@ import { allDocs, allPosts } from "contentlayer/generated";
 
 import { BLOG_CATEGORIES } from "@/config/blog";
 import { siteConfig } from "@/config/site";
+import { IMAGE_SPECS } from "@/lib/image-specs";
 import { tools } from "@/lib/tools";
 
 const baseUrl = siteConfig.url;
@@ -147,6 +148,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: tool.status === "live" ? 0.85 : 0.7,
   }));
 
+  // 免费网页工具：8 个平台图片规格检测页。它们是桌面软件的引流入口，
+  // 优先给 0.85，与在售产品页持平 —— 这些页承接的是 "amazon image size" 这类
+  // 搜索量远高于品牌词的通用意图。
+  const freeToolRoutes: MetadataRoute.Sitemap = IMAGE_SPECS.map((spec) => ({
+    url: toAbsoluteUrl(`/tools/${spec.slug}`),
+    lastModified: new Date(spec.lastVerified),
+    changeFrequency: "monthly",
+    priority: 0.85,
+  }));
+
   const blogCategoryRoutes: MetadataRoute.Sitemap = BLOG_CATEGORIES.map((category) => ({
     url: toAbsoluteUrl(`/blog/category/${category.slug}`),
     lastModified: now,
@@ -174,6 +185,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     ...staticRoutes,
+    ...freeToolRoutes,
     ...toolRoutes,
     ...blogCategoryRoutes,
     ...blogPostRoutes,

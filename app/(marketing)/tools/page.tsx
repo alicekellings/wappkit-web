@@ -3,6 +3,8 @@ import { ArrowRight, LayoutTemplate, Sparkles } from "lucide-react";
 
 import { tools } from "@/lib/tools";
 import { constructMetadata } from "@/lib/utils";
+import { formatBytes } from "@/lib/image-audit";
+import { IMAGE_SPECS } from "@/lib/image-specs";
 import { Button } from "@/components/ui/button";
 import {
   MarketingCard,
@@ -13,7 +15,8 @@ import {
 export const metadata = constructMetadata({
   title: "Tools | Wappkit",
   description:
-    "Browse Wappkit tools, compare focused utilities, and open dedicated product pages for downloads, docs, and licensing details.",
+    "Free marketplace image size checkers for Amazon, Etsy, eBay, Shopify, Temu, TikTok Shop and Walmart, plus Wappkit desktop tools for Reddit and e-commerce workflows.",
+  canonical: "/tools",
 });
 
 export default function ToolsPage() {
@@ -43,8 +46,8 @@ export default function ToolsPage() {
           </>
         }
         stats={[
-          { label: "Live now", value: "3 desktop tools" },
-          { label: "Future tools", value: "Template-ready" },
+          { label: "Free web tools", value: "8 image checkers" },
+          { label: "Desktop apps", value: "7 live" },
           { label: "Support model", value: "Docs + recovery" },
         ]}
         rightContent={
@@ -87,7 +90,56 @@ export default function ToolsPage() {
         }
       />
 
-      <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+      <section className="mt-12">
+        <div className="flex flex-wrap items-end justify-between gap-4">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-orange-700">
+              Free browser checkers
+            </p>
+            <h2 className="mt-3 font-heading text-3xl text-foreground">
+              Marketplace image size checker
+            </h2>
+            <p className="mt-2 max-w-2xl text-muted-foreground">
+              Eight platform slots, each with its own hard limits. Drop a photo in and the
+              page reports dimensions, weight, format, background whiteness and frame fill
+              — processed inside the tab, never uploaded.
+            </p>
+          </div>
+          <Link href="/tools/amazon-main-image">
+            <Button rounded="full" variant="outline">
+              Start with Amazon
+              <ArrowRight className="ml-2 size-4" />
+            </Button>
+          </Link>
+        </div>
+
+        <div className="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+          {IMAGE_SPECS.map((spec) => (
+            <Link
+              key={spec.slug}
+              href={`/tools/${spec.slug}`}
+              className="group rounded-[1.2rem] border border-border/70 bg-card p-5 transition hover:border-orange-300"
+            >
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                {spec.platform}
+              </p>
+              <p className="mt-2 text-base font-semibold text-foreground">
+                {spec.surface}
+              </p>
+              <p className="mt-3 text-sm text-muted-foreground">
+                {spec.recommendedWidth} × {spec.recommendedHeight} px · up to{" "}
+                {formatBytes(spec.maxBytes)}
+              </p>
+              <span className="mt-4 inline-flex items-center gap-1 text-xs font-medium text-orange-700">
+                Open checker
+                <ArrowRight className="size-3.5 transition group-hover:translate-x-0.5" />
+              </span>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <div className="mt-14 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
         {tools.map((tool) => (
           <MarketingCard key={tool.slug} tone="soft" className="p-6">
             <div className="flex items-center justify-between gap-3">
