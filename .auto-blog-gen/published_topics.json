@@ -207,7 +207,8 @@
     "reddit_toolbox:topic:reading reddit threads on an android tablet",
     "reddit_toolbox:topic:what reddit data is public versus login only",
     "reddit_toolbox:forged:reddit api rate limits cost 60 requests per minute",
-    "reddit_toolbox:forged:redditsave vs wappkit: 3 export criteria"
+    "reddit_toolbox:forged:redditsave vs wappkit: 3 export criteria",
+    "ecom_image:topic:upscaling a small product photo makes it worse"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -423,7 +424,8 @@
     "reading-reddit-threads-on-an-android-tablet-what-actually-works-for-research-in",
     "reddit-public-vs-login-only-data-what-you-can-still-access-in-2026",
     "60-rpm-managing-reddit-api-rate-limits-in-practice",
-    "redditsave-vs-wappkit-3-export-criteria-for-serious-researchers"
+    "redditsave-vs-wappkit-3-export-criteria-for-serious-researchers",
+    "why-1024px-product-photos-blur-when-upscaled"
   ],
   "events": [
     {
@@ -1950,6 +1952,13 @@
       "source_type": "forged",
       "slug": "redditsave-vs-wappkit-3-export-criteria-for-serious-researchers",
       "title": "RedditSave vs Wappkit: 3 Export Criteria for Serious Researchers"
+    },
+    {
+      "theme": "ecom_image",
+      "topic": "upscaling a small product photo makes it worse",
+      "source_type": "topic",
+      "slug": "why-1024px-product-photos-blur-when-upscaled",
+      "title": "Why 1024px Product Photos Blur When Upscaled"
     }
   ],
   "skipped_topics": [

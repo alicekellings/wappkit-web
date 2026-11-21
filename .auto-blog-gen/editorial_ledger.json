@@ -14,6 +14,13 @@
       "type": "comparison",
       "template": "decision_matrix",
       "date": "2026-11-21"
+    },
+    {
+      "slug": "why-1024px-product-photos-blur-when-upscaled",
+      "title": "Why 1024px Product Photos Blur When Upscaled",
+      "type": "tutorial",
+      "template": "step_sequence",
+      "date": "2026-11-21"
     }
   ]
 }

@@ -1386,6 +1386,15 @@
       "type": "comparison",
       "date": "2026-11-21",
       "status": "published"
+    },
+    {
+      "id": "I-0155",
+      "intent": "1024px blur photo product upscal",
+      "title": "Why 1024px Product Photos Blur When Upscaled",
+      "slug": "why-1024px-product-photos-blur-when-upscaled",
+      "type": "tutorial",
+      "date": "2026-11-21",
+      "status": "published"
     }
   ],
   "updated": "2026-11-21"
