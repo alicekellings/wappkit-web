@@ -5,6 +5,7 @@ import {
   analyzePixels,
   auditMetadata,
   auditPixels,
+  exportTarget,
   formatBytes,
   summarize,
 } from "../lib/image-audit";
@@ -301,6 +302,34 @@ test("a published hard cap still fails, unlike an advisory", () => {
     spec!,
   );
   assert.equal(findings.find((finding) => finding.id === "bytes")?.status, "fail");
+});
+
+test("export downscales to the working size but never upscales the source", () => {
+  const etsy = getImageSpec("etsy-listing-image");
+  assert.ok(etsy);
+
+  // A 3000 px source is cropped and scaled down to the 2000 px working size.
+  assert.deepEqual(exportTarget(etsy!, { width: 3000, height: 2400 }), {
+    width: 2000,
+    height: 2000,
+  });
+
+  // A 500 px source comes back at 500 px. Writing it out at 2000 px would only make a
+  // blurrier, heavier file — the platforms all say not to enlarge small images.
+  assert.deepEqual(exportTarget(etsy!, { width: 500, height: 500 }), {
+    width: 500,
+    height: 500,
+  });
+
+  // Square crop uses the shorter side, so a 900 x 1200 portrait loses pixels it never had.
+  const temu = getImageSpec("temu-product-image");
+  assert.deepEqual(exportTarget(temu!, { width: 900, height: 1200 }), {
+    width: 900,
+    height: 900,
+  });
+
+  // Without a source the target is just the platform's working size.
+  assert.deepEqual(exportTarget(etsy!), { width: 2000, height: 2000 });
 });
 
 test("every spec is internally consistent", () => {

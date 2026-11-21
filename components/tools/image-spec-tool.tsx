@@ -19,6 +19,7 @@ import {
   analyzePixels,
   auditMetadata,
   auditPixels,
+  exportTarget,
   formatBytes,
   formatEdge,
   manualFindings,
@@ -107,14 +108,16 @@ async function scanPixels(bitmap: ImageBitmap): Promise<PixelAnalysis | null> {
 async function exportCompliant(
   file: File,
   spec: ImageSpec,
+  target: { width: number; height: number },
 ): Promise<{ url: string; bytes: number; format: string }> {
   const bitmap = await decodeFile(file);
   const side = Math.min(bitmap.width, bitmap.height);
   const sx = (bitmap.width - side) / 2;
   const sy = (bitmap.height - side) / 2;
 
-  const targetWidth = spec.recommendedWidth;
-  const targetHeight = spec.recommendedHeight;
+  // Clamped upstream to the source, so this never enlarges a small photo.
+  const targetWidth = target.width;
+  const targetHeight = target.height;
 
   const canvas = document.createElement("canvas");
   canvas.width = targetWidth;
@@ -268,7 +271,11 @@ export function ImageSpecTool({ spec }: { spec: ImageSpec }) {
     async (entry: FileState) => {
       patch(entry.id, { exporting: true });
       try {
-        const result = await exportCompliant(entry.file, spec);
+        const result = await exportCompliant(
+          entry.file,
+          spec,
+          exportTarget(spec, { width: entry.width, height: entry.height }),
+        );
         patch(entry.id, {
           exporting: false,
           exportedUrl: result.url,
@@ -380,6 +387,14 @@ export function ImageSpecTool({ spec }: { spec: ImageSpec }) {
       <div className="mt-4 space-y-4">
         {files.map((entry) => {
           const verdict = summarize(entry.findings);
+          // The button promises the size the browser can actually produce: a small
+          // original is never enlarged to the platform's working size.
+          const target = exportTarget(
+            spec,
+            entry.width > 0 && entry.height > 0
+              ? { width: entry.width, height: entry.height }
+              : undefined,
+          );
           return (
             <article
               key={entry.id}
@@ -441,7 +456,7 @@ export function ImageSpecTool({ spec }: { spec: ImageSpec }) {
                     ) : (
                       <Download className="mr-2 size-4" />
                     )}
-                    Export {spec.recommendedWidth}×{spec.recommendedHeight}
+                    Export {target.width}×{target.height}
                   </Button>
                   {entry.exportedUrl ? (
                     <a
@@ -499,8 +514,9 @@ export function ImageSpecTool({ spec }: { spec: ImageSpec }) {
         <p className="font-semibold text-foreground">What this checker can and cannot do</p>
         <p className="mt-1">
           It measures dimensions, weight, format, background whiteness and subject fill from
-          the actual pixels, then exports a cropped square at {spec.recommendedWidth}×
-          {spec.recommendedHeight}. Rule for this slot: {BACKGROUND_LABEL[spec.background]}.
+          the actual pixels, then exports a cropped square — up to {spec.recommendedWidth}×
+          {spec.recommendedHeight}, never enlarged past the source. Rule for this slot:{" "}
+          {BACKGROUND_LABEL[spec.background]}.
         </p>
         <p className="mt-1">
           It does not remove backgrounds. If the report says the background is not pure

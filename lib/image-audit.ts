@@ -507,7 +507,20 @@ export function summarize(findings: Finding[]): {
   };
 }
 
-/** Longest edge of the export target, keeping the platform's recommended square. */
-export function exportTarget(spec: ImageSpec): { width: number; height: number } {
-  return { width: spec.recommendedWidth, height: spec.recommendedHeight };
+/**
+ * Longest edge of the export target, keeping the platform's recommended square.
+ *
+ * Never upscales. A 500 px photo written out at 2,000 px is still a 500 px photo, just
+ * blurrier and heavier — and every marketplace in this list says not to enlarge a small
+ * image to hit a size. So the export takes the shorter of the recommendation and the
+ * source, and a small original comes back at its own resolution.
+ */
+export function exportTarget(
+  spec: ImageSpec,
+  source?: { width: number; height: number },
+): { width: number; height: number } {
+  const recommended = Math.min(spec.recommendedWidth, spec.recommendedHeight);
+  const native = source ? Math.min(source.width, source.height) : recommended;
+  const side = Math.max(1, Math.min(recommended, native));
+  return { width: side, height: side };
 }

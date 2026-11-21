@@ -353,13 +353,13 @@ export const IMAGE_SPECS: ImageSpec[] = [
     intro:
       "TikTok Shop runs two published floors — 600 px in the US, 800 px in the UK — and the main image must be pure white in both. This page checks which rules your file meets, then exports a square.",
     minLongEdge: 600,
-    recommendedWidth: 800,
-    recommendedHeight: 800,
+    recommendedWidth: 1080,
+    recommendedHeight: 1080,
     maxBytes: 10 * 1024 * 1024,
     acceptedFormats: ["JPEG", "JPG", "PNG"],
     background: "pure-white",
     requirements: [
-      "US listings accept 600 × 600 px; UK listing rules require 800 × 800 px on every image.",
+      "US listings accept 600 × 600 px; UK listing rules require 800 × 800 px on every image. TikTok publishes nothing above those floors, so this page exports 1080 px.",
       "Up to 9 square images, one nominated as the main image, which must show the front of the product.",
       "The main image must have a pure white background; the other eight may use scenes, close-ups and size comparisons.",
       "JPG, JPEG or PNG up to 10 MB per image. The 5 MB limit in the listing policy applies to the single listing video, not to photos.",
