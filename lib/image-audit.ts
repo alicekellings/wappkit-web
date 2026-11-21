@@ -225,8 +225,14 @@ const FORMAT_BY_MIME: Record<string, string> = {
   "image/webp": "WebP",
   "image/gif": "GIF",
   "image/tiff": "TIFF",
+  "image/tif": "TIFF",
   "image/avif": "AVIF",
   "image/bmp": "BMP",
+  // Without these the raw MIME string reached the format check, so a HEIC photo — accepted
+  // by eBay, Shopify and Etsy — was reported as "image/heic not in the accepted list".
+  "image/heic": "HEIC",
+  "image/heif": "HEIC",
+  "image/svg+xml": "SVG",
 };
 
 export function formatFromMime(type: string): string {
@@ -255,26 +261,42 @@ export function auditMetadata(input: AuditInput, spec: ImageSpec): Finding[] {
     });
   }
 
-  findings.push({
-    id: "max-edge",
-    label: `Longest edge at most ${spec.maxLongEdge} px`,
-    status: longEdge <= spec.maxLongEdge ? "pass" : "fail",
-    detail:
-      longEdge <= spec.maxLongEdge
-        ? `${longEdge} px, within the ceiling.`
-        : `${longEdge} px exceeds the ${spec.maxLongEdge} px ceiling; downscale before upload.`,
-  });
+  // Only platforms that publish a ceiling get a ceiling check. Walmart, Temu, TikTok Shop
+  // and eBay publish none, so a made-up 5,000 px would fail images they accept.
+  if (spec.maxLongEdge !== undefined) {
+    findings.push({
+      id: "max-edge",
+      label: `Longest edge at most ${spec.maxLongEdge} px`,
+      status: longEdge <= spec.maxLongEdge ? "pass" : "fail",
+      detail:
+        longEdge <= spec.maxLongEdge
+          ? `${longEdge} px, within the ceiling.`
+          : `${longEdge} px exceeds the ${spec.maxLongEdge} px ceiling; downscale before upload.`,
+    });
+  }
 
-  const zoomThreshold = 1000;
-  if (spec.minLongEdge > 0 && spec.minLongEdge < zoomThreshold) {
+  const zoomThreshold = spec.zoomThreshold;
+  if (zoomThreshold) {
     findings.push({
       id: "zoom",
-      label: "Long enough for zoom",
+      label: `Long enough for zoom (${zoomThreshold} px)`,
       status: longEdge >= zoomThreshold ? "pass" : "warn",
       detail:
         longEdge >= zoomThreshold
           ? `${longEdge} px clears the ${zoomThreshold} px zoom threshold.`
-          : `${longEdge} px is accepted but below ${zoomThreshold} px, so buyers cannot zoom.`,
+          : `${longEdge} px is accepted but below ${zoomThreshold} px, the point where ${spec.platform} turns on zoom.`,
+    });
+  }
+
+  // Etsy's 635 px keeps the upload legal but pushes the listing down in search. Reporting
+  // it as a failure would tell sellers to re-export a file the platform already accepts.
+  const advisoryFloor = spec.minLongEdgeAdvisory;
+  if (advisoryFloor && longEdge < advisoryFloor) {
+    findings.push({
+      id: "min-edge-advisory",
+      label: `At least ${advisoryFloor} px for search placement`,
+      status: "warn",
+      detail: `${longEdge} px is below the ${advisoryFloor} px threshold ${spec.platform} uses for ranking and display. The upload still works; fewer buyers see it.`,
     });
   }
 
@@ -390,7 +412,7 @@ export function auditPixels(
         status: rule === "pure-white" ? "fail" : "warn",
         detail: `${ratioPct}% of the border band is off-white. ${
           rule === "pure-white"
-            ? "Amazon and Walmart reject anything that is not exactly 255, so lift the whites before uploading."
+            ? `${spec.platform} rejects anything that is not exactly 255, so lift the whites before uploading.`
             : "Light enough for this platform, but the edge is not clean."
         }`,
       });
@@ -401,10 +423,14 @@ export function auditPixels(
           rule === "pure-white"
             ? "Pure white background (RGB 255,255,255)"
             : "White or light background",
-        status: "fail",
-        detail: `${ratioPct}% of the border band is not white — this background will be rejected for ${
-          spec.platform
-        }'s ${spec.surface.toLowerCase()}.`,
+        // eBay recommends a neutral backdrop but accepts others, so a grey studio shot is
+        // advice, not a rejection. Treating it as a failure would invent a rule.
+        status: spec.backgroundAdvisory ? "warn" : "fail",
+        detail: spec.backgroundAdvisory
+          ? `${ratioPct}% of the border band is not white. ${spec.platform} recommends a clean, neutral backdrop but does not reject other backgrounds.`
+          : `${ratioPct}% of the border band is not white — this background will be rejected for ${
+              spec.platform
+            }'s ${spec.surface.toLowerCase()}.`,
       });
     }
   }

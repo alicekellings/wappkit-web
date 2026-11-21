@@ -313,6 +313,12 @@ test("every spec is internally consistent", () => {
     assert.ok(spec.h1.length > 20, `${spec.slug} needs a real h1`);
     assert.ok(spec.metaDescription.length >= 120, `${spec.slug} meta too thin`);
     assert.ok(spec.source.url.startsWith("http"), `${spec.slug} needs a source url`);
+    // A seller portal homepage is not a source: it either redirects to a login wall or
+    // describes nothing. Every spec must point at the document that carries the numbers.
+    assert.ok(
+      !/^https?:\/\/[^/]+\/?$/.test(spec.source.url),
+      `${spec.slug} source is a bare domain, not a document`,
+    );
     assert.match(spec.lastVerified, /^\d{4}-\d{2}-\d{2}$/);
     assert.ok(spec.maxBytes > 0);
     assert.ok(spec.requirements.length >= 3, `${spec.slug} needs real requirements`);
@@ -320,9 +326,123 @@ test("every spec is internally consistent", () => {
       spec.recommendedWidth >= spec.minLongEdge,
       `${spec.slug} recommends less than its own minimum`,
     );
-    assert.ok(
-      spec.maxLongEdge >= spec.recommendedWidth,
-      `${spec.slug} ceiling is below the recommended size`,
+    if (spec.maxLongEdge !== undefined) {
+      assert.ok(
+        spec.maxLongEdge >= spec.recommendedWidth,
+        `${spec.slug} ceiling is below the recommended size`,
+      );
+    }
+  }
+});
+
+test("a platform with no published ceiling produces no ceiling finding", () => {
+  // Walmart's guide states 2200 px and a 1500 px zoom floor, but no maximum. Inventing
+  // 5,000 px would fail a 6,000 px photo Walmart accepts.
+  const spec = getImageSpec("walmart-main-image");
+  assert.ok(spec);
+  assert.equal(spec!.maxLongEdge, undefined);
+
+  const findings = auditMetadata(
+    { name: "huge.jpg", width: 6000, height: 6000, bytes: 900_000, type: "image/jpeg" },
+    spec!,
+  );
+  assert.equal(findings.find((finding) => finding.id === "max-edge"), undefined);
+  assert.equal(summarize(findings).fail, 0, "a 6000 px Walmart photo must not be blocked");
+});
+
+test("Walmart zoom floor is 1500 px, not the 1000 px Amazon uses", () => {
+  const spec = getImageSpec("walmart-main-image");
+  assert.ok(spec);
+
+  const findings = auditMetadata(
+    { name: "mid.jpg", width: 1200, height: 1200, bytes: 900_000, type: "image/jpeg" },
+    spec!,
+  );
+  const zoom = findings.find((finding) => finding.id === "zoom");
+  assert.equal(zoom?.status, "warn", "1200 px does not reach Walmart's 1500 px zoom floor");
+  assert.match(zoom!.detail, /1,?500/);
+});
+
+test("Etsy's 635 px is a search floor, not an upload minimum", () => {
+  const spec = getImageSpec("etsy-listing-image");
+  assert.ok(spec);
+  assert.equal(spec!.minLongEdge, 0);
+
+  const findings = auditMetadata(
+    { name: "small.jpg", width: 500, height: 500, bytes: 90_000, type: "image/jpeg" },
+    spec!,
+  );
+  assert.equal(findings.find((finding) => finding.id === "min-edge"), undefined);
+  const advisory = findings.find((finding) => finding.id === "min-edge-advisory");
+  assert.equal(advisory?.status, "warn");
+  assert.equal(summarize(findings).fail, 0, "500 px uploads to Etsy; it only ranks lower");
+});
+
+test("eBay accepts a non-white background with a warning, not a rejection", () => {
+  const spec = getImageSpec("ebay-photo");
+  assert.ok(spec);
+  assert.equal(spec!.backgroundAdvisory, true);
+
+  const grey = analyzePixels(makeImage(200, 200, () => [238, 238, 238]), 200, 200);
+  const findings = auditPixels(grey, spec!, { backgroundAvailable: true });
+  const background = findings.find((finding) => finding.id === "background");
+  assert.equal(background?.status, "warn", "eBay recommends a neutral backdrop, it does not enforce one");
+  assert.equal(summarize([background!]).fail, 0);
+});
+
+test("TikTok Shop's 5MB belongs to video, so a 6MB image still passes", () => {
+  const spec = getImageSpec("tiktok-shop-image");
+  assert.ok(spec);
+  assert.equal(spec!.maxBytes, 10 * 1024 * 1024);
+
+  const findings = auditMetadata(
+    { name: "six.jpg", width: 1200, height: 1200, bytes: 6 * 1024 * 1024, type: "image/jpeg" },
+    spec!,
+  );
+  assert.equal(findings.find((finding) => finding.id === "bytes")?.status, "pass");
+
+  const tooBig = auditMetadata(
+    { name: "eleven.jpg", width: 1200, height: 1200, bytes: 11 * 1024 * 1024, type: "image/jpeg" },
+    spec!,
+  );
+  assert.equal(tooBig.find((finding) => finding.id === "bytes")?.status, "fail");
+});
+
+test("HEIC from an iPhone is recognised where the platform accepts it", () => {
+  for (const slug of ["ebay-photo", "shopify-product-image", "etsy-listing-image"]) {
+    const spec = getImageSpec(slug);
+    assert.ok(spec, `missing spec ${slug}`);
+    const findings = auditMetadata(
+      { name: "IMG_0001.heic", width: 2000, height: 2000, bytes: 900_000, type: "image/heic" },
+      spec!,
+    );
+    assert.equal(
+      findings.find((finding) => finding.id === "format")?.status,
+      "pass",
+      `${slug} should accept HEIC`,
     );
   }
+
+  // Amazon does not take HEIC, so the failure has to survive there.
+  const amazon = getImageSpec("amazon-main-image");
+  const findings = auditMetadata(
+    { name: "IMG_0001.heic", width: 2000, height: 2000, bytes: 900_000, type: "image/heic" },
+    amazon!,
+  );
+  assert.equal(findings.find((finding) => finding.id === "format")?.status, "fail");
+});
+
+test("SVG and WebP are accepted where the platform lists them", () => {
+  const shopify = getImageSpec("shopify-product-image");
+  const webp = auditMetadata(
+    { name: "art.webp", width: 2048, height: 2048, bytes: 500_000, type: "image/webp" },
+    shopify!,
+  );
+  assert.equal(webp.find((finding) => finding.id === "format")?.status, "pass");
+
+  const svg = auditMetadata(
+    { name: "logo.svg", width: 2048, height: 2048, bytes: 40_000, type: "image/svg+xml" },
+    shopify!,
+  );
+  assert.equal(svg.find((finding) => finding.id === "format")?.status, "pass");
 });

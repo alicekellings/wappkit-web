@@ -11,10 +11,17 @@ import {
 } from "@/lib/image-specs";
 
 function specFaq(spec: ImageSpec): Array<{ question: string; answer: string }> {
+  const ceiling = spec.maxLongEdge
+    ? `, up to ${spec.maxLongEdge} px`
+    : ", with no published ceiling";
   return [
     {
       question: `What size should a ${spec.platform} ${spec.surface.toLowerCase()} be?`,
-      answer: `${spec.platform} accepts ${spec.minLongEdge > 0 ? `a longest edge of ${spec.minLongEdge} px or more, up to ${spec.maxLongEdge} px` : `up to ${spec.maxLongEdge} px`}. ${spec.recommendedWidth} × ${spec.recommendedHeight} px is the working size this page exports, and ${
+      answer: `${spec.platform} ${
+        spec.minLongEdge > 0
+          ? `requires at least ${spec.minLongEdge} px on the longest side${ceiling}`
+          : `publishes no minimum size${ceiling}`
+      }. ${spec.recommendedWidth} × ${spec.recommendedHeight} px is the working size this page exports, and ${
         spec.bytesAdvisory
           ? `the platform advises staying near ${formatBytes(spec.maxBytes)} per file, though it publishes no hard cap`
           : `the file must stay under ${formatBytes(spec.maxBytes)}`
@@ -112,15 +119,18 @@ export function SpecPage({ spec }: { spec: ImageSpec }) {
                 <dt className="text-muted-foreground">Frame size</dt>
                 <dd className="text-right font-medium text-foreground">
                   {spec.recommendedWidth} × {spec.recommendedHeight} px recommended
-                  {spec.minLongEdge > 0 ? (
-                    <span className="block text-xs font-normal text-muted-foreground">
-                      minimum {spec.minLongEdge} px · ceiling {spec.maxLongEdge} px
-                    </span>
-                  ) : (
-                    <span className="block text-xs font-normal text-muted-foreground">
-                      no minimum · ceiling {spec.maxLongEdge} px
-                    </span>
-                  )}
+                  <span className="block text-xs font-normal text-muted-foreground">
+                    {spec.minLongEdge > 0
+                      ? `minimum ${spec.minLongEdge} px`
+                      : "no published minimum"}
+                    {" · "}
+                    {spec.maxLongEdge
+                      ? `ceiling ${spec.maxLongEdge} px`
+                      : "no published ceiling"}
+                    {spec.zoomThreshold
+                      ? ` · zoom from ${spec.zoomThreshold} px`
+                      : ""}
+                  </span>
                 </dd>
               </div>
               <div className="flex items-start justify-between gap-4 py-3">
