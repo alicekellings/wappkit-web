@@ -23,6 +23,18 @@
       "type": "data_study",
       "angle": "Analyzes the data overhead of specific JSON fields in public dumps.",
       "slug": "subreddit-flair-metadata-adds-12-bytes-per-post"
+    },
+    {
+      "title": "Browser Extensions vs Desktop: 2 Latency Tests",
+      "type": "comparison",
+      "angle": "Ranks extension-based tools against desktop apps using measured response times.",
+      "slug": "browser-extensions-vs-desktop-2-latency-tests"
+    },
+    {
+      "title": "Wappkit vs API: 4 Cost Factors Compared",
+      "type": "comparison",
+      "angle": "Analyzes the financial trade-offs between local processing and official API usage.",
+      "slug": "wappkit-vs-api-4-cost-factors-compared"
     }
   ]
 }

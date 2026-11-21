@@ -7,6 +7,13 @@
       "type": "data_study",
       "template": "measurement_report",
       "date": "2026-11-20"
+    },
+    {
+      "slug": "redditsave-vs-wappkit-3-export-criteria-for-serious-researchers",
+      "title": "RedditSave vs Wappkit: 3 Export Criteria for Serious Researchers",
+      "type": "comparison",
+      "template": "decision_matrix",
+      "date": "2026-11-21"
     }
   ]
 }

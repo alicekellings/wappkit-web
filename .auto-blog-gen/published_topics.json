@@ -206,7 +206,8 @@
     "reddit_toolbox:topic:keyboard only reddit browsing",
     "reddit_toolbox:topic:reading reddit threads on an android tablet",
     "reddit_toolbox:topic:what reddit data is public versus login only",
-    "reddit_toolbox:forged:reddit api rate limits cost 60 requests per minute"
+    "reddit_toolbox:forged:reddit api rate limits cost 60 requests per minute",
+    "reddit_toolbox:forged:redditsave vs wappkit: 3 export criteria"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -421,7 +422,8 @@
     "how-to-browse-reddit-using-only-your-keyboard-a-workflow-playbook-for-researcher",
     "reading-reddit-threads-on-an-android-tablet-what-actually-works-for-research-in",
     "reddit-public-vs-login-only-data-what-you-can-still-access-in-2026",
-    "60-rpm-managing-reddit-api-rate-limits-in-practice"
+    "60-rpm-managing-reddit-api-rate-limits-in-practice",
+    "redditsave-vs-wappkit-3-export-criteria-for-serious-researchers"
   ],
   "events": [
     {
@@ -1941,6 +1943,13 @@
       "source_type": "forged",
       "slug": "60-rpm-managing-reddit-api-rate-limits-in-practice",
       "title": "60 RPM: Managing Reddit API Rate Limits in Practice"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "RedditSave vs Wappkit: 3 Export Criteria",
+      "source_type": "forged",
+      "slug": "redditsave-vs-wappkit-3-export-criteria-for-serious-researchers",
+      "title": "RedditSave vs Wappkit: 3 Export Criteria for Serious Researchers"
     }
   ],
   "skipped_topics": [

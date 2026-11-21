@@ -1377,7 +1377,16 @@
       "type": "data_study",
       "date": "2026-11-20",
       "status": "published"
+    },
+    {
+      "id": "I-0154",
+      "intent": "criteria export redditsave researcher seriou wappkit",
+      "title": "RedditSave vs Wappkit: 3 Export Criteria for Serious Researchers",
+      "slug": "redditsave-vs-wappkit-3-export-criteria-for-serious-researchers",
+      "type": "comparison",
+      "date": "2026-11-21",
+      "status": "published"
     }
   ],
-  "updated": "2026-11-20"
+  "updated": "2026-11-21"
 }
