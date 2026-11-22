@@ -1,0 +1,109 @@
+---
+title: "Reddit Keyword Highlight Extension for Chrome"
+description: "Learn how keyword highlighting works on Reddit posts and comments. Compare the browser's native find function with dedicated tools for faster research."
+date: "2026-11-22"
+published: true
+image: "/images/blog/reddit-keyword-highlight-extension-for-chrome-cover.jpg"
+authors: ["wappkit-product"]
+categories: ["guides"]
+---
+You can make a keyword glow across a Reddit post and its visible comments in under thirty seconds. The page stays clean, the term stands out, and you avoid endless scrolling. Setting it up takes less than a minute and requires no coding.
+
+Most people rely on the browser's built-in *find* feature, which makes you step through matches instead of keeping them all visible and forces you to keep scrolling. A dedicated extension like [Reddit Reader](/tools/reddit-viewer-extension) paints every occurrence on the page instantly, letting you gauge sentiment or frequency at a glance.
+
+![Cover image](/images/blog/reddit-keyword-highlight-extension-for-chrome-cover.jpg)
+
+<Card href="/tools/reddit-viewer-extension" data-umami-event="article_cta_clicked" data-umami-event-position="intro" data-umami-event-tool="reddit-viewer-extension">
+
+### Try it on a thread you already have open
+Reddit Reader removes login prompts, sidebars, app banners, and promoted posts, highlights one keyword on the free tier, and exports the loaded thread to Markdown. Install it free and test it on a real thread before paying for Pro.
+
+</Card>
+
+## Prerequisites and Limitations
+
+The extension runs on Chrome 102+ (or the equivalent version of Edge). If you're on an older build, update via the browser's settings before installing. It works only on the modern `reddit.com` layout; the legacy `old.reddit.com` site and mobile views are unsupported, so switch to the desktop version if needed.
+
+For the free tier, everything happens locally. Pro features require a one-time license validation call to `www.wappkit.com`, so make sure you have an internet connection the first time you activate Pro. After that, the extension works offline.
+
+## Phase 1: Install and Configure
+
+Grab the extension from the Chrome Web Store or Microsoft Edge Addons and click **Add to Chrome** (or **Get**). Once installed, a new icon appears in your toolbar.
+
+Click the icon to open a floating panel - this isn't a toolbar under the post title, but a separate window that hovers over the page. Type your keyword into the input field. The free tier lets you highlight a single term; any additional words are ignored unless you upgrade to Pro.
+
+There is no highlight-style picker: every keyword uses the same highlight style on both free and Pro.
+
+*Checkpoint:* The toolbar icon is visible, the floating panel opens, and the input accepts your keyword without error.
+
+## Phase 2: Apply Highlights to a Post
+
+Visit any Reddit post on the standard `reddit.com` domain. Click the extension icon on the thread to open the panel. A quick reload guarantees you're running the latest version.
+
+Enter your keyword in the floating panel. After you press Enter, the extension scans the post body and any comments that have already loaded, turning matching words into a colored highlight. When you scroll and more comments load, the extension highlights those instances in real time.
+
+*Checkpoint:* The keyword glows in the post text and in the loaded comments that are currently visible.
+
+## Phase 3: Verify Coverage and Limits
+
+Scroll down to load additional comment threads. New matches should appear highlighted as soon as the comments enter the DOM. If you spot an unhighlighted occurrence, the extension likely missed it because the comment was still hidden.
+
+Try adding a second keyword. On the free tier the input will be ignored, confirming the one-keyword restriction. Upgrading to Pro (a one-time $4.99 fee) lifts this limit.
+
+You can also export the thread to Markdown via the panel's **Export** button. The file includes the title, author, score, subreddit, URL, post body, and any loaded comments. Highlights are visual only; they don't appear as markup in the Markdown.
+
+*Checkpoint:* The exported Markdown contains all visible text and metadata, but no highlight tags.
+
+## Failure Modes and Fixes
+
+- **No highlights:** Make sure you're on the new `reddit.com` layout, not `old.reddit.com`. Refresh the page if the extension didn't inject correctly on first load.
+- **Pro features stay inactive:** double-check the license key in the extension settings and ensure your device can reach `www.wappkit.com` during activation.
+- **Need multiple keywords:** The free tier can't accommodate that; upgrade to Pro. The free plan also caps you at three Markdown exports.
+
+## What to Automate Next
+
+After you've highlighted the terms you care about, use the Markdown export as a feed for spreadsheets, note-taking apps, or any downstream analysis tool. The export bundles useful metadata, making it easy to sort and filter later.
+
+For ongoing monitoring, schedule regular checks of target subreddits and run the extension manually. While it doesn't push alerts or run in the background, it dramatically speeds up the manual review step. For bulk monitoring, use a separate tool; this extension stays focused on the open thread.
+
+*Checkpoint:* You now have a repeatable workflow for highlighting, reviewing, and exporting Reddit data, with a clear understanding of what the free tier offers and when Pro becomes worthwhile.
+
+<Card href="/tools/reddit-viewer-extension" data-umami-event="article_cta_clicked" data-umami-event-position="mid" data-umami-event-tool="reddit-viewer-extension">
+
+### If the limits fit your workflow
+One keyword and three exports cover occasional reading. Pro is $4.99 one-time and removes both limits; there is no subscription and no account to create.
+
+</Card>
+
+## FAQ
+
+**Does the free version allow multiple keywords?**
+No. Only one keyword is highlighted. Upgrading to Pro removes this restriction.
+
+**Can the extension highlight comments as well as posts?**
+Yes. It works on both, but only on comments that have already loaded. lazy-loaded comments become highlighted once you scroll them into view.
+
+**Is there any limit on the number of keywords with Pro?**
+Pro imposes no keyword limit, though all terms share the same highlight style.
+
+**Does it work on mobile devices?**
+No. The extension is built for desktop Chrome and Edge browsers only.
+
+<Card href="/tools/reddit-viewer-extension" data-umami-event="article_cta_clicked" data-umami-event-position="end" data-umami-event-tool="reddit-viewer-extension">
+
+### One thread is enough to decide
+Open a thread you already wanted to read, check the clean view, and export it once. If it saves a cleanup step, keep it; if not, uninstall.
+
+</Card>
+
+## Sources
+
+- [Reddit Reader extension page](https://www.wappkit.com/tools/reddit-viewer-extension)
+- [Reddit Reader on the Chrome Web Store](https://chromewebstore.google.com/detail/akgmihlphnhaejbhpmcjckpdogbplcng)
+- [Reddit Reader on Microsoft Edge Addons](https://microsoftedge.microsoft.com/addons/detail/jfanggdobljmlaohcldjoafnigmhfogh)
+- [Reddit Reader privacy policy](https://www.wappkit.com/privacy/reddit-reader)
+- [Reddit API documentation](https://www.reddit.com/dev/api)
+
+## Conclusion
+
+A purpose-built keyword highlighter beats the browser's find function for Reddit research. The free tier handles occasional single-keyword scans, while the $4.99 Pro upgrade unlocks unlimited terms and removes export caps. Because all processing happens locally, your data stays private, but you do need a standard desktop browser. Give the free version a spin, then decide if Pro's extra flexibility is worth the modest one-time cost.
