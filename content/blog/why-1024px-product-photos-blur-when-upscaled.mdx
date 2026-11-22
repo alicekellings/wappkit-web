@@ -1,6 +1,6 @@
 ---
 title: "Why 1024px Product Photos Blur When Upscaled"
-description: "Discover why AI upscaling often degrades small product images by inventing detail. Learn to fix pixelation without breaking label legibility for Amazon and"
+description: "AI upscaling invents detail that was never captured, so a 1024px product photo often gets worse. A three-phase fix that keeps label text readable."
 date: "2026-11-21"
 published: true
 image: "/images/blog/why-1024px-product-photos-blur-when-upscaled-cover.jpg"
@@ -63,7 +63,6 @@ Checkpoint: the final file should pass three checks in order  -  pixel dimension
 
 Two failure modes show up most often at this stage. One is uploading a file that passes the pixel check but fails the human legibility check, which gets listings flagged in manual review even though automated upload succeeds. The other is fixing the label but forgetting to recheck the product edge against the background, since mask-based logo fixes sometimes leave a visible seam.
 
-![black laptop computer turned on displaying facebook](/images/blog/why-1024px-product-photos-blur-when-upscaled-detail.jpg)
 
 Once you've done this manually for a handful of SKUs and know what "good" looks like for your product line, batch the diagnosis and export steps rather than the artifact repair, since repair still needs a human eye on text and logos. Use a consistent file naming convention across originals and processed files so you can always trace a listing image back to its untouched source if a marketplace flags it later.
 
