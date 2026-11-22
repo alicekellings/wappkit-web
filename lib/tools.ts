@@ -479,7 +479,7 @@ const PROMOTED_TOOL_TOPIC_RULES: ReadonlyArray<{
   {
     slug: "reddit-viewer-extension",
     pattern:
-      /reddit[- ]?viewer|browse[- ]?reddit|without[- ]?account|anonymous|lurker|old[- ]?reddit|read[- ]?reddit/i,
+      /reddit[- ]?viewer|reddit[- ]?reader|browse[- ]?reddit|without[- ]?account|anonymous|lurker|old[- ]?reddit|read[- ]?reddit/i,
   },
   {
     slug: "reddit-toolbox",
