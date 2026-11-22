@@ -1404,6 +1404,15 @@
       "type": "tutorial",
       "date": "2026-11-22",
       "status": "published"
+    },
+    {
+      "id": "I-0157",
+      "intent": "2200px 5mb compres imag under walmart",
+      "title": "Compress 2200px Walmart Images Under 5MB",
+      "slug": "compress-2200px-walmart-images-under-5mb",
+      "type": "troubleshooting",
+      "date": "2026-11-22",
+      "status": "published"
     }
   ],
   "updated": "2026-11-22"

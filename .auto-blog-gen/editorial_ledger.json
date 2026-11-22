@@ -21,6 +21,13 @@
       "type": "tutorial",
       "template": "step_sequence",
       "date": "2026-11-21"
+    },
+    {
+      "slug": "compress-2200px-walmart-images-under-5mb",
+      "title": "Compress 2200px Walmart Images Under 5MB",
+      "type": "troubleshooting",
+      "template": "diagnostic_tree",
+      "date": "2026-11-22"
     }
   ]
 }
