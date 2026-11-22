@@ -209,7 +209,8 @@
     "reddit_toolbox:forged:reddit api rate limits cost 60 requests per minute",
     "reddit_toolbox:forged:redditsave vs wappkit: 3 export criteria",
     "ecom_image:topic:upscaling a small product photo makes it worse",
-    "ecom_image:topic:walmart marketplace image 5mb limit"
+    "ecom_image:topic:walmart marketplace image 5mb limit",
+    "reddit_toolbox:intent:reddit keyword highlight extension"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -427,7 +428,8 @@
     "60-rpm-managing-reddit-api-rate-limits-in-practice",
     "redditsave-vs-wappkit-3-export-criteria-for-serious-researchers",
     "why-1024px-product-photos-blur-when-upscaled",
-    "compress-2200px-walmart-images-under-5mb"
+    "compress-2200px-walmart-images-under-5mb",
+    "reddit-keyword-highlight-extension-for-chrome"
   ],
   "events": [
     {
