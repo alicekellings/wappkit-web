@@ -1,0 +1,105 @@
+---
+title: "How to Export a Reddit Thread to Markdown (3 Ways)"
+description: "Three working ways to save a Reddit thread as Markdown in 2026, from manual copy-paste to a one-click extension, with the real tradeoffs of each."
+date: "2026-11-22"
+published: true
+image: "/images/blog/how-to-export-a-reddit-thread-to-markdown-cover.jpg"
+authors: ["wappkit"]
+categories: ["guides"]
+---
+Markdown is the only format that survives being pasted somewhere else. A screenshot is readable but not searchable. A saved HTML page is searchable but unreadable in a notes app. Markdown keeps the structure — heading, quote, list — and drops everything that made the page slow.
+
+Reddit does not offer a Markdown export. So you build one of three ways, depending on how often you do it and how much structure you need to keep.
+
+If you are still working out how to open a thread while logged out, start with the [logged-out browsing walkthrough](/blog/browse-reddit-without-account-2025); for finding the right comments before exporting, see the [Reddit comment search guide](/blog/reddit-comment-search-how-to-find-comments-in-2026).
+
+<Card href="/tools/reddit-viewer-extension" data-umami-event="article_cta_clicked" data-umami-event-position="intro" data-umami-event-tool="reddit-viewer-extension">
+
+### If you just want the file
+Reddit Reader exports the post, score, URL and comments to a single Markdown file from the toolbar — no copy-paste, no cleanup. Free tier covers three exports; Pro is $4.99 once.
+
+</Card>
+
+## Method 1: Copy and paste into a Markdown editor
+
+The free method, and the one most people use once and abandon.
+
+Open the thread, select from the post title down through the comments you want, copy, and paste into Obsidian, Notion, Bear, or any editor that accepts plain text. Then clean it up.
+
+What survives: the text, mostly. What does not: the nesting of comment replies, the score, the permalink, and any formatting that lived in Reddit's own markup. Reddit does support Markdown in its editor, so pasting into the compose box first and copying again can preserve some structure — but this is a workaround, not a feature.
+
+**Cost:** free. **Time:** five to fifteen minutes for a long thread, depending on how much you care about formatting. **Best for:** one thread, once.
+
+## Method 2: old.reddit.com plus a converter
+
+`old.reddit.com` renders a public thread as plain HTML with a table-based layout. It is ugly and it is the most reliable way to see a full thread while logged out. From there you have two sub-options:
+
+1. **Print to PDF**, then convert. Keeps the visual layout, loses the structure.
+2. **Save the page, run it through an HTML-to-Markdown converter.** Keeps more structure, but nested comments come out inconsistently and you spend time fixing indentation.
+
+This is the method to use when you cannot install an extension — a locked-down work machine, a borrowed browser, a browser that is not Chromium.
+
+**Cost:** free. **Time:** ten minutes plus cleanup. **Best for:** occasional exports where you cannot install anything.
+
+## Method 3: Export from a reader extension
+
+A reader extension already has the thread parsed into structured data — title, body, score, comments with their nesting. Exporting is then just serialization, which is why it is one click instead of ten minutes.
+
+In Reddit Reader: open the thread, click the toolbar icon, then click **Export thread (.md)**. The file contains the post title, score, permalink, body, and the comments in order. The free tier allows three exports; after that the Pro unlock ($4.99 one-time) removes the limit.
+
+Two things this method does not do, and you should know before relying on it:
+
+- **It cannot export a page Reddit refuses to render.** If Reddit serves a logged-out visitor a challenge instead of the thread, there is nothing to parse. Open the thread on `old.reddit.com` first.
+- **It does not follow links inside comments.** The export is the thread, not the thread plus everything it references.
+
+**Cost:** free for three, then $4.99 once. **Time:** seconds. **Best for:** anyone exporting more than a couple of threads a month.
+
+<Card href="/tools/reddit-viewer-extension" data-umami-event="article_cta_clicked" data-umami-event-position="mid" data-umami-event-tool="reddit-viewer-extension">
+
+### Check the output before you commit
+Export one thread on the free tier and open the file. If the comment structure matches what you need, the paid unlock is worth it. If not, you have lost nothing but one export.
+
+</Card>
+
+## Which method should you use?
+
+| Situation | Method |
+|---|---|
+| One thread, once, for personal notes | Copy-paste |
+| Work machine, cannot install extensions | `old.reddit.com` + converter |
+| Ten threads a week into a research vault | Reader extension |
+| You need comment nesting preserved | Reader extension |
+| You need the visual page, not the text | Print to PDF |
+
+## What good Markdown export looks like
+
+A useful export has five things, and most tools miss at least one:
+
+1. **The permalink**, so the quote can be traced back.
+2. **The score**, which tells you whether the comment was a minority view or the consensus.
+3. **Comment nesting**, flattened with indentation — without it, a reply reads as a separate opinion.
+4. **The author handle**, so you can tell OP from a drive-by comment.
+5. **No boilerplate.** No "Join the conversation", no cookie banner text, no navigation labels.
+
+If you are evaluating tools, check the output against those five before looking at anything else.
+
+## Common questions
+
+### Does Reddit have a built-in export?
+
+No. There is no official Markdown or JSON export for a thread from the web interface. The API exists, but it is rate-limited and increasingly restricted, which is why most people use a page-level tool instead.
+
+### Can I export a whole subreddit, not just one thread?
+
+Not with a reader extension — that is a different job with different tools, and usually against Reddit's terms if done at scale. For a single thread, the methods above are enough.
+
+### Will the export include deleted comments?
+
+Only if they are visible in the page when you export. `[deleted]` and `[removed]` placeholders come through as text; the underlying comment does not exist in the page.
+
+<Card href="/tools/reddit-viewer-extension" data-umami-event="article_cta_clicked" data-umami-event-position="end" data-umami-event-tool="reddit-viewer-extension">
+
+### Export your next thread in one click
+Install Reddit Reader, open any public thread, and export it as Markdown. Three free exports, no account, Chrome and Edge.
+
+</Card>
