@@ -479,7 +479,7 @@ const PROMOTED_TOOL_TOPIC_RULES: ReadonlyArray<{
   {
     slug: "reddit-viewer-extension",
     pattern:
-      /reddit[- ]?viewer|reddit[- ]?reader|browse[- ]?reddit|without[- ]?account|anonymous|lurker|old[- ]?reddit|read[- ]?reddit/i,
+      /reddit[- ]?viewer|reddit[- ]?reader|browse[- ]?reddit|without[- ]?account|anonymous|lurker|old[- ]?reddit|read[- ]?reddit|markdown|keyword[- ]?highlight/i,
   },
   {
     slug: "reddit-toolbox",
@@ -514,6 +514,19 @@ const PROMOTED_TOOL_TOPIC_RULES: ReadonlyArray<{
 
 const DEFAULT_PROMOTED_TOOL_SLUG = "reddit-toolbox";
 
+/**
+ * Slug-level overrides for articles whose topic words are ambiguous. The regex
+ * rules below decide by vocabulary, so "reddit" alone always lands on the
+ * desktop Toolbox; these three are about the browser extension's own job
+ * (Markdown export, keyword highlighting) and must promote the extension.
+ */
+const PROMOTED_TOOL_SLUG_OVERRIDES: Record<string, string> = {
+  "how-to-export-a-reddit-thread-to-markdown": "reddit-viewer-extension",
+  "exporting-reddit-threads-to-markdown-what-actually-works-in-2026":
+    "reddit-viewer-extension",
+  "reddit-keyword-highlight-extension-for-chrome": "reddit-viewer-extension",
+};
+
 export type PromotedToolMatch = {
   slug: string;
   title?: string | null;
@@ -531,6 +544,18 @@ export function getPromotedTool(match: string | PromotedToolMatch) {
     typeof match === "string"
       ? match
       : [match.slug, match.title ?? "", ...(match.categories ?? [])].join(" ");
+
+  if (typeof match !== "string") {
+    const override = PROMOTED_TOOL_SLUG_OVERRIDES[match.slug];
+    if (override) {
+      const tool = promotableTools.find(
+        (candidate) => candidate.slug === override,
+      );
+      if (tool) {
+        return tool;
+      }
+    }
+  }
 
   for (const rule of PROMOTED_TOOL_TOPIC_RULES) {
     if (!rule.pattern.test(haystack)) {
