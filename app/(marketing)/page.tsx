@@ -8,6 +8,7 @@ import {
 
 import { getFeaturedTools } from "@/lib/tools";
 import { constructMetadata } from "@/lib/utils";
+import { REDDIT_READER } from "@/lib/store-links";
 import { Button } from "@/components/ui/button";
 import {
   MarketingCard,
@@ -53,7 +54,7 @@ export default function IndexPage() {
           </>
         }
         stats={[
-          { label: "Live products", value: "3 desktop tools" },
+          { label: "Live products", value: "Desktop + browser" },
           { label: "License model", value: "Key activation" },
           { label: "Content hub", value: "Blog + docs" },
         ]}
@@ -107,6 +108,69 @@ export default function IndexPage() {
           </MarketingCard>
         }
       />
+
+      <section className="mt-8">
+        <MarketingCard
+          tone="dark"
+          className="flex flex-col gap-5 p-6 md:flex-row md:items-center md:justify-between"
+        >
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-orange-200">
+              New · Browser extension
+            </p>
+            <h2 className="mt-2 font-heading text-2xl text-white">
+              Reddit Reader — clean threads in Chrome and Edge
+            </h2>
+            <p className="mt-2 max-w-xl text-sm leading-6 text-slate-300">
+              Hides login walls and clutter, highlights the keywords you care
+              about, and exports a thread plus its comments to Markdown. Free to
+              install; Pro is a one-time $4.99.
+            </p>
+          </div>
+          <div className="flex flex-wrap items-center gap-3">
+            <a
+              href={REDDIT_READER.chrome}
+              target="_blank"
+              rel="noopener"
+              data-umami-event="extension_install_clicked"
+              data-umami-event-store="chrome"
+              data-umami-event-source="home_strip"
+            >
+              <Button rounded="full" size="sm">
+                <Download className="mr-2 size-4" />
+                Add to Chrome — free
+              </Button>
+            </a>
+            <a
+              href={REDDIT_READER.edge}
+              target="_blank"
+              rel="noopener"
+              data-umami-event="extension_install_clicked"
+              data-umami-event-store="edge"
+              data-umami-event-source="home_strip"
+            >
+              <Button
+                rounded="full"
+                size="sm"
+                variant="outline"
+                className="border-white/25 bg-white/10 text-white hover:bg-white/20 hover:text-white"
+              >
+                Add to Edge
+              </Button>
+            </a>
+            <Link href="/tools/reddit-viewer-extension" prefetch={false}>
+              <Button
+                rounded="full"
+                size="sm"
+                variant="ghost"
+                className="text-orange-200 hover:bg-white/10 hover:text-white"
+              >
+                Product page
+              </Button>
+            </Link>
+          </div>
+        </MarketingCard>
+      </section>
 
       <section className="mt-10">
         <MarketingSectionIntro

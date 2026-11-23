@@ -70,6 +70,24 @@ export function NavMobile() {
             ))}
         </ul>
 
+        <div className="mt-6 rounded-2xl border border-orange-200 bg-orange-50/70 p-4">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-orange-700">
+            Free browser extension
+          </p>
+          <Link
+            href="/tools/reddit-viewer-extension"
+            onClick={() => setOpen(false)}
+            data-umami-event="mobile_nav_extension_clicked"
+            className="mt-1 block font-heading text-lg text-foreground"
+          >
+            Reddit Reader — clean thread view
+          </Link>
+          <p className="mt-1 text-sm leading-6 text-muted-foreground">
+            Chrome and Edge. No login wall, keyword highlighting, Markdown
+            export.
+          </p>
+        </div>
+
         {documentation ? (
           <div className="mt-8 block md:hidden">
             <DocsSidebarNav setOpen={setOpen} />

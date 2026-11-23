@@ -15,12 +15,11 @@ import {
   MarketingPageShell,
 } from "@/components/marketing/page-shell";
 import { constructMetadata } from "@/lib/utils";
+import { REDDIT_READER } from "@/lib/store-links";
 
-// Published store listings. Chrome is the primary install surface; Edge stays available.
-const STORE_URL =
-  "https://chromewebstore.google.com/detail/akgmihlphnhaejbhpmcjckpdogbplcng";
-const EDGE_URL =
-  "https://microsoftedge.microsoft.com/addons/detail/jfanggdobljmlaohcldjoafnigmhfogh";
+// Chrome is the primary install surface; Edge stays a first-class button.
+const STORE_URL = REDDIT_READER.chrome;
+const EDGE_URL = REDDIT_READER.edge;
 
 const PRO_CHECKOUT_ENABLED = true;
 
@@ -66,6 +65,8 @@ export default function RedditReaderExtensionPage() {
                 target="_blank"
                 rel="noopener"
                 data-umami-event="extension_install_clicked"
+                data-umami-event-store="chrome"
+                data-umami-event-source="tool_hero"
               >
                 <Button rounded="full" size="lg">
                   <Download className="mr-2 size-4" />
@@ -94,9 +95,14 @@ export default function RedditReaderExtensionPage() {
               href={EDGE_URL}
               target="_blank"
               rel="noopener"
-              className="self-center text-sm font-medium text-muted-foreground underline underline-offset-4 hover:text-foreground"
+              data-umami-event="extension_install_clicked"
+              data-umami-event-store="edge"
+              data-umami-event-source="tool_hero"
             >
-              Also on Microsoft Edge
+              <Button rounded="full" size="lg" variant="outline">
+                <Download className="mr-2 size-4" />
+                Add to Microsoft Edge
+              </Button>
             </a>
           </>
         }

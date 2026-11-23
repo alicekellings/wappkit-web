@@ -21,6 +21,8 @@ import {
 import BlurImage from "@/components/shared/blur-image";
 import { DashboardTableOfContents } from "@/components/shared/toc";
 import { BlogProductPromo } from "@/components/content/blog-product-promo";
+import { BlogInstallBar } from "@/components/content/blog-install-bar";
+import { getPromotedTool } from "@/lib/tools";
 
 import "@/styles/mdx.css";
 
@@ -111,6 +113,15 @@ export default async function PostPage({
     blurDataURL: placeholderBlurhash,
   }));
 
+  // Only Reddit-related posts get the extension strip; pushing a Reddit
+  // extension on an image-resizing article wastes the slot.
+  const promotedTool = getPromotedTool({
+    slug: post.slugAsParams,
+    title: post.title,
+    categories: post.categories,
+  });
+  const showInstallBar = promotedTool?.slug === "reddit-viewer-extension";
+
   return (
     <MarketingPageShell>
       <ArticleSchema post={post} category={category} />
@@ -197,6 +208,12 @@ export default async function PostPage({
           </MarketingCard>
         }
       />
+
+      {showInstallBar ? (
+        <div className="mt-6">
+          <BlogInstallBar source="article_top" />
+        </div>
+      ) : null}
 
       <section className="mt-10 grid gap-6 xl:grid-cols-[minmax(0,1fr)_280px]">
         <MarketingCard tone="soft" className="overflow-hidden p-0">

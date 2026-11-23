@@ -108,6 +108,22 @@ export function NavBar({ scroll = false }: NavBarProps) {
             </Link>
           )}
 
+          <Link
+            href="/tools/reddit-viewer-extension"
+            prefetch={false}
+            className="hidden md:block"
+            data-umami-event="nav_extension_clicked"
+          >
+            <Button
+              className="hidden gap-2 px-5 md:flex"
+              variant="outline"
+              size="sm"
+              rounded="full"
+            >
+              <span>Reddit Reader</span>
+            </Button>
+          </Link>
+
           <Link href="/tools" prefetch={false} className="hidden md:block">
             <Button
               className="hidden gap-2 px-5 md:flex"

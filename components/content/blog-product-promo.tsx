@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { getPromotedTool } from "@/lib/tools";
+import { REDDIT_READER } from "@/lib/store-links";
 import { Button } from "@/components/ui/button";
 import { MarketingCard } from "@/components/marketing/page-shell";
 import { cn } from "@/lib/utils";
@@ -96,6 +97,18 @@ export function BlogProductPromo({
               className="text-center text-sm font-medium text-orange-700 underline-offset-4 hover:underline"
             >
               {tool.mobileLabel ?? "On a phone? Get the mobile version"}
+            </Link>
+          ) : null}
+          {tool.slug === REDDIT_READER.slug ? (
+            <Link
+              href={REDDIT_READER.edge}
+              prefetch={false}
+              data-umami-event="extension_install_clicked"
+              data-umami-event-store="edge"
+              data-umami-event-source="blog_sidebar"
+              className="text-center text-sm font-medium text-orange-700 underline-offset-4 hover:underline"
+            >
+              Also on Microsoft Edge
             </Link>
           ) : null}
         </div>
