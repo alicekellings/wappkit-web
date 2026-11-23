@@ -210,7 +210,8 @@
     "reddit_toolbox:forged:redditsave vs wappkit: 3 export criteria",
     "ecom_image:topic:upscaling a small product photo makes it worse",
     "ecom_image:topic:walmart marketplace image 5mb limit",
-    "reddit_toolbox:intent:reddit keyword highlight extension"
+    "reddit_toolbox:intent:reddit keyword highlight extension",
+    "reddit_toolbox:intent:reddit viewer extension safe"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -429,7 +430,8 @@
     "redditsave-vs-wappkit-3-export-criteria-for-serious-researchers",
     "why-1024px-product-photos-blur-when-upscaled",
     "compress-2200px-walmart-images-under-5mb",
-    "reddit-keyword-highlight-extension-for-chrome"
+    "reddit-keyword-highlight-extension-for-chrome",
+    "reddit-viewer-extension-safety-for-chrome-and-edge"
   ],
   "events": [
     {
@@ -1970,6 +1972,13 @@
       "source_type": "topic",
       "slug": "compress-2200px-walmart-images-under-5mb",
       "title": "Compress 2200px Walmart Images Under 5MB"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "reddit viewer extension safe",
+      "source_type": "intent",
+      "slug": "reddit-viewer-extension-safety-for-chrome-and-edge",
+      "title": "Reddit Viewer Extension Safety for Chrome and Edge"
     }
   ],
   "skipped_topics": [

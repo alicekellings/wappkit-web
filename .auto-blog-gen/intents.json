@@ -1413,7 +1413,16 @@
       "type": "troubleshooting",
       "date": "2026-11-22",
       "status": "published"
+    },
+    {
+      "id": "I-0158",
+      "intent": "chrome edge extension reddit safety viewer",
+      "title": "Reddit Viewer Extension Safety for Chrome and Edge",
+      "slug": "reddit-viewer-extension-safety-for-chrome-and-edge",
+      "type": "teardown",
+      "date": "2026-11-23",
+      "status": "published"
     }
   ],
-  "updated": "2026-11-22"
+  "updated": "2026-11-23"
 }
