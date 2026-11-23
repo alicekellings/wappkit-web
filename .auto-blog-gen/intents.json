@@ -1422,6 +1422,15 @@
       "type": "teardown",
       "date": "2026-11-23",
       "status": "published"
+    },
+    {
+      "id": "I-0159",
+      "intent": "2000px amazon fixing image main requirement",
+      "title": "Fixing Amazon's 2000px Main Image Requirement",
+      "slug": "fixing-amazon-s-2000px-main-image-requirement",
+      "type": "case_study",
+      "date": "2026-11-23",
+      "status": "published"
     }
   ],
   "updated": "2026-11-23"

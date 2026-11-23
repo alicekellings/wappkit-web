@@ -211,7 +211,8 @@
     "ecom_image:topic:upscaling a small product photo makes it worse",
     "ecom_image:topic:walmart marketplace image 5mb limit",
     "reddit_toolbox:intent:reddit keyword highlight extension",
-    "reddit_toolbox:intent:reddit viewer extension safe"
+    "reddit_toolbox:intent:reddit viewer extension safe",
+    "ecom_image:topic:amazon main image 2000px square requirement"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -431,7 +432,8 @@
     "why-1024px-product-photos-blur-when-upscaled",
     "compress-2200px-walmart-images-under-5mb",
     "reddit-keyword-highlight-extension-for-chrome",
-    "reddit-viewer-extension-safety-for-chrome-and-edge"
+    "reddit-viewer-extension-safety-for-chrome-and-edge",
+    "fixing-amazon-s-2000px-main-image-requirement"
   ],
   "events": [
     {
@@ -1979,6 +1981,13 @@
       "source_type": "intent",
       "slug": "reddit-viewer-extension-safety-for-chrome-and-edge",
       "title": "Reddit Viewer Extension Safety for Chrome and Edge"
+    },
+    {
+      "theme": "ecom_image",
+      "topic": "amazon main image 2000px square requirement",
+      "source_type": "topic",
+      "slug": "fixing-amazon-s-2000px-main-image-requirement",
+      "title": "Fixing Amazon's 2000px Main Image Requirement"
     }
   ],
   "skipped_topics": [

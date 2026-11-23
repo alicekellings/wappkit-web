@@ -35,6 +35,13 @@
       "type": "teardown",
       "template": "diagnostic_tree",
       "date": "2026-11-23"
+    },
+    {
+      "slug": "fixing-amazon-s-2000px-main-image-requirement",
+      "title": "Fixing Amazon's 2000px Main Image Requirement",
+      "type": "case_study",
+      "template": "measurement_report",
+      "date": "2026-11-23"
     }
   ]
 }
