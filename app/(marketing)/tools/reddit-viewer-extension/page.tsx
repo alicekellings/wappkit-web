@@ -16,6 +16,8 @@ import {
 } from "@/components/marketing/page-shell";
 import { constructMetadata } from "@/lib/utils";
 import { REDDIT_READER } from "@/lib/store-links";
+import { getFaq } from "@/lib/faq";
+import { FaqBlock } from "@/components/content/faq-block";
 
 // Chrome is the primary install surface; Edge stays a first-class button.
 const STORE_URL = REDDIT_READER.chrome;
@@ -24,9 +26,9 @@ const EDGE_URL = REDDIT_READER.edge;
 const PRO_CHECKOUT_ENABLED = true;
 
 export const metadata = constructMetadata({
-  title: "Reddit Reader — Clean Reading Without Login Walls | Wappkit",
+  title: "Reddit Viewer Extension for Chrome and Edge | Reddit Reader",
   description:
-    "A Chrome and Edge extension that hides Reddit login walls and clutter, highlights keywords, and exports threads to Markdown. Free with a 3-export trial; Pro is $4.99 one-time.",
+    "Reddit Reader is a Reddit viewer extension for Chrome and Edge: hides login walls and clutter, highlights keywords across a thread, and exports the post plus comments to Markdown without an account. Free with a 3-export trial; Pro is $4.99 one-time.",
 });
 
 const freeFeatures = [
@@ -224,6 +226,38 @@ export default function RedditReaderExtensionPage() {
           );
         })}
       </section>
+
+      <section className="mt-10">
+        <h2 className="font-heading text-3xl text-foreground">
+          What is a Reddit viewer?
+        </h2>
+        <div className="mt-4 max-w-3xl space-y-4 text-base leading-7 text-muted-foreground">
+          <p>
+            A Reddit viewer is a different way to read Reddit. Instead of the
+            logged-out homepage with its app banners, sidebars and promoted
+            posts, a viewer renders the thread itself — the post, its comments
+            and the nested replies — in a layout built for reading.
+          </p>
+          <p>
+            There are three common shapes. Web frontends such as old.reddit.com
+            serve a separate page. Proxy sites such as Teddit fetch threads on
+            your behalf, which is why most of them stopped working after the
+            2023 API changes. A browser extension is the third shape: it redraws
+            the tab you already have open, so there is no extra site to trust
+            and no server in the middle.
+          </p>
+          <p>
+            Reddit Reader is the third kind. You install it from the browser
+            store, click the toolbar icon on a Reddit thread, and get reader
+            mode, keyword highlighting and a Markdown export of the post and its
+            comments. It is useful when you read public threads without an
+            account; it does not help with private communities, voting or
+            posting.
+          </p>
+        </div>
+      </section>
+
+      <FaqBlock items={getFaq("tools/reddit-viewer-extension") ?? []} />
 
       <section className="mt-10">
         <MarketingCard tone="warm" className="p-8 md:p-10">

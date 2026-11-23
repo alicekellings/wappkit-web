@@ -22,7 +22,9 @@ import BlurImage from "@/components/shared/blur-image";
 import { DashboardTableOfContents } from "@/components/shared/toc";
 import { BlogProductPromo } from "@/components/content/blog-product-promo";
 import { BlogInstallBar } from "@/components/content/blog-install-bar";
+import { FaqBlock } from "@/components/content/faq-block";
 import { getPromotedTool } from "@/lib/tools";
+import { getFaq } from "@/lib/faq";
 
 import "@/styles/mdx.css";
 
@@ -121,6 +123,7 @@ export default async function PostPage({
     categories: post.categories,
   });
   const showInstallBar = promotedTool?.slug === "reddit-viewer-extension";
+  const faqItems = getFaq(post.slugAsParams);
 
   return (
     <MarketingPageShell>
@@ -230,6 +233,7 @@ export default async function PostPage({
           />
           <div className="px-5 py-8 md:p-10">
             <Mdx code={post.body.code} images={images} />
+            {faqItems ? <FaqBlock items={faqItems} /> : null}
           </div>
         </MarketingCard>
 
