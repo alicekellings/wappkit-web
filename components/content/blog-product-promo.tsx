@@ -85,7 +85,7 @@ export function BlogProductPromo({
             data-umami-event-tool={tool.slug}
           >
             <Button rounded="full" variant="outline" className="w-full">
-              View Product
+              See {tool.name}
             </Button>
           </Link>
           {tool.mobileHref ? (
