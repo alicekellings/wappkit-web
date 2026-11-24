@@ -18,9 +18,9 @@ function toPlainText(raw: string): string {
 /**
  * Pull Q&A pairs out of the visible FAQ section of an MDX body.
  *
- * Most generated articles carry a "## FAQ" or "## Common questions" block but
- * no FAQPage markup, so they never qualify for the rich result. Parsing the
- * published body keeps the schema and the visible copy identical by design.
+ * Parsing the published body keeps FAQPage text aligned with visible answers.
+ * Google stopped showing FAQ rich results on May 7, 2026; this markup does not
+ * promise a search feature or a ranking benefit.
  */
 export function parseFaqFromBody(body: string): FaqItem[] {
   const heading = FAQ_HEADING.exec(body);

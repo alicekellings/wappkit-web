@@ -126,8 +126,8 @@ export default async function PostPage({
   });
   const showInstallBar = promotedTool?.slug === "reddit-viewer-extension";
   const faqItems = getFaq(post.slugAsParams);
-  // Curated FAQ renders its own schema; every other article reuses the visible
-  // FAQ section from the body so it can qualify for the rich result too.
+  // Curated FAQ renders its own schema; otherwise keep schema text aligned with
+  // the visible answers. Google stopped showing FAQ rich results in May 2026.
   const parsedFaq = faqItems ? [] : parseFaqFromBody(post.body.raw);
 
   return (
