@@ -213,7 +213,8 @@
     "reddit_toolbox:intent:reddit keyword highlight extension",
     "reddit_toolbox:intent:reddit viewer extension safe",
     "ecom_image:topic:amazon main image 2000px square requirement",
-    "reddit_toolbox:intent:reddit reader free tier limits"
+    "reddit_toolbox:intent:reddit reader free tier limits",
+    "ecom_image:topic:temu clothing image 1340 by 1785 ratio"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -435,7 +436,8 @@
     "reddit-keyword-highlight-extension-for-chrome",
     "reddit-viewer-extension-safety-for-chrome-and-edge",
     "fixing-amazon-s-2000px-main-image-requirement",
-    "reddit-reader-free-tier-what-3-markdown-exports-cover"
+    "reddit-reader-free-tier-what-3-markdown-exports-cover",
+    "how-to-resize-temu-clothing-images-to-1340x1785-for-approval"
   ],
   "events": [
     {
@@ -1997,6 +1999,13 @@
       "source_type": "intent",
       "slug": "reddit-reader-free-tier-what-3-markdown-exports-cover",
       "title": "Reddit Reader Free Tier: What 3 Markdown Exports Cover"
+    },
+    {
+      "theme": "ecom_image",
+      "topic": "temu clothing image 1340 by 1785 ratio",
+      "source_type": "topic",
+      "slug": "how-to-resize-temu-clothing-images-to-1340x1785-for-approval",
+      "title": "How to Resize Temu Clothing Images to 1340x1785 for Approval"
     }
   ],
   "skipped_topics": [

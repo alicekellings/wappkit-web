@@ -1440,6 +1440,15 @@
       "type": "comparison",
       "date": "2026-11-24",
       "status": "published"
+    },
+    {
+      "id": "I-0161",
+      "intent": "1340x1785 approval cloth imag resize temu",
+      "title": "How to Resize Temu Clothing Images to 1340x1785 for Approval",
+      "slug": "how-to-resize-temu-clothing-images-to-1340x1785-for-approval",
+      "type": "glossary",
+      "date": "2026-11-24",
+      "status": "published"
     }
   ],
   "updated": "2026-11-24"
