@@ -1,8 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 
-import { getRequestCountry, shouldBlockCountry } from "@/lib/geo-block";
-
 /**
+ * 地区拦截已从 middleware 移到 Vercel Firewall。
+ *
+ * middleware 是一次边缘计算调用，每个命中 matcher 的请求都要付一次
+ * Fast Origin Transfer；Firewall 在边缘直接拒绝，不进计算层，成本为零。
+ * 拦截规则（当前只有 CN，且带路径豁免）改由 Firewall → Rules 里的一条
+ * Country = China 的 Deny 规则承担。
+ *
  * studio.wappkit.com 上的一切都改写到 /studio/* 命名空间。
  *
  * 为什么放在 middleware 而不是 next.config.js 的 rewrites()：
@@ -14,36 +19,10 @@ import { getRequestCountry, shouldBlockCountry } from "@/lib/geo-block";
 const STUDIO_HOST = "studio.wappkit.com";
 
 export function middleware(request: NextRequest) {
-  // /api/license/* 不做地区拦截：
-  // 1) 授权本身受 key + 硬件绑定 + 限流保护，地区封锁挡不住滥用，只会挡住
-  //    正常激活（作者本机就在 CN，测试时被 403 卡住过）；
-  // 2) 免费 key 无商业损失，付费 key 走 Creem 结算，CN 用户本来就买不了。
-  // 授权与结账接口都豁免地区拦截：它们是交易链路，不是内容浏览。
-  // 结账最终跳 Creem 收银台，真正的风控在支付侧。
-  const isLicenseApi =
-    request.nextUrl.pathname.startsWith("/api/license/") ||
-    request.nextUrl.pathname.startsWith("/api/checkout");
-
-  // /ops 后台与 /api/admin/* 同样豁免：
-  // 它们本来就要求 INTERNAL_ADMIN_TOKEN 登录态，安全性来自鉴权而不是地区封锁；
-  // 而作者人在 CN，封锁等于让看板自己打不开——漏斗数据和激活列表正是要天天看的。
-  const isAdminArea =
-    request.nextUrl.pathname === "/ops" ||
-    request.nextUrl.pathname.startsWith("/ops/") ||
-    request.nextUrl.pathname.startsWith("/api/admin/");
-
-  const country = getRequestCountry(request.headers);
-
-  if (!isLicenseApi && !isAdminArea && shouldBlockCountry(country)) {
-    return new NextResponse("Access unavailable from this region.", {
-      status: 403,
-      headers: {
-        "Content-Type": "text/plain; charset=utf-8",
-        "X-Robots-Tag": "noindex",
-      },
-    });
-  }
-
+  // 豁免清单（Firewall 规则里要同样排除，否则交易链路和后台会被挡）：
+  //   /api/license/*      授权接口：受 key + 硬件绑定 + 限流保护，且作者本机在 CN
+  //   /api/checkout       结账：跳 Creem 收银台，真正的风控在支付侧
+  //   /ops、/api/admin/*  后台：靠 INTERNAL_ADMIN_TOKEN 鉴权，作者在 CN 要天天看
   const host = (request.headers.get("host") ?? "").split(":")[0];
   const { pathname } = request.nextUrl;
 
@@ -58,7 +37,6 @@ export function middleware(request: NextRequest) {
     response = NextResponse.next();
   }
 
-  response.headers.set("X-Wappkit-Geo-Block", "active");
   return response;
 }
 
