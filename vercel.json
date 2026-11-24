@@ -7,38 +7,63 @@
   ],
   "redirects": [
     {
+      "source": "/blog/reddit-keyword-monitoring-workflow-practical-steps-for-founders-in-2026",
+      "destination": "/blog/building-a-reddit-keyword-monitoring-workflow-for-founders",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/setting-up-reddit-keyword-alerts-and-digests-for-real-time-market-insights",
+      "destination": "/blog/setting-up-reddit-monitoring-alerts-for-real-time-market-signals-in-2026",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/setting-up-reddit-keyword-alerts-for-real-time-trend-tracking",
+      "destination": "/blog/setting-up-reddit-monitoring-alerts-for-real-time-market-signals-in-2026",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/reddit-post-scraper-workflow-practical-steps-for-reliable-extraction",
+      "destination": "/blog/reddit-scraper-desktop-workflow-practical-steps-for-local-data-extraction",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/reddit-research-workflows-that-help-creators-and-growth-teams-move-faster-in-202",
+      "destination": "/blog/practical-reddit-research-workflows-for-creators-and-growth-teams",
+      "statusCode": 301
+    },
+    {
       "source": "/blog/how-founders-use-reddit-keyword-monitoring-to-spot-emerging-opportunities",
-      "destination": "/blog/reddit-keyword-monitoring-workflow-practical-steps-for-founders-in-2026",
+      "destination": "/blog/building-a-reddit-keyword-monitoring-workflow-for-founders",
       "statusCode": 301
     },
     {
       "source": "/blog/how-founders-use-reddit-keyword-monitoring-to-spot-emerging-opportunities-early",
-      "destination": "/blog/reddit-keyword-monitoring-workflow-practical-steps-for-founders-in-2026",
+      "destination": "/blog/building-a-reddit-keyword-monitoring-workflow-for-founders",
       "statusCode": 301
     },
     {
       "source": "/blog/how-founders-use-reddit-monitoring-to-spot-emerging-customer-needs-early",
-      "destination": "/blog/reddit-keyword-monitoring-workflow-practical-steps-for-founders-in-2026",
+      "destination": "/blog/building-a-reddit-keyword-monitoring-workflow-for-founders",
       "statusCode": 301
     },
     {
       "source": "/blog/how-founders-use-reddit-monitoring-to-spot-emerging-market-opportunities-in-2026",
-      "destination": "/blog/reddit-keyword-monitoring-workflow-practical-steps-for-founders-in-2026",
+      "destination": "/blog/building-a-reddit-keyword-monitoring-workflow-for-founders",
       "statusCode": 301
     },
     {
       "source": "/blog/reddit-keyword-monitoring-workflow-spot-emerging-market-opportunities-early",
-      "destination": "/blog/reddit-keyword-monitoring-workflow-practical-steps-for-founders-in-2026",
+      "destination": "/blog/building-a-reddit-keyword-monitoring-workflow-for-founders",
       "statusCode": 301
     },
     {
       "source": "/blog/reddit-monitoring-workflow-for-founders-in-2026-spot-emerging-opportunities-befo",
-      "destination": "/blog/reddit-keyword-monitoring-workflow-practical-steps-for-founders-in-2026",
+      "destination": "/blog/building-a-reddit-keyword-monitoring-workflow-for-founders",
       "statusCode": 301
     },
     {
       "source": "/blog/reddit-monitoring-workflow-for-founders-in-2026-spot-opportunities-with-the-simp",
-      "destination": "/blog/reddit-keyword-monitoring-workflow-practical-steps-for-founders-in-2026",
+      "destination": "/blog/building-a-reddit-keyword-monitoring-workflow-for-founders",
       "statusCode": 301
     },
     {
@@ -88,22 +113,22 @@
     },
     {
       "source": "/blog/how-to-set-up-reddit-keyword-alerts-for-real-time-competitor-and-trend-tracking",
-      "destination": "/blog/setting-up-reddit-keyword-alerts-for-real-time-trend-tracking",
+      "destination": "/blog/setting-up-reddit-monitoring-alerts-for-real-time-market-signals-in-2026",
       "statusCode": 301
     },
     {
       "source": "/blog/how-to-set-up-reddit-keyword-alerts-for-real-time-market-intelligence",
-      "destination": "/blog/setting-up-reddit-keyword-alerts-for-real-time-trend-tracking",
+      "destination": "/blog/setting-up-reddit-monitoring-alerts-for-real-time-market-signals-in-2026",
       "statusCode": 301
     },
     {
       "source": "/blog/how-to-set-up-reddit-keyword-monitoring-for-competitor-and-trend-tracking-in-202",
-      "destination": "/blog/setting-up-reddit-keyword-alerts-for-real-time-trend-tracking",
+      "destination": "/blog/setting-up-reddit-monitoring-alerts-for-real-time-market-signals-in-2026",
       "statusCode": 301
     },
     {
       "source": "/blog/setting-up-reddit-keyword-alerts-for-real-time-market-and-competitor-insights",
-      "destination": "/blog/setting-up-reddit-keyword-alerts-for-real-time-trend-tracking",
+      "destination": "/blog/setting-up-reddit-monitoring-alerts-for-real-time-market-signals-in-2026",
       "statusCode": 301
     },
     {
@@ -398,7 +423,7 @@
     },
     {
       "source": "/blog/setting-up-reddit-keyword-alerts-to-track-customer-pain-points-in-real-time",
-      "destination": "/blog/setting-up-reddit-keyword-alerts-and-digests-for-real-time-market-insights",
+      "destination": "/blog/setting-up-reddit-monitoring-alerts-for-real-time-market-signals-in-2026",
       "statusCode": 301
     },
     {
