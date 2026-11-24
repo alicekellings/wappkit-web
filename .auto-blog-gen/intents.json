@@ -1431,7 +1431,16 @@
       "type": "case_study",
       "date": "2026-11-23",
       "status": "published"
+    },
+    {
+      "id": "I-0160",
+      "intent": "cover export free markdown reader reddit tier",
+      "title": "Reddit Reader Free Tier: What 3 Markdown Exports Cover",
+      "slug": "reddit-reader-free-tier-what-3-markdown-exports-cover",
+      "type": "comparison",
+      "date": "2026-11-24",
+      "status": "published"
     }
   ],
-  "updated": "2026-11-23"
+  "updated": "2026-11-24"
 }

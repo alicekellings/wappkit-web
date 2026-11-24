@@ -42,6 +42,13 @@
       "type": "case_study",
       "template": "measurement_report",
       "date": "2026-11-23"
+    },
+    {
+      "slug": "reddit-reader-free-tier-what-3-markdown-exports-cover",
+      "title": "Reddit Reader Free Tier: What 3 Markdown Exports Cover",
+      "type": "comparison",
+      "template": "decision_matrix",
+      "date": "2026-11-24"
     }
   ]
 }

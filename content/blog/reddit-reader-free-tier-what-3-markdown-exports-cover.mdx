@@ -1,0 +1,103 @@
+---
+title: "Reddit Reader Free Tier: What 3 Markdown Exports Cover"
+description: "Discover the exact free tier limits for Reddit Reader in 2026. Learn what the free plan covers, how Pro upgrades work, and when to use local tools over APIs."
+date: "2026-11-24"
+published: true
+image: "/images/blog/reddit-reader-free-tier-what-3-markdown-exports-cover-cover.jpg"
+authors: ["wappkit-editorial"]
+categories: ["guides"]
+---
+The Reddit Reader free tier gives you a clean, distraction-free view of reddit.com threads, basic reading styles, one active keyword highlight, and three lifetime Markdown exports. If you only need to skim the occasional discussion or test how the extension formats threads for your notes, it delivers immediate utility without requiring an account, sign-in, or backend configuration.
+
+If you are a founder, creator, or researcher mining Reddit weekly for customer feedback, those three exports go quickly. Moving to the $4.99 one-time Pro license removes export caps entirely and unlocks unlimited keyword highlighting across posts and comments. The upgrade activates right inside the extension panel with a license key - no recurring software subscription, and all page processing stays local to your browser.
+
+<Card href="/tools/reddit-viewer-extension" data-umami-event="article_cta_clicked" data-umami-event-position="intro" data-umami-event-tool="reddit-viewer-extension">
+
+### Try it on a thread you already have open
+Reddit Reader removes login prompts, sidebars, app banners, and promoted posts, highlights one keyword on the free tier, and exports the loaded thread to Markdown. Install it free and test it on a real thread before paying for Pro.
+
+</Card>
+
+## Core Criteria for Evaluating Reddit Research Options
+
+Picking a tool for Reddit research comes down to practical friction rather than surface-level interface design. When you are sifting through user discussions, small roadblocks dictate how much manual effort each thread requires.
+
+A practical comparison hinges on four points:
+
+Cost structure is the first filter. A modest one-time license avoids adding another recurring monthly charge to your stack. Export limits matter just as much; hard caps on thread exports can halt research mid-session. You also need effective in-thread search, specifically the ability to highlight multiple pain points or competitor names across sprawling comment trees. Finally, consider setup friction. Registering API tokens and configuring client secrets makes sense for engineers building data pipelines, but it slows down spontaneous qualitative research.
+
+## Three Approaches to Capturing Reddit Discussion Threads
+
+The simplest starting point is the free tier of [Reddit Reader](/tools/reddit-viewer-extension). Built for Chrome (version 102+) and Edge, it runs directly on the reddit.com tab you already have open. Click the extension icon, and a floating panel strips out sidebars, promotional widgets, and login prompts. You can enter a single keyword to highlight matches across the original post and loaded comments. You get exactly three Markdown exports across the lifetime of the extension installation.
+
+The second path is Reddit Reader Pro. At a $4.99 one-time purchase, there are no monthly renewals. You paste a license key into the extension panel, which validates once via an outbound request to www.wappkit.com. Pro removes the export counter and keyword cap. You can track dozens of search terms, brand names, or feature requests at once, with matching text clearly styled across the thread. Exporting pulls the title, author, score, subreddit, canonical link, body text, and visible comments into structured Markdown ready for your notes.
+
+The third method is writing custom scripts against the Reddit Data API. This bypasses the browser interface completely and fetches raw data from Reddit endpoints. It works well for automated background jobs, but it brings bureaucratic hurdles: you must register an application, monitor rate limits, and follow developer terms that restrict commercial use without enterprise agreements.
+
+![A person sitting at a desk with a laptop and papers](/images/blog/reddit-reader-free-tier-what-3-markdown-exports-cover-detail.jpg)
+
+## Direct Comparison of Cost, Limits, and Setup Friction
+
+Comparing these options side by side highlights where each fits best in a research workflow.
+
+| Tooling Option | Financial Cost | Lifetime Export Limit | Active Keyword Highlights | Setup Requirement | Data Source |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| Reddit Reader (Free) | $0.00 | 3 export actions | 1 keyword | Install from Chrome or Edge store | chromewebstore.google.com |
+| Reddit Reader Pro | $4.99 one-time | Unlimited export actions | Unlimited keywords | Enter license key in panel | wappkit.com/tools/reddit-viewer-extension |
+| Reddit Data API (Free) | $0.00 | 100 queries per minute | Custom code dependent | Register OAuth app and client secrets | reddit.com/dev/api |
+
+Keep in mind that these tools handle thread contents differently. An API script queries nested comment trees up to your request limits, while Reddit Reader captures what is currently rendered in your active tab. Because Reddit lazy-loads deeper comment threads as you scroll, expanding collapsed branches before exporting ensures you get the full conversation in your Markdown file.
+
+## Decision Verdicts and Workflow Switching Costs
+
+If you only drop into Reddit once in a while to grab a couple of insightful discussions for your Obsidian or Notion vault, stick with the free tier. It declutters the page, sidesteps login prompts, and costs nothing. Just remember that the three exports are a lifetime allotment - they do not reset when you restart your browser.
+
+If you regularly mine Reddit for customer pain points, competitor gaps, or content ideas, the $4.99 Pro license is the practical choice. You can highlight several terms simultaneously across long threads and export as much as you need without watching a counter. Pro is not designed for bulk scraping across thousands of subreddits at once, but for hands-on reading and note-taking, it removes all the usual friction.
+
+For automated data pipelines that archive thousands of posts programmatically, the official API remains the right choice despite the developer onboarding process. Using it for casual reading or manual clipping, however, is unnecessary overhead.
+
+Switching from free to Pro requires no workflow changes. You keep using the same floating panel on reddit.com, and entering your key lifts the export and keyword limits immediately.
+
+<Card href="/tools/reddit-viewer-extension" data-umami-event="article_cta_clicked" data-umami-event-position="mid" data-umami-event-tool="reddit-viewer-extension">
+
+### If the limits fit your workflow
+One keyword and three exports cover occasional reading. Pro is $4.99 one-time and removes both limits; there is no subscription and no account to create.
+
+</Card>
+
+## FAQ
+
+### Is the Reddit Reader Pro license a recurring subscription?
+
+No. Reddit Reader Pro is a $4.99 one-time purchase. Enter the license key into the extension panel after buying it, and you have lifetime access with no monthly or yearly renewals.
+
+### What does the three-export limit actually count?
+
+It counts export actions, not lines of text or individual comments. Clicking the export button to generate a Markdown file uses one of your three lifetime exports, whether the thread has ten comments or five hundred.
+
+### Does Reddit Reader require an official Reddit API key?
+
+No. The extension works directly with the standard reddit.com page open in your browser, so you do not need a Reddit developer account or API credentials.
+
+### Does the Markdown export preserve keyword highlights?
+
+No. Keyword highlighting is purely an in-browser visual aid to help you scan long comment sections faster. The exported Markdown contains clean text, scores, links, and author details without extra styling tags.
+
+<Card href="/tools/reddit-viewer-extension" data-umami-event="article_cta_clicked" data-umami-event-position="end" data-umami-event-tool="reddit-viewer-extension">
+
+### One thread is enough to decide
+Open a thread you already wanted to read, check the clean view, and export it once. If it saves a cleanup step, keep it; if not, uninstall.
+
+</Card>
+
+## Sources
+
+- [Reddit Reader extension page](https://www.wappkit.com/tools/reddit-viewer-extension)
+- [Reddit Reader on the Chrome Web Store](https://chromewebstore.google.com/detail/akgmihlphnhaejbhpmcjckpdogbplcng)
+- [Reddit Reader on Microsoft Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/jfanggdobljmlaohcldjoafnigmhfogh)
+- [Reddit Reader privacy policy](https://www.wappkit.com/privacy/reddit-reader)
+- [Reddit API documentation](https://www.reddit.com/dev/api)
+
+## Conclusion
+
+Choosing between the Reddit Reader free tier and the Pro upgrade comes down to your research habits. The free plan works well as a distraction-free reader that lets you export a few valuable threads to Markdown at no cost. Once you start doing regular market research or customer discovery, the three-export cap quickly gets in the way. The $4.99 one-time Pro license removes export caps and keyword restrictions permanently, giving you a fast, local-first way to capture Reddit discussions straight from your browser.
