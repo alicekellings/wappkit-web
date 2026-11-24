@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { ArrowUpRight, Check } from "lucide-react";
 
 import { buttonVariants } from "@/components/ui/button";
-import { resolveGoSlug } from "@/lib/go-links";
+import { getStoreTools, resolveGoSlug } from "@/lib/go-links";
 import { constructMetadata } from "@/lib/utils";
 
 /**
@@ -15,7 +15,25 @@ import { constructMetadata } from "@/lib/utils";
  * 点击计数在 /go/[slug]/out 里做，服务端写 Upstash，
  * 广告拦截器和禁用 JS 都拦不掉。
  */
-export const dynamic = "force-dynamic";
+/**
+ * 缓存策略：ISR，不再是 force-dynamic。
+ *
+ * 原来的 force-dynamic 让每一次点击都现场渲染一整页，响应体全部计入
+ * Vercel 的 Fast Origin Transfer（CDN → 函数方向的出站流量）。
+ *
+ * 渠道 slug 是任意字符串（<工具>-<渠道>，见 lib/go-links.ts），构建时无法
+ * 全量枚举，所以不能纯静态化。折中方案：
+ *   - 裸工具 slug（filededupe、renamer…）构建时就生成好
+ *   - 带渠道的 slug 第一次访问时生成，之后 24 小时内走 CDN 缓存
+ *
+ * 链接格式、页面内容、/out 的点击计数都不变，只是不再每次点击都回源。
+ */
+export const revalidate = 86400;
+export const dynamicParams = true;
+
+export function generateStaticParams() {
+  return getStoreTools().map((tool) => ({ slug: tool.slug }));
+}
 
 type GoPageProps = {
   params: { slug: string };
