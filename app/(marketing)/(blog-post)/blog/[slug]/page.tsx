@@ -23,6 +23,8 @@ import { DashboardTableOfContents } from "@/components/shared/toc";
 import { BlogProductPromo } from "@/components/content/blog-product-promo";
 import { BlogInstallBar } from "@/components/content/blog-install-bar";
 import { FaqBlock } from "@/components/content/faq-block";
+import { FaqSchema } from "@/components/content/faq-schema";
+import { parseFaqFromBody } from "@/lib/mdx-faq";
 import { getPromotedTool } from "@/lib/tools";
 import { getFaq } from "@/lib/faq";
 
@@ -124,10 +126,14 @@ export default async function PostPage({
   });
   const showInstallBar = promotedTool?.slug === "reddit-viewer-extension";
   const faqItems = getFaq(post.slugAsParams);
+  // Curated FAQ renders its own schema; every other article reuses the visible
+  // FAQ section from the body so it can qualify for the rich result too.
+  const parsedFaq = faqItems ? [] : parseFaqFromBody(post.body.raw);
 
   return (
     <MarketingPageShell>
       <ArticleSchema post={post} category={category} />
+      {faqItems ? null : <FaqSchema items={parsedFaq} />}
       <MarketingHero
         eyebrow="Wappkit Blog"
         title={post.title}
