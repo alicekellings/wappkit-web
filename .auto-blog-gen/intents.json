@@ -1449,7 +1449,16 @@
       "type": "glossary",
       "date": "2026-11-24",
       "status": "published"
+    },
+    {
+      "id": "I-0162",
+      "intent": "edge list reader reddit show",
+      "title": "Reddit Reader on Edge: 3 Things the Listing Does Not Show",
+      "slug": "reddit-reader-on-edge-3-things-the-listing-does-not-show",
+      "type": "troubleshooting",
+      "date": "2026-11-25",
+      "status": "published"
     }
   ],
-  "updated": "2026-11-24"
+  "updated": "2026-11-25"
 }

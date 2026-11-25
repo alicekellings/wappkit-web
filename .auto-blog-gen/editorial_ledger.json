@@ -56,6 +56,13 @@
       "type": "glossary",
       "template": "decision_matrix",
       "date": "2026-11-24"
+    },
+    {
+      "slug": "reddit-reader-on-edge-3-things-the-listing-does-not-show",
+      "title": "Reddit Reader on Edge: 3 Things the Listing Does Not Show",
+      "type": "troubleshooting",
+      "template": "diagnostic_tree",
+      "date": "2026-11-25"
     }
   ]
 }
