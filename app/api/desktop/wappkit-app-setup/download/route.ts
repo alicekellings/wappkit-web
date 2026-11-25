@@ -1,8 +1,6 @@
-import { NextResponse } from "next/server";
+﻿import { NextResponse } from "next/server";
 
 import { env } from "@/env.mjs";
-
-export const runtime = "edge";
 
 export async function GET() {
   if (!env.WAPPKIT_APP_SETUP_DOWNLOAD_URL) {

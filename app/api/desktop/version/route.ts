@@ -1,8 +1,6 @@
-import { NextResponse } from "next/server";
+﻿import { NextResponse } from "next/server";
 
 import { redditToolboxDesktopRelease } from "@/lib/desktop-release";
-
-export const runtime = "edge";
 
 export async function GET() {
   return NextResponse.json({
@@ -14,8 +12,8 @@ export async function GET() {
     file_size: redditToolboxDesktopRelease.fileSizeLabel,
     file_size_bytes: redditToolboxDesktopRelease.fileSizeBytes,
     sha256: redditToolboxDesktopRelease.sha256,
-    // 指向 GitHub Release 上的 .sha256 文件。与上面的 sha256 分属不同域，
-    // 客户端会做双源比对：两者不一致即拒绝执行安装包，避免单点被篡改。
+    // 鎸囧悜 GitHub Release 涓婄殑 .sha256 鏂囦欢銆備笌涓婇潰鐨?sha256 鍒嗗睘涓嶅悓鍩燂紝
+    // 瀹㈡埛绔細鍋氬弻婧愭瘮瀵癸細涓よ€呬笉涓€鑷村嵆鎷掔粷鎵ц瀹夎鍖咃紝閬垮厤鍗曠偣琚鏀广€?
     checksum_url: redditToolboxDesktopRelease.checksumUrl,
     update_required: false,
   });

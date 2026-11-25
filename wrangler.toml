@@ -1,0 +1,13 @@
+#:schema node_modules/wrangler/config-schema.json
+name = "wappkit-web"
+main = ".open-next/worker.js"
+compatibility_date = "2026-08-04"
+compatibility_flags = ["nodejs_compat"]
+
+# 静态资源由 Workers Static Assets 直接返回，不计 Worker CPU、免费不限量。
+[assets]
+directory = ".open-next/assets"
+binding = "ASSETS"
+
+[observability]
+enabled = true
