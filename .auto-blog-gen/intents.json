@@ -1458,6 +1458,15 @@
       "type": "troubleshooting",
       "date": "2026-11-25",
       "status": "published"
+    },
+    {
+      "id": "I-0163",
+      "intent": "2200px image square walmart workflow",
+      "title": "2200px Square: Walmart Image Workflow",
+      "slug": "2200px-square-walmart-image-workflow",
+      "type": "opinion",
+      "date": "2026-11-25",
+      "status": "published"
     }
   ],
   "updated": "2026-11-25"
