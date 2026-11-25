@@ -16,20 +16,18 @@ import { constructMetadata } from "@/lib/utils";
  * 广告拦截器和禁用 JS 都拦不掉。
  */
 /**
- * 缓存策略：ISR，不再是 force-dynamic。
+ * 缓存策略：完全不缓存。
  *
- * 原来的 force-dynamic 让每一次点击都现场渲染一整页，响应体全部计入
- * Vercel 的 Fast Origin Transfer（CDN → 函数方向的出站流量）。
+ * 历史：这页曾经是 force-dynamic，每次点击都现场渲染整页并计入 Vercel 的
+ * Fast Origin Transfer；后来改成 ISR 24 小时。但 ISR 有另一个问题 ——
+ * slug 是「工具名-任意渠道」的开放字符串，爬虫可以构造无限多个变体，
+ * 每个变体都会生成一条缓存记录，磁盘/缓存无上限增长。
  *
- * 渠道 slug 是任意字符串（<工具>-<渠道>，见 lib/go-links.ts），构建时无法
- * 全量枚举，所以不能纯静态化。折中方案：
- *   - 裸工具 slug（filededupe、renamer…）构建时就生成好
- *   - 带渠道的 slug 第一次访问时生成，之后 24 小时内走 CDN 缓存
- *
- * 链接格式、页面内容、/out 的点击计数都不变，只是不再每次点击都回源。
+ * 该页对搜索引擎 noIndex，正文没有任何站内链接指向它，真实流量只有广告点击。
+ * 页面本身很轻（几百字节），所以直接不缓存最划算：既不会回源放大，
+ * 也不会被爬虫刷出无限缓存条目。
  */
-export const revalidate = 86400;
-export const dynamicParams = true;
+export const dynamic = "force-dynamic";
 
 export function generateStaticParams() {
   return getStoreTools().map((tool) => ({ slug: tool.slug }));

@@ -10,13 +10,42 @@ export function BlogCard({
   data,
   priority,
   horizontale = false,
+  compact = false,
 }: {
   data: Post & {
     blurDataURL: string;
   };
   priority?: boolean;
   horizontale?: boolean;
+  /**
+   * 紧凑模式：只输出标题、日期和链接，不渲染配图与摘要。
+   *
+   * 博客索引原先为 269 篇文章都渲染完整卡片，页面上重复嵌入 996 次同一个
+   * blurhash 占位图，单页 HTML 达 2.68 MB。索引页后半部分几乎不会被看，
+   * 但每一条链接都必须留在 HTML 里供搜索引擎抓取，所以保留链接、砍掉装饰。
+   */
+  compact?: boolean;
 }) {
+  if (compact) {
+    return (
+      <article className="flex items-baseline justify-between gap-4 border-b border-border/60 py-2.5 last:border-0">
+        <h2 className="text-sm font-medium leading-6">
+          <Link href={data.slug} prefetch={false} className="hover:underline">
+            {data.title}
+          </Link>
+        </h2>
+        {data.date && (
+          <time
+            dateTime={data.date}
+            className="shrink-0 text-xs tabular-nums text-muted-foreground"
+          >
+            {formatDate(data.date)}
+          </time>
+        )}
+      </article>
+    );
+  }
+
   return (
     <article
       className={cn(

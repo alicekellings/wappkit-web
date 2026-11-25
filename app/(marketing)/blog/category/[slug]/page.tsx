@@ -73,11 +73,20 @@ export default async function BlogCategory({
 
       <div className="mt-10">
         <MarketingCard tone="soft">
+          {/* 与总索引同理：前 6 篇用图文卡片，其余用紧凑列表。
+              分类页最多 200+ 篇，全部渲染完整卡片会让单页 HTML 超过 1 MB。 */}
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {articles.map((article, idx) => (
+            {articles.slice(0, 6).map((article, idx) => (
               <BlogCard key={article._id} data={article} priority={idx <= 2} />
             ))}
           </div>
+          {articles.length > 6 && (
+            <div className="mt-8 border-t border-border/60 pt-4">
+              {articles.slice(6).map((article) => (
+                <BlogCard key={article._id} data={article} compact />
+              ))}
+            </div>
+          )}
         </MarketingCard>
       </div>
     </MarketingPageShell>
