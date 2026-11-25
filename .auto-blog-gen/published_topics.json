@@ -214,7 +214,9 @@
     "reddit_toolbox:intent:reddit viewer extension safe",
     "ecom_image:topic:amazon main image 2000px square requirement",
     "reddit_toolbox:intent:reddit reader free tier limits",
-    "ecom_image:topic:temu clothing image 1340 by 1785 ratio"
+    "ecom_image:topic:temu clothing image 1340 by 1785 ratio",
+    "reddit_toolbox:intent:reddit reader edge add-on listing",
+    "ecom_image:topic:walmart product image 2200px square target"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -437,7 +439,9 @@
     "reddit-viewer-extension-safety-for-chrome-and-edge",
     "fixing-amazon-s-2000px-main-image-requirement",
     "reddit-reader-free-tier-what-3-markdown-exports-cover",
-    "how-to-resize-temu-clothing-images-to-1340x1785-for-approval"
+    "how-to-resize-temu-clothing-images-to-1340x1785-for-approval",
+    "reddit-reader-on-edge-3-things-the-listing-does-not-show",
+    "2200px-square-walmart-image-workflow"
   ],
   "events": [
     {
@@ -2006,6 +2010,20 @@
       "source_type": "topic",
       "slug": "how-to-resize-temu-clothing-images-to-1340x1785-for-approval",
       "title": "How to Resize Temu Clothing Images to 1340x1785 for Approval"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "reddit reader edge add-on listing",
+      "source_type": "intent",
+      "slug": "reddit-reader-on-edge-3-things-the-listing-does-not-show",
+      "title": "Reddit Reader on Edge: 3 Things the Listing Does Not Show"
+    },
+    {
+      "theme": "ecom_image",
+      "topic": "walmart product image 2200px square target",
+      "source_type": "topic",
+      "slug": "2200px-square-walmart-image-workflow",
+      "title": "2200px Square: Walmart Image Workflow"
     }
   ],
   "skipped_topics": [
