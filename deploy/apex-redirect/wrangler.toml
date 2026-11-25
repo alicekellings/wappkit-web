@@ -1,0 +1,13 @@
+#:schema node_modules/wrangler/config-schema.json
+name = "wappkit-apex-redirect"
+main = "index.js"
+compatibility_date = "2026-08-04"
+
+# 只挂根域和 studio 子域；主站 www 由 Pages 静态资源直出，不经过这个 Worker。
+routes = [
+  { pattern = "wappkit.com/*", zone_name = "wappkit.com" },
+  { pattern = "studio.wappkit.com/*", zone_name = "wappkit.com" }
+]
+
+[observability]
+enabled = true
