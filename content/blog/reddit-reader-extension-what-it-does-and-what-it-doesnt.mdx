@@ -2,6 +2,7 @@
 title: "Reddit Reader Extension: What It Does (and Doesn't)"
 description: "What a Reddit reader extension actually does in 2026: clean reading, keyword highlight, Markdown export — and the limits nobody mentions."
 date: "2026-11-22"
+updated: "2026-11-26"
 published: true
 image: "/images/blog/reddit-reader-extension-what-it-does-and-what-it-doesnt-cover.jpg"
 authors: ["wappkit"]
@@ -36,7 +37,7 @@ Four things, in order of how much they matter.
 
 This is the part most listicles skip.
 
-**It does not bypass a Reddit challenge page.** Reddit increasingly serves logged-out visitors a JavaScript challenge instead of the thread. When that happens there is no post in the page for any extension to read. The workaround is not a different extension; it is opening the same thread on `old.reddit.com`, which still renders public threads as plain HTML. Any tool claiming to "unlock" Reddit is either doing something against Reddit's terms or overstating what it can see.
+**It does not bypass a Reddit challenge page.** Reddit increasingly serves logged-out visitors a JavaScript challenge instead of the thread. When that happens there is no post in the page for any extension to read. The workaround is not a different extension. `old.reddit.com` used to be the fallback, but since 2026 it redirects logged-out visitors to a login page, so it only helps if you are signed in. Logged out, try the same thread on `www.reddit.com` again later, or follow the subreddit through its RSS feed (for example `/r/sub/.rss`). Any tool claiming to "unlock" Reddit is either doing something against Reddit's terms or overstating what it can see.
 
 **It does not show private, quarantined, or removed content.** If the content is not in the page, it is not in the export.
 
@@ -64,11 +65,11 @@ It is not for casual scrolling. If you open Reddit to see what is new, a reader 
 | Approach | Clean reading | Keyword highlight | Markdown export | Works when Reddit blocks logged-out |
 |---|---|---|---|---|
 | Native Reddit + browser reader mode | Partial | No | No | No |
-| `old.reddit.com` | Yes | Browser find only | No | Yes, usually |
+| `old.reddit.com` (signed in) | Yes | Browser find only | No | No — requires login since 2026 |
 | RSS reader | Headlines only | No | No | Yes |
 | Reader extension | Yes | Yes | Yes | No — same page limit |
 
-The honest summary: `old.reddit.com` is the most reliable way to read a public thread, and a reader extension is the most comfortable way to read one you can already open. They solve different halves of the problem, which is why the practical setup uses both.
+The honest summary: an RSS feed is the most dependable logged-out way to follow a subreddit (`old.reddit.com` now needs a login), and a reader extension is the most comfortable way to read a thread you can already open on `www.reddit.com`. They solve different halves of the problem, which is why the practical setup uses both.
 
 If you are starting from zero, the [logged-out browsing walkthrough](/blog/browse-reddit-without-account-2025) covers the fundamentals, and the [reader versus app comparison](/blog/reddit-viewer-vs-reddit-app-which-one-should-you-actually-use) covers when each one wins.
 
