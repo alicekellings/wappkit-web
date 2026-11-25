@@ -2,6 +2,7 @@
 title: "How to Export a Reddit Thread to Markdown (3 Ways)"
 description: "Three working ways to save a Reddit thread as Markdown in 2026, from manual copy-paste to a one-click extension, with the real tradeoffs of each."
 date: "2026-11-22"
+updated: "2026-11-26"
 published: true
 image: "/images/blog/how-to-export-a-reddit-thread-to-markdown-cover.jpg"
 authors: ["wappkit"]
@@ -30,9 +31,9 @@ What survives: the text, mostly. What does not: the nesting of comment replies, 
 
 **Cost:** free. **Time:** five to fifteen minutes for a long thread, depending on how much you care about formatting. **Best for:** one thread, once.
 
-## Method 2: old.reddit.com plus a converter
+## Method 2: Save the page plus a converter
 
-`old.reddit.com` renders a public thread as plain HTML with a table-based layout. It is ugly and it is the most reliable way to see a full thread while logged out. From there you have two sub-options:
+Open the thread on the standard `www.reddit.com` page and expand the comments you need. `old.reddit.com` renders threads as plainer HTML, but as of November 2026 it redirects logged-out visitors to a login page, so it only helps if you are signed in. From the open page you have two sub-options:
 
 1. **Print to PDF**, then convert. Keeps the visual layout, loses the structure.
 2. **Save the page, run it through an HTML-to-Markdown converter.** Keeps more structure, but nested comments come out inconsistently and you spend time fixing indentation.
@@ -49,7 +50,7 @@ In Reddit Reader: open the thread, click the toolbar icon, then click **Export t
 
 Two things this method does not do, and you should know before relying on it:
 
-- **It cannot export a page Reddit refuses to render.** If Reddit serves a logged-out visitor a challenge instead of the thread, there is nothing to parse. Open the thread on `old.reddit.com` first.
+- **It cannot export a page Reddit refuses to render.** If Reddit serves a logged-out visitor a challenge or login page instead of the thread, there is nothing to parse. Open the thread on the standard `www.reddit.com` page; Reddit Reader does not support the `old.reddit.com` layout.
 - **It does not follow links inside comments.** The export is the thread, not the thread plus everything it references.
 
 **Cost:** free for three, then $4.99 once. **Time:** seconds. **Best for:** anyone exporting more than a couple of threads a month.
@@ -66,7 +67,7 @@ Export one thread on the free tier and open the file. If the comment structure m
 | Situation | Method |
 |---|---|
 | One thread, once, for personal notes | Copy-paste |
-| Work machine, cannot install extensions | `old.reddit.com` + converter |
+| Work machine, cannot install extensions | Saved page + converter |
 | Ten threads a week into a research vault | Reader extension |
 | You need comment nesting preserved | Reader extension |
 | You need the visual page, not the text | Print to PDF |
@@ -102,11 +103,11 @@ Only if they are visible in the page when you export. `[deleted]` and `[removed]
 - [Reddit Reader product page](https://www.wappkit.com/tools/reddit-viewer-extension) - reader mode, keyword highlighting and the Markdown export described above.
 - [Reddit Reader on the Chrome Web Store](https://chromewebstore.google.com/detail/akgmihlphnhaejbhpmcjckpdogbplcng)
 - [Reddit Reader on Microsoft Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/jfanggdobljmlaohcldjoafnigmhfogh)
-- [old.reddit.com](https://old.reddit.com) - the classic interface used in method 2.
+- [old.reddit.com](https://old.reddit.com) - the classic interface; logged-out visitors are now redirected to a login page.
 
 ## Conclusion
 
-A clean Markdown copy is only as good as the page it came from. If you export once in a while, copy-paste or old.reddit plus a converter is enough. If you do it weekly, install the extension: three exports are free, and one click writes the title, author, score, subreddit, permalink, body and the comments visible on the page. Check the file before you rely on it - deleted comments stay deleted and images arrive as links, not files.
+A clean Markdown copy is only as good as the page it came from. If you export once in a while, copy-paste or a saved page plus a converter is enough. If you do it weekly, install the extension: three exports are free, and one click writes the title, author, score, subreddit, permalink, body and the comments visible on the page. Check the file before you rely on it - deleted comments stay deleted and images arrive as links, not files.
 
 <Card href="/tools/reddit-viewer-extension" data-umami-event="article_cta_clicked" data-umami-event-position="end" data-umami-event-tool="reddit-viewer-extension">
 

@@ -2,6 +2,7 @@
 title: "Reddit Alerts in 2026: What Works, What Breaks, and How to Cut the Noise"
 description: "A practical guide to Reddit keyword alerts: email digests, hosted monitors, and a local desktop option, with the limits of each and a setup checklist."
 date: "2026-11-09"
+updated: "2026-11-26"
 published: true
 image: "/images/blog/reddit_viewer_header.png"
 authors:
@@ -47,7 +48,7 @@ Reddit can save a search and, in the official app, notify you about new results.
 
 This is the model behind the [Alerts tab in Wappkit Reddit Toolbox](/reddit-alerts). Rules live on your machine, and the app checks Reddit directly while it is open.
 
-A rule is one subreddit plus optional keywords. All keywords must appear in the title, body, or flair, so `cold email` does not fire on every post that happens to say "cold". Each check is a single `sort=new` request, which keeps request volume far below Reddit's anonymous rate limit.
+A rule is one subreddit plus optional keywords. All keywords must appear in the title, body, or flair, so `cold email` does not fire on every post that happens to say "cold". Each check is a single `sort=new` request, which keeps request volume low.
 
 Two settings do most of the noise control:
 
@@ -98,7 +99,7 @@ Not in the subreddit-listing model. A tool that claims to watch comments is eith
 As fast as the interval you choose, while the app is open. Five minutes on a licence, thirty on the free plan. The request itself is one listing fetch.
 
 **Will this get my IP blocked?**
-A single `new` listing every five minutes is far below the threshold that triggers Reddit's rate limiting. Opening many feeds in parallel is what gets anonymous clients throttled.
+A single `new` listing every few minutes is a light request pattern, but Reddit does not publish its anonymous rate limits, so no interval is guaranteed to avoid throttling. Shared or flagged IPs, VPNs, and policy changes can matter as much as frequency. Keep rules few, avoid opening many feeds in parallel, and back off when Reddit returns a 429.
 
 **Can I monitor multiple subreddits with different keywords?**
 Yes, with one rule per subreddit. That is also the easiest way to keep noise down: a broad keyword in r/all is not the same rule as a narrow keyword in r/smallbusiness.
