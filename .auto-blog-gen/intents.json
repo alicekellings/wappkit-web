@@ -1467,7 +1467,16 @@
       "type": "opinion",
       "date": "2026-11-25",
       "status": "published"
+    },
+    {
+      "id": "I-0164",
+      "intent": "12mb ebay fix imag list losing over quality",
+      "title": "How to Fix eBay Listing Images Over 12MB Without Losing Quality",
+      "slug": "how-to-fix-ebay-listing-images-over-12mb-without-losing-quality",
+      "type": "troubleshooting",
+      "date": "2026-11-26",
+      "status": "published"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-26"
 }
