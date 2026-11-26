@@ -115,14 +115,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.7,
     },
-    // TabMem 是独立静态路由（不在 tools 注册表里），必须单独列进来，
-    // 否则它是一个只能靠直接输入网址才能到达的孤儿页。
-    {
-      url: toAbsoluteUrl("/tools/tabmem"),
-      lastModified: now,
-      changeFrequency: "weekly",
-      priority: 0.85,
-    },
+    // TabMem 的隐私页是独立静态路由，单独列出；产品页现在由工具注册表生成，
+// 不要再手写一条，否则 sitemap 里会出现重复 URL。
     {
       url: toAbsoluteUrl("/privacy/tabmem"),
       lastModified: now,

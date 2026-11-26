@@ -187,6 +187,50 @@ export const tools: Tool[] = [
       "One-time Pro license. Free mode includes reader mode, one keyword and three Markdown exports.",
   },
   {
+    slug: "tabmem",
+    name: "TabMem",
+    category: "Browser Extension",
+    status: "live",
+    tagline:
+      "Put idle tabs to sleep so the tabs you are actually using stay fast.",
+    shortDescription:
+      "Edge extension that sleeps inactive tabs on a 30-minute cycle, protects 15 common work sites by default, and unlocks custom sleep timers and unlimited whitelist domains with a one-time $6 Pro licence.",
+    longDescription:
+      "TabMem watches which tabs you are not using and puts them to sleep, which frees the memory they were holding. It runs on a 30-minute cleanup cycle and protects the sites you are most likely to need live: mail, chat, docs and a dozen other common work destinations. You can add your own domains to the whitelist, and sleep the tab you are on manually. Pro adds custom sleep timers from 5 minutes to 4 hours and removes the 10-domain whitelist cap. Everything is local: there is no account, no installer, and the free tier works offline. A licence key is only needed if you choose to unlock Pro.",
+    features: [
+      "Sleeps inactive tabs on a 30-minute cleanup cycle",
+      "15 common work sites protected by default, including mail, chat and docs",
+      "Up to 10 custom whitelist domains on the free tier",
+      "Manual sleep for the tab you are on right now",
+      "No account and no installer",
+    ],
+    featureNotes: [
+      "The cycle runs on its own; you do not have to remember to tidy tabs.",
+      "Gmail, Slack, GitHub, YouTube and similar sites never get slept by default.",
+      "Add the intranet or dashboard you keep open all day, up to the free cap.",
+      "Useful when one heavy tab is eating memory and you want it back immediately.",
+      "Nothing to sign up for; the extension works offline unless you activate Pro.",
+    ],
+    audience: [
+      "People who keep 30 tabs open and feel the browser slow down",
+      "Laptop users on limited memory who cannot close research tabs",
+      "Anyone who wants tab cleanup without an account or a subscription",
+    ],
+    platform: "Microsoft Edge",
+    downloadLabel: "Get TabMem for Edge",
+    buyLabel: "Get Pro — $6",
+    downloadHref:
+      "https://microsoftedge.microsoft.com/addons/detail/bphjigcpkkkgoccgpnnccojebmlpllnh",
+    buyHref: "https://www.creem.io/payment/prod_5sNXXcNOuCqa0joIyeBz8Y",
+    docsHref: "/docs/checkout-and-activation",
+    availabilityNote:
+      "TabMem is live on Microsoft Edge Add-ons. The free tier covers tab sleep and a 10-domain whitelist; Pro ($6 one-time) adds custom timers and removes the whitelist cap.",
+    checkoutEnabled: true,
+    priceLabel: "$6 one-time",
+    priceNote:
+      "One-time Pro licence. Free mode keeps tab sleep and a 10-domain whitelist; Pro adds custom timers and unlimited whitelist domains.",
+  },
+  {
     slug: "snapgrid",
     name: "SnapTiles",
     category: "Window Management",
