@@ -16,6 +16,7 @@ const TOOL_PRODUCT_ENV_MAP: Record<string, string> = {
   "wappkit-app-setup": "CREEM_PRODUCT_WAPPKIT_APP_SETUP_ID",
   "reddit-toolbox": "CREEM_PRODUCT_REDDIT_TOOLBOX_ID",
   "reddit-viewer-extension": "CREEM_PRODUCT_REDDIT_VIEWER_EXTENSION_ID",
+  "tabmem": "CREEM_PRODUCT_TABMEM_ID",
   "filededupe": "CREEM_PRODUCT_FILEDEDUPE_ID",
   "renamer": "CREEM_PRODUCT_RENAMER_ID",
   // LeadHarvester Pro（$9 一次性）——商品 id 放环境变量，换价不换代码
