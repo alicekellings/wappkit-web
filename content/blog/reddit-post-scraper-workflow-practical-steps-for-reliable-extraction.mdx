@@ -1,4 +1,4 @@
----
+﻿---
 title: "Reddit Post Scraper Workflow: Practical Steps for Reliable Extraction"
 description: "Follow a direct workflow to scrape Reddit posts and comments. Covers prerequisites, execution, failure points, validation, and when dedicated tools outperform"
 date: "2026-09-17"
@@ -10,7 +10,7 @@ categories: ["guides"]
 
 You can pull Reddit posts and comments without custom code by using browser extensions or desktop tools. These handle login, pagination, and nested replies through point-and-click selection. They then export structured rows to CSV or JSON. The approach works for market checks or content audits when you stay under a few hundred threads.
 
-Reddit updates its layout often, so any workflow needs to favor stable entry points like old.reddit.com for comments and the main post page for metadata. The steps also show where manual work starts to break and when switching tools makes more sense.
+Reddit updates its layout often, so any workflow needs to favor stable entry points: the main www.reddit.com post page for metadata, and the public .json endpoint (append .json to the post URL) for the comment tree. old.reddit.com now redirects logged-out visitors to a login page, so it only helps if you are signed in. The steps also show where manual work starts to break and when switching tools makes more sense.
 
 ## When a Reddit post scraper workflow is the right fit
 
@@ -30,7 +30,7 @@ Take time to test the tool on one sample URL in advance. Confirm it can reach th
 
 ## The simplest workflow that still works
 
-Open the target post and select the main container to capture title, author, score, and timestamp. Expand the comments and apply the same selector to the reply tree. Many operators prefer old.reddit.com for this stage because the comment structure remains more consistent across updates. Once the page finishes loading, use the point-and-click interface to highlight the post header first, then move to the comment section and mark the outermost reply container so the tool can follow nesting.
+Open the target post and select the main container to capture title, author, score, and timestamp. Expand the comments and apply the same selector to the reply tree. Many operators prefer the public .json endpoint for this stage because the comment structure is machine-readable and stays consistent across redesigns. If you prefer a visual interface, use the standard www.reddit.com page; old.reddit.com requires signing in since 2026. Once the page finishes loading, use the point-and-click interface to highlight the post header first, then move to the comment section and mark the outermost reply container so the tool can follow nesting.
 
 Set a modest depth limit on long threads to avoid timeouts. Run one post first, check the preview, and adjust any missed fields before processing the rest. Export directly to a spreadsheet so you can inspect the results immediately. After the first successful run, note the exact selector paths or template settings that produced clean output. Reusing those settings on subsequent posts reduces the chance of introducing new errors when Reddit shifts minor layout elements.
 
@@ -58,7 +58,7 @@ Public data extraction sits in a gray area. Reddit's terms prohibit automated ac
 
 ### How do Reddit layout changes affect scrapers in 2026?
 
-Frequent redesigns break CSS selectors and require selector updates or template refreshes. Workflows that rely on old.reddit.com for comments remain more stable but still need occasional checks after site-wide updates.
+Frequent redesigns break CSS selectors and require selector updates or template refreshes. Workflows that rely on the public .json endpoints for comments stay stable across redesigns but still need occasional checks after site-wide updates.
 
 ### Can I extract nested comments without writing code?
 
