@@ -26,7 +26,9 @@ jobs:
           cache: npm
 
       - name: Install dependencies
-        run: npm ci --no-audit --no-fund
+        # 仓库里 @opennextjs/cloudflare 的 peer 要求与 Next 14 冲突，npm ci 会直接报错；
+        # 这里用 install + legacy-peer-deps 容忍该冲突。静态导出并不依赖 opennext。
+        run: npm install --no-audit --no-fund --legacy-peer-deps
 
       - name: Build static export
         env:
