@@ -1,0 +1,51 @@
+name: Deploy site to Cloudflare Pages
+
+# 自动博文在韩国服务器生成并 push 到 main 之后，由 GitHub 的构建机接手：
+# 构建静态产物并直传 Cloudflare Pages。
+# 这样发布不依赖任何一台私人电脑，也不占韩国服务器那 1.6 GB 内存。
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: pages-deploy
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Build static export
+        env:
+          NEXT_PUBLIC_APP_URL: https://www.wappkit.com
+          NEXT_PUBLIC_SUPPORT_EMAIL: support@wappkit.com
+          NODE_OPTIONS: --max-old-space-size=6144
+        run: node scripts/build-static-export.mjs
+
+      - name: Verify build output
+        run: |
+          test -f out/index.html
+          test -f out/_redirects
+          test -f out/_worker.js
+          echo "pages: $(find out -name '*.html' | wc -l)"
+          echo "files: $(find out -type f | wc -l)"
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy out --project-name=wappkit-web --branch=main --commit-dirty=true
