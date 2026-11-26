@@ -3,6 +3,11 @@ import { LicenseAdminLoginForm } from "@/components/forms/license-admin-login-fo
 import { hasAdminPageSession, isAdminTokenConfigured } from "@/lib/admin-auth";
 import { constructMetadata } from "@/lib/utils";
 
+// 必须强制动态渲染：本页依据运行时的 INTERNAL_ADMIN_TOKEN 判断是否配置。
+// 若允许预渲染，构建机上没有该变量，会把「未配置」的 HTML 固化进产物，
+// 之后环境变量配了也不会变（11-26 实际发生过）。
+export const dynamic = "force-dynamic";
+
 export const metadata = constructMetadata({
   title: "Internal License Admin | Wappkit",
   description:
