@@ -216,7 +216,8 @@
     "reddit_toolbox:intent:reddit reader free tier limits",
     "ecom_image:topic:temu clothing image 1340 by 1785 ratio",
     "reddit_toolbox:intent:reddit reader edge add-on listing",
-    "ecom_image:topic:walmart product image 2200px square target"
+    "ecom_image:topic:walmart product image 2200px square target",
+    "ecom_image:topic:ebay listing image 12mb size limit"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -441,7 +442,8 @@
     "reddit-reader-free-tier-what-3-markdown-exports-cover",
     "how-to-resize-temu-clothing-images-to-1340x1785-for-approval",
     "reddit-reader-on-edge-3-things-the-listing-does-not-show",
-    "2200px-square-walmart-image-workflow"
+    "2200px-square-walmart-image-workflow",
+    "how-to-fix-ebay-listing-images-over-12mb-without-losing-quality"
   ],
   "events": [
     {
@@ -2024,11 +2026,28 @@
       "source_type": "topic",
       "slug": "2200px-square-walmart-image-workflow",
       "title": "2200px Square: Walmart Image Workflow"
+    },
+    {
+      "theme": "ecom_image",
+      "topic": "listing image requirements",
+      "source_type": "keyword",
+      "slug": "",
+      "title": "",
+      "status": "skipped",
+      "reason": "Duplicate topic risk: 'listing image requirements' overlaps existing posts: 2200px Square: Walmart Image Workflow (0.67); Compress 2200px Walmart Images Under 5MB (0.67); Fixing Amazon's 2000px Main Image Requirement (0.67)."
+    },
+    {
+      "theme": "ecom_image",
+      "topic": "ebay listing image 12mb size limit",
+      "source_type": "topic",
+      "slug": "how-to-fix-ebay-listing-images-over-12mb-without-losing-quality",
+      "title": "How to Fix eBay Listing Images Over 12MB Without Losing Quality"
     }
   ],
   "skipped_topics": [
     "reddit_toolbox:topic:reading locked or archived reddit threads",
     "reddit_toolbox:topic:saving reddit posts to csv for excel analysis",
-    "reddit_toolbox:topic:reddit search operators you can use logged out"
+    "reddit_toolbox:topic:reddit search operators you can use logged out",
+    "ecom_image:keyword:listing image requirements"
   ]
 }

@@ -70,6 +70,13 @@
       "type": "opinion",
       "template": "narrative_argument",
       "date": "2026-11-25"
+    },
+    {
+      "slug": "how-to-fix-ebay-listing-images-over-12mb-without-losing-quality",
+      "title": "How to Fix eBay Listing Images Over 12MB Without Losing Quality",
+      "type": "troubleshooting",
+      "template": "diagnostic_tree",
+      "date": "2026-11-26"
     }
   ]
 }
