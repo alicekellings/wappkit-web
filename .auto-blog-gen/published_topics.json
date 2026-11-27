@@ -217,7 +217,8 @@
     "ecom_image:topic:temu clothing image 1340 by 1785 ratio",
     "reddit_toolbox:intent:reddit reader edge add-on listing",
     "ecom_image:topic:walmart product image 2200px square target",
-    "ecom_image:topic:ebay listing image 12mb size limit"
+    "ecom_image:topic:ebay listing image 12mb size limit",
+    "reddit_toolbox:intent:worked example building an obsidian research vault from reddit threads"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -443,7 +444,8 @@
     "how-to-resize-temu-clothing-images-to-1340x1785-for-approval",
     "reddit-reader-on-edge-3-things-the-listing-does-not-show",
     "2200px-square-walmart-image-workflow",
-    "how-to-fix-ebay-listing-images-over-12mb-without-losing-quality"
+    "how-to-fix-ebay-listing-images-over-12mb-without-losing-quality",
+    "from-20-threads-to-an-obsidian-vault-a-reddit-export-walkthrough"
   ],
   "events": [
     {
@@ -2042,12 +2044,29 @@
       "source_type": "topic",
       "slug": "how-to-fix-ebay-listing-images-over-12mb-without-losing-quality",
       "title": "How to Fix eBay Listing Images Over 12MB Without Losing Quality"
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "reddit comments markdown export fidelity",
+      "source_type": "intent",
+      "slug": "",
+      "title": "",
+      "status": "skipped",
+      "reason": "Duplicate topic risk: 'reddit comments markdown export fidelity' overlaps existing posts: A Practical Guide to Exporting Reddit Data to CSV for Founders and Growth Operators (0.60); Exporting Reddit Threads to Markdown: What Actually Works in 2026 (0.60); How to Export a Reddit Thread to Markdown (3 Ways) (0.60)."
+    },
+    {
+      "theme": "reddit_toolbox",
+      "topic": "worked example building an obsidian research vault from reddit threads",
+      "source_type": "intent",
+      "slug": "from-20-threads-to-an-obsidian-vault-a-reddit-export-walkthrough",
+      "title": "From 20 Threads to an Obsidian Vault: A Reddit Export Walkthrough"
     }
   ],
   "skipped_topics": [
     "reddit_toolbox:topic:reading locked or archived reddit threads",
     "reddit_toolbox:topic:saving reddit posts to csv for excel analysis",
     "reddit_toolbox:topic:reddit search operators you can use logged out",
-    "ecom_image:keyword:listing image requirements"
+    "ecom_image:keyword:listing image requirements",
+    "reddit_toolbox:intent:reddit comments markdown export fidelity"
   ]
 }

@@ -1476,7 +1476,16 @@
       "type": "troubleshooting",
       "date": "2026-11-26",
       "status": "published"
+    },
+    {
+      "id": "I-0165",
+      "intent": "export obsidian reddit thread vault walkthrough",
+      "title": "From 20 Threads to an Obsidian Vault: A Reddit Export Walkthrough",
+      "slug": "from-20-threads-to-an-obsidian-vault-a-reddit-export-walkthrough",
+      "type": "case_study",
+      "date": "2026-11-27",
+      "status": "published"
     }
   ],
-  "updated": "2026-11-26"
+  "updated": "2026-11-27"
 }

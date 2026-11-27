@@ -1,0 +1,124 @@
+---
+title: "From 20 Threads to an Obsidian Vault: A Reddit Export Walkthrough"
+description: "See how to export 20 Reddit threads to Markdown for an Obsidian vault. A practical walkthrough of file structures, costs, and what data you can actually."
+date: "2026-11-27"
+published: true
+image: "/images/blog/from-20-threads-to-an-obsidian-vault-a-reddit-export-walkthrough-detail.jpg"
+authors: ["wappkit-research"]
+categories: ["guides"]
+---
+Twenty Reddit threads, three subreddits, one evening of work. The arithmetic behind that sentence is simple, but it's also the part most people get wrong before they start: three exports are free, the fourth is where the $4.99 Pro unlock kicks in, and everything after that is unlimited.
+
+Before going further, a labeling note that matters: everything below is an illustrative, hypothetical worked example, not a case study pulled from a real customer's export history. No actual vault was built for this piece, and no live account was tracked thread by thread. The numbers are computed from the extension's published pricing tiers and a stated assumption about average comment counts, so you can treat this as a model you can reproduce yourself with [the Reddit Reader extension](/tools/reddit-viewer-extension), not as a report on what one specific researcher actually did.
+
+The method section spells out the sample size, subreddit mix, average comment count, and export order precisely so the math is checkable, and so it's clear where the scenario is assumption rather than measurement. The point of walking through it this way is to show what a researcher would plausibly walk away with in an Obsidian vault after one sitting, and where that export quietly falls short, using a scenario constructed for clarity rather than a log file.
+
+<Card href="/tools/reddit-viewer-extension" data-umami-event="article_cta_clicked" data-umami-event-position="intro" data-umami-event-tool="reddit-viewer-extension">
+
+### Try it on a thread you already have open
+Reddit Reader removes login prompts, sidebars, app banners, and promoted posts, highlights one keyword on the free tier, and exports the loaded thread to Markdown. Install it free and test it on a real thread before paying for Pro.
+
+</Card>
+
+## What counts as one export, and why the count matters
+
+An export, in Reddit Reader, is one action: open a thread on the current reddit.com page, click the extension icon, press export. That click produces one Markdown file. The free tier includes three of these actions, period, not three posts you're allowed to read and not three comments you're allowed to save.
+
+People confuse "three free posts" with "three free exports" more often than you'd expect, and get surprised later when the limit arrives sooner than planned. The free tier also doesn't reset between browser sessions, so if you used two exports last week, you have one left today, not three again. That's a deliberate design choice, described on [the Reddit Reader product page](/tools/reddit-viewer-extension), and it's why planning your export order before you start saves you from burning a free slot on a throwaway thread you only half cared about.
+
+For a 20-thread research sweep like the hypothetical one walked through here, exports 1 through 3 are free, and export 4 triggers the $4.99 one-time Pro unlock. Exports 4 through 20 are then unlimited, no per-export fee, no subscription. Activation happens inside the extension with a Wappkit license key, following the flow in the [activation guide](/docs/checkout-and-activation).
+
+None of that pricing structure is hypothetical; it's the same tier logic that applies to any account. What's constructed for this example is the specific sequence of 20 threads and the assumption about how many comments each one carried.
+
+## Method: sample, window, and how the export was run
+
+To be explicit again: this is a modeled scenario built to illustrate the mechanics, not a record of threads someone actually exported. The sample is framed as 20 public Reddit threads pulled across three subreddits in one evening, a single sitting rather than a multi-day crawl, because that's a realistic shape for a research sweep and it keeps the math easy to follow.
+
+Thread selection assumes a mix typical of applied research: a few long discussion threads and several shorter ones, averaging 40 loaded comments per thread across the set. That average is a stated assumption for the example, not a measured figure from any specific export run.
+
+Each export in the scenario follows the same steps a real export would: open the thread on the standard reddit.com page, let comments load as far as Reddit's lazy-loading allows, click the extension icon to open the floating panel, export. Reddit Reader doesn't auto-inject on page load, so every thread needs a deliberate click, whether in this hypothetical sweep or a real one.
+
+The extension only targets current reddit.com, not old.reddit.com or mobile browser pages, so this illustrative sample assumes desktop Chrome or Edge on the standard layout, which is the actual supported environment regardless of whether the scenario is hypothetical.
+
+One mechanical limit shapes every row in the results table below, and it's not hypothetical at all: comments are lazy-loaded by Reddit itself, documented behavior covered in [Reddit's API documentation](https://www.reddit.com/dev/api). An export captures whatever has rendered on the page at export time, not the full comment tree sitting on Reddit's servers. For a thread with hundreds of replies, that 40-comment average in the worked example reflects an assumed scroll depth, not a ceiling Reddit enforces or a number this tool can guarantee.
+
+A real sweep could easily average higher or lower depending on how far someone scrolled before clicking export, how fast their connection loaded additional comments, and how long each thread's discussion actually ran.
+
+## Results: the worked numbers for 20 threads
+
+The table below is the output of the hypothetical scenario described above, built by applying Reddit Reader's actual pricing tiers to an assumed 20-thread, 40-comment-average sweep. Nothing in this table was pulled from a live account; it's arithmetic applied to a constructed example so the cost structure is visible end to end.
+
+| Stage | Threads | Export type | Comments (avg 40/thread) | Running cost |
+|---|---|---|---|---|
+| Exports 1-3 | 3 | Free tier | 120 | $0.00 |
+| Export 4 | 1 | Pro unlock triggered | 40 | $4.99 one-time |
+| Exports 5-20 | 16 | Pro, unlimited | 640 | $0.00 additional |
+| Total | 20 | Mixed | 800 | $4.99 |
+
+Twenty threads at an average of 40 comments each works out to roughly 800 comments captured across the vault in this scenario, assuming similar scroll depth before each export. Total spend for the full sweep: $4.99, paid once at export 4, with exports 5 through 20 adding nothing further. That cost structure is real and will hold for any account; the 800-comment total is the specific illustrative output of this particular assumed sweep and would shift up or down with a different comment-count average.
+
+## What the numbers mean, segment by segment
+
+Split by subreddit, the 20 threads in this hypothetical sweep might land as 7, 7, and 6 files per community if evenly distributed, though real sweeps rarely divide that cleanly. A researcher following three subreddits closely might pull twelve threads from the one with the most active discussion and four or five each from the other two. The practical result, whatever the actual split, is a vault folder that mirrors your subreddit interests instead of a flat dump, which matters when you're trying to find a thread again three months from now and only remember which community it came from.
+
+Looking at the free-versus-Pro split in the worked numbers, the first three exports cost nothing and cover about 120 comments, roughly 15 percent of the total volume in this scenario. The other 85 percent sits behind the Pro unlock. For anyone planning a sweep larger than three threads, which covers most research use cases, budgeting for the $4.99 upfront avoids a stop-and-pay interruption mid-session, the kind where you're three threads into a flow state and suddenly have to stop and dig out a card.
+
+The comment counts carry a caveat worth repeating rather than burying: an average of 40 loaded comments per thread, even in this illustrative example, doesn't mean only 40 comments exist on that thread. Popular threads on larger subreddits often run into the hundreds of replies, and lazy-loading means only what actually rendered gets captured. [Discussions among Obsidian users](https://www.reddit.com/r/ObsidianMD/comments/139i4nj/lets_all_share_how_we_organize_our_vaults/) about vault organization show people treating individual threads as single atomic notes, which works fine with this export behavior as long as you treat the comment count as a snapshot, not a full archive.
+
+That distinction matters more than it sounds: a snapshot is still useful for most research purposes, but it's not the same claim as "I captured the entire conversation."
+
+A typical file layout for a vault built this way uses one folder per subreddit, with each Markdown file named after the thread title and containing the title, author, score, subreddit, URL, post body, and whatever comments had loaded at export time. That structure, loosely inspired by the folder-per-topic approach in [academic Obsidian setups on Reddit](https://www.reddit.com/r/ObsidianMD/comments/10jhlr2/using_obsidian_in_academia_a_demotutorial_vault/), keeps the vault searchable without forcing a tagging system before you've even read the material.
+
+It's also a structure you could set up before running a single export, since the folders and naming convention don't depend on what any individual thread contains.
+
+Three things an export can't recover, regardless of tier, and regardless of whether the sweep is this hypothetical one or a real one you run tomorrow: comments deleted before the export ran, any embedded media, and anything behind a login wall. Reddit Reader doesn't log in, vote, or bypass Reddit's account system, so a thread requiring sign-in stays out of reach entirely.
+
+There's also no syncing or scheduled backup here. Every one of the 20 exports in this scenario is described as a manual click, which matches how the extension actually works, and comments posted after export time simply aren't in the file. If a thread you exported on Monday picks up fifty new replies by Friday, your Markdown file still shows Monday's state until you export it again.
+
+<Card href="/tools/reddit-viewer-extension" data-umami-event="article_cta_clicked" data-umami-event-position="mid" data-umami-event-tool="reddit-viewer-extension">
+
+### If the limits fit your workflow
+One keyword and three exports cover occasional reading. Pro is $4.99 one-time and removes both limits; there is no subscription and no account to create.
+
+</Card>
+
+## FAQ
+
+### Can I automatically sync new Reddit threads to my Obsidian vault?
+
+No. Reddit Reader is a browser extension, not a hosted service, and it doesn't run scheduled jobs or background syncing. Each export is manual: open the thread, click the extension icon, export. If a thread picks up new comments afterward, you'd need to export it again to capture them. This applies whether you're running a single export or a 20-thread sweep like the illustrative one described above.
+
+### What happens to deleted comments after I export a thread?
+
+If a comment was deleted before you exported, it was never loaded on the page, so it can't appear in the Markdown file. Reddit Reader exports what the current page has loaded, not a historical record, and there's no recovery mechanism for content removed before the export ran.
+
+### Is the $4.99 Pro unlock a subscription or one-time purchase?
+
+One-time purchase. Paying $4.99 once removes the three-export limit and the single-keyword highlight limit permanently, activated inside the extension with a Wappkit license key. No recurring charge, no tiered pricing above that single unlock. That's the real cost structure behind the hypothetical $4.99 total in the worked example above.
+
+### Is the 20-thread example above based on a real account?
+
+No. It's explicitly a constructed, illustrative scenario built to show how the free-to-Pro math plays out across a realistic research sweep. The pricing tiers and lazy-loading behavior it relies on are real and documented elsewhere in this piece, but the specific sequence of 20 threads, the subreddit split, and the 40-comment average are assumptions chosen to make the walkthrough concrete, not figures pulled from a tracked customer export log.
+
+<Card href="/tools/reddit-viewer-extension" data-umami-event="article_cta_clicked" data-umami-event-position="end" data-umami-event-tool="reddit-viewer-extension">
+
+### One thread is enough to decide
+Open a thread you already wanted to read, check the clean view, and export it once. If it saves a cleanup step, keep it; if not, uninstall.
+
+</Card>
+
+## Sources
+
+- [Reddit Reader extension page](https://www.wappkit.com/tools/reddit-viewer-extension)
+- [Reddit Reader on the Chrome Web Store](https://chromewebstore.google.com/detail/akgmihlphnhaejbhpmcjckpdogbplcng)
+- [Reddit Reader on Microsoft Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/jfanggdobljmlaohcldjoafnigmhfogh)
+- [Reddit Reader privacy policy](https://www.wappkit.com/privacy/reddit-reader)
+- [Reddit API documentation](https://www.reddit.com/dev/api)
+
+## Conclusion
+
+Twenty threads, three subreddits, one evening, $4.99 total: three free exports, a one-time Pro unlock at export four, and 16 more exports at no added cost. That's the shape of the illustrative, hypothetical scenario walked through above, not a report from a tracked account. The resulting vault, under the stated assumptions, would hold roughly 800 loaded comments spread across subreddit-organized Markdown files.
+
+What it won't hold, in this scenario or in a real sweep you run yourself, is content deleted before export, embedded media, or anything behind a login wall, and nothing here syncs automatically. The pricing tiers, the lazy-loading limits, and the manual-export mechanics are all real; the specific 20-thread sequence and comment counts are a constructed example meant to make those mechanics concrete and checkable.
+
+If that tradeoff fits how you research, the [Reddit Toolbox](/tools/reddit-toolbox) product page walks through the export flow in more detail.

@@ -77,6 +77,13 @@
       "type": "troubleshooting",
       "template": "diagnostic_tree",
       "date": "2026-11-26"
+    },
+    {
+      "slug": "from-20-threads-to-an-obsidian-vault-a-reddit-export-walkthrough",
+      "title": "From 20 Threads to an Obsidian Vault: A Reddit Export Walkthrough",
+      "type": "case_study",
+      "template": "measurement_report",
+      "date": "2026-11-27"
     }
   ]
 }
