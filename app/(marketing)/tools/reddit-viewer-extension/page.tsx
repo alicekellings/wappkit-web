@@ -1,34 +1,28 @@
 import Link from "next/link";
 import {
   Check,
-  Download,
   Highlighter,
   LockKeyhole,
   MonitorSmartphone,
 } from "lucide-react";
 
+import { getFaq } from "@/lib/faq";
+import { REDDIT_READER } from "@/lib/store-links";
+import { constructMetadata } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { FaqBlock } from "@/components/content/faq-block";
 import { CheckoutButton } from "@/components/forms/checkout-button";
 import {
   MarketingCard,
   MarketingHero,
   MarketingPageShell,
 } from "@/components/marketing/page-shell";
-import { constructMetadata } from "@/lib/utils";
-import { REDDIT_READER } from "@/lib/store-links";
-import { getFaq } from "@/lib/faq";
-import { FaqBlock } from "@/components/content/faq-block";
-
-// Chrome is the primary install surface; Edge stays a first-class button.
-const STORE_URL = REDDIT_READER.chrome;
-const EDGE_URL = REDDIT_READER.edge;
-
-const PRO_CHECKOUT_ENABLED = true;
+import { RedditReaderInstallLinks } from "@/components/marketing/reddit-reader-install-links";
 
 export const metadata = constructMetadata({
-  title: "Reddit Viewer Extension for Chrome and Edge | Reddit Reader",
+  title: "Reddit Viewer Extension for Chrome, Edge & Firefox | Reddit Reader",
   description:
-    "Reddit Reader is a Reddit viewer extension for Chrome and Edge: hides login walls and clutter, highlights keywords across a thread, and exports the post plus comments to Markdown without an account. Free with a 3-export trial; Pro is $4.99 one-time.",
+    "A cleaner view for public Reddit threads. Highlight keywords and export the post and comments to Markdown in Chrome, Edge, or Firefox. Three free exports; Pro is $4.99 once.",
 });
 
 const freeFeatures = [
@@ -51,68 +45,31 @@ export default function RedditReaderExtensionPage() {
   return (
     <MarketingPageShell>
       <MarketingHero
-        eyebrow="Browser extension · Chrome / Edge"
-        title="Read Reddit without the login wall."
-        description="A small extension that turns a Reddit thread into a clean reading page, highlights the words you care about, and exports the post plus comments to Markdown. Free to install; Pro is a one-time $4.99."
+        eyebrow="Browser extension · Chrome / Edge / Firefox"
+        title="A cleaner way to read Reddit threads."
+        description="Highlight the words you care about and save the post and comments as Markdown. Reddit Reader reformats threads your browser can already load; it does not unlock hidden or login-only content."
         badges={[
           { label: "Free to install", tone: "warm" },
           { label: "3 free exports", tone: "muted" },
-          { label: "$4.99 one-time Pro" },
         ]}
         actions={
-          <>
-            {STORE_URL ? (
-              <a
-                href={STORE_URL}
-                target="_blank"
-                rel="noopener"
-                data-umami-event="extension_install_clicked"
-                data-umami-event-store="chrome"
-                data-umami-event-source="tool_hero"
-              >
-                <Button rounded="full" size="lg">
-                  <Download className="mr-2 size-4" />
-                  Install free extension
-                </Button>
-              </a>
-            ) : (
-              <Button rounded="full" size="lg" disabled>
-                <Download className="mr-2 size-4" />
-                Install link coming at launch
-              </Button>
-            )}
-            {STORE_URL && PRO_CHECKOUT_ENABLED ? (
+          <div className="w-full space-y-5">
+            <RedditReaderInstallLinks source="tool_hero" includeFirefox />
+            <div
+              id="reddit-reader-pro"
+              className="flex scroll-mt-24 flex-wrap items-center gap-x-4 gap-y-2 border-t pt-4"
+            >
               <CheckoutButton
-                toolSlug="reddit-viewer-extension"
+                toolSlug={REDDIT_READER.slug}
                 label="Get Pro — $4.99"
-                size="lg"
                 variant="outline"
               />
-            ) : (
-              <Button rounded="full" size="lg" variant="outline" disabled>
-                Pro opens at launch
-              </Button>
-            )}
-            <a
-              href={EDGE_URL}
-              target="_blank"
-              rel="noopener"
-              data-umami-event="extension_install_clicked"
-              data-umami-event-store="edge"
-              data-umami-event-source="tool_hero"
-            >
-              <Button rounded="full" size="lg" variant="outline">
-                <Download className="mr-2 size-4" />
-                Add to Microsoft Edge
-              </Button>
-            </a>
-          </>
+              <p className="max-w-60 text-sm text-muted-foreground">
+                Unlimited keywords and exports. Pay once, no subscription.
+              </p>
+            </div>
+          </div>
         }
-        stats={[
-          { label: "Platform", value: "Chrome / Edge" },
-          { label: "Free trial", value: "3 exports" },
-          { label: "Pro", value: "$4.99 one-time" },
-        ]}
         rightContent={
           <MarketingCard tone="dark" className="space-y-4 p-6">
             <div className="flex items-center justify-between border-b border-white/10 pb-4">
@@ -130,9 +87,18 @@ export default function RedditReaderExtensionPage() {
             </div>
             <div className="space-y-3">
               {[
-                ["Clean reader", "Login prompts, sidebars and promoted posts are hidden."],
-                ["Keyword highlight", "Mark the words that matter in the post and comments."],
-                ["Export", "Download the post and comments as one Markdown file."],
+                [
+                  "Clean reader",
+                  "Login prompts, sidebars and promoted posts are hidden.",
+                ],
+                [
+                  "Keyword highlight",
+                  "Mark the words that matter in the post and comments.",
+                ],
+                [
+                  "Export",
+                  "Download the post and comments as one Markdown file.",
+                ],
               ].map(([title, description]) => (
                 <div
                   key={title}

@@ -5,6 +5,7 @@ export const REDDIT_READER = {
   chrome:
     "https://chromewebstore.google.com/detail/akgmihlphnhaejbhpmcjckpdogbplcng",
   edge: "https://microsoftedge.microsoft.com/addons/detail/jfanggdobljmlaohcldjoafnigmhfogh",
+  firefox: "https://addons.mozilla.org/en-US/firefox/addon/reddit-reader-clean-view/",
 } as const;
 
 // TabMem is Edge-only for now. Chrome is at its 2-item quota.

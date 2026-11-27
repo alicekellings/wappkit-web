@@ -220,7 +220,11 @@ export default async function PostPage({
 
       {showInstallBar ? (
         <div className="mt-6">
-          <BlogInstallBar source="article_top" />
+          <BlogInstallBar
+            includeFirefox={
+              post.slugAsParams === "browse-reddit-without-account-2025"
+            }
+          />
         </div>
       ) : null}
 

@@ -46,7 +46,7 @@ export const FAQ_BY_KEY: Record<string, FaqItem[]> = {
     },
     {
       q: "Which browsers and systems are supported?",
-      a: "Chrome and Microsoft Edge on Windows, macOS and Linux. There is no installer and no separate Wappkit account; installation happens in the browser store.",
+      a: "Chrome, Microsoft Edge, and Firefox on Windows, macOS, and Linux. Add it from your browser’s store; no separate installer or Wappkit account is required.",
     },
     {
       q: "Does it send my Reddit data anywhere?",
