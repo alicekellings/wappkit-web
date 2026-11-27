@@ -1485,6 +1485,15 @@
       "type": "case_study",
       "date": "2026-11-27",
       "status": "published"
+    },
+    {
+      "id": "I-0166",
+      "intent": "5000px choice image product rarely right shopify size",
+      "title": "Shopify Product Image Size: Why 5000px Is Rarely the Right Choice",
+      "slug": "shopify-product-image-size-why-5000px-is-rarely-the-right-choice",
+      "type": "data_study",
+      "date": "2026-11-27",
+      "status": "published"
     }
   ],
   "updated": "2026-11-27"
