@@ -1,5 +1,3 @@
-import { track as vercelTrack } from "@vercel/analytics/react";
-
 declare global {
   interface Window {
     umami?: {
@@ -9,18 +7,18 @@ declare global {
 }
 
 /**
- * One call, both dashboards.
+ * Send one analytics event to Umami.
  *
- * `track()` alone only reaches Vercel Analytics, so anyone reading the Umami dashboard
- * would see CTA clicks but none of the events that explain them. This sends the same
- * event to both, and never lets analytics break the tool it is measuring.
+ * This used to fan out to both Vercel Analytics and Umami. Since the site moved
+ * to Cloudflare Pages the Vercel channel receives nothing (its ingest script
+ * 404s), so the call was reduced to the one dashboard that actually records
+ * data. Callers keep using this helper so there is a single place to change if
+ * the provider changes again.
  *
- * Link clicks are the exception: those are captured declaratively with
- * `data-umami-event` attributes in TrackedToolLink, so they must NOT be sent twice.
+ * Never let analytics break the tool it is measuring: a blocked or half-loaded
+ * script must not throw into a click handler.
  */
 export function trackEvent(event: string, data?: Record<string, string>) {
-  vercelTrack(event, data);
-
   try {
     window.umami?.track(event, data);
   } catch {

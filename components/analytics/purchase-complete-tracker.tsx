@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect } from "react";
-import { track } from "@vercel/analytics/react";
+
+import { trackEvent } from "@/lib/analytics";
 
 type PurchaseCompleteTrackerProps = {
   checkoutId: string;
@@ -24,7 +25,7 @@ export function PurchaseCompleteTracker({
     }
 
     window.sessionStorage.setItem(storageKey, "1");
-    track("purchase_completed", {
+    trackEvent("purchase_completed", {
       tool: toolSlug || "unknown",
       campaign_source:
         window.sessionStorage.getItem("wappkit.campaign-source") ?? "direct",

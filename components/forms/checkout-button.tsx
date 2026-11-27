@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { track } from "@vercel/analytics/react";
 
 import { Button, type ButtonProps } from "@/components/ui/button";
+import { trackEvent } from "@/lib/analytics";
 
 type CheckoutButtonProps = {
   toolSlug: string;
@@ -37,10 +37,8 @@ export function CheckoutButton({
         "wappkit.campaign-source",
         campaignSource,
       );
-      track("checkout_clicked", {
-        tool: toolSlug,
-        campaign_source: campaignSource,
-      });
+      // checkout_clicked is captured by the declarative data-umami-event on the
+      // button below. Sending it again here would double-count it in Umami.
 
       const response = await fetch("/api/checkout", {
         method: "POST",
@@ -61,7 +59,7 @@ export function CheckoutButton({
         throw new Error(payload.error ?? "Failed to create checkout.");
       }
 
-      track("checkout_redirected", {
+      trackEvent("checkout_redirected", {
         tool: toolSlug,
         campaign_source: campaignSource,
       });

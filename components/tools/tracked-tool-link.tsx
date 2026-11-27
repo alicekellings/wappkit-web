@@ -1,14 +1,17 @@
 "use client";
 
 import Link from "next/link";
-import { track } from "@vercel/analytics/react";
 
 /**
- * An internal link that reports the click twice: once to Vercel Analytics via `track()`,
- * once to Umami via data attributes (which work even if the JS bundle is blocked).
+ * An internal link that reports the click to Umami through data attributes.
  *
- * Used by the image checkers to answer one question — does a failed background check
- * actually send anyone to the paid desktop app? Without this the funnel is unmeasurable.
+ * The attributes are deliberate: they fire even when the JS bundle fails to
+ * load, and they are the only channel left now that the site runs on
+ * Cloudflare Pages instead of Vercel (the old `track()` call went nowhere).
+ *
+ * Used by the image checkers to answer one question — does a failed background
+ * check actually send anyone to the paid desktop app? Without this the funnel
+ * is unmeasurable.
  */
 type TrackedToolLinkProps = {
   href: string;
@@ -36,7 +39,6 @@ export function TrackedToolLink({
       className={className}
       data-umami-event={event}
       {...umamiAttributes}
-      onClick={() => track(event, data)}
     >
       {children}
     </Link>
