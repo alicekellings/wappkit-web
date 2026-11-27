@@ -16,35 +16,34 @@ const sections = [
   {
     title: "What the extension reads",
     body: [
-      "TabMem needs to know which tabs are open and when each one was last used, so it can decide which inactive tabs to put to sleep. That information is read from the browser's own tab and session APIs.",
-      "TabMem does not read the content of the pages you visit. It does not see form fields, text, images, or anything inside a page, and it does not record your browsing history.",
+      "TabMem uses the browser's tabs API to see open tab titles, addresses and state. It tracks when open tabs are used so it can decide which inactive tabs to put to sleep. It does not read page content, form fields or the browser's history database.",
     ],
   },
   {
-    title: "What is stored on your device",
+    title: "What stays on your device",
     body: [
-      "Your settings are kept in browser extension storage: the whitelist of sites that should never sleep, your sleep timeout, the auto-cleanup interval, the number of tabs saved, and statistics such as how many tabs have been slept.",
-      "An optional Pro license key and a randomly generated device identifier are stored the same way. You can remove all of it by clearing the extension's storage or uninstalling the extension.",
+      "Tab activity timestamps, settings, the allowlist and cleanup statistics are kept in local browser extension storage. The Pro smart allowlist uses local counts of domain usage to decide which sites to protect. TabMem does not send these activity records to Wappkit or Creem.",
+      "The optional Pro license key and its activation identifiers are also stored locally for the extension to use. To remove the local data, clear the extension's storage or uninstall TabMem.",
     ],
   },
   {
-    title: "License activation",
+    title: "Optional Pro checkout and license checks",
     body: [
-      "If you buy Pro and activate a license, the extension sends the license key, a random device identifier generated on first use, and the fixed device name \"TabMem extension\" to https://license.wappkit.com/. Wappkit uses that request to confirm the key is valid and to bind it to this browser profile.",
-      "The request does not include the addresses of the sites you visit, your tab list, or any page content. Wappkit's server may log standard request data such as IP address and timestamp for security and rate limiting.",
+      "Creem hosts the optional checkout. The extension does not receive your payment card details. If you activate Pro, TabMem sends the key, a randomly generated installation identifier and, when available, an existing Creem activation identifier to license.wappkit.com. TabMem may recheck the key later to keep Pro active.",
+      "Wappkit uses Creem to activate or validate the key. The license service may process standard connection data such as your IP address and the time of the request to operate the service and protect it from abuse. No tab addresses, contents or browsing activity are included in the license request.",
     ],
   },
   {
-    title: "What the extension does not do",
+    title: "What differs by version",
     body: [
-      "It does not collect analytics, does not show advertising, does not sell data, and does not send your browsing activity anywhere.",
-      "It does not modify pages, inject visible content into websites, or run scripts on sites you have not opened.",
-      "It does not require an account. The free tier works entirely offline.",
+      "Edge versions 1.1.1 and 1.1.2 do not send upgrade analytics. Chrome 1.1.3 sends the TabMem product name and an event name to Wappkit when the upgrade prompt is shown or the checkout link is clicked. These event payloads do not include a license key, installation identifier, tab title, page URL or page content.",
+      "Edge 1.1.1 requests site icons from Google when you open the tab list. Those icon requests can include open-tab domain names, not full addresses. Edge 1.1.2 and Chrome 1.1.3 use local placeholders instead.",
+      "No separate Wappkit account is required. Tab management is performed on your device. We do not use your tab data for advertising or sell it.",
     ],
   },
   {
-    title: "Contact",
-    body: ["Questions about this policy can go to support@wappkit.com."],
+    title: "Questions and deletion requests",
+    body: ["For questions about this policy or deletion of your license information, email support@wappkit.com."],
   },
 ];
 

@@ -22,11 +22,11 @@ export const metadata = constructMetadata({
 });
 
 const freeFeatures = [
-  "Automatic tab sleep on a 30-minute cleanup cycle",
+  "Automatically check every 30 minutes for tabs idle for at least 30 minutes",
   "15 common sites protected by default (Gmail, Slack, GitHub, YouTube and more)",
   "Up to 10 custom whitelist domains",
-  "Manual sleep for the tab you are on",
-  "No account and no installer",
+  "Manually put an eligible background tab to sleep",
+  "No separate account required",
 ];
 
 const proFeatures = [
@@ -40,11 +40,11 @@ const proFeatures = [
 const faqs = [
   {
     q: "Does TabMem read the pages I visit?",
-    a: "No. It only uses the browser's tab and session APIs to know which tabs are open and when each was last used. It never reads page content, form fields or text.",
+    a: "No. It uses the browser's tabs API to see which tabs are open and records recent tab activity on your device. It never reads page content or form fields.",
   },
   {
     q: "What happens to a sleeping tab?",
-    a: "The tab stays in your tab bar with its title and icon, but its memory is released. Clicking it reloads the page exactly where it was.",
+    a: "The tab stays in your tab bar. Selecting it reloads the page; unsaved page state may not be restored.",
   },
   {
     q: "Will it put my email or chat to sleep?",
@@ -62,7 +62,7 @@ export default function TabMemPage() {
       <MarketingHero
         eyebrow="Browser extension · Microsoft Edge"
         title="Stop your browser from eating all the RAM."
-        description="TabMem puts tabs you are not using to sleep, so the ones you are using stay fast. Your mail, chat and docs never get touched. Free to install; Pro is a one-time $6."
+        description="TabMem puts eligible inactive tabs to sleep to help free memory. Active, pinned and audible tabs stay awake, as do sites on your allowlist. Free to install; Pro is a one-time $6."
         badges={[
           { label: "Free to install", tone: "warm" },
           { label: "15 sites protected", tone: "muted" },
@@ -95,7 +95,7 @@ export default function TabMemPage() {
           {
             icon: LockKeyhole,
             title: "Never touches the important ones",
-            body: "Mail, chat, docs and 12 other common work sites are protected by default. Add your own too.",
+            body: "15 domains, including Gmail, Slack and GitHub, are protected by default. Add the sites you want to keep awake.",
           },
           {
             icon: Timer,
