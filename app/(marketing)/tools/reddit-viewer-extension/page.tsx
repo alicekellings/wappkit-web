@@ -44,6 +44,32 @@ const proFeatures = [
 export default function RedditReaderExtensionPage() {
   return (
     <MarketingPageShell>
+      {/*
+        A Chrome/Edge extension cannot be installed on a phone, and most of this
+        blog's search traffic is mobile. This sits ABOVE the hero on purpose: a
+        phone reader who scrolls past the store buttons has already been told to
+        do something the device cannot do.
+      */}
+      <section className="mb-6 rounded-2xl border border-orange-200 bg-orange-50/70 p-5 md:hidden">
+        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-orange-700">
+          On a phone?
+        </p>
+        <p className="mt-2 text-base leading-7 text-muted-foreground">
+          This page installs a desktop browser extension, which a phone cannot
+          run. The same reader is available as a free Android app.
+        </p>
+        <Link
+          href="/tools/reddit-reader-android"
+          prefetch={false}
+          data-umami-event="extension_page_mobile_banner_clicked"
+          className="mt-4 inline-block"
+        >
+          <Button rounded="full" size="lg">
+            Get the Android app
+          </Button>
+        </Link>
+      </section>
+
       <MarketingHero
         eyebrow="Browser extension · Chrome / Edge / Firefox"
         title="A cleaner way to read Reddit threads."
@@ -118,32 +144,6 @@ export default function RedditReaderExtensionPage() {
           </MarketingCard>
         }
       />
-
-      {/*
-        A Chrome/Edge extension cannot be installed on a phone, and most of this
-        blog's search traffic is mobile. Phone readers land here expecting a
-        download they can actually complete, so surface the Android build above
-        the fold instead of further down the page.
-      */}
-      <section className="mt-6 rounded-2xl border border-orange-200 bg-orange-50/70 p-5 md:hidden">
-        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-orange-700">
-          On a phone?
-        </p>
-        <p className="mt-2 text-base leading-7 text-muted-foreground">
-          This page installs a desktop browser extension, which a phone cannot
-          run. The same reader is available as a free Android app.
-        </p>
-        <Link
-          href="/tools/reddit-reader-android"
-          prefetch={false}
-          data-umami-event="extension_page_mobile_banner_clicked"
-          className="mt-4 inline-block"
-        >
-          <Button rounded="full" size="lg">
-            Get the Android app
-          </Button>
-        </Link>
-      </section>
 
       <section className="mt-10 grid gap-6 md:grid-cols-2">
         <MarketingCard tone="soft" className="p-8">
