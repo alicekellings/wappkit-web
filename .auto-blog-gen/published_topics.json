@@ -219,7 +219,8 @@
     "ecom_image:topic:walmart product image 2200px square target",
     "ecom_image:topic:ebay listing image 12mb size limit",
     "reddit_toolbox:intent:worked example building an obsidian research vault from reddit threads",
-    "ecom_image:topic:shopify product image 5000px maximum dimension"
+    "ecom_image:topic:shopify product image 5000px maximum dimension",
+    "ecom_image:topic:tiktok shop product image 600px minimum"
   ],
   "published_slugs": [
     "how-to-use-reddit-toolbox-for-pain-point-research-and-saas-validation",
@@ -447,7 +448,8 @@
     "2200px-square-walmart-image-workflow",
     "how-to-fix-ebay-listing-images-over-12mb-without-losing-quality",
     "from-20-threads-to-an-obsidian-vault-a-reddit-export-walkthrough",
-    "shopify-product-image-size-why-5000px-is-rarely-the-right-choice"
+    "shopify-product-image-size-why-5000px-is-rarely-the-right-choice",
+    "tiktok-shop-600px-image-minimum-why-it-fails"
   ],
   "events": [
     {
@@ -2069,6 +2071,13 @@
       "source_type": "topic",
       "slug": "shopify-product-image-size-why-5000px-is-rarely-the-right-choice",
       "title": "Shopify Product Image Size: Why 5000px Is Rarely the Right Choice"
+    },
+    {
+      "theme": "ecom_image",
+      "topic": "tiktok shop product image 600px minimum",
+      "source_type": "topic",
+      "slug": "tiktok-shop-600px-image-minimum-why-it-fails",
+      "title": "TikTok Shop 600px Image Minimum: Why It Fails"
     }
   ],
   "skipped_topics": [

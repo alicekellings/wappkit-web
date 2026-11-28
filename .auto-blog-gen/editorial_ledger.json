@@ -91,6 +91,13 @@
       "type": "data_study",
       "template": "measurement_report",
       "date": "2026-11-27"
+    },
+    {
+      "slug": "tiktok-shop-600px-image-minimum-why-it-fails",
+      "title": "TikTok Shop 600px Image Minimum: Why It Fails",
+      "type": "tutorial",
+      "template": "step_sequence",
+      "date": "2026-11-28"
     }
   ]
 }

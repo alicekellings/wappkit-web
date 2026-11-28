@@ -1494,7 +1494,16 @@
       "type": "data_study",
       "date": "2026-11-27",
       "status": "published"
+    },
+    {
+      "id": "I-0167",
+      "intent": "600px fail image minimum shop tiktok",
+      "title": "TikTok Shop 600px Image Minimum: Why It Fails",
+      "slug": "tiktok-shop-600px-image-minimum-why-it-fails",
+      "type": "tutorial",
+      "date": "2026-11-28",
+      "status": "published"
     }
   ],
-  "updated": "2026-11-27"
+  "updated": "2026-11-28"
 }
