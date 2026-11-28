@@ -68,11 +68,31 @@ export function BlogProductPromo({
         </p>
 
         <div className="flex flex-col gap-3">
+          {/*
+            64% of this blog's search traffic is on a phone, and a Chrome/Edge
+            extension cannot be installed there. On small screens the primary
+            button therefore offers the Android build instead of the store
+            listing; the store button only appears from the md breakpoint up.
+          */}
+          {tool.mobileHref ? (
+            <Link
+              href={tool.mobileHref}
+              prefetch={false}
+              data-umami-event="blog_promo_mobile_clicked"
+              data-umami-event-tool={tool.slug}
+              className="md:hidden"
+            >
+              <Button rounded="full" className="w-full">
+                {tool.mobileLabel ?? "Get the mobile version"}
+              </Button>
+            </Link>
+          ) : null}
           <Link
             href={tool.downloadHref}
             prefetch={false}
             data-umami-event="blog_promo_download_clicked"
             data-umami-event-tool={tool.slug}
+            className={tool.mobileHref ? "hidden md:block" : undefined}
           >
             <Button rounded="full" className="w-full">
               {tool.downloadLabel}
@@ -88,17 +108,6 @@ export function BlogProductPromo({
               See {tool.name}
             </Button>
           </Link>
-          {tool.mobileHref ? (
-            <Link
-              href={tool.mobileHref}
-              prefetch={false}
-              data-umami-event="blog_promo_mobile_clicked"
-              data-umami-event-tool={tool.slug}
-              className="text-center text-sm font-medium text-orange-700 underline-offset-4 hover:underline"
-            >
-              {tool.mobileLabel ?? "On a phone? Get the mobile version"}
-            </Link>
-          ) : null}
           {tool.slug === REDDIT_READER.slug ? (
             <Link
               href={REDDIT_READER.edge}
@@ -106,7 +115,7 @@ export function BlogProductPromo({
               data-umami-event="extension_install_clicked"
               data-umami-event-store="edge"
               data-umami-event-source="blog_sidebar"
-              className="text-center text-sm font-medium text-orange-700 underline-offset-4 hover:underline"
+              className="hidden text-center text-sm font-medium text-orange-700 underline-offset-4 hover:underline md:block"
             >
               Also on Microsoft Edge
             </Link>

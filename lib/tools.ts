@@ -178,7 +178,8 @@ export const tools: Tool[] = [
     buyHref: "/license",
     docsHref: "/docs/checkout-and-activation",
     mobileHref: "/tools/reddit-reader-android",
-    mobileLabel: "On a phone? Get the Android reader",
+    // Used as the primary button on phones, where the extension cannot install.
+    mobileLabel: "Get the Android reader",
     availabilityNote:
       "Reddit Reader is live on the Chrome Web Store and Microsoft Edge Add-ons. Free to install with a 3-export trial; Pro activates inside the extension with a Wappkit license key.",
     checkoutEnabled: true,

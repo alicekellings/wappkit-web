@@ -71,21 +71,35 @@ export function NavMobile() {
         </ul>
 
         <div className="mt-6 rounded-2xl border border-orange-200 bg-orange-50/70 p-4">
+          {/*
+            This panel only renders below the md breakpoint, so the reader who
+            sees it is on a phone and cannot install a Chrome/Edge extension.
+            Lead with the Android build; keep the desktop store link as a small
+            secondary line for anyone reading this on a phone but working on a
+            computer.
+          */}
           <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-orange-700">
-            Free browser extension
+            Free on Android
+          </p>
+          <Link
+            href="/tools/reddit-reader-android"
+            onClick={() => setOpen(false)}
+            data-umami-event="mobile_nav_android_clicked"
+            className="mt-1 block font-heading text-lg text-foreground"
+          >
+            Reddit Reader for Android
+          </Link>
+          <p className="mt-1 text-sm leading-6 text-muted-foreground">
+            Free APK. No login wall, keyword highlighting, Markdown export.
           </p>
           <Link
             href="/tools/reddit-viewer-extension"
             onClick={() => setOpen(false)}
             data-umami-event="mobile_nav_extension_clicked"
-            className="mt-1 block font-heading text-lg text-foreground"
+            className="mt-3 inline-block text-sm font-medium text-orange-700 underline underline-offset-4"
           >
-            Reddit Reader — clean thread view
+            On a computer? Get the Chrome and Edge extension
           </Link>
-          <p className="mt-1 text-sm leading-6 text-muted-foreground">
-            Chrome and Edge. No login wall, keyword highlighting, Markdown
-            export.
-          </p>
         </div>
 
         {documentation ? (
